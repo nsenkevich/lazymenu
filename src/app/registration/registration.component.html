@@ -1,0 +1,21 @@
+<div class="registration" fxLayout="column" fxLayoutAlign=" stretch">
+  <div fxLayout="row" fxLayoutAlign="center stretch" fxFlexOffset.xl="30" fxFlexOffset.md="5">
+    <div class="container" fxFlex="33">
+      <h2>Sign Up</h2>
+      <form class="registration-form" [formGroup]="registrationForm" novalidate>
+        <mat-form-field class="full-width">
+          <input matInput type="email" placeholder="Email" formControlName="email">
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+          <input matInput type="password" placeholder="Choose password" formControlName="passWord">
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+          <input matInput type="password" placeholder="Confirm password" formControlName="passWordCopy">
+        </mat-form-field>
+        <button class="submit" mat-raised-button color="primary" (click)="register()" type="submit">Register</button>
+      </form>
+    </div>
+  </div>
+</div>

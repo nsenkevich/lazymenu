@@ -7,11 +7,14 @@ import { AppRoutingModule } from './route.module';
 import { MaterialModule } from './material.module';
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
+import { RegistrationComponent } from './registration/registration.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MenuComponent
+    MenuComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,
@@ -19,6 +22,7 @@ import { MenuComponent } from './menu/menu.component';
     MaterialModule,
     FlexLayoutModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
