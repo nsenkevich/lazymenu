@@ -5,7 +5,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import 'hammerjs';
 import { AppRoutingModule } from './route.module';
 import { MaterialModule } from './material.module';
-import { AppComponent } from './app.component';
+import { AppComponent } from './app/app.component';
 import { MenuComponent } from './menu/menu.component';
 
 @NgModule({
