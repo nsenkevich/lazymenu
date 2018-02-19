@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { MenuComponent } from './menu/menu.component';
 import { AppComponent } from './app/app.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { PageNotFoundComponent } from './app/page-not-found.component';
 
 const routes: Routes = [
     {
@@ -16,6 +17,11 @@ const routes: Routes = [
     {
       path: 'registration',
       component: RegistrationComponent
+    },
+    {
+      path: '**',
+      pathMatch: 'full',
+      component: PageNotFoundComponent
     }
   ];
 

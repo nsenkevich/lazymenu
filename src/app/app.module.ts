@@ -9,12 +9,16 @@ import { AppComponent } from './app/app.component';
 import { MenuComponent } from './menu/menu.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RecipeComponent } from './recipe/recipe.component';
+import { PageNotFoundComponent } from './app/page-not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    RecipeComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
