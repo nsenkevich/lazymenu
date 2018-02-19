@@ -10,7 +10,7 @@ import { MenuComponent } from './menu/menu.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RecipeComponent } from './recipe/recipe.component';
-import { PageNotFoundComponent } from './app/page-not-found.component';
+import { PageNotFoundPage } from './app/page-not-found.page';
 
 @NgModule({
   declarations: [
@@ -18,7 +18,7 @@ import { PageNotFoundComponent } from './app/page-not-found.component';
     MenuComponent,
     RegistrationComponent,
     RecipeComponent,
-    PageNotFoundComponent
+    PageNotFoundPage
   ],
   imports: [
     BrowserModule,

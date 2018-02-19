@@ -3,14 +3,14 @@ import { Routes, RouterModule } from '@angular/router';
 import { MenuComponent } from './menu/menu.component';
 import { AppComponent } from './app/app.component';
 import { RegistrationComponent } from './registration/registration.component';
-import { PageNotFoundComponent } from './app/page-not-found.component';
+import { PageNotFoundPage } from './app/page-not-found.page';
 import { RecipeComponent } from './recipe/recipe.component';
 
 const routes: Routes = [
     {path: '', component: AppComponent},
     {path: 'menu', component: MenuComponent},
     {path: 'registration', component: RegistrationComponent},
-    {path: '**', pathMatch: 'full', component: PageNotFoundComponent},
+    {path: '**', pathMatch: 'full', component: PageNotFoundPage},
     {path: 'recipe/:id', component: RecipeComponent}
   ];
 

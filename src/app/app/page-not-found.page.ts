@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   moduleId: module.id,
-  selector: 'story-404',
+  selector: 'app-page-not-found',
   template: `
     <article class="template animated slideInRight">
       <h4>Inconceivable!</h4>
@@ -10,4 +10,4 @@ import { Component } from '@angular/core';
     </article>
   `
 })
-export class PageNotFoundComponent { }
+export class PageNotFoundPage { }
