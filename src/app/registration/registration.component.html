@@ -1,42 +1,36 @@
 <div class="registration" fxLayout="column" fxLayoutAlign=" stretch">
   <div fxLayout="row" fxLayoutAlign="center stretch" fxFlexOffset.xl="30" fxFlexOffset.md="5">
-    <div class="container" fxFlex="33">
-      <h2>Sign Up</h2>
+    <mat-card class="container" fxFlex="33" fxFlex.md="50" fxFlex.sm="80" fxFlex.xs="100">
       <form class="registration-form" [formGroup]="registrationForm" novalidate>
         <mat-form-field class="full-width">
-          <input matInput type="email" placeholder="Email" formControlName="email"> 
-          <mat-error *ngIf="registrationForm.controls.email.required">
-            Email is required
+          <input matInput type="email" placeholder="Email" formControlName="email">
+          <mat-error *ngIf="registrationForm.controls.email.errors &&registrationForm.controls.email.errors.required">
+            Required
           </mat-error>
-          <mat-error *ngIf="registrationForm.controls.email.errors !== null">
-           Invalid email
+          <mat-error *ngIf="registrationForm.controls.email.errors &&!registrationForm.controls.email.errors.required &&registrationForm.controls.email.errors.email ">
+            Invalid email
           </mat-error>
         </mat-form-field>
-
         <mat-form-field class="full-width">
           <input matInput type="password" placeholder="Choose password" formControlName="password">
-          <mat-error *ngIf="registrationForm.controls.password.required">
-            Password is
-            <strong>required</strong>
+          <mat-error *ngIf="registrationForm.controls.password.errors && registrationForm.controls.password.errors.required">
+            Required
           </mat-error>
-          <mat-error *ngIf="registrationForm.controls.password.errors &&registrationForm.controls.password.errors.minlength">
-              Password mast be at least 5 characters long
+          <mat-error *ngIf="registrationForm.controls.password.errors && !registrationForm.controls.password.errors.required && registrationForm.controls.password.errors.minlength">
+            Use minimum 5 characters
           </mat-error>
         </mat-form-field>
-
         <mat-form-field class="full-width">
           <input matInput type="password" placeholder="Confirm password" formControlName="passwordCopy">
-          <mat-error *ngIf="registrationForm.controls.passwordCopy.required">
-            Password is
-            <strong>required</strong>
+          <mat-error *ngIf="registrationForm.controls.passwordCopy.errors && registrationForm.controls.passwordCopy.errors.required">
+            Required
           </mat-error>
-          <mat-error *ngIf="registrationForm.controls.passwordCopy.errors">
-           Not matching fields
-        </mat-error>
+          <mat-error *ngIf="registrationForm.controls.passwordCopy.errors && !registrationForm.controls.passwordCopy.errors.required &&registrationForm.controls.passwordCopy.errors">
+            Use same set of characters to confirm password
+          </mat-error>
         </mat-form-field>
-        
-        <button class="submit" mat-raised-button color="primary" (click)="register()" type="submit" [disabled]="!registrationForm.valid">Register</button>
+        <button class="submit" mat-raised-button color="primary" (click)="register()" type="submit">Register</button>
       </form>
-    </div>
+    </mat-card>
   </div>
 </div>

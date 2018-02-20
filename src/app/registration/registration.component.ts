@@ -14,7 +14,7 @@ export class RegistrationComponent {
     this.createForm();
   }
 
-  private createForm() {
+  private createForm(): void {
     this.registrationForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(5)]],
@@ -23,6 +23,9 @@ export class RegistrationComponent {
   }
 
   public register() {
+    if (!this.registrationForm.valid) {
+      return console.log(this.registrationForm);
+    }
     console.log(this.registrationForm.status);
     console.log(this.registrationForm.value);
   }
