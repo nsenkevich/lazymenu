@@ -10,8 +10,8 @@ const routes: Routes = [
     {path: '', component: AppComponent},
     {path: 'menu', component: MenuComponent},
     {path: 'registration', component: RegistrationComponent},
+    {path: 'recipe/:id', component: RecipeComponent},
     {path: '**', pathMatch: 'full', component: PageNotFoundPage},
-    {path: 'recipe/:id', component: RecipeComponent}
   ];
 
 @NgModule({
