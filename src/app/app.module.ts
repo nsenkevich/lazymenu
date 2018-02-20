@@ -8,9 +8,14 @@ import { MaterialModule } from './material.module';
 import { AppComponent } from './app/app.component';
 import { MenuComponent } from './menu/menu.component';
 import { RegistrationComponent } from './registration/registration.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RecipeComponent } from './recipe/recipe.component';
 import { PageNotFoundPage } from './app/page-not-found.page';
+import { AngularFireModule } from 'angularfire2';
+import { environment } from '../environments/environment';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AuthService } from './auth/auth.service';
+import { AuthComponent } from './auth/auth.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +23,8 @@ import { PageNotFoundPage } from './app/page-not-found.page';
     MenuComponent,
     RegistrationComponent,
     RecipeComponent,
-    PageNotFoundPage
+    PageNotFoundPage,
+    AuthComponent
   ],
   imports: [
     BrowserModule,
@@ -26,9 +32,12 @@ import { PageNotFoundPage } from './app/page-not-found.page';
     MaterialModule,
     FlexLayoutModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
+    FormsModule,
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
