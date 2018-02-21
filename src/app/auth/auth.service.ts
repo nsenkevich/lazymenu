@@ -1,61 +1,93 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
 import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/switchMap';
+
 import { Router } from '@angular/router';
+
+interface User {
+  uid: string;
+  email: string;
+  name?: string;
+}
 
 @Injectable()
 export class AuthService {
-  user: Observable<firebase.User>;
+  public user: Observable<firebase.User>;
+  private userDetails: firebase.User = null;
 
-  constructor(private firebaseAuth: AngularFireAuth, private router: Router) {
-    this.user = firebaseAuth.authState;
+  private firebaseAuth: AngularFireAuth;
+  private afs: AngularFirestore;
+  private router: Router;
+
+  public constructor(firebaseAuth: AngularFireAuth, afs: AngularFirestore, router: Router) {
     this.router = router;
+    this.firebaseAuth = firebaseAuth;
+    this.afs = afs;
+    console.log(this.firebaseAuth.authState);
+    this.getUser();
   }
 
-  signup(email: string, password: string) {
-    this.firebaseAuth
-      .auth
-      .createUserWithEmailAndPassword(email, password)
-      .then(value => {
-        console.log('Success!', value);
-        this.router.navigateByUrl('/auth');
-      })
-      .catch(err => {
-        console.log('Something went wrong:', err.message);
-      });
-  }
-
-  googleLogin() {
-    this.firebaseAuth
-    .auth
-    .signInWithPopup(new firebase.auth.GoogleAuthProvider())
-    .then(value => {
-     console.log('Sucess', value),
-     this.router.navigateByUrl('/auth');
-   })
-    .catch(error => {
-      console.log('Something went wrong: ', error);
+  public getUser() {
+    this.user = this.firebaseAuth.authState
+    .switchMap(user => {
+      if (user) {
+        return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
+      } else {
+        return Observable.of(null);
+      }
     });
   }
 
-  login(email: string, password: string) {
-    this.firebaseAuth
-      .auth
-      .signInWithEmailAndPassword(email, password)
-      .then(value => {
-        console.log('Nice, it worked!');
-        this.router.navigateByUrl('/auth');
-      })
-      .catch(err => {
-        console.log('Something went wrong:', err.message);
-      });
+  public signup(email: string, password: string) {
+    return this.firebaseAuth.auth.createUserWithEmailAndPassword(
+        email, password
+      );
   }
 
-  logout() {
-    this.firebaseAuth.auth.signOut().then(() => {
-        this.router.navigate(['/auth']);
-    });
+  public loginWithGoogle() {
+    return this.firebaseAuth.auth.signInWithPopup(
+      new firebase.auth.GoogleAuthProvider()
+    );
   }
 
+  public loginWithTwitter() {
+    return this.firebaseAuth.auth.signInWithPopup(
+      new firebase.auth.TwitterAuthProvider()
+    );
+  }
+
+  public loginWithFacebook() {
+    return this.firebaseAuth.auth.signInWithPopup(
+      new firebase.auth.FacebookAuthProvider()
+    );
+  }
+
+  public login(email: string, password: string) {
+    return this.firebaseAuth.auth.signInWithEmailAndPassword(
+      email, password
+    );
+  }
+
+  public isLoggedIn() {
+    this.user.subscribe(
+      (user) => {
+        if (user) {
+          this.userDetails = user;
+          console.log(this.userDetails);
+        }
+      }
+    );
+    if (this.userDetails == null ) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  public logout() {
+    return this.firebaseAuth.auth.signOut();
+  }
 }

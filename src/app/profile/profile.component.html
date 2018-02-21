@@ -1,0 +1,10 @@
+<div *ngIf="authService.user | async as user">
+    <h3>Name, {{ user.name }}</h3>
+    <p>UID: {{ user.uid }}</p>
+    <p>Email: {{ user?.email }} </p>
+
+    <p>Portions: {{ user?.portions }} </p>
+    <p>Allergy: {{ user?.allergy }} </p>
+    <p>Diet: {{ user?.diet }} </p>
+    <button (click)="logout()">Logout</button>
+</div>

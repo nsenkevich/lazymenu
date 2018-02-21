@@ -14,8 +14,12 @@ import { PageNotFoundPage } from './app/page-not-found.page';
 import { AngularFireModule } from 'angularfire2';
 import { environment } from '../environments/environment';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+
 import { AuthService } from './auth/auth.service';
 import { AuthComponent } from './auth/auth.component';
+import { ProfileComponent } from './profile/profile.component';
+import { AuthGuard } from './auth/auth.guard';
 
 @NgModule({
   declarations: [
@@ -24,7 +28,8 @@ import { AuthComponent } from './auth/auth.component';
     RegistrationComponent,
     RecipeComponent,
     PageNotFoundPage,
-    AuthComponent
+    AuthComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -35,9 +40,10 @@ import { AuthComponent } from './auth/auth.component';
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
+    AngularFirestoreModule,
     FormsModule,
   ],
-  providers: [AuthService],
+  providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

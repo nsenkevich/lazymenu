@@ -1,6 +1,4 @@
-<h1 *ngIf="authService.user | async">Welcome {{ (authService.user | async)?.email }}!</h1>
-
-<div *ngIf="!(authService.user | async)">
+<div *ngIf="showContent">
   <input type="text" [(ngModel)]="email" placeholder="email">
   <input type="password" [(ngModel)]="password" placeholder="password">
 
@@ -11,10 +9,7 @@
   <button (click)="login()" [disabled]="!email || !password">
     Login
   </button>
-  <button (click)="loginGoogle()">Login with Google</button>
+  <button (click)="loginWithGoogle()">Login with Google</button>
+  <!-- <button (click)="loginWithTwitter()">Login with Twitter</button> -->
+  <button (click)="loginWithFacebook()">Login with Facebook</button>
 </div>
-
-
-<button (click)="logout()" *ngIf="authService.user | async">
-  Logout
-</button>

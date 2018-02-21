@@ -4,6 +4,8 @@
             <span>Brand</span>
             <a mat-button routerLink="">Home</a>
             <a mat-button routerLink="menu">Menu</a>
+            <a mat-button routerLink="auth">Auth</a>
+            <a mat-button routerLink="profile">Profile</a>
         </div>
         <div fxShow="true" fxHide.gt-sm="true" fxFlex="100" fxLayout="row">
             <button fxFlex="10" mat-icon-button (click)="drawer.open()">
@@ -29,6 +31,10 @@
                 <mat-list-item mat-button routerLink="auth" (click)="drawer.close()">
                     <mat-icon matListIcon>account_box</mat-icon>
                     <h3 matLine> Auth </h3>
+                </mat-list-item>
+                <mat-list-item mat-button routerLink="profile" (click)="drawer.close()">
+                    <mat-icon matListIcon>account_box</mat-icon>
+                    <h3 matLine> Profile </h3>
                 </mat-list-item>
             </mat-nav-list>
 

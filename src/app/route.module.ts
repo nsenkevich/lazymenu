@@ -6,6 +6,8 @@ import { RegistrationComponent } from './registration/registration.component';
 import { PageNotFoundPage } from './app/page-not-found.page';
 import { RecipeComponent } from './recipe/recipe.component';
 import { AuthComponent } from './auth/auth.component';
+import { AuthGuard } from './auth/auth.guard';
+import { ProfileComponent} from './profile/profile.component';
 
 const routes: Routes = [
     {path: '', component: AppComponent},
@@ -13,6 +15,7 @@ const routes: Routes = [
     {path: 'menu', component: MenuComponent},
     {path: 'registration', component: RegistrationComponent},
     {path: 'recipe/:id', component: RecipeComponent},
+    {path: 'profile', component: ProfileComponent,  canActivate: [AuthGuard] },
     {path: '**', pathMatch: 'full', component: PageNotFoundPage},
   ];
 
