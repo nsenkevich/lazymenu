@@ -1,15 +1,38 @@
-<div *ngIf="showContent">
+<div *ngIf="existingUser"> 
+  <p class="button is-small" (click)="toggleForm()">Not Registered?</p>
   <input type="text" [(ngModel)]="email" placeholder="email">
   <input type="password" [(ngModel)]="password" placeholder="password">
 
-  <button (click)="signup()" [disabled]="!email || !password">
-    Signup
-  </button>
-
-  <button (click)="login()" [disabled]="!email || !password">
-    Login
-  </button>
+  <button (click)="login()" [disabled]="!email || !password">Login</button>
+  
   <button (click)="loginWithGoogle()">Login with Google</button>
   <!-- <button (click)="loginWithTwitter()">Login with Twitter</button> -->
   <button (click)="loginWithFacebook()">Login with Facebook</button>
+
+  <div *ngIf="!passReset">
+    <input type="text" [(ngModel)]="email" placeholder="email">
+    <button (click)="resetPassword()" [disabled]="!email">reset password </button>
+  </div>
+  <p *ngIf="passReset" class="help is-info">Reset requested. Check your email instructions.</p>
+</div>
+
+<div *ngIf="!existingUser"> 
+  <p class="button is-small" (click)="toggleForm()">Already Registered?</p>  
+  <div *ngIf="registrationStep == 1">
+      <input type="text" [(ngModel)]="email" placeholder="email">
+      <input type="password" [(ngModel)]="password" placeholder="password">
+
+      <button (click)="signup()" [disabled]="!email || !password">
+        Signup
+      </button>
+  </div> 
+</div>
+  
+<div *ngIf="!existingUser"> 
+  <div *ngIf="registrationStep == 2">    
+        <input type="text" [(ngModel)]="detail" placeholder="detail">
+        <button (click)="details()" [disabled]="!detail">
+          details
+        </button>
+  </div>
 </div>

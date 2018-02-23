@@ -20,12 +20,14 @@ export class AuthGuard implements CanActivate {
   }
 
   public canActivate() {
-    if (this.authService.isLoggedIn()) {
-        return true;
-    }
-
-    this.router.navigate(['/auth']);
-    return false;
+    return this.authService.user
+           .take(1)
+           .map(user => !!(user && (user as any).details) )
+           .do(loggedIn => {
+             if (!loggedIn) {
+               console.warn('You must be logged in and have a 2 step registration!', 'error');
+               this.router.navigate(['/auth']);
+             }
+         });
   }
-
 }

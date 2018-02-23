@@ -11,6 +11,7 @@ interface User {
   uid: string;
   email: string;
   name?: string;
+  details?: string;
 }
 
 @Injectable()
@@ -26,7 +27,6 @@ export class AuthService {
     this.router = router;
     this.firebaseAuth = firebaseAuth;
     this.afs = afs;
-    console.log(this.firebaseAuth.authState);
     this.getUser();
   }
 
@@ -35,59 +35,80 @@ export class AuthService {
     .switchMap(user => {
       if (user) {
         return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
-      } else {
-        return Observable.of(null);
       }
+      return Observable.of(null);
     });
   }
 
   public signup(email: string, password: string) {
-    return this.firebaseAuth.auth.createUserWithEmailAndPassword(
-        email, password
-      );
+    return this.firebaseAuth.auth.createUserWithEmailAndPassword(email, password)
+      .then(user => this.updateUser(user))
+      .catch(error => console.error(error));
   }
 
   public loginWithGoogle() {
-    return this.firebaseAuth.auth.signInWithPopup(
-      new firebase.auth.GoogleAuthProvider()
-    );
+    return this.oAuthLogin(new firebase.auth.GoogleAuthProvider());
   }
 
   public loginWithTwitter() {
-    return this.firebaseAuth.auth.signInWithPopup(
-      new firebase.auth.TwitterAuthProvider()
-    );
+    return this.oAuthLogin(new firebase.auth.TwitterAuthProvider());
   }
 
   public loginWithFacebook() {
-    return this.firebaseAuth.auth.signInWithPopup(
-      new firebase.auth.FacebookAuthProvider()
-    );
+    return this.oAuthLogin(new firebase.auth.FacebookAuthProvider());
   }
 
   public login(email: string, password: string) {
-    return this.firebaseAuth.auth.signInWithEmailAndPassword(
-      email, password
-    );
+    return this.firebaseAuth.auth.signInWithEmailAndPassword(email, password)
+      .then((userFromAuth) => {
+        this.afs.doc<User>(`users/${userFromAuth.uid}`).valueChanges()
+          .subscribe((userFromDb) => {
+            if (!userFromDb) {
+              this.updateUser(userFromAuth);
+            } else {
+              this.updateUser(userFromDb);
+            }
+          });
+      })
+      .catch((error) => console.error(error));
   }
 
-  public isLoggedIn() {
-    this.user.subscribe(
-      (user) => {
-        if (user) {
-          this.userDetails = user;
-          console.log(this.userDetails);
-        }
-      }
-    );
-    if (this.userDetails == null ) {
-      return false;
-    } else {
-      return true;
-    }
+  public resetPassword(email: string) {
+    return firebase.auth().sendPasswordResetEmail(email)
+      .then(() => console.warn('Password update email sent', 'info'))
+      .catch((error) => console.error(error));
   }
 
   public logout() {
     return this.firebaseAuth.auth.signOut();
   }
+
+  public updateUser(user: User) {
+
+    const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${user.uid}`);
+
+    const data: User = {
+      uid: user.uid,
+      email: user.email || null,
+      details: user.details || null,
+    };
+    userRef.set(data);
+    console.warn(data);
+  }
+
+  private oAuthLogin(provider: firebase.auth.AuthProvider) {
+    return this.firebaseAuth.auth.signInWithPopup(provider)
+      .then((userFromAuth) => {
+        this.afs.doc<User>(`users/${userFromAuth.user.uid}`).valueChanges()
+          .subscribe((userFromDb) => {
+            if (!userFromDb) {
+              this.updateUser(userFromAuth.user);
+            } else {
+              this.updateUser(userFromDb);
+            }
+            });
+      })
+      .catch((error) => console.error(error));
+  }
+
 }
