@@ -1,6 +1,30 @@
-<div class="registration" fxLayout="column" fxLayoutAlign=" stretch">
-  <div fxLayout="row" fxLayoutAlign="center stretch" fxFlexOffset.xl="30" fxFlexOffset.md="5">
-    <mat-card class="container" fxFlex="33" fxFlex.md="50" fxFlex.sm="80" fxFlex.xs="100">
+<div fxFlex="100" fxLayout="column" fxLayoutAlign=" none">
+  <div fxFlexOffset.xl="10" fxFlexOffset.lg="10" fxFlexOffset.md="5" fxFlexOffset.sm="0" fxFlexOffset.xs="0" fxLayout="row" fxLayoutAlign="center stretch">
+  <mat-card fxFlex="33" fxFlex.md="50" fxFlex.sm="80" fxFlex.xs="100">
+      <h3 class="subheading-2" (click)="registrationOpen = false" [ngClass]="{'inactive': registrationOpen}">Login</h3>
+    <div class="form-container" fxLayout="column" fxLayoutAlign=" stretch" [ngClass]="{'inactive': registrationOpen}">
+      <form class="login-form" [formGroup]="loginForm" novalidate>
+        <mat-form-field class="full-width">
+          <input matInput type="email" placeholder="Email" formControlName="email">
+          <mat-error *ngIf="loginForm.controls.email.errors && loginForm.controls.email.errors.required">
+            Required
+          </mat-error>
+          <mat-error *ngIf="loginForm.controls.email.errors && !loginForm.controls.email.errors.required &&loginForm.controls.email.errors.email ">
+            Invalid email
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <input matInput type="password" placeholder="Password" formControlName="password">
+          <mat-error *ngIf="loginForm.controls.password.errors && loginForm.controls.password.errors.required">
+            Required
+          </mat-error>
+        </mat-form-field>
+        <button class="submit" mat-raised-button color="primary" (click)="logIn()" type="submit">Login</button>
+      </form>
+    </div>
+    <div class="divider">&mdash;&mdash;&mdash; OR &mdash;&mdash;&mdash;</div>
+    <h3 class="subheading-2" (click)="registrationOpen = true" [ngClass]="{'inactive': !registrationOpen}">Register</h3>
+    <div class="form-container" fxLayout="column" fxLayoutAlign=" stretch" [ngClass]="{'inactive': !registrationOpen}">
       <form class="registration-form" [formGroup]="registrationForm" novalidate>
         <mat-form-field class="full-width">
           <input matInput type="email" placeholder="Email" formControlName="email">
@@ -31,6 +55,7 @@
         </mat-form-field>
         <button class="submit" mat-raised-button color="primary" (click)="register()" type="submit">Register</button>
       </form>
-    </mat-card>
-  </div>
+    </div>
+  </mat-card>
+</div>
 </div>

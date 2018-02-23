@@ -1,22 +1,40 @@
-.registration{
-   
+.divider {
+  color: #b4b4b4;
+  text-align: center;
+  margin-top: 2vh;
+  font-size: 1em;
 }
-.container{
-// background: #fff;
-// min-width: 350px;
-// max-width: 650px;
-// border: 1px solid rgba(0,0,0,.54);
-// padding: 12px;
-// text-align: center;
 
-.full-width{
-    width: 100%;
+h3 {
+  text-align: center;
+
+  &.inactive {
+    color: #b4b4b4;
+  }
 }
-.submit{
+
+.form-container {
+  max-height: 350px;
+  transition: all .5s ease-in-out;
+  opacity: 1;
+
+  &.inactive {
+    opacity: 0;
+    overflow: hidden;
+    max-height: 0;
+    transition: all .5s ease-out;
+  }
+
+  .full-width {
+    width: 100%;
+  }
+  .submit {
     width: 100%;
     display: block;
     padding: 6px 12px;
     text-transform: uppercase;
     margin-top: 16px;
+  }
 }
-}
+
+    

@@ -9,17 +9,34 @@ import { Observable } from 'rxjs/Observable';
 })
 export class RegistrationComponent {
   public registrationForm: FormGroup;
+  public loginForm: FormGroup;
 
   constructor(private fb: FormBuilder) {
-    this.createForm();
+    this.createLoginForm();
+    this.createRegistrationForm();
   }
 
-  private createForm(): void {
+  private createLoginForm(): void {
+    this.loginForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(5)]]
+    });
+  }
+
+  private createRegistrationForm(): void {
     this.registrationForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(5)]],
       passwordCopy: ['', [Validators.required, Validators.minLength(5), this.checkPassword]]
     });
+  }
+
+  public login() {
+    if (!this.registrationForm.valid) {
+      return console.log(this.registrationForm);
+    }
+    console.log(this.registrationForm.status);
+    console.log(this.registrationForm.value);
   }
 
   public register() {
