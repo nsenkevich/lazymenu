@@ -43,6 +43,7 @@ export class AuthComponent implements OnInit {
         }
         if (user && !(user as User).details) {
           this.registrationStep = 2;
+          this.existingUser = false;
         }
         if (user && (user as User).details) {
           this.router.navigate(['/profile']);
@@ -53,7 +54,7 @@ export class AuthComponent implements OnInit {
     );
   }
 
-  toggleForm() {
+  public toggleForm() {
     this.existingUser = !this.existingUser;
   }
 
