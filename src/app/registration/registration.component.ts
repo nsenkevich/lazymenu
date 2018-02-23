@@ -7,13 +7,17 @@ import { Observable } from 'rxjs/Observable';
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.scss']
 })
-export class RegistrationComponent {
+export class RegistrationComponent implements OnInit {
   public registrationForm: FormGroup;
   public loginForm: FormGroup;
+  public forgotPasswordForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder) {}
+
+  ngOnInit() {
     this.createLoginForm();
     this.createRegistrationForm();
+    this.createForgotPasswordForm();
   }
 
   private createLoginForm(): void {
@@ -31,6 +35,12 @@ export class RegistrationComponent {
     });
   }
 
+  private createForgotPasswordForm(): void {
+    this.forgotPasswordForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]]
+    });
+  }
+
   public login() {
     if (!this.loginForm.valid) {
       return console.log(this.loginForm);
@@ -40,6 +50,12 @@ export class RegistrationComponent {
   public register() {
     if (!this.registrationForm.valid) {
       return console.log(this.registrationForm);
+    }
+  }
+
+  public forgotPassword() {
+    if (!this.forgotPasswordForm.valid) {
+      return console.log(this.forgotPasswordForm);
     }
   }
 
