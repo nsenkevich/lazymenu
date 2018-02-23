@@ -32,19 +32,15 @@ export class RegistrationComponent {
   }
 
   public login() {
-    if (!this.registrationForm.valid) {
-      return console.log(this.registrationForm);
+    if (!this.loginForm.valid) {
+      return console.log(this.loginForm);
     }
-    console.log(this.registrationForm.status);
-    console.log(this.registrationForm.value);
   }
 
   public register() {
     if (!this.registrationForm.valid) {
       return console.log(this.registrationForm);
     }
-    console.log(this.registrationForm.status);
-    console.log(this.registrationForm.value);
   }
 
   public checkPassword = (control): Observable<{ [key: string]: string }> => {
