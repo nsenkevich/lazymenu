@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { MenuComponent } from './menu/menu.component';
 import { AppComponent } from './app/app.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { PageNotFoundPage } from './app/page-not-found.page';
-import { RecipeComponent } from './recipe/recipe.component';
+import { MenuComponent } from './recipes/menu/menu.component';
+import { RecipeDetailsComponent } from './recipes/recipe-details/recipe-details.component';
 import { AuthComponent } from './auth/auth.component';
 import { AuthGuard } from './auth/auth.guard';
 import { ProfileComponent} from './profile/profile.component';
@@ -14,7 +14,7 @@ const routes: Routes = [
     {path: 'auth', component: AuthComponent},
     {path: 'menu', component: MenuComponent},
     {path: 'registration', component: RegistrationComponent},
-    {path: 'recipe/:id', component: RecipeComponent},
+    {path: 'recipe/:id', component: RecipeDetailsComponent},
     {path: 'profile', component: ProfileComponent,  canActivate: [AuthGuard] },
     {path: '**', pathMatch: 'full', component: PageNotFoundPage},
   ];
