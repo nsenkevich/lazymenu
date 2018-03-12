@@ -5,6 +5,14 @@ import { MatSnackBar } from '@angular/material';
 import { auth } from 'firebase/app';
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 
+
+interface User {
+  uid: string;
+  email: string;
+  name?: string;
+  details?: string;
+}
+
 @Component({
     selector: 'app-auth',
     templateUrl: './auth.component.html',
@@ -13,11 +21,14 @@ import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 export class AuthComponent implements OnInit {
   public email: string;
   public password: string;
-  public showContent: Boolean = false;
+  public registrationStep = 1;
+  public existingUser = true;
+  public user: User = null;
 
   private authService: AuthService;
   private router: Router;
   private snackBar: MatSnackBar;
+  public passReset = false;
 
   constructor(authService: AuthService, router: Router, snackBar: MatSnackBar) {
     this.router = router;
@@ -27,16 +38,39 @@ export class AuthComponent implements OnInit {
 
   public ngOnInit() {
     this.authService.user.subscribe((user) => {
-        if (user) {
-          this.router.navigateByUrl('/profile');
+        if (!user) {
+          this.existingUser = false;
         }
-        this.showContent = true;
+        if (user && !(user as User).details) {
+          this.registrationStep = 2;
+          this.existingUser = false;
+        }
+        if (user && (user as User).details) {
+          this.router.navigate(['/profile']);
+        }
+        this.user = user;
+
       }
     );
   }
 
+  public toggleForm() {
+    this.existingUser = !this.existingUser;
+  }
+
   public signup() {
-    this.handleLogin(this.authService.signup(this.email, this.password));
+    this.authService.signup(this.email, this.password);
+  }
+
+  public details() {
+    this.user.details = 'testing';
+    this.authService.updateUser(this.user);
+    this.router.navigate(['/profile']);
+  }
+
+  public resetPassword() {
+    this.authService.resetPassword(this.email)
+      .then(() => this.passReset = true);
   }
 
   public login() {
@@ -60,10 +94,6 @@ export class AuthComponent implements OnInit {
     .then(() => {
       this.router.navigate(['/auth']);
     });
-  }
-
-  public isLoggedIn() {
-    return this.authService.isLoggedIn();
   }
 
   private handleLogin(user: any) {
