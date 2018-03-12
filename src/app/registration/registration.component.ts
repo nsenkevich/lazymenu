@@ -7,14 +7,27 @@ import { Observable } from 'rxjs/Observable';
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.scss']
 })
-export class RegistrationComponent {
+export class RegistrationComponent implements OnInit {
   public registrationForm: FormGroup;
+  public loginForm: FormGroup;
+  public forgotPasswordForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
-    this.createForm();
+  constructor(private fb: FormBuilder) {}
+
+  ngOnInit() {
+    this.createLoginForm();
+    this.createRegistrationForm();
+    this.createForgotPasswordForm();
   }
 
-  private createForm(): void {
+  private createLoginForm(): void {
+    this.loginForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(5)]]
+    });
+  }
+
+  private createRegistrationForm(): void {
     this.registrationForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(5)]],
@@ -22,12 +35,28 @@ export class RegistrationComponent {
     });
   }
 
+  private createForgotPasswordForm(): void {
+    this.forgotPasswordForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]]
+    });
+  }
+
+  public login() {
+    if (!this.loginForm.valid) {
+      return console.log(this.loginForm);
+    }
+  }
+
   public register() {
     if (!this.registrationForm.valid) {
       return console.log(this.registrationForm);
     }
-    console.log(this.registrationForm.status);
-    console.log(this.registrationForm.value);
+  }
+
+  public forgotPassword() {
+    if (!this.forgotPasswordForm.valid) {
+      return console.log(this.forgotPasswordForm);
+    }
   }
 
   public checkPassword = (control): Observable<{ [key: string]: string }> => {
