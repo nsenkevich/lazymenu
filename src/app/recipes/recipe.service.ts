@@ -7,18 +7,19 @@ import { map } from 'rxjs/operators';
 @Injectable()
 export class RecipeService {
 
-  menu: AngularFirestoreCollection<Recipe>;
-  recipeDocument:   AngularFirestoreDocument<Recipe>;
+  private menu: AngularFirestoreCollection<Recipe>;
+  private recipeDocument:   AngularFirestoreDocument<Recipe>;
+  private afs: AngularFirestore;
 
-  constructor(private afs: AngularFirestore) {
+  public constructor(afs: AngularFirestore) {
     this.menu = this.afs.collection('recipes', (ref) => ref.orderBy('time', 'desc').limit(5));
   }
 
-  getData(): Observable<Recipe[]> {
+  public getData(): Observable<Recipe[]> {
     return this.menu.valueChanges();
   }
 
-  getSnapshot(): Observable<Recipe[]> {
+  public getSnapshot(): Observable<Recipe[]> {
     // ['added', 'modified', 'removed']
     return this.menu.snapshotChanges().map((actions) => {
       return actions.map((a) => {
@@ -28,11 +29,11 @@ export class RecipeService {
     });
   }
 
-  getRecipe(id: string) {
+  public getRecipe(id: string) {
     return this.afs.doc<Recipe>(`recipes/${id}`);
   }
 
-  create(content: string) {
+  public create(content: string) {
     const recipe = {
       content,
       hearts: 0,
@@ -41,11 +42,11 @@ export class RecipeService {
     return this.menu.add(recipe);
   }
 
-  updateRecipe(id: string, data: Partial<Recipe>) {
+  public updateRecipe(id: string, data: Partial<Recipe>) {
     return this.getRecipe(id).update(data);
   }
 
-  deleteRecipe(id: string) {
+  public deleteRecipe(id: string) {
     return this.getRecipe(id).delete();
   }
 }

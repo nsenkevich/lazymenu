@@ -11,6 +11,8 @@ export class RegistrationComponent implements OnInit {
   public registrationForm: FormGroup;
   public loginForm: FormGroup;
   public forgotPasswordForm: FormGroup;
+  public forgotPasswordOpen: boolean;
+  public registrationOpen: boolean;
 
   constructor(private fb: FormBuilder) {}
 

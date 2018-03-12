@@ -8,17 +8,24 @@ import { Recipe } from '../recipe.model';
   templateUrl: './recipe.component.html',
   styleUrls: ['./recipe.component.scss']
 })
-export class RecipeComponent {
-  recipeId: string;
+export class RecipeComponent  implements OnInit {
+  private recipeId: string;
+  private recipeService: RecipeService;
+  private route: ActivatedRoute;
 
   @Input()
   recipe: Recipe;
 
-  constructor(private route: ActivatedRoute, private recipeService: RecipeService) {
+  public constructor(route: ActivatedRoute, recipeService: RecipeService) {
+    this.route = route;
+    this.recipeService = recipeService;
+  }
+
+  public ngOnInit() {
     this.route.params.subscribe(params => this.recipeId = params.id);
   }
 
-  addHeartToRecipe(val: number) {
+  public addHeartToRecipe(val: number) {
     if (this.recipe.id) {
       this.recipeService.updateRecipe(this.recipe.id, { hearts: val + 1 });
     } else {
@@ -26,7 +33,7 @@ export class RecipeComponent {
     }
   }
 
-  deleteRecipe(id: string) {
+  public deleteRecipe(id: string) {
     this.recipeService.deleteRecipe(id);
   }
 }

@@ -11,6 +11,7 @@ export class ProfileComponent implements OnInit {
 
   private authService: AuthService;
   private router: Router;
+  public user: any;
 
   public constructor(authService: AuthService, router: Router) {
     this.authService = authService;
@@ -18,7 +19,7 @@ export class ProfileComponent implements OnInit {
   }
 
   public ngOnInit() {
-
+    this.user = this.authService.user;
   }
 
   public logout() {
