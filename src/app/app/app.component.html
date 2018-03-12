@@ -1,0 +1,61 @@
+<div style="height: 100vh;">
+    <mat-toolbar color="primary">
+        <div fxShow="true" fxHide.lt-md="true">
+            <span>Brand</span>
+            <a mat-button routerLink="">Home</a>
+            <a mat-button routerLink="menu">Menu</a>
+            <a mat-button routerLink="auth">Auth</a>
+            <a mat-button routerLink="profile">Profile</a>
+        </div>
+        <div fxShow="true" fxHide.gt-sm="true" fxFlex="100" fxLayout="row">
+            <button fxFlex="10" mat-icon-button (click)="drawer.open()">
+                <mat-icon class="md-24">menu</mat-icon>
+            </button>
+            <div fxFlex="80">
+                <div fxFlex="100" fxLayoutAlign="center center">Brand</div>
+            </div>
+            <div fxFlex="10"></div>
+        </div>
+    </mat-toolbar>
+    <mat-drawer-container fxFlexFill>
+        <mat-drawer #drawer fxLayout="column">
+            <mat-nav-list fxFlex="90">
+                <mat-list-item mat-button routerLink="" (click)="drawer.close()">
+                    <mat-icon matListIcon>home</mat-icon>
+                    <h3 matLine> Home</h3>
+                </mat-list-item>
+                <mat-list-item mat-button routerLink="menu" (click)="drawer.close()">
+                    <mat-icon matListIcon>menu</mat-icon>
+                    <h3 matLine> Menu </h3>
+                </mat-list-item>
+                <mat-list-item mat-button routerLink="auth" (click)="drawer.close()">
+                    <mat-icon matListIcon>account_box</mat-icon>
+                    <h3 matLine> Auth </h3>
+                </mat-list-item>
+                <mat-list-item mat-button routerLink="profile" (click)="drawer.close()">
+                    <mat-icon matListIcon>account_box</mat-icon>
+                    <h3 matLine> Profile </h3>
+                </mat-list-item>
+            </mat-nav-list>
+
+            <mat-nav-list>
+                <mat-list-item mat-button routerLink="">
+                    <mat-icon matListIcon>exit_to_app</mat-icon>
+                    <h3 matLine> Logout </h3>
+                </mat-list-item>
+            </mat-nav-list>
+        </mat-drawer>
+        <mat-drawer-content>
+            <div fxFlex="100" fxLayout="column" fxLayoutAlign=" none">
+                <div fxFlex="90">
+                    <router-outlet></router-outlet>
+                </div>
+                <footer fxFlex="10">
+                    <div fxLayout="row" style="background: #3f51b5; height: 100%">
+                        <span>Powered by Uliana ©2010-2018.</span>
+                    </div>
+                </footer>
+            </div>
+        </mat-drawer-content>
+    </mat-drawer-container>
+</div>
