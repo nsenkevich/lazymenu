@@ -1,0 +1,14 @@
+<h1>Menu</h1>
+
+<input [(ngModel)]="content" placeholder="Add your own recipe" class="input">
+<button class="button is-success" 
+    (click)="createRecipe()" 
+    [disabled]="content?.length < 2 || content?.length > 200">Add Recipe</button>
+<hr>
+<div fxLayout="row" fxLayoutAlign="space-around center" fxLayout.xs="column" fxLayoutWrap>
+  <div *ngFor="let recipe of menu | async"
+  fxFlex.xs="100%" fxFlex.sm="50%" fxFlex.md="33.3%" fxFlex.lg="33.3%" fxFlex.xl="33.3%">
+    <app-recipe [recipe]="recipe"></app-recipe>
+  </div>
+</div>
+

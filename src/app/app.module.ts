@@ -6,10 +6,8 @@ import 'hammerjs';
 import { AppRoutingModule } from './route.module';
 import { MaterialModule } from './material.module';
 import { AppComponent } from './app/app.component';
-import { MenuComponent } from './menu/menu.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { RecipeComponent } from './recipe/recipe.component';
 import { PageNotFoundPage } from './app/page-not-found.page';
 import { AngularFireModule } from 'angularfire2';
 import { environment } from '../environments/environment';
@@ -20,13 +18,12 @@ import { AuthService } from './auth/auth.service';
 import { AuthComponent } from './auth/auth.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AuthGuard } from './auth/auth.guard';
+import { RecipesModule } from './recipes/recipes.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MenuComponent,
     RegistrationComponent,
-    RecipeComponent,
     PageNotFoundPage,
     AuthComponent,
     ProfileComponent
@@ -42,6 +39,7 @@ import { AuthGuard } from './auth/auth.guard';
     AngularFireAuthModule,
     AngularFirestoreModule,
     FormsModule,
+    RecipesModule
   ],
   providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]
