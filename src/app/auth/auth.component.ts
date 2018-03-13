@@ -6,6 +6,8 @@ import { MatSnackBar } from '@angular/material';
 import { auth } from 'firebase/app';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
+import { UserAllergies } from './userAllergies';
+import { UserDiet } from './userDiet';
 
 @Component({
   selector: 'app-auth',
@@ -19,18 +21,28 @@ export class AuthComponent implements OnInit {
   public passReset: boolean;
   public registrationOpen: boolean;
   public forgotPasswordOpen: boolean;
+  public allergies: Array<Object>;
+  public diet: Array<Object>;
 
   public registrationForm: FormGroup;
   public loginForm: FormGroup;
   public forgotPasswordForm: FormGroup;
+  public userPreferencesForm: FormGroup;
 
   constructor(private authService: AuthService, private router: Router, private snackBar: MatSnackBar, private fb: FormBuilder) {
     this.user = null;
     this.registrationStep = 1;
     this.existingUser = true;
+    this.allergies = UserAllergies;
+    this.diet = UserDiet;
+
   }
 
   ngOnInit() {
+    this.createLoginForm();
+    this.createRegistrationForm();
+    this.createForgotPasswordForm();
+    this.createUserPreferencesForm();
     this.authService.user.subscribe((user) => {
       if (!user) {
         this.existingUser = false;
@@ -44,23 +56,20 @@ export class AuthComponent implements OnInit {
       }
       this.user = user;
     });
-    this.createLoginForm();
-    this.createRegistrationForm();
-    this.createForgotPasswordForm();
   }
 
   private createLoginForm(): void {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(5)]]
+      password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
 
   private createRegistrationForm(): void {
     this.registrationForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(5)]],
-      passwordCopy: ['', [Validators.required, Validators.minLength(5), this.checkPassword]]
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      passwordCopy: ['', [Validators.required, Validators.minLength(6), this.checkPassword]]
     });
   }
 
@@ -69,6 +78,16 @@ export class AuthComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]]
     });
   }
+
+  private createUserPreferencesForm(): void {
+    this.userPreferencesForm = this.fb.group({
+      hasAllergies: ['no', []],
+      allergies: [[], []],
+      diet: [[], []]
+    });
+    console.log(this.userPreferencesForm)
+  }
+
 
   private checkPassword = (control): Observable<{ [key: string]: string }> => {
     if (!control || !control.value || !control.value.length) {
@@ -84,23 +103,23 @@ export class AuthComponent implements OnInit {
     this.existingUser = !this.existingUser;
   }
 
-  // public signup() {
-  //   this.authService.signup(this.email, this.password);
-  // }
-
   public register(): void {
-    console.log(this.registrationForm);
     if (this.registrationForm.valid) {
       this.authService.signUp(this.registrationForm.value.email, this.registrationForm.value.password);
+      this.createUserPreferencesForm();
+      this.registrationStep = 2;
       this.createRegistrationForm();
     }
   }
 
-  // public details() {
-  //   this.user.details = 'testing';
-  //   this.authService.updateUser(this.user);
-  //   this.router.navigate(['/profile']);
-  // }
+  public submitPreferences() {
+    // this.user.details = 'testing';
+    console.log(this.userPreferencesForm);
+    if (this.userPreferencesForm.valid) {console.log(this.user)
+    this.authService.updateUser(this.user, this.userPreferencesForm.value);
+    this.router.navigate(['/profile']);
+    }
+  }
 
   public resetPassword(): void {
     if (this.forgotPasswordForm.valid) {

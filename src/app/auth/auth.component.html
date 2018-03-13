@@ -38,7 +38,7 @@
 <div fxFlex="100" fxLayout="column" fxLayoutAlign=" none">
   <div fxFlexOffset.xl="10" fxFlexOffset.lg="10" fxFlexOffset.md="5" fxFlexOffset.sm="0" fxFlexOffset.xs="0" fxLayout="row"
     fxLayoutAlign="center stretch">
-    <mat-card fxFlex="33" fxFlex.md="50" fxFlex.sm="80" fxFlex.xs="100">
+    <mat-card *ngIf="registrationStep == 1" fxFlex="33" fxFlex.md="50" fxFlex.sm="80" fxFlex.xs="100">
       <h3 class="subheading-2" *ngIf="!forgotPasswordOpen" (click)="registrationOpen = false; forgotPasswordOpen = false" 
       [ngClass]="{'inactive': registrationOpen}">
         Login
@@ -106,8 +106,8 @@
       <h3 class="subheading-2" (click)="registrationOpen = true; forgotPasswordOpen = false" [ngClass]="{'inactive': !registrationOpen}">
         Register
       </h3>
-      <div class="form-container" fxLayout="column" fxLayoutAlign=" stretch">
-        <div [ngClass]="{'inactive': !registrationOpen}">
+       <div class="form-container" fxLayout="column" fxLayoutAlign=" stretch">
+        <div [ngClass]="{'inactive':!registrationOpen}">
           <form class="registration-form" [formGroup]="registrationForm" novalidate>
             <mat-form-field class="full-width">
               <input matInput type="email" placeholder="Email" formControlName="email">
@@ -140,6 +140,27 @@
           </form>
         </div>
       </div>
+    </mat-card>
+
+    <mat-card *ngIf="registrationStep == 2" fxFlex="33" fxFlex.md="50" fxFlex.sm="80" fxFlex.xs="100">
+      <form class="user-preferences-form" [formGroup]="userPreferencesForm" novalidate>
+          <p>Do you have any food allergies?</p>
+          <!-- <mat-checkbox formControlName="hasAllergies">No</mat-checkbox>
+          <mat-slide-toggle formControlName="hasAllergies">I do!</mat-slide-toggle> -->
+          <mat-radio-group class="full-width" formControlName="hasAllergies">
+              <mat-radio-button value="no">No</mat-radio-button>
+              <mat-radio-button type="radio"  value="yes">Yes</mat-radio-button>
+            </mat-radio-group>
+
+          <mat-form-field class="full-width">
+            <mat-select placeholder="Allergies" formControlName="allergies" multiple [disabled]="userPreferencesForm.value.hasAllergies == 'no'">
+              <mat-option *ngFor="let type of allergies" [value]="type.value">
+                {{type.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <button class="submit" mat-raised-button color="primary" (click)="submitPreferences()" type="submit">Submit</button>
+        </form>
     </mat-card>
   </div>
 </div>
