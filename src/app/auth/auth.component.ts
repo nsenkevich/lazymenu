@@ -1,108 +1,149 @@
-import { Component } from '@angular/core';
+import { User } from '@firebase/auth-types';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
 import { auth } from 'firebase/app';
-import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
-
-
-interface User {
-  uid: string;
-  email: string;
-  name?: string;
-  details?: string;
-}
+import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
-    selector: 'app-auth',
-    templateUrl: './auth.component.html',
-    styleUrls: ['./auth.component.scss']
-  })
+  selector: 'app-auth',
+  templateUrl: './auth.component.html',
+  styleUrls: ['./auth.component.scss']
+})
 export class AuthComponent implements OnInit {
-  public email: string;
-  public password: string;
-  public registrationStep = 1;
-  public existingUser = true;
-  public user: User = null;
+  public user: User;
+  public registrationStep: number;
+  public existingUser: boolean;
+  public passReset: boolean;
+  public registrationOpen: boolean;
+  public forgotPasswordOpen: boolean;
 
-  private authService: AuthService;
-  private router: Router;
-  private snackBar: MatSnackBar;
-  public passReset = false;
+  public registrationForm: FormGroup;
+  public loginForm: FormGroup;
+  public forgotPasswordForm: FormGroup;
 
-  constructor(authService: AuthService, router: Router, snackBar: MatSnackBar) {
-    this.router = router;
-    this.authService = authService;
-    this.snackBar = snackBar;
+  constructor(private authService: AuthService, private router: Router, private snackBar: MatSnackBar, private fb: FormBuilder) {
+    this.user = null;
+    this.registrationStep = 1;
+    this.existingUser = true;
   }
 
-  public ngOnInit() {
+  ngOnInit() {
     this.authService.user.subscribe((user) => {
-        if (!user) {
-          this.existingUser = false;
-        }
-        if (user && !(user as User).details) {
-          this.registrationStep = 2;
-          this.existingUser = false;
-        }
-        if (user && (user as User).details) {
-          this.router.navigate(['/profile']);
-        }
-        this.user = user;
-
+      if (!user) {
+        this.existingUser = false;
       }
-    );
+      if (user && !(user as any).details) {
+        this.registrationStep = 2;
+        this.existingUser = false;
+      }
+      if (user && (user as any).details) {
+        this.router.navigate(['/profile']);
+      }
+      this.user = user;
+    });
+    this.createLoginForm();
+    this.createRegistrationForm();
+    this.createForgotPasswordForm();
+  }
+
+  private createLoginForm(): void {
+    this.loginForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(5)]]
+    });
+  }
+
+  private createRegistrationForm(): void {
+    this.registrationForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(5)]],
+      passwordCopy: ['', [Validators.required, Validators.minLength(5), this.checkPassword]]
+    });
+  }
+
+  private createForgotPasswordForm(): void {
+    this.forgotPasswordForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]]
+    });
+  }
+
+  private checkPassword = (control): Observable<{ [key: string]: string }> => {
+    if (!control || !control.value || !control.value.length) {
+      return null;
+    }
+
+    if (control.value !== this.registrationForm.value.password) {
+      return Observable.create({ PasswordMatch: 'Fields do not match' });
+    }
   }
 
   public toggleForm() {
     this.existingUser = !this.existingUser;
   }
 
-  public signup() {
-    this.authService.signup(this.email, this.password);
+  // public signup() {
+  //   this.authService.signup(this.email, this.password);
+  // }
+
+  public register(): void {
+    console.log(this.registrationForm);
+    if (this.registrationForm.valid) {
+      this.authService.signUp(this.registrationForm.value.email, this.registrationForm.value.password);
+      this.createRegistrationForm();
+    }
   }
 
-  public details() {
-    this.user.details = 'testing';
-    this.authService.updateUser(this.user);
-    this.router.navigate(['/profile']);
+  // public details() {
+  //   this.user.details = 'testing';
+  //   this.authService.updateUser(this.user);
+  //   this.router.navigate(['/profile']);
+  // }
+
+  public resetPassword(): void {
+    if (this.forgotPasswordForm.valid) {
+      this.authService.resetPassword(this.forgotPasswordForm.value.email).then(
+        (res) => {
+          this.passReset = true;
+          this.snackBar.open('Please, check your email');
+        });
+    }
   }
 
-  public resetPassword() {
-    this.authService.resetPassword(this.email)
-      .then(() => this.passReset = true);
+  public login(): void {
+    if (this.loginForm.valid) {
+      this.handleLogin(this.authService.login(this.loginForm.value.email, this.loginForm.value.password));
+    }
   }
 
-  public login() {
-    this.handleLogin(this.authService.login(this.email, this.password));
-  }
-
-  public loginWithGoogle() {
+  public loginWithGoogle(): void {
     this.handleLogin(this.authService.loginWithGoogle());
   }
 
-  public loginWithFacebook() {
+  public loginWithFacebook(): void {
     this.handleLogin(this.authService.loginWithFacebook());
   }
 
-  public loginWithTwitter() {
-    this.handleLogin(this.authService.loginWithTwitter());
-  }
+  // public loginWithTwitter() {
+  //   this.handleLogin(this.authService.loginWithTwitter());
+  // }
 
-  public logout() {
+  public logout(): void {
     this.authService.logout()
-    .then(() => {
-      this.router.navigate(['/auth']);
-    });
+      .then(() => {
+        this.router.navigate(['/auth']);
+      });
   }
 
-  private handleLogin(user: any) {
+  private handleLogin(user: any): void {
     user.then(value => {
-      this.snackBar.open('Success', value),
-      this.router.navigateByUrl('/profile');
+      this.snackBar.open('Welcome back'),
+        this.router.navigateByUrl('/profile');
     })
-     .catch(error => {
-      this.snackBar.open('Something went wrong: ', error.message, {duration: 500});
-     });
+      .catch(error => {
+        this.snackBar.open('Something went wrong: ', error.message, { duration: 500 });
+      });
   }
 }

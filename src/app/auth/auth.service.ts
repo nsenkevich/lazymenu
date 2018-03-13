@@ -40,10 +40,10 @@ export class AuthService {
     });
   }
 
-  public signup(email: string, password: string) {
+  public signUp(email: string, password: string) {
     return this.firebaseAuth.auth.createUserWithEmailAndPassword(email, password)
       .then(user => this.updateUser(user))
-      .catch(error => console.error(error));
+      .catch(error => console.log(error));
   }
 
   public loginWithGoogle() {
@@ -70,13 +70,13 @@ export class AuthService {
             }
           });
       })
-      .catch((error) => console.error(error));
+      .catch((error) => console.log(error));
   }
 
   public resetPassword(email: string) {
     return firebase.auth().sendPasswordResetEmail(email)
-      .then(() => console.warn('Password update email sent', 'info'))
-      .catch((error) => console.error(error));
+      .then(() => console.log('Password update email sent', 'info'))
+      .catch((error) => console.log(error));
   }
 
   public logout() {
@@ -93,7 +93,7 @@ export class AuthService {
       details: user.details || null,
     };
     userRef.set(data);
-    console.warn(data);
+    console.log(data);
   }
 
   private oAuthLogin(provider: firebase.auth.AuthProvider) {
@@ -108,7 +108,7 @@ export class AuthService {
             }
             });
       })
-      .catch((error) => console.error(error));
+      .catch((error) => console.log(error));
   }
 
 }
