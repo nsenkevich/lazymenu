@@ -12,6 +12,7 @@ export class RecipeService {
   private afs: AngularFirestore;
 
   public constructor(afs: AngularFirestore) {
+    this.afs = afs;
     this.menu = this.afs.collection('recipes', (ref) => ref.orderBy('time', 'desc').limit(5));
   }
 
