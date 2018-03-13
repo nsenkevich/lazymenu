@@ -1,4 +1,3 @@
-import { User } from '@firebase/auth-types';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
@@ -8,6 +7,7 @@ import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms'
 import { Observable } from 'rxjs/Observable';
 import { UserAllergies } from './userAllergies';
 import { UserDiet } from './userDiet';
+import { User } from './auth.service';
 
 @Component({
   selector: 'app-auth',
@@ -15,6 +15,7 @@ import { UserDiet } from './userDiet';
   styleUrls: ['./auth.component.scss']
 })
 export class AuthComponent implements OnInit {
+  isLoading: boolean;
   public user: User;
   public registrationStep: number;
   public existingUser: boolean;
@@ -30,31 +31,37 @@ export class AuthComponent implements OnInit {
   public userPreferencesForm: FormGroup;
 
   constructor(private authService: AuthService, private router: Router, private snackBar: MatSnackBar, private fb: FormBuilder) {
-    this.user = null;
+     this.isLoading = true;
     this.registrationStep = 1;
     this.existingUser = true;
     this.allergies = UserAllergies;
     this.diet = UserDiet;
-
   }
 
   ngOnInit() {
+    this.getUser();
     this.createLoginForm();
     this.createRegistrationForm();
     this.createForgotPasswordForm();
     this.createUserPreferencesForm();
-    this.authService.user.subscribe((user) => {
-      if (!user) {
+  }
+
+  private getUser(): void {
+    this.authService.user.subscribe((res) => {
+      if (!res) {
         this.existingUser = false;
       }
-      if (user && !(user as any).details) {
+      if (res && !(res as any).hasAllergies) {
         this.registrationStep = 2;
         this.existingUser = false;
       }
-      if (user && (user as any).details) {
+      if (res && (res as any).hasAllergies) {
         this.router.navigate(['/profile']);
       }
-      this.user = user;
+      this.user = res;
+      this.isLoading = false;
+    }, (err) => {
+      this.snackBar.open(err);
     });
   }
 
@@ -85,7 +92,6 @@ export class AuthComponent implements OnInit {
       allergies: [[], []],
       diet: [[], []]
     });
-    console.log(this.userPreferencesForm)
   }
 
 
@@ -99,9 +105,9 @@ export class AuthComponent implements OnInit {
     }
   }
 
-  public toggleForm() {
-    this.existingUser = !this.existingUser;
-  }
+  // public toggleForm() {
+  //   this.existingUser = !this.existingUser;
+  // }
 
   public register(): void {
     if (this.registrationForm.valid) {
@@ -113,11 +119,14 @@ export class AuthComponent implements OnInit {
   }
 
   public submitPreferences() {
-    // this.user.details = 'testing';
-    console.log(this.userPreferencesForm);
-    if (this.userPreferencesForm.valid) {console.log(this.user)
-    this.authService.updateUser(this.user, this.userPreferencesForm.value);
-    this.router.navigate(['/profile']);
+    if (this.userPreferencesForm.valid) {
+      const details = this.userPreferencesForm.value;
+
+      this.user.hasAllergies = details.hasAllergies || 'no';
+      this.user.allergies = details.allergies || [];
+      this.user.diet = details.diet || [];
+      this.authService.updateUser(this.user);
+      this.router.navigate(['/profile']);
     }
   }
 
@@ -127,6 +136,7 @@ export class AuthComponent implements OnInit {
         (res) => {
           this.passReset = true;
           this.snackBar.open('Please, check your email');
+          this.forgotPasswordOpen = false;
         });
     }
   }
@@ -145,9 +155,9 @@ export class AuthComponent implements OnInit {
     this.handleLogin(this.authService.loginWithFacebook());
   }
 
-  // public loginWithTwitter() {
-  //   this.handleLogin(this.authService.loginWithTwitter());
-  // }
+  public loginWithTwitter() {
+    this.handleLogin(this.authService.loginWithTwitter());
+  }
 
   public logout(): void {
     this.authService.logout()

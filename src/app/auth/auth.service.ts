@@ -7,7 +7,7 @@ import 'rxjs/add/operator/switchMap';
 
 import { Router } from '@angular/router';
 
-interface User {
+export interface User {
   uid: string;
   email: string;
   name?: string;
@@ -84,18 +84,10 @@ export class AuthService {
     return this.firebaseAuth.auth.signOut();
   }
 
-  public updateUser(user: User, details?: any) {
+  public updateUser(user: User) {
 
     const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${user.uid}`);
-
-    const data: User = {
-      uid: user.uid,
-      email: user.email || null,
-      hasAllergies: details.hasAllergies,
-      allergies: details.allergies || [],
-      diet: details.diet || []
-    };
-    userRef.set(data);
+    userRef.set(user);
   }
 
   private oAuthLogin(provider: firebase.auth.AuthProvider) {

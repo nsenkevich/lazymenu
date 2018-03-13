@@ -9,8 +9,10 @@ h3 {
   cursor: pointer;
   max-width: 100%;
   transition: all .3s ease-out;
+
   &.inactive {
     color: #b4b4b4;
+
     &:hover {
       color: darken(#b4b4b4, 20%);
     }
@@ -19,10 +21,12 @@ h3 {
 
 .forgot-password-btn {
   text-align: right;
-  margin: 10px 0 0 0;
+  margin: 10px 0 0;
+
   a {
     color: lighten(#3f51b5, 10%);
-    font-size: 0.8em;
+    font-size: .8em;
+
     &:hover {
       text-decoration: underline;
     }
@@ -31,20 +35,25 @@ h3 {
 
 .social-container {
   padding: 30px 0 15px;
+
   .social-login {
     color: #fff;
     padding: 5px;
+
     svg {
       height: 30px;
       width: 30px;
+
       path {
         fill: #fff;
       }
     }
+
     &.facebook {
       background: #3B5998;
       margin-right: 5px;
     }
+
     &.google {
       background: #d34836;
       margin-left: 5px;
@@ -56,18 +65,21 @@ h3 {
   max-height: 350px;
   transition: all .5s ease-in-out;
   opacity: 1;
+
   .inactive {
     opacity: 0;
     overflow: hidden;
     max-height: 0;
     transition: all .5s ease-out;
   }
+
   .forgot-password {
     opacity: 0;
     overflow: hidden;
     max-height: 0;
     transition: all .5s ease-in;
     margin-bottom: 0;
+
     &.active {
       max-height: 350px;
       transition: all .5s ease-in-out;
@@ -75,9 +87,19 @@ h3 {
       margin-bottom: 2vh;
     }
   }
+
   .full-width {
     width: 100%;
+
+    .mat-form-field-infix {
+      width: 100%;
+    }
+
+    .mat-radio-button {
+      margin: 0 10px 0 0;
+    }
   }
+
   .submit {
     width: 100%;
     display: block;

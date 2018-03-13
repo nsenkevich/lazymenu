@@ -1,46 +1,8 @@
-<!-- <div *ngIf="existingUser"> 
-  <p class="button is-small" (click)="toggleForm()">Not Registered?</p>
-  <input type="text" [(ngModel)]="email" placeholder="email">
-  <input type="password" [(ngModel)]="password" placeholder="password">
-
-  <button (click)="login()" [disabled]="!email || !password">Login</button>
-  <button (click)="loginWithGoogle()">Login with Google</button>
-  <button (click)="loginWithFacebook()">Login with Facebook</button>
-
-  <div *ngIf="!passReset">
-    <input type="text" [(ngModel)]="email" placeholder="email">
-    <button (click)="resetPassword()" [disabled]="!email">reset password </button>
-  </div>
-  <p *ngIf="passReset" class="help is-info">Reset requested. Check your email instructions.</p>
-</div> -->
-
-<!-- <div *ngIf="!existingUser"> 
-  <p class="button is-small" (click)="toggleForm()">Already Registered?</p>  
-  <div *ngIf="registrationStep == 1">
-      <input type="text" [(ngModel)]="email" placeholder="email">
-      <input type="password" [(ngModel)]="password" placeholder="password">
-
-      <button (click)="signup()" [disabled]="!email || !password">
-        Signup
-      </button>
-  </div> 
-</div> -->
-  
-<!-- <div *ngIf="!existingUser"> 
-  <div *ngIf="registrationStep == 2">    
-        <input type="text" [(ngModel)]="detail" placeholder="detail">
-        <button (click)="details()" [disabled]="!detail">
-          details
-        </button>
-  </div>
-</div> -->
-
-<div fxFlex="100" fxLayout="column" fxLayoutAlign=" none">
+<div fxFlex="100" fxLayout="column" fxLayoutAlign=" none" *ngIf="!isLoading">
   <div fxFlexOffset.xl="10" fxFlexOffset.lg="10" fxFlexOffset.md="5" fxFlexOffset.sm="0" fxFlexOffset.xs="0" fxLayout="row"
     fxLayoutAlign="center stretch">
     <mat-card *ngIf="registrationStep == 1" fxFlex="33" fxFlex.md="50" fxFlex.sm="80" fxFlex.xs="100">
-      <h3 class="subheading-2" *ngIf="!forgotPasswordOpen" (click)="registrationOpen = false; forgotPasswordOpen = false" 
-      [ngClass]="{'inactive': registrationOpen}">
+      <h3 class="subheading-2" *ngIf="!forgotPasswordOpen" (click)="registrationOpen = false; forgotPasswordOpen = false" [ngClass]="{'inactive': registrationOpen}">
         Login
       </h3>
       <div class="form-container" fxLayout="column" fxLayoutAlign=" stretch">
@@ -74,7 +36,7 @@
               </svg>
               Login with Facebook
             </button>
-            <button mat-raised-button class="social-login google" fxFlex="50"  (click)="loginWithGoogle()">
+            <button mat-raised-button class="social-login google" fxFlex="50" (click)="loginWithGoogle()">
               <svg enable-background="new 0 0 57 57" height="57px" id="Layer_1" version="1.1" viewBox="0 0 57 57" width="57px" xml:space="preserve">
                 <g>
                   <path d="M52.218,25.852h-7.512v-7.51c0-0.573-0.465-1.039-1.037-1.039H41.53c-0.576,0-1.041,0.466-1.041,1.039v7.51h-7.512   c-0.572,0-1.039,0.467-1.039,1.041v2.139c0,0.574,0.467,1.039,1.039,1.039h7.512v7.514c0,0.574,0.465,1.039,1.041,1.039h2.139   c0.572,0,1.037-0.465,1.037-1.039V30.07h7.512c0.572,0,1.039-0.465,1.039-1.039v-2.139C53.257,26.318,52.79,25.852,52.218,25.852z"
@@ -106,7 +68,7 @@
       <h3 class="subheading-2" (click)="registrationOpen = true; forgotPasswordOpen = false" [ngClass]="{'inactive': !registrationOpen}">
         Register
       </h3>
-       <div class="form-container" fxLayout="column" fxLayoutAlign=" stretch">
+      <div class="form-container" fxLayout="column" fxLayoutAlign=" stretch">
         <div [ngClass]="{'inactive':!registrationOpen}">
           <form class="registration-form" [formGroup]="registrationForm" novalidate>
             <mat-form-field class="full-width">
@@ -143,14 +105,15 @@
     </mat-card>
 
     <mat-card *ngIf="registrationStep == 2" fxFlex="33" fxFlex.md="50" fxFlex.sm="80" fxFlex.xs="100">
-      <form class="user-preferences-form" [formGroup]="userPreferencesForm" novalidate>
+      <div class="form-container" fxLayout="column" fxLayoutAlign=" stretch">
+        <form class="user-preferences-form" [formGroup]="userPreferencesForm" novalidate>
           <p>Do you have any food allergies?</p>
           <!-- <mat-checkbox formControlName="hasAllergies">No</mat-checkbox>
           <mat-slide-toggle formControlName="hasAllergies">I do!</mat-slide-toggle> -->
           <mat-radio-group class="full-width" formControlName="hasAllergies">
-              <mat-radio-button value="no">No</mat-radio-button>
-              <mat-radio-button type="radio"  value="yes">Yes</mat-radio-button>
-            </mat-radio-group>
+            <mat-radio-button value="no">No</mat-radio-button>
+            <mat-radio-button type="radio" value="yes">Yes</mat-radio-button>
+          </mat-radio-group>
 
           <mat-form-field class="full-width">
             <mat-select placeholder="Allergies" formControlName="allergies" multiple [disabled]="userPreferencesForm.value.hasAllergies == 'no'">
@@ -161,6 +124,7 @@
           </mat-form-field>
           <button class="submit" mat-raised-button color="primary" (click)="submitPreferences()" type="submit">Submit</button>
         </form>
+      </div>
     </mat-card>
   </div>
 </div>
