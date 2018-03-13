@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { RecipeService } from '../recipe.service';
+import { RecipeImporter } from '../recipe.importer';
 import { Recipe } from '../recipe.model';
 import { Observable } from 'rxjs/Observable';
 
@@ -12,21 +13,18 @@ import { Observable } from 'rxjs/Observable';
 export class MenuComponent implements OnInit {
 
   private recipeService: RecipeService;
+  private recipeImporter: RecipeImporter;
   public menu: Observable<Recipe[]>;
   public content: string;
 
-  public constructor(recipeService: RecipeService) {
+  public constructor(recipeService: RecipeService, recipeImporter: RecipeImporter) {
     this.recipeService = recipeService;
+    this.recipeImporter = recipeImporter;
   }
 
   public ngOnInit() {
-    // this.recipes = this.recipeService.getData()
+    // this.recipeImporter.run(this.recipeImporter.getData());
     this.menu = this.recipeService.getSnapshot();
-  }
-
-  public createRecipe() {
-    this.recipeService.create(this.content);
-    this.content = '';
   }
 
 }
