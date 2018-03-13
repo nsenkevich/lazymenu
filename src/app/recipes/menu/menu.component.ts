@@ -11,17 +11,20 @@ import { Observable } from 'rxjs/Observable';
 })
 export class MenuComponent implements OnInit {
 
-  menu: Observable<Recipe[]>;
-  content: string;
+  private recipeService: RecipeService;
+  public menu: Observable<Recipe[]>;
+  public content: string;
 
-  constructor(private recipeService: RecipeService) { }
+  public constructor(recipeService: RecipeService) {
+    this.recipeService = recipeService;
+  }
 
-  ngOnInit() {
+  public ngOnInit() {
     // this.recipes = this.recipeService.getData()
     this.menu = this.recipeService.getSnapshot();
   }
 
-  createRecipe() {
+  public createRecipe() {
     this.recipeService.create(this.content);
     this.content = '';
   }
