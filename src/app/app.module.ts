@@ -6,7 +6,6 @@ import 'hammerjs';
 import { AppRoutingModule } from './route.module';
 import { MaterialModule } from './material.module';
 import { AppComponent } from './app/app.component';
-import { RegistrationComponent } from './registration/registration.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { PageNotFoundPage } from './app/page-not-found.page';
 import { AngularFireModule } from 'angularfire2';
@@ -23,7 +22,6 @@ import { RecipesModule } from './recipes/recipes.module';
 @NgModule({
   declarations: [
     AppComponent,
-    RegistrationComponent,
     PageNotFoundPage,
     AuthComponent,
     ProfileComponent
