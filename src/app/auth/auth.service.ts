@@ -7,11 +7,13 @@ import 'rxjs/add/operator/switchMap';
 
 import { Router } from '@angular/router';
 
-interface User {
+export interface User {
   uid: string;
   email: string;
   name?: string;
-  details?: string;
+  hasAllergies?: string;
+  allergies?: Array<string>;
+  diet?: Array<string>;
 }
 
 @Injectable()
@@ -31,8 +33,7 @@ export class AuthService {
   }
 
   public getUser() {
-    this.user = this.firebaseAuth.authState
-    .switchMap(user => {
+    this.user = this.firebaseAuth.authState.switchMap(user => {
       if (user) {
         return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
       }
@@ -42,7 +43,7 @@ export class AuthService {
 
   public signUp(email: string, password: string) {
     return this.firebaseAuth.auth.createUserWithEmailAndPassword(email, password)
-      .then(user => this.updateUser(user))
+      .then(user => { console.log(user); this.updateUser(user); })
       .catch(error => console.log(error));
   }
 
@@ -86,14 +87,7 @@ export class AuthService {
   public updateUser(user: User) {
 
     const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${user.uid}`);
-
-    const data: User = {
-      uid: user.uid,
-      email: user.email || null,
-      details: user.details || null,
-    };
-    userRef.set(data);
-    console.log(data);
+    userRef.set(user);
   }
 
   private oAuthLogin(provider: firebase.auth.AuthProvider) {
@@ -106,7 +100,7 @@ export class AuthService {
             } else {
               this.updateUser(userFromDb);
             }
-            });
+          });
       })
       .catch((error) => console.log(error));
   }

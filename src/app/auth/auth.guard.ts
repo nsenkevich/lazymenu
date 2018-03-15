@@ -22,7 +22,7 @@ export class AuthGuard implements CanActivate {
   public canActivate() {
     return this.authService.user
            .take(1)
-           .map(user => !!(user && (user as any).details) )
+           .map(user => !!(user && (user as any).hasAllergies) )
            .do(loggedIn => {
              if (!loggedIn) {
                console.warn('You must be logged in and have a 2 step registration!', 'error');
