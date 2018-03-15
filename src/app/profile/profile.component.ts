@@ -19,7 +19,7 @@ export class ProfileComponent implements OnInit {
   }
 
   public ngOnInit() {
-    this.user = this.authService.user;
+    this.user = this.authService.getUser();
   }
 
   public logout() {

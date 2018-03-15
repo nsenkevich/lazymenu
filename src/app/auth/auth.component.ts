@@ -18,7 +18,6 @@ export class AuthComponent implements OnInit {
   isLoading: boolean;
   public user: User;
   public registrationStep: number;
-  public existingUser: boolean;
   public passReset: boolean;
   public registrationOpen: boolean;
   public forgotPasswordOpen: boolean;
@@ -33,7 +32,6 @@ export class AuthComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router, private snackBar: MatSnackBar, private fb: FormBuilder) {
     this.isLoading = true;
     this.registrationStep = 1;
-    this.existingUser = true;
     this.allergies = UserAllergies;
     this.diet = UserDiet;
   }
@@ -48,18 +46,14 @@ export class AuthComponent implements OnInit {
 
   private getUser(): void {
     this.isLoading = true;
-    this.authService.user.subscribe((res) => {
-      if (!res) {
-        this.existingUser = false;
-      }
-      if (res && !(res as any).hasAllergies) {
+    this.authService.getUser().subscribe((user) => {
+      if (user && !(user as any).hasAllergies) {
         this.registrationStep = 2;
-        this.existingUser = false;
       }
-      if (res && (res as any).hasAllergies) {
+      if (user && (user as any).hasAllergies) {
         this.router.navigate(['/profile']);
       }
-      this.user = res;
+      this.user = user;
       this.isLoading = false;
     }, (err) => {
       this.snackBar.open(err);
@@ -107,7 +101,9 @@ export class AuthComponent implements OnInit {
 
   public register(): void {
     if (this.registrationForm.valid) {
-      this.authService.signUp(this.registrationForm.value.email, this.registrationForm.value.password);
+      this.authService.signUp(this.registrationForm.value.email, this.registrationForm.value.password)
+      .then(user => { this.authService.updateUser(user); })
+      .catch(error => console.log(error));
       this.createUserPreferencesForm();
       this.registrationStep = 2;
       this.createRegistrationForm();
@@ -138,7 +134,8 @@ export class AuthComponent implements OnInit {
 
   public login(): void {
     if (this.loginForm.valid) {
-      this.handleLogin(this.authService.login(this.loginForm.value.email, this.loginForm.value.password));
+      const promise = this.authService.login(this.loginForm.value.email, this.loginForm.value.password);
+      this.handleLogin(promise);
     }
   }
 
@@ -150,10 +147,6 @@ export class AuthComponent implements OnInit {
     this.handleLogin(this.authService.loginWithFacebook());
   }
 
-  public loginWithTwitter(): void {
-    this.handleLogin(this.authService.loginWithTwitter());
-  }
-
   public logout(): void {
     this.authService.logout().then(() => {
       this.router.navigate(['/auth']);
@@ -161,11 +154,20 @@ export class AuthComponent implements OnInit {
   }
 
   private handleLogin(login: Promise<any>): void {
-    login.then(value => {
-      this.snackBar.open('Welcome back ' + value),
-        this.router.navigateByUrl('/profile');
-    }).catch(error => {
-      this.snackBar.open('Something went wrong: ', error.message, { duration: 500 });
+    login.then((userFromAuth) => {
+      if (userFromAuth.user === undefined) {
+          userFromAuth.user = userFromAuth;
+      }
+      this.authService.getUser().subscribe((userFromDb) => {
+          if (!userFromDb) {
+            this.authService.updateUser(userFromAuth.user);
+          }
+          this.snackBar.open('Welcome back ' + userFromAuth.user.uid);
+          this.router.navigateByUrl('/profile');
+        }).unsubscribe();
+    })
+    .catch((error) => {
+      this.snackBar.open('Something went wrong: ', error.message);
     });
   }
 }

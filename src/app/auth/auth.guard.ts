@@ -20,7 +20,7 @@ export class AuthGuard implements CanActivate {
   }
 
   public canActivate() {
-    return this.authService.user
+    return this.authService.getUser()
            .take(1)
            .map(user => !!(user && (user as any).hasAllergies) )
            .do(loggedIn => {
