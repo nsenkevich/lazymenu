@@ -31,7 +31,7 @@ export class AuthComponent implements OnInit {
   public userPreferencesForm: FormGroup;
 
   constructor(private authService: AuthService, private router: Router, private snackBar: MatSnackBar, private fb: FormBuilder) {
-     this.isLoading = true;
+    this.isLoading = true;
     this.registrationStep = 1;
     this.existingUser = true;
     this.allergies = UserAllergies;
@@ -47,6 +47,7 @@ export class AuthComponent implements OnInit {
   }
 
   private getUser(): void {
+    this.isLoading = true;
     this.authService.user.subscribe((res) => {
       if (!res) {
         this.existingUser = false;
@@ -99,15 +100,10 @@ export class AuthComponent implements OnInit {
     if (!control || !control.value || !control.value.length) {
       return null;
     }
-
     if (control.value !== this.registrationForm.value.password) {
       return Observable.create({ PasswordMatch: 'Fields do not match' });
     }
   }
-
-  // public toggleForm() {
-  //   this.existingUser = !this.existingUser;
-  // }
 
   public register(): void {
     if (this.registrationForm.valid) {
@@ -118,10 +114,9 @@ export class AuthComponent implements OnInit {
     }
   }
 
-  public submitPreferences() {
+  public submitPreferences(): void {
     if (this.userPreferencesForm.valid) {
       const details = this.userPreferencesForm.value;
-
       this.user.hasAllergies = details.hasAllergies || 'no';
       this.user.allergies = details.allergies || [];
       this.user.diet = details.diet || [];
@@ -155,24 +150,22 @@ export class AuthComponent implements OnInit {
     this.handleLogin(this.authService.loginWithFacebook());
   }
 
-  public loginWithTwitter() {
+  public loginWithTwitter(): void {
     this.handleLogin(this.authService.loginWithTwitter());
   }
 
   public logout(): void {
-    this.authService.logout()
-      .then(() => {
-        this.router.navigate(['/auth']);
-      });
+    this.authService.logout().then(() => {
+      this.router.navigate(['/auth']);
+    });
   }
 
-  private handleLogin(user: any): void {
-    user.then(value => {
-      this.snackBar.open('Welcome back'),
+  private handleLogin(login: Promise<any>): void {
+    login.then(value => {
+      this.snackBar.open('Welcome back ' + value),
         this.router.navigateByUrl('/profile');
-    })
-      .catch(error => {
-        this.snackBar.open('Something went wrong: ', error.message, { duration: 500 });
-      });
+    }).catch(error => {
+      this.snackBar.open('Something went wrong: ', error.message, { duration: 500 });
+    });
   }
 }
