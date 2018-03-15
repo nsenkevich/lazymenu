@@ -24,8 +24,9 @@ export class RecipeService {
     // ['added', 'modified', 'removed']
     return this.menu.snapshotChanges().map((actions) => {
       return actions.map((a) => {
-        const data = a.payload.doc.data() as Recipe;
-        return { id: a.payload.doc.id, content: data.content, hearts: data.hearts, time: data.time };
+        const  data = a.payload.doc.data() as Recipe;
+        data.id = a.payload.doc.id;
+        return data;
       });
     });
   }
@@ -34,12 +35,7 @@ export class RecipeService {
     return this.afs.doc<Recipe>(`recipes/${id}`);
   }
 
-  public create(content: string) {
-    const recipe = {
-      content,
-      hearts: 0,
-      time: new Date().getTime(),
-    };
+  public create(recipe: Recipe) {
     return this.menu.add(recipe);
   }
 

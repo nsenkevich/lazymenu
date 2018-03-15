@@ -1,28 +1,17 @@
-<div fxLayout="row" fxLayout.xs="column">
+<div fxLayout="row" fxLayout.xs="column" *ngIf="recipe | async as recipe">
     <mat-card fxFlex="33.3" class="card">
         <img mat-card-image src="https://x9wsr1khhgk5pxnq1f1r8kye-wpengine.netdna-ssl.com/wp-content/uploads/how-to-make-fried-eggs-930x550.jpg" alt="Photo of a Shiba Inu">
         <mat-card-content>
-            <h1 headline *ngIf="recipe | async as recipe"> {{ recipe.content}} </h1>
+            <h1 headline> {{ recipe.name }} </h1>
           </mat-card-content>
       </mat-card>
       <mat-card fxFlex="33.3%"class="card">
         <mat-card-content>
             <h3 subheading-2>Ingredients</h3>
             <mat-list role="list">
-                <mat-list-item role="listitem">
-                    <p mat-line>1/2 onion</p>
-                </mat-list-item>
-                <mat-list-item role="listitem">
-                    <p mat-line>3 mushrooms</p>
-                </mat-list-item>
-                <mat-list-item role="listitem">
-                      <p mat-line>3 eggs</p>
-                </mat-list-item>
-                <mat-list-item role="listitem">
-                    <p mat-line>1 spoon oil</p>
-                </mat-list-item>
-                <mat-list-item role="listitem">
-                    <p mat-line>Salt and pepper</p>
+                <mat-list-item *ngFor="let ingredients of recipe.ingredients" role="listitem">
+                    <p mat-line>{{ ingredients.name }}</p>
+                    <p mat-line *ngFor="let ingredient of ingredients.ingredients">{{ ingredient }}</p>
                 </mat-list-item>
             </mat-list>
         </mat-card-content>
@@ -30,14 +19,8 @@
       <mat-card fxLayoutAlign="center" fxFlex="33.3" class="card">
         <mat-card-content>
           <h3 subheading-2>Instructions</h3>
-          <p mat-body-1>
-            1. For Over-Easy or Over-Hard Eggs: HEAT 2 tsp. butter in nonstick skillet over medium-high heat until hot.
-          </p>
-          <p mat-body-1>
-              2. BREAK eggs and SLIP into pan, 1 at a time. IMMEDIATELY reduce heat to low.
-          </p>
-          <p mat-body-1>
-              3. COOK SLOWLY until whites are completely set and yolks begin to thicken but are not hard. SLIDE turner under each egg and carefully FLIP it over in pan. COOK second side to desired doneness. SPRINKLE with salt and pepper. SERVE immediately.
+          <p mat-body-1 *ngFor="let method of recipe.method">
+            {{ method }}
           </p>
         </mat-card-content>
       </mat-card>

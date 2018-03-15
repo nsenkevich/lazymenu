@@ -25,9 +25,9 @@ export class RecipeComponent  implements OnInit {
     this.route.params.subscribe(params => this.recipeId = params.id);
   }
 
-  public addHeartToRecipe(val: number) {
+  public addLikeToRecipe(val: number) {
     if (this.recipe.id) {
-      this.recipeService.updateRecipe(this.recipe.id, { hearts: val + 1 });
+      this.recipeService.updateRecipe(this.recipe.id, { likes: val + 1 });
     } else {
       console.error('recipe missing ID!');
     }
