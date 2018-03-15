@@ -1,4 +1,3 @@
-import { User } from '@firebase/auth-types';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
@@ -6,6 +5,9 @@ import { MatSnackBar } from '@angular/material';
 import { auth } from 'firebase/app';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
+import { UserAllergies } from './userAllergies';
+import { UserDiet } from './userDiet';
+import { User } from './auth.service';
 
 @Component({
   selector: 'app-auth',
@@ -13,54 +15,69 @@ import { Observable } from 'rxjs/Observable';
   styleUrls: ['./auth.component.scss']
 })
 export class AuthComponent implements OnInit {
+  isLoading: boolean;
   public user: User;
   public registrationStep: number;
   public existingUser: boolean;
   public passReset: boolean;
   public registrationOpen: boolean;
   public forgotPasswordOpen: boolean;
+  public allergies: Array<Object>;
+  public diet: Array<Object>;
 
   public registrationForm: FormGroup;
   public loginForm: FormGroup;
   public forgotPasswordForm: FormGroup;
+  public userPreferencesForm: FormGroup;
 
   constructor(private authService: AuthService, private router: Router, private snackBar: MatSnackBar, private fb: FormBuilder) {
-    this.user = null;
+    this.isLoading = true;
     this.registrationStep = 1;
     this.existingUser = true;
+    this.allergies = UserAllergies;
+    this.diet = UserDiet;
   }
 
   ngOnInit() {
-    this.authService.user.subscribe((user) => {
-      if (!user) {
-        this.existingUser = false;
-      }
-      if (user && !(user as any).details) {
-        this.registrationStep = 2;
-        this.existingUser = false;
-      }
-      if (user && (user as any).details) {
-        this.router.navigate(['/profile']);
-      }
-      this.user = user;
-    });
+    this.getUser();
     this.createLoginForm();
     this.createRegistrationForm();
     this.createForgotPasswordForm();
+    this.createUserPreferencesForm();
+  }
+
+  private getUser(): void {
+    this.isLoading = true;
+    this.authService.user.subscribe((res) => {
+      if (!res) {
+        this.existingUser = false;
+      }
+      if (res && !(res as any).hasAllergies) {
+        this.registrationStep = 2;
+        this.existingUser = false;
+      }
+      if (res && (res as any).hasAllergies) {
+        this.router.navigate(['/profile']);
+      }
+      this.user = res;
+      this.isLoading = false;
+    }, (err) => {
+      this.snackBar.open(err);
+    });
   }
 
   private createLoginForm(): void {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(5)]]
+      password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
 
   private createRegistrationForm(): void {
     this.registrationForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(5)]],
-      passwordCopy: ['', [Validators.required, Validators.minLength(5), this.checkPassword]]
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      passwordCopy: ['', [Validators.required, Validators.minLength(6), this.checkPassword]]
     });
   }
 
@@ -70,37 +87,43 @@ export class AuthComponent implements OnInit {
     });
   }
 
+  private createUserPreferencesForm(): void {
+    this.userPreferencesForm = this.fb.group({
+      hasAllergies: ['no', []],
+      allergies: [[], []],
+      diet: [[], []]
+    });
+  }
+
+
   private checkPassword = (control): Observable<{ [key: string]: string }> => {
     if (!control || !control.value || !control.value.length) {
       return null;
     }
-
     if (control.value !== this.registrationForm.value.password) {
       return Observable.create({ PasswordMatch: 'Fields do not match' });
     }
   }
 
-  public toggleForm() {
-    this.existingUser = !this.existingUser;
-  }
-
-  // public signup() {
-  //   this.authService.signup(this.email, this.password);
-  // }
-
   public register(): void {
-    console.log(this.registrationForm);
     if (this.registrationForm.valid) {
       this.authService.signUp(this.registrationForm.value.email, this.registrationForm.value.password);
+      this.createUserPreferencesForm();
+      this.registrationStep = 2;
       this.createRegistrationForm();
     }
   }
 
-  // public details() {
-  //   this.user.details = 'testing';
-  //   this.authService.updateUser(this.user);
-  //   this.router.navigate(['/profile']);
-  // }
+  public submitPreferences(): void {
+    if (this.userPreferencesForm.valid) {
+      const details = this.userPreferencesForm.value;
+      this.user.hasAllergies = details.hasAllergies || 'no';
+      this.user.allergies = details.allergies || [];
+      this.user.diet = details.diet || [];
+      this.authService.updateUser(this.user);
+      this.router.navigate(['/profile']);
+    }
+  }
 
   public resetPassword(): void {
     if (this.forgotPasswordForm.valid) {
@@ -108,6 +131,7 @@ export class AuthComponent implements OnInit {
         (res) => {
           this.passReset = true;
           this.snackBar.open('Please, check your email');
+          this.forgotPasswordOpen = false;
         });
     }
   }
@@ -126,24 +150,22 @@ export class AuthComponent implements OnInit {
     this.handleLogin(this.authService.loginWithFacebook());
   }
 
-  // public loginWithTwitter() {
-  //   this.handleLogin(this.authService.loginWithTwitter());
-  // }
-
-  public logout(): void {
-    this.authService.logout()
-      .then(() => {
-        this.router.navigate(['/auth']);
-      });
+  public loginWithTwitter(): void {
+    this.handleLogin(this.authService.loginWithTwitter());
   }
 
-  private handleLogin(user: any): void {
-    user.then(value => {
-      this.snackBar.open('Welcome back'),
+  public logout(): void {
+    this.authService.logout().then(() => {
+      this.router.navigate(['/auth']);
+    });
+  }
+
+  private handleLogin(login: Promise<any>): void {
+    login.then(value => {
+      this.snackBar.open('Welcome back ' + value),
         this.router.navigateByUrl('/profile');
-    })
-      .catch(error => {
-        this.snackBar.open('Something went wrong: ', error.message, { duration: 500 });
-      });
+    }).catch(error => {
+      this.snackBar.open('Something went wrong: ', error.message, { duration: 500 });
+    });
   }
 }
