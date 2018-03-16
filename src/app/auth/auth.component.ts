@@ -97,7 +97,7 @@ export class AuthComponent implements OnInit {
 
   public register(): void {
     if (this.registrationForm.valid) {
-      const promise = this.authService.signUp(this.registrationForm.value.email, this.registrationForm.value.password)
+      const promise = this.authService.signUp(this.registrationForm.value.email, this.registrationForm.value.password);
       this.handleRegistration(promise);
       this.createUserPreferencesForm();
       this.createRegistrationForm();
@@ -149,18 +149,18 @@ export class AuthComponent implements OnInit {
 
   private handleRegistration(login: Promise<any>): void {
     login.then((userFromAuth) => {
-      const user: User = {uid: userFromAuth.uid, email: userFromAuth.email};
+      const user: User = { uid: userFromAuth.uid, email: userFromAuth.email };
       this.authService.updateUser(user);
       this.snackBar.open('Welcome back ' + user.uid);
     })
-    .catch((error) => {
-      this.snackBar.open('Something went wrong: ', error.message);
-    });
+      .catch((error) => {
+        this.snackBar.open('Something went wrong: ', error.message);
+      });
   }
 
   private handleSocialLogin(login: Promise<any>): void {
     login.then((userFromAuth) => {
-      const user: User = {uid: userFromAuth.user.uid, email: userFromAuth.user.email};
+      const user: User = { uid: userFromAuth.user.uid, email: userFromAuth.user.email };
       this.authService.getUser().take(1).subscribe((userFromDb) => {
         if (!userFromDb) {
           this.authService.updateUser(user);
@@ -170,9 +170,9 @@ export class AuthComponent implements OnInit {
         }
       });
     })
-    .catch((error) => {
-      this.snackBar.open('Something went wrong: ', error.message);
-    });
+      .catch((error) => {
+        this.snackBar.open('Something went wrong: ', error.message);
+      });
   }
 
   private handleLogin(login: Promise<any>): void {
@@ -180,8 +180,8 @@ export class AuthComponent implements OnInit {
       this.snackBar.open('Welcome back ' + userFromAuth.uid);
       this.router.navigate(['/profile']);
     })
-    .catch((error) => {
-      this.snackBar.open('Something went wrong: ', error.message);
-    });
+      .catch((error) => {
+        this.snackBar.open('Something went wrong: ', error.message);
+      });
   }
 }
