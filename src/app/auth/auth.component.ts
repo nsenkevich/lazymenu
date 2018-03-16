@@ -15,7 +15,7 @@ import { User } from './auth.service';
   styleUrls: ['./auth.component.scss']
 })
 export class AuthComponent implements OnInit {
-  isLoading: boolean;
+  public isLoading: boolean;
   public user: User;
   public registrationStep: number;
   public passReset: boolean;
@@ -49,9 +49,6 @@ export class AuthComponent implements OnInit {
     this.authService.getUser().subscribe((user) => {
       if (user && !(user as any).hasAllergies) {
         this.registrationStep = 2;
-      }
-      if (user && (user as any).hasAllergies) {
-        this.router.navigate(['/profile']);
       }
       this.user = user;
       this.isLoading = false;
@@ -89,7 +86,6 @@ export class AuthComponent implements OnInit {
     });
   }
 
-
   private checkPassword = (control): Observable<{ [key: string]: string }> => {
     if (!control || !control.value || !control.value.length) {
       return null;
@@ -101,11 +97,9 @@ export class AuthComponent implements OnInit {
 
   public register(): void {
     if (this.registrationForm.valid) {
-      this.authService.signUp(this.registrationForm.value.email, this.registrationForm.value.password)
-      .then(user => { this.authService.updateUser(user); })
-      .catch(error => console.log(error));
+      const promise = this.authService.signUp(this.registrationForm.value.email, this.registrationForm.value.password)
+      this.handleRegistration(promise);
       this.createUserPreferencesForm();
-      this.registrationStep = 2;
       this.createRegistrationForm();
     }
   }
@@ -113,11 +107,13 @@ export class AuthComponent implements OnInit {
   public submitPreferences(): void {
     if (this.userPreferencesForm.valid) {
       const details = this.userPreferencesForm.value;
-      this.user.hasAllergies = details.hasAllergies || 'no';
-      this.user.allergies = details.allergies || [];
-      this.user.diet = details.diet || [];
-      this.authService.updateUser(this.user);
-      this.router.navigate(['/profile']);
+      if (this.user) {
+        this.user.hasAllergies = details.hasAllergies || 'no';
+        this.user.allergies = details.allergies || [];
+        this.user.diet = details.diet || [];
+        this.authService.updateUser(this.user);
+        this.router.navigate(['/profile']);
+      }
     }
   }
 
@@ -140,31 +136,49 @@ export class AuthComponent implements OnInit {
   }
 
   public loginWithGoogle(): void {
-    this.handleLogin(this.authService.loginWithGoogle());
+    this.handleSocialLogin(this.authService.loginWithGoogle());
   }
 
   public loginWithFacebook(): void {
-    this.handleLogin(this.authService.loginWithFacebook());
+    this.handleSocialLogin(this.authService.loginWithFacebook());
   }
 
   public logout(): void {
-    this.authService.logout().then(() => {
-      this.router.navigate(['/auth']);
+    this.authService.logout();
+  }
+
+  private handleRegistration(login: Promise<any>): void {
+    login.then((userFromAuth) => {
+      const user: User = {uid: userFromAuth.uid, email: userFromAuth.email};
+      this.authService.updateUser(user);
+      this.snackBar.open('Welcome back ' + user.uid);
+    })
+    .catch((error) => {
+      this.snackBar.open('Something went wrong: ', error.message);
+    });
+  }
+
+  private handleSocialLogin(login: Promise<any>): void {
+    login.then((userFromAuth) => {
+      const user: User = {uid: userFromAuth.user.uid, email: userFromAuth.user.email};
+      this.authService.getUser().take(1).subscribe((userFromDb) => {
+        if (!userFromDb) {
+          this.authService.updateUser(user);
+        } else {
+          this.snackBar.open('Welcome back ' + user.uid);
+          this.router.navigate(['/profile']);
+        }
+      });
+    })
+    .catch((error) => {
+      this.snackBar.open('Something went wrong: ', error.message);
     });
   }
 
   private handleLogin(login: Promise<any>): void {
     login.then((userFromAuth) => {
-      if (userFromAuth.user === undefined) {
-          userFromAuth.user = userFromAuth;
-      }
-      this.authService.getUser().subscribe((userFromDb) => {
-          if (!userFromDb) {
-            this.authService.updateUser(userFromAuth.user);
-          }
-          this.snackBar.open('Welcome back ' + userFromAuth.user.uid);
-          this.router.navigateByUrl('/profile');
-        }).unsubscribe();
+      this.snackBar.open('Welcome back ' + userFromAuth.uid);
+      this.router.navigate(['/profile']);
     })
     .catch((error) => {
       this.snackBar.open('Something went wrong: ', error.message);

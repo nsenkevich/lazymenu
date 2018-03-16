@@ -3,6 +3,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 
 import { AuthGuard } from './auth.guard';
+import { LogedinGuard } from './logedin.guard';
 import { AuthService } from './auth.service';
 import { AuthComponent } from './auth.component';
 
@@ -15,6 +16,6 @@ import { AuthComponent } from './auth.component';
     AuthComponent
   ],
   exports: [],
-  providers: [AuthService, AuthGuard]
+  providers: [AuthService, AuthGuard, LogedinGuard]
 })
 export class AuthModule { }
