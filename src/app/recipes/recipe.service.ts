@@ -8,7 +8,7 @@ import { map } from 'rxjs/operators';
 export class RecipeService {
 
   private menu: AngularFirestoreCollection<Recipe>;
-  private recipeDocument:   AngularFirestoreDocument<Recipe>;
+  private recipeDocument: AngularFirestoreDocument<Recipe>;
   private afs: AngularFirestore;
 
   public constructor(afs: AngularFirestore) {
@@ -24,7 +24,7 @@ export class RecipeService {
     // ['added', 'modified', 'removed']
     return this.menu.snapshotChanges().map((actions) => {
       return actions.map((a) => {
-        const  data = a.payload.doc.data() as Recipe;
+        const data = a.payload.doc.data() as Recipe;
         data.id = a.payload.doc.id;
         return data;
       });

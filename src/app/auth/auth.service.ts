@@ -18,9 +18,6 @@ export interface User {
 
 @Injectable()
 export class AuthService {
-  public user: Observable<firebase.User>;
-  private userDetails: firebase.User = null;
-
   private firebaseAuth: AngularFireAuth;
   private afs: AngularFirestore;
   private router: Router;
@@ -29,11 +26,10 @@ export class AuthService {
     this.router = router;
     this.firebaseAuth = firebaseAuth;
     this.afs = afs;
-    this.getUser();
   }
 
   public getUser() {
-    this.user = this.firebaseAuth.authState.switchMap(user => {
+    return this.firebaseAuth.authState.switchMap(user => {
       if (user) {
         return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
       }
@@ -42,17 +38,11 @@ export class AuthService {
   }
 
   public signUp(email: string, password: string) {
-    return this.firebaseAuth.auth.createUserWithEmailAndPassword(email, password)
-      .then(user => { console.log(user); this.updateUser(user); })
-      .catch(error => console.log(error));
+    return this.firebaseAuth.auth.createUserWithEmailAndPassword(email, password);
   }
 
   public loginWithGoogle() {
     return this.oAuthLogin(new firebase.auth.GoogleAuthProvider());
-  }
-
-  public loginWithTwitter() {
-    return this.oAuthLogin(new firebase.auth.TwitterAuthProvider());
   }
 
   public loginWithFacebook() {
@@ -60,24 +50,11 @@ export class AuthService {
   }
 
   public login(email: string, password: string) {
-    return this.firebaseAuth.auth.signInWithEmailAndPassword(email, password)
-      .then((userFromAuth) => {
-        this.afs.doc<User>(`users/${userFromAuth.uid}`).valueChanges()
-          .subscribe((userFromDb) => {
-            if (!userFromDb) {
-              this.updateUser(userFromAuth);
-            } else {
-              this.updateUser(userFromDb);
-            }
-          });
-      })
-      .catch((error) => console.log(error));
+    return this.firebaseAuth.auth.signInWithEmailAndPassword(email, password);
   }
 
   public resetPassword(email: string) {
-    return firebase.auth().sendPasswordResetEmail(email)
-      .then(() => console.log('Password update email sent', 'info'))
-      .catch((error) => console.log(error));
+    return this.firebaseAuth.auth.sendPasswordResetEmail(email);
   }
 
   public logout() {
@@ -85,24 +62,11 @@ export class AuthService {
   }
 
   public updateUser(user: User) {
-
     const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${user.uid}`);
     userRef.set(user);
   }
 
   private oAuthLogin(provider: firebase.auth.AuthProvider) {
-    return this.firebaseAuth.auth.signInWithPopup(provider)
-      .then((userFromAuth) => {
-        this.afs.doc<User>(`users/${userFromAuth.user.uid}`).valueChanges()
-          .subscribe((userFromDb) => {
-            if (!userFromDb) {
-              this.updateUser(userFromAuth.user);
-            } else {
-              this.updateUser(userFromDb);
-            }
-          });
-      })
-      .catch((error) => console.log(error));
+    return this.firebaseAuth.auth.signInWithPopup(provider);
   }
-
 }

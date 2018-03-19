@@ -8,20 +8,20 @@ export class RecipeImporter {
     private recipeService: RecipeService;
 
     public constructor(recipeService: RecipeService) {
-      this.recipeService = recipeService;
+        this.recipeService = recipeService;
     }
 
     public getData() {
         const recipes: Recipe[] = [
             {
-                name : 'Prosciutto and spinach tortellini',
-                thumbnail : '',
-                video : '',
+                name: 'Prosciutto and spinach tortellini',
+                thumbnail: '',
+                video: '',
                 cuisine: 'italian',
-                time : 20,
-                ingredients : [{
+                time: 20,
+                ingredients: [{
                     name: 'All',
-                    ingredients : [
+                    ingredients: [
                         '0.5 package fresh cheese tortellini',
                         '1/4 tablespoon pine nuts',
                         '1/2 teaspoon olive oil',
@@ -30,29 +30,29 @@ export class RecipeImporter {
                         'small handful grated Parmesan cheese',
                         '15g prosciutto, thinly sliced',
                         'black pepper'
-                        ]
-                    }
+                    ]
+                }
                 ],
                 method: [
                     'Cook pasta according to the package directions, omitting salt and fat; drain. Transfer pasta to a large bowl.',
                     'Heat a large frying pan over medium heat. Add nuts; cook until toasted (1 - 1/2 minutes), stir occasionally. Move nuts to bowl.',
                     'Heat oil in pan over medium heat. Add garlic to pan; cook 2 minutes, stirring occasionally. Add spinach to pan; cook 2 minutes or until spinach wilts. Add spinach mixture, cheese, and remaining ingredients to bowl; toss well.'
                 ],
-                allergy : [],
-                diet : [],
+                allergy: [],
+                diet: [],
                 likes: 0
             },
 
             {
-                name : 'Creamy polenta with mushroom ragout',
-                thumbnail : '',
-                video : '',
+                name: 'Creamy polenta with mushroom ragout',
+                thumbnail: '',
+                video: '',
                 cuisine: 'italian',
-                time : 40,
-                ingredients : [
+                time: 40,
+                ingredients: [
                     {
                         name: 'ragout',
-                        ingredients : [
+                        ingredients: [
                             'small handful dried porcini mushrooms',
                             '10g butter',
                             '1 shallot finely chopped',
@@ -67,7 +67,7 @@ export class RecipeImporter {
                     },
                     {
                         name: 'pollenta',
-                        ingredients : [
+                        ingredients: [
                             '125 ml milk',
                             'small handful grated Parmesan cheese',
                             '1 bay leaf',
@@ -83,20 +83,20 @@ export class RecipeImporter {
                     'Heat frying pan over medium heat, add butter, shallot and cook until soft. Add garlic and thyme leaves, cook for 1 minute. Turn up the heat and add porcini, cook for 1 min and then add all the other mushrooms. Fry over a very high heat for 5 mins until soft. Splash in the red wine and boil rapidly for 1 min. Pour in the stock and reserved mushroom liquid,  simmer for 15 mins until the stew thickens',
                     'Fish out the herbs from infused milk and bring it to boil. Add the polenta in a slow stream while whisking steadily. Cook for 1 min until thickened, then stir in the butter and Parmesan. Make a well of polenta onto a baking tray and fill with the ragout. Top with slices of Taleggio, place under a hot grill until cheese starts melting.'
                 ],
-                allergy : [],
-                diet : [],
+                allergy: [],
+                diet: [],
                 likes: 0
             },
             {
-                name : 'Meatball spaghetti',
-                thumbnail : '',
-                video : '',
+                name: 'Meatball spaghetti',
+                thumbnail: '',
+                video: '',
                 cuisine: 'italian',
-                time : 45,
-                ingredients :  [
+                time: 45,
+                ingredients: [
                     {
                         name: 'Meatballs',
-                        ingredients : [
+                        ingredients: [
                             '1lbs lean ground beef',
                             '2 slices white bread, soaked in warm wetter',
                             '1 egg, slightly beaten',
@@ -107,11 +107,11 @@ export class RecipeImporter {
                             '1 teaspoon salt',
                             'Salt and pepper',
                             'olive or vegetable oil oil (for frying)',
-                            ]
+                        ]
                     },
                     {
                         name: 'Souse',
-                        ingredients : [
+                        ingredients: [
                             '1 white small onion, diced',
                             '1/2 can chopped plum tomatoes',
                             '1 teaspoon sugar',
@@ -119,7 +119,7 @@ export class RecipeImporter {
                             '1 tablespoon olive oil',
                             'Salt and pepper',
                             'fresh spaghetti',
-                            ]
+                        ]
                     }
                 ],
                 method: [
@@ -128,20 +128,20 @@ export class RecipeImporter {
                     'In a large pot bring at least 2L of water to boil, 1 teaspoon of  salt and 1 table spoon of olive oil, and than add spaghetti. Boil on medium heat for 5 minutes, and than drain.',
                     'Garnish with parmesan and parsley and basil.'
                 ],
-                allergy : [],
-                diet : [],
+                allergy: [],
+                diet: [],
                 likes: 0
             },
             {
-                name : 'Risotto with bacon & peas',
-                thumbnail : '',
-                video : '',
+                name: 'Risotto with bacon & peas',
+                thumbnail: '',
+                video: '',
                 cuisine: 'italian',
-                time : 30,
-                ingredients :  [
+                time: 30,
+                ingredients: [
                     {
                         name: 'All',
-                        ingredients : [
+                        ingredients: [
                             '1 shallot finely diced',
                             '3 rashers streaky bacon, chopped',
                             '150g risotto rice',
@@ -159,20 +159,20 @@ export class RecipeImporter {
                     'Add the rice, than stock, and bring to the boil. Stir well, then reduce the heat and cook, covered, for 15-20 minutes until the rice is almost tender.',
                     'Stir in the peas, add a little salt and pepper and cook for a further 3 minutes, until the peas are cooked. Serve sprinkled with parmesan and black pepper.'
                 ],
-                allergy : [],
-                diet : [],
+                allergy: [],
+                diet: [],
                 likes: 0
             },
             {
-                name : 'Pizza Margherita',
-                thumbnail : '',
-                video : '',
+                name: 'Pizza Margherita',
+                thumbnail: '',
+                video: '',
                 cuisine: 'italian',
-                time : 35,
-                ingredients :  [
+                time: 35,
+                ingredients: [
                     {
                         name: 'Base',
-                        ingredients : [
+                        ingredients: [
                             '150g strong bread flour',
                             '0.5 tsp instant yeast',
                             '0.5 tsp salt',
@@ -185,7 +185,7 @@ export class RecipeImporter {
                     },
                     {
                         name: 'Topping',
-                        ingredients : [
+                        ingredients: [
                             '50g ball mozzarella, sliced',
                             'handful grated Parmesan cheese',
                             'handful cherry tomatoes, halved',
@@ -198,8 +198,8 @@ export class RecipeImporter {
                     'Roll out the dough: If you’ve let the dough rise, give it a quick knead, then split into two balls. On a floured surface, roll out the dough into large thin rounds, about 25cm across. Lift the rounds onto floured baking sheets.',
                     'Top and bake: Heat oven to 240C/fan 220C /gas 8. Put another baking sheet or an upturned baking tray in the oven on the top shelf. Smooth sauce over bases. Scatter with cheese and tomatoes, drizzle with olive oil and season. Put one pizza, still on its baking sheet, on top of the preheated sheet or tray. Bake for 8 -10 mins until crisp. Serve with a little more olive oil, and basil leaves if using.',
                 ],
-                allergy : [],
-                diet : [],
+                allergy: [],
+                diet: [],
                 likes: 0
             },
         ];

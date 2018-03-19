@@ -19,13 +19,13 @@ export class ProfileComponent implements OnInit {
   }
 
   public ngOnInit() {
-    this.user = this.authService.user;
+    this.user = this.authService.getUser();
   }
 
   public logout() {
     this.authService.logout()
-    .then(() => {
-      this.router.navigate(['/auth']);
-    });
+      .then(() => {
+        this.router.navigate(['/auth']);
+      });
   }
 }

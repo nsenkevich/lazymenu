@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 
-import { AuthService } from './auth.service';
+import { AuthService} from './auth.service';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
@@ -9,7 +9,7 @@ import 'rxjs/add/operator/take';
 import { auth } from 'firebase/app';
 
 @Injectable()
-export class AuthGuard implements CanActivate {
+export class LogedinGuard implements CanActivate {
 
   private authService: AuthService;
   private router: Router;
@@ -20,14 +20,15 @@ export class AuthGuard implements CanActivate {
   }
 
   public canActivate() {
-    return this.authService.getUser()
-      .take(1)
-      .map(user => !!(user && (user as any).hasAllergies))
-      .do(loggedIn => {
-        if (!loggedIn) {
-          console.warn('You must be logged in and have a 2 step registration!', 'error');
-          this.router.navigate(['/auth']);
-        }
+    return new Observable<boolean>( observer => {
+      this.authService.getUser().take(1).subscribe((user) => {
+        if (user && (user as any).hasAllergies) {
+          observer.next(false);
+          this.router.navigate(['/profile']);
+        } else {
+        observer.next(true);
+      }
       });
+    });
   }
 }
