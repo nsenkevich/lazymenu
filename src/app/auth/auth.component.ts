@@ -15,6 +15,7 @@ import { User } from './auth.service';
   styleUrls: ['./auth.component.scss']
 })
 export class AuthComponent implements OnInit {
+  public processingForm: boolean;
   public isLoading: boolean;
   public user: User;
   public registrationStep: number;
@@ -31,6 +32,7 @@ export class AuthComponent implements OnInit {
 
   constructor(private authService: AuthService, private router: Router, private snackBar: MatSnackBar, private fb: FormBuilder) {
     this.isLoading = true;
+    this.processingForm = false;
     this.registrationStep = 1;
     this.allergies = UserAllergies;
     this.diet = UserDiet;
@@ -106,14 +108,18 @@ export class AuthComponent implements OnInit {
 
   public submitPreferences(): void {
     if (this.userPreferencesForm.valid) {
+      this.processingForm = true;
       const details = this.userPreferencesForm.value;
-      if (this.user) {
-        this.user.hasAllergies = details.hasAllergies || 'no';
-        this.user.allergies = details.allergies || [];
-        this.user.diet = details.diet || [];
-        this.authService.updateUser(this.user);
+      this.user.hasAllergies = details.hasAllergies || 'no';
+      this.user.allergies = details.allergies || [];
+      this.user.diet = details.diet || [];
+      console.log('user  is' + this.user)
+      this.authService.updateUser(this.user);
+      setTimeout(() => {
+        this.userPreferencesForm.reset();
         this.router.navigate(['/profile']);
-      }
+        this.processingForm = false;
+      }, 2000);
     }
   }
 
@@ -176,12 +182,11 @@ export class AuthComponent implements OnInit {
   }
 
   private handleLogin(login: Promise<any>): void {
-    login.then((userFromAuth) => {
-      this.snackBar.open('Welcome back ' + userFromAuth.uid);
-      this.router.navigate(['/profile']);
-    })
-      .catch((error) => {
-        this.snackBar.open('Something went wrong: ', error.message);
-      });
+    login.then(value => {
+      this.snackBar.open('Welcome' + value ? value : 'dear customer'),
+        this.router.navigateByUrl('/profile');
+    }).catch(error => {
+      this.snackBar.open('Something went wrong: ', error.message, { duration: 500 });
+    });
   }
 }

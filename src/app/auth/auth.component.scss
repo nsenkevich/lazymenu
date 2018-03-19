@@ -1,3 +1,23 @@
+.relative {
+  position: relative;
+
+  .absolute {
+    position: absolute;
+
+    &.top {
+      top: 0;
+      left: 0;
+      right: 0;
+    }
+
+    &.bottom {
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+  }
+}
+
 .divider {
   color: #b4b4b4;
   text-align: center;

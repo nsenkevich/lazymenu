@@ -2,7 +2,9 @@
   <div fxFlexOffset.xl="10" fxFlexOffset.lg="10" fxFlexOffset.md="5" fxFlexOffset.sm="0" fxFlexOffset.xs="0" fxLayout="row"
     fxLayoutAlign="center stretch">
 
-    <mat-card *ngIf="registrationStep == 1" fxFlex="33" fxFlex.md="50" fxFlex.sm="80" fxFlex.xs="100">
+    <mat-card *ngIf="registrationStep == 1" fxFlex="33" fxFlex.md="50" fxFlex.sm="80" fxFlex.xs="100" class="relative">
+      <mat-progress-bar [color]="'primary'" [mode]="'determinate'" [value]="50" class="absolute top">
+      </mat-progress-bar>
       <div fxLayout="column" fxLayoutAlign="space-around center" *ngIf="isLoading">
         <mat-progress-spinner [color]="'primary'" [mode]="'indeterminate'"></mat-progress-spinner>
       </div>
@@ -109,12 +111,14 @@
         </div>
       </div>
     </mat-card>
-    <mat-card *ngIf="registrationStep == 2" fxFlex="33" fxFlex.md="50" fxFlex.sm="80" fxFlex.xs="100">
+    <mat-card *ngIf="registrationStep == 2" fxFlex="33" fxFlex.md="50" fxFlex.sm="80" fxFlex.xs="100" class="relative">
+      <mat-progress-bar [color]="'primary'" [mode]="'determinate'" [value]="90" class="absolute top">
+      </mat-progress-bar>
+      <mat-progress-bar *ngIf="processingForm" [color]="'primary'" [mode]="'query'" class="absolute top">
+      </mat-progress-bar>
       <div class="form-container" fxLayout="column" fxLayoutAlign=" stretch">
         <form class="user-preferences-form" [formGroup]="userPreferencesForm" novalidate>
           <p>Do you have any food allergies?</p>
-          <!-- <mat-checkbox formControlName="hasAllergies">No</mat-checkbox>
-          <mat-slide-toggle formControlName="hasAllergies">I do!</mat-slide-toggle> -->
           <mat-radio-group class="full-width" formControlName="hasAllergies">
             <mat-radio-button value="no">No</mat-radio-button>
             <mat-radio-button type="radio" value="yes">Yes</mat-radio-button>
@@ -123,6 +127,13 @@
           <mat-form-field class="full-width">
             <mat-select placeholder="Allergies" formControlName="allergies" multiple [disabled]="userPreferencesForm.value.hasAllergies == 'no'">
               <mat-option *ngFor="let type of allergies" [value]="type.value">
+                {{type.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <mat-select formControlName="diet" [(value)]="diet[0]">
+              <mat-option *ngFor="let type of diet" [value]="type.value">
                 {{type.name}}
               </mat-option>
             </mat-select>
