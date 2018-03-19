@@ -1,0 +1,20 @@
+<!-- <div class="form-container"> -->
+<form class="login-form" [formGroup]="loginForm" novalidate>
+  <mat-form-field class="full-width">
+    <input matInput type="email" placeholder="Email" formControlName="email">
+    <mat-error *ngIf="loginForm.controls.email.errors && loginForm.controls.email.errors.required">
+      Required
+    </mat-error>
+    <mat-error *ngIf="loginForm.controls.email.errors && !loginForm.controls.email.errors.required &&loginForm.controls.email.errors.email">
+      Invalid email
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field class="full-width">
+    <input matInput type="password" placeholder="Password" formControlName="password">
+    <mat-error *ngIf="loginForm.controls.password.errors && loginForm.controls.password.errors.required">
+      Required
+    </mat-error>
+  </mat-form-field>
+  <button class="submit" mat-raised-button color="primary" (click)="logIn()" type="submit">Login</button>
+</form>
+<!-- </div> -->
