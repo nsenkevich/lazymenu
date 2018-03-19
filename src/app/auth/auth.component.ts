@@ -9,6 +9,7 @@ import { UserAllergies } from './userAllergies';
 import { UserDiet } from './userDiet';
 import { User } from './auth.service';
 import { LogInDetails } from './log-in/log-in.component';
+import { RegistrationDetails } from './registration/registration.component';
 
 @Component({
   selector: 'app-auth',
@@ -26,8 +27,6 @@ export class AuthComponent implements OnInit {
   public allergies: Array<Object>;
   public diet: Array<Object>;
 
-  public registrationForm: FormGroup;
-
   public forgotPasswordForm: FormGroup;
   public userPreferencesForm: FormGroup;
 
@@ -41,7 +40,6 @@ export class AuthComponent implements OnInit {
 
   ngOnInit() {
     this.getUser();
-    this.createRegistrationForm();
     this.createForgotPasswordForm();
     this.createUserPreferencesForm();
   }
@@ -59,13 +57,7 @@ export class AuthComponent implements OnInit {
     });
   }
 
-  private createRegistrationForm(): void {
-    this.registrationForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      passwordCopy: ['', [Validators.required, Validators.minLength(6), this.checkPassword]]
-    });
-  }
+ 
 
   private createForgotPasswordForm(): void {
     this.forgotPasswordForm = this.fb.group({
@@ -81,22 +73,9 @@ export class AuthComponent implements OnInit {
     });
   }
 
-  private checkPassword = (control): Observable<{ [key: string]: string }> => {
-    if (!control || !control.value || !control.value.length) {
-      return null;
-    }
-    if (control.value !== this.registrationForm.value.password) {
-      return Observable.create({ PasswordMatch: 'Fields do not match' });
-    }
-  }
-
-  public register(): void {
-    if (this.registrationForm.valid) {
-      const promise = this.authService.signUp(this.registrationForm.value.email, this.registrationForm.value.password);
-      this.handleRegistration(promise);
+  public register(details: RegistrationDetails): void {
+      this.handleRegistration(this.authService.signUp(details.email, details.password));
       this.createUserPreferencesForm();
-      this.createRegistrationForm();
-    }
   }
 
   public submitPreferences(): void {

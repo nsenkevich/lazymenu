@@ -7,6 +7,7 @@ import { LogedinGuard } from './logedin.guard';
 import { AuthService } from './auth.service';
 import { AuthComponent } from './auth.component';
 import { LogInComponent } from './log-in/log-in.component';
+import { RegistrationComponent } from './registration/registration.component';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { LogInComponent } from './log-in/log-in.component';
   ],
   declarations: [
     AuthComponent,
-    LogInComponent
+    LogInComponent,
+    RegistrationComponent
   ],
   exports: [],
   providers: [AuthService, AuthGuard, LogedinGuard]
