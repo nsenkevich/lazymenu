@@ -8,6 +8,7 @@ import { Observable } from 'rxjs/Observable';
 import { UserAllergies } from './userAllergies';
 import { UserDiet } from './userDiet';
 import { User } from './auth.service';
+import { LogInDetails } from './log-in/log-in.component';
 
 @Component({
   selector: 'app-auth',
@@ -26,7 +27,7 @@ export class AuthComponent implements OnInit {
   public diet: Array<Object>;
 
   public registrationForm: FormGroup;
-  public loginForm: FormGroup;
+
   public forgotPasswordForm: FormGroup;
   public userPreferencesForm: FormGroup;
 
@@ -40,7 +41,6 @@ export class AuthComponent implements OnInit {
 
   ngOnInit() {
     this.getUser();
-    this.createLoginForm();
     this.createRegistrationForm();
     this.createForgotPasswordForm();
     this.createUserPreferencesForm();
@@ -56,13 +56,6 @@ export class AuthComponent implements OnInit {
       this.isLoading = false;
     }, (err) => {
       this.snackBar.open(err);
-    });
-  }
-
-  private createLoginForm(): void {
-    this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
 
@@ -113,7 +106,6 @@ export class AuthComponent implements OnInit {
       this.user.hasAllergies = details.hasAllergies || 'no';
       this.user.allergies = details.allergies || [];
       this.user.diet = details.diet || [];
-      console.log('user  is' + this.user)
       this.authService.updateUser(this.user);
       setTimeout(() => {
         this.userPreferencesForm.reset();
@@ -128,17 +120,17 @@ export class AuthComponent implements OnInit {
       this.authService.resetPassword(this.forgotPasswordForm.value.email).then(
         (res) => {
           this.passReset = true;
-          this.snackBar.open('Please, check your email');
+          this.snackBar.open('Please, check your email', '', {
+            duration: 5000,
+          });
           this.forgotPasswordOpen = false;
         });
     }
   }
 
-  public login(): void {
-    if (this.loginForm.valid) {
-      const promise = this.authService.login(this.loginForm.value.email, this.loginForm.value.password);
-      this.handleLogin(promise);
-    }
+  public logIn(details: LogInDetails): void {
+    const promise = this.authService.login(details.email, details.password);
+    this.handleLogin(promise);
   }
 
   public loginWithGoogle(): void {
@@ -157,11 +149,10 @@ export class AuthComponent implements OnInit {
     login.then((userFromAuth) => {
       const user: User = { uid: userFromAuth.uid, email: userFromAuth.email };
       this.authService.updateUser(user);
-      this.snackBar.open('Welcome back ' + user.uid);
-    })
-      .catch((error) => {
-        this.snackBar.open('Something went wrong: ', error.message);
-      });
+      this.snackBar.open('Welcome ' + user.email);
+    }).catch((error) => {
+      this.snackBar.open('Something went wrong: ' + error.message);
+    });
   }
 
   private handleSocialLogin(login: Promise<any>): void {
@@ -171,22 +162,25 @@ export class AuthComponent implements OnInit {
         if (!userFromDb) {
           this.authService.updateUser(user);
         } else {
-          this.snackBar.open('Welcome back ' + user.uid);
+          this.snackBar.open('Welcome ' + user.email, '', {
+            duration: 1000,
+          });
           this.router.navigate(['/profile']);
         }
       });
-    })
-      .catch((error) => {
-        this.snackBar.open('Something went wrong: ', error.message);
-      });
+    }).catch((error) => {
+      this.snackBar.open('Something went wrong: ' + error.message);
+    });
   }
 
   private handleLogin(login: Promise<any>): void {
-    login.then(value => {
-      this.snackBar.open('Welcome' + value ? value : 'dear customer'),
-        this.router.navigateByUrl('/profile');
+    login.then(user => {
+      this.snackBar.open('Welcome back! ' + user.email, '', {
+        duration: 1000,
+      });
+      this.router.navigateByUrl('/profile');
     }).catch(error => {
-      this.snackBar.open('Something went wrong: ', error.message, { duration: 500 });
+      this.snackBar.open('Something went wrong: ' + error.message);
     });
   }
 }

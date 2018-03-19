@@ -6,6 +6,7 @@ import { AuthGuard } from './auth.guard';
 import { LogedinGuard } from './logedin.guard';
 import { AuthService } from './auth.service';
 import { AuthComponent } from './auth.component';
+import { LogInComponent } from './log-in/log-in.component';
 
 @NgModule({
   imports: [
@@ -13,7 +14,8 @@ import { AuthComponent } from './auth.component';
     ReactiveFormsModule
   ],
   declarations: [
-    AuthComponent
+    AuthComponent,
+    LogInComponent
   ],
   exports: [],
   providers: [AuthService, AuthGuard, LogedinGuard]
