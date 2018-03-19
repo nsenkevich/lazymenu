@@ -40,7 +40,7 @@
             </div>
           </div>
           <div class="forgot-password" [ngClass]="{'active': forgotPasswordOpen}">
-            <form class="login-form" [formGroup]="forgotPasswordForm" novalidate>
+            <form class="forgot-form" [formGroup]="forgotPasswordForm" novalidate>
               <mat-form-field class="full-width">
                 <input matInput type="email" placeholder="Email" formControlName="email">
                 <mat-error *ngIf="forgotPasswordForm.controls.email.errors && forgotPasswordForm.controls.email.errors.required">
@@ -71,29 +71,7 @@
       <mat-progress-bar *ngIf="processingForm" [color]="'primary'" [mode]="'query'" class="absolute top">
       </mat-progress-bar>
       <div class="form-container" fxLayout="column" fxLayoutAlign=" stretch">
-        <form class="user-preferences-form" [formGroup]="userPreferencesForm" novalidate>
-          <p>Do you have any food allergies?</p>
-          <mat-radio-group class="full-width" formControlName="hasAllergies">
-            <mat-radio-button value="no">No</mat-radio-button>
-            <mat-radio-button type="radio" value="yes">Yes</mat-radio-button>
-          </mat-radio-group>
-
-          <mat-form-field class="full-width">
-            <mat-select placeholder="Allergies" formControlName="allergies" multiple [disabled]="userPreferencesForm.value.hasAllergies == 'no'">
-              <mat-option *ngFor="let type of allergies" [value]="type.value">
-                {{type.name}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-          <mat-form-field class="full-width">
-            <mat-select formControlName="diet" [(value)]="diet[0]">
-              <mat-option *ngFor="let type of diet" [value]="type.value">
-                {{type.name}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-          <button class="submit" mat-raised-button color="primary" (click)="submitPreferences()" type="submit">Submit</button>
-        </form>
+        <app-preferences (submitted)="submitPreferences($event)"></app-preferences>
       </div>
     </mat-card>
   </div>

@@ -43,6 +43,7 @@ export class RegistrationComponent implements OnInit {
     if (this.registrationForm.valid) {
       this.submitted.emit({ email: this.registrationForm.value.email, password: this.registrationForm.value.password });
       this.registrationForm.reset();
+      this.registrationForm.markAsUntouched();
     }
   }
 

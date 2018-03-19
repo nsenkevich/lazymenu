@@ -6,10 +6,10 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { AngularFirestoreModule } from 'angularfire2/firestore';
-import { MaterialModule } from '../material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule } from '@angular/router';
+import { MaterialModule } from 'app/shared/material.module';
 
 @NgModule({
   imports: [
