@@ -7,7 +7,7 @@ export const UserAllergies: Array<Object> = [
     value: 'gluten'
   }, {
     name: 'Dairy',
-    value: 'gluten'
+    value: 'dairy'
   }, {
     name: 'Eggs',
     value: 'egg'

@@ -1,0 +1,12 @@
+@import '~app/auth/auth.component';
+@include authForm();
+
+.full-width {
+  .mat-form-field-infix {
+    width: 100%;
+  }
+
+  .mat-radio-button {
+    margin: 0 10px 0 0;
+  }
+}

@@ -6,12 +6,12 @@ import { MenuComponent } from './recipes/menu/menu.component';
 import { RecipeDetailsComponent } from './recipes/recipe-details/recipe-details.component';
 import { AuthComponent } from './auth/auth.component';
 import { AuthGuard } from './auth/auth.guard';
-import { LogedinGuard } from './auth/logedin.guard';
+import { LoggedInGuard } from './auth/loggedIn.guard';
 import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
     { path: '', component: AppComponent },
-    { path: 'auth', component: AuthComponent, canActivate: [LogedinGuard] },
+    { path: 'auth', component: AuthComponent, canActivate: [LoggedInGuard] },
     { path: 'menu', component: MenuComponent },
     { path: 'recipe/:id', component: RecipeDetailsComponent },
     { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
@@ -20,6 +20,6 @@ const routes: Routes = [
 
 @NgModule({
     imports: [RouterModule.forRoot(routes)],
-    exports: [RouterModule] // re-export the module declarations
+    exports: [RouterModule]
 })
 export class AppRoutingModule { }

@@ -1,0 +1,31 @@
+<form class="registration-form" [formGroup]="registrationForm" novalidate>
+  <mat-form-field class="full-width">
+    <input matInput type="email" placeholder="Email" formControlName="email">
+    <mat-error *ngIf="registrationForm.controls.email.errors &&registrationForm.controls.email.errors.required">
+      Required
+    </mat-error>
+    <mat-error *ngIf="registrationForm.controls.email.errors &&!registrationForm.controls.email.errors.required &&registrationForm.controls.email.errors.email ">
+      Invalid email
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field class="full-width">
+    <input matInput type="password" placeholder="Choose password" formControlName="password">
+    <mat-error *ngIf="registrationForm.controls.password.errors && registrationForm.controls.password.errors.required">
+      Required
+    </mat-error>
+    <mat-error *ngIf="registrationForm.controls.password.errors && !registrationForm.controls.password.errors.required && registrationForm.controls.password.errors.minlength">
+      Use minimum 5 characters
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field class="full-width">
+    <input matInput type="password" placeholder="Confirm password" formControlName="passwordCopy">
+    <mat-error *ngIf="registrationForm.controls.passwordCopy.errors && registrationForm.controls.passwordCopy.errors.required">
+      Required
+    </mat-error>
+    <mat-error *ngIf="registrationForm.controls.passwordCopy.errors && !registrationForm.controls.passwordCopy.errors.required &&registrationForm.controls.passwordCopy.errors">
+      <strong>Confirm password</strong> doesn't match
+      <strong>Password</strong>
+    </mat-error>
+  </mat-form-field>
+  <button class="submit" mat-raised-button color="primary" (click)="register()" type="submit">Register</button>
+</form>
