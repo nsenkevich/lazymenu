@@ -25,7 +25,7 @@ export class AuthComponent implements OnInit {
   public forgotPasswordOpen: boolean;
 
 
-  public forgotPasswordForm: FormGroup;
+
 
   constructor(private authService: AuthService, private router: Router, private snackBar: MatSnackBar, private fb: FormBuilder) {
     this.isLoading = true;
@@ -35,7 +35,6 @@ export class AuthComponent implements OnInit {
 
   ngOnInit() {
     this.getUser();
-    this.createForgotPasswordForm();
   }
 
   private getUser(): void {
@@ -48,12 +47,6 @@ export class AuthComponent implements OnInit {
       this.isLoading = false;
     }, (err) => {
       this.snackBar.open(err);
-    });
-  }
-
-  private createForgotPasswordForm(): void {
-    this.forgotPasswordForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]]
     });
   }
 
@@ -114,17 +107,17 @@ export class AuthComponent implements OnInit {
     }, 2000);
   }
 
-  public resetPassword(): void {
-    if (this.forgotPasswordForm.valid) {
-      this.authService.resetPassword(this.forgotPasswordForm.value.email).then(
-        (res) => {
-          this.passReset = true;
-          this.snackBar.open('Please, check your email', '', {
-            duration: 5000,
-          });
-          this.forgotPasswordOpen = false;
+  public resetPassword(email: string): void {
+    this.authService.resetPassword(email).then(
+      (res) => {
+        this.passReset = true;
+        this.snackBar.open('Recovery email sent to ' + email, '', {
+          duration: 5000,
         });
-    }
+        setTimeout(() => {
+          this.forgotPasswordOpen = false;
+        }, 5000);
+      });
   }
 
   public logIn(details: LogInDetails): void {
