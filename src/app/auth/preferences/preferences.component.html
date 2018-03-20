@@ -11,10 +11,13 @@
         {{type.name}}
       </mat-option>
     </mat-select>
+    <mat-error *ngIf="userPreferencesForm.controls.allergies.errors">
+      Required
+    </mat-error>
   </mat-form-field>
   <mat-form-field class="full-width">
-    <mat-select formControlName="diet" [(value)]="selected" placeholder="Diet">
-      <mat-option *ngFor="let type of diet" [value]="type">
+    <mat-select formControlName="diet" placeholder="Diet">
+      <mat-option *ngFor="let type of diet" [value]="type.value">
         {{type.name}}
       </mat-option>
     </mat-select>
