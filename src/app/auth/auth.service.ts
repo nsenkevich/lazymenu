@@ -5,8 +5,6 @@ import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/switchMap';
 
-import { Router } from '@angular/router';
-
 export interface User {
   uid: string;
   email: string;
@@ -18,17 +16,9 @@ export interface User {
 
 @Injectable()
 export class AuthService {
-  private firebaseAuth: AngularFireAuth;
-  private afs: AngularFirestore;
-  private router: Router;
+  constructor(private firebaseAuth: AngularFireAuth, private afs: AngularFirestore) { }
 
-  public constructor(firebaseAuth: AngularFireAuth, afs: AngularFirestore, router: Router) {
-    this.router = router;
-    this.firebaseAuth = firebaseAuth;
-    this.afs = afs;
-  }
-
-  public getUser() {
+  public getUser(): Observable<any> {
     return this.firebaseAuth.authState.switchMap(user => {
       if (user) {
         return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
@@ -37,36 +27,36 @@ export class AuthService {
     });
   }
 
-  public signUp(email: string, password: string) {
+  public signUp(email: string, password: string): Promise<any> {
     return this.firebaseAuth.auth.createUserWithEmailAndPassword(email, password);
   }
 
-  public loginWithGoogle() {
+  public loginWithGoogle(): Promise<any> {
     return this.oAuthLogin(new firebase.auth.GoogleAuthProvider());
   }
 
-  public loginWithFacebook() {
+  public loginWithFacebook(): Promise<any> {
     return this.oAuthLogin(new firebase.auth.FacebookAuthProvider());
   }
 
-  public login(email: string, password: string) {
+  public login(email: string, password: string): Promise<any> {
     return this.firebaseAuth.auth.signInWithEmailAndPassword(email, password);
   }
 
-  public resetPassword(email: string) {
+  public resetPassword(email: string): Promise<any> {
     return this.firebaseAuth.auth.sendPasswordResetEmail(email);
   }
 
-  public logout() {
+  public logout(): Promise<any> {
     return this.firebaseAuth.auth.signOut();
   }
 
-  public updateUser(user: User) {
+  public updateUser(user: User): void {
     const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${user.uid}`);
     userRef.set(user);
   }
 
-  private oAuthLogin(provider: firebase.auth.AuthProvider) {
+  private oAuthLogin(provider: firebase.auth.AuthProvider): Promise<any> {
     return this.firebaseAuth.auth.signInWithPopup(provider);
   }
 }

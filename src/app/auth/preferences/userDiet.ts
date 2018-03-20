@@ -1,5 +1,8 @@
 export const UserDiet: Array<Object> = [
   {
+    name: 'Balanced',
+    value: 'balanced'
+  }, {
     name: 'Vegetarian',
     value: 'vegetarian'
   }, {
@@ -11,8 +14,5 @@ export const UserDiet: Array<Object> = [
   }, {
     name: 'Low carb',
     value: 'low_carb'
-  }, {
-    name: 'Balanced',
-    value: 'balanced'
   }
 ];
