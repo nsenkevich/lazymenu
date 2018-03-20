@@ -8,7 +8,7 @@ import { Observable } from 'rxjs/Observable';
 export interface Preferences {
   hasAllergies: string;
   allergies: Array<string>;
-  diet: Array<string>;
+  diet: string;
 }
 
 @Component({

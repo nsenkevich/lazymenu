@@ -106,7 +106,7 @@ export class AuthComponent implements OnInit {
     this.processingForm = true;
     this.user.hasAllergies = details.hasAllergies || 'no';
     this.user.allergies = details.allergies || [];
-    this.user.diet = details.diet || [];
+    this.user.diet = [details.diet] || [];
     this.authService.updateUser(this.user);
     setTimeout(() => {
       this.router.navigate(['/profile']);
