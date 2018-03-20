@@ -1,0 +1,15 @@
+------------------------------------------------------------
+
+<form #stripeForm="ngForm" class="stripe">
+    <div class="form-row">
+      <div id="card-info" #cardInfo></div>
+      <div id="card-errors" role="alert" *ngIf="error">{{ error }}</div>
+    </div>
+  
+    <button (click)="getStripeToken()">Add</button>
+</form>
+
+<div *ngIf="card | async as card">
+  <div>cardInfo : {{ card | json }}</div>
+  <div><button (click)="removeCard()">Remove card</button></div>
+</div>
