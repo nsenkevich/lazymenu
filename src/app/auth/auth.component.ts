@@ -123,7 +123,4 @@ export class AuthComponent implements OnInit {
     this.handleSocialLogin(this.authService.loginWithFacebook());
   }
 
-  public logout(): void {
-    this.authService.logout();
-  }
 }

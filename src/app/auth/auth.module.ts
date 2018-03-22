@@ -23,7 +23,7 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
     PreferencesComponent,
     ForgotPasswordComponent
   ],
-  exports: [],
+  exports: [PreferencesComponent],
   providers: [AuthService, AuthGuard, LoggedInGuard]
 })
 export class AuthModule { }
