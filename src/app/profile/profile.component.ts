@@ -23,8 +23,7 @@ export class ProfileComponent implements OnInit {
   }
 
   public logout() {
-    this.authService.logout()
-      .then(() => {
+    this.authService.logout().then(() => {
         this.router.navigate(['/auth']);
       });
   }

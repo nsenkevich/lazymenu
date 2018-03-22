@@ -1,0 +1,40 @@
+.profile {
+  .header {
+    background: #3f51b5;
+    color: #fff;
+
+    .mat-card-title {
+      font-size: 1.2em;
+      margin: .6em 0;
+
+    }
+
+    .material-icons {
+      font-size: 2em;
+      vertical-align: middle;
+    }
+  }
+
+  .content {}
+
+  .section {
+    margin: 1.5em 0;
+
+    .mat-expansion-panel-header {
+      height: 70px !important;
+    }
+
+    .mat-expansion-panel-header-title {
+      color: rgba(0,0,0,.6);
+      font-size: 1.2em;
+      line-height: 2em;
+    }
+
+    .material-icons {
+      font-size: 2em;
+      margin-right: .5em;
+      vertical-align: middle;
+      line-height: 100%;
+    }
+  }
+}
