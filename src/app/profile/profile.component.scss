@@ -1,3 +1,6 @@
+@import '~app/scss_mixins/shared-mixins';
+@include AbsoluteElement();
+
 .profile {
   .header {
     background: #3f51b5;
@@ -19,22 +22,55 @@
 
   .section {
     margin: 1.5em 0;
+    position: relative;
 
     .mat-expansion-panel-header {
       height: 70px !important;
+
+      &.mat-expanded {
+        background: rgba(0,0,0,.06);
+      }
     }
 
     .mat-expansion-panel-header-title {
       color: rgba(0,0,0,.6);
       font-size: 1.2em;
       line-height: 2em;
-    }
 
-    .material-icons {
-      font-size: 2em;
-      margin-right: .5em;
-      vertical-align: middle;
-      line-height: 100%;
+      .material-icons {
+        font-size: 2em;
+        margin-right: .5em;
+        vertical-align: middle;
+        line-height: 100%;
+      }
     }
   }
+}
+
+.form-wrapper {
+  margin-top: 16px;
+}
+
+.edit {
+  color: #7280ce;
+  right: 40px;
+  width: 50px;
+  height: 50px;
+  font-size: 1em;
+  right: -15px;
+  top: 15px;
+
+  &:active,
+  &:focus,
+  &:hover {
+    color: #3f51b5;
+    box-shadow: none;
+    outline: none;
+  }
+
+}
+
+.btn-clear {
+  border: none;
+  background: transparent;
 }

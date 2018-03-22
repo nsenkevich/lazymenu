@@ -1,4 +1,4 @@
-import {AngularSvgIconModule} from 'angular-svg-icon';
+import { AngularSvgIconModule } from 'angular-svg-icon';
 // Why? SharedModule exists to make commonly used components, directives and pipes available for use in the templates
 // of components in many other modules
 
@@ -36,7 +36,7 @@ import { MaterialModule } from './material.module';
     AngularFirestoreModule,
     RouterModule,
     HttpClientModule,
-     AngularSvgIconModule
+    AngularSvgIconModule
   ]
 })
 export class SharedModule { }

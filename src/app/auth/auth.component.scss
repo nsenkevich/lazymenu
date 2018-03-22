@@ -1,5 +1,5 @@
 @import '~app/scss_mixins/shared-mixins';
-@include positionedProgressBar();
+@include AbsoluteElement();
 
 .divider {
   color: #b4b4b4;

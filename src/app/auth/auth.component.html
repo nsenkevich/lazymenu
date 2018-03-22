@@ -49,7 +49,7 @@
       <mat-progress-bar *ngIf="processingForm" [color]="'primary'" [mode]="'query'" class="absolute top">
       </mat-progress-bar>
       <div class="form-container" fxLayout="column" fxLayoutAlign=" stretch">
-        <app-preferences (submitted)="submitPreferences($event)"></app-preferences>
+        <app-preferences [state]="'edit'" (submitted)="submitPreferences($event)"></app-preferences>
       </div>
     </mat-card>
   </div>

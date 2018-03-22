@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 })
 export class ProfileComponent implements OnInit {
 
+  formState: boolean;
   private authService: AuthService;
   private router: Router;
   public user: any;
@@ -16,6 +17,7 @@ export class ProfileComponent implements OnInit {
   public constructor(authService: AuthService, router: Router) {
     this.authService = authService;
     this.router = router;
+
   }
 
   public ngOnInit() {
@@ -24,7 +26,17 @@ export class ProfileComponent implements OnInit {
 
   public logout() {
     this.authService.logout().then(() => {
-        this.router.navigate(['/auth']);
-      });
+      this.router.navigate(['/auth']);
+    });
+  }
+
+  public submitPreferences(preferences: any): void {
+    setTimeout(() => {
+      this.toggleFormState();
+    }, 500);
+  }
+
+  public toggleFormState(): void {
+    this.formState = !this.formState;
   }
 }
