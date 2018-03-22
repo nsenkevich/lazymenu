@@ -11,6 +11,7 @@ import { RecipesModule } from './recipes/recipes.module';
 import { AuthModule } from './auth/auth.module';
 
 import { ProfileComponent } from './profile/profile.component';
+import { PaymentModule } from './payment/payment.module';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ProfileComponent } from './profile/profile.component';
     CoreModule,
     SharedModule,
     RecipesModule,
-    AuthModule
+    AuthModule,
+    PaymentModule,
   ],
   bootstrap: [AppComponent]
 })

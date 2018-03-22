@@ -50,6 +50,8 @@
                 <div fxFlex="90">
                     <router-outlet></router-outlet>
                 </div>
+                <app-make-payment></app-make-payment>
+                <app-card [stripeCardOptions]="{ hidePostalCode: true }"></app-card>
                 <footer fxFlex="10">
                     <div fxLayout="row" style="background: #3f51b5; height: 100%">
                         <span>Powered by Uliana ©2010-2018.</span>
