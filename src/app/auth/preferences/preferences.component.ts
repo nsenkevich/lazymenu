@@ -50,7 +50,6 @@ export class PreferencesComponent implements OnInit, DoCheck {
   }
 
   private patchForm(): void {
-    console.log(this.value)
     if (this.value) {
       this.userPreferencesForm.patchValue(this.value);
     }

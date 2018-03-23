@@ -12,11 +12,11 @@ import { AuthModule } from './auth/auth.module';
 
 import { ProfileComponent } from './profile/profile.component';
 import { PaymentModule } from './payment/payment.module';
+import { ProfileModule } from './profile/profile.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    ProfileComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -26,6 +26,7 @@ import { PaymentModule } from './payment/payment.module';
     RecipesModule,
     AuthModule,
     PaymentModule,
+    ProfileModule
   ],
   bootstrap: [AppComponent]
 })

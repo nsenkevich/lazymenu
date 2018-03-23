@@ -2,7 +2,7 @@
   .relative {
     position: relative;
 
-    .absolute {
+    .absolute, &/deep/.absolute {
       position: absolute;
 
       &.top {

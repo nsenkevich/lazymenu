@@ -20,19 +20,20 @@
     </mat-card-header>
     <mat-card-content class="content">
         <mat-accordion multi="false">
-            <mat-expansion-panel expanded="true" class="section">
+            <mat-expansion-panel expanded="true" class="section relative">
                 <mat-expansion-panel-header>
                     <mat-panel-title>
                         <i class="material-icons">local_dining</i>
                         Dietary preferences & restrictions
                     </mat-panel-title>
                 </mat-expansion-panel-header>
-                <div class="form-wrapper relative" fxFlex="50" fxFlexOffset="25">
+                <app-edit-preferences [user]="user"></app-edit-preferences>
+                <!-- <div class="form-wrapper relative" fxFlex="50" fxFlexOffset="25">
                     <button class="absolute edit btn-clear" (click)="toggleFormState()" *ngIf="!formState">
                         <i class="material-icons" matTooltip="edit">mode_edit</i>
                     </button>
                     <app-preferences [state]="formState?'edit':'view'" [value]="getPreferences(user)" (submitted)="submitPreferences($event)"></app-preferences>
-                </div>
+                </div> -->
             </mat-expansion-panel>
 
             <mat-expansion-panel class="section">
