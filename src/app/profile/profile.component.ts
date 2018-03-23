@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
 import { Router } from '@angular/router';
+import { Preferences } from '../auth/preferences/preferences.component';
 
 @Component({
   selector: 'app-profile',
@@ -8,17 +9,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-
-  formState: boolean;
-  private authService: AuthService;
-  private router: Router;
+  public preferences: Preferences;
+  public formState: boolean;
   public user: any;
 
-  public constructor(authService: AuthService, router: Router) {
-    this.authService = authService;
-    this.router = router;
-
-  }
+  public constructor(private authService: AuthService, private router: Router) { }
 
   public ngOnInit() {
     this.user = this.authService.getUser();
@@ -30,7 +25,7 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  public submitPreferences(preferences: any): void {
+  public submitPreferences(preferences: Preferences): void {
     setTimeout(() => {
       this.toggleFormState();
     }, 500);
@@ -38,5 +33,11 @@ export class ProfileComponent implements OnInit {
 
   public toggleFormState(): void {
     this.formState = !this.formState;
+  }
+  public getPreferences(user: any): Preferences {
+    if (user) {
+      return { hasAllergies: user.hasAllergies, allergies: user.allergies, diet: user.diet[0] };
+    }
+    return null;
   }
 }

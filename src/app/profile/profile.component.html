@@ -9,6 +9,8 @@
     <button (click)="logout()">Logout</button>
 </div> -->
 
+<button (click)="logout()">Logout</button>
+
 <mat-card class="profile" *ngIf="user | async as user">
     <mat-card-header class="header" fxLayout="row" fxLayoutAlign="space-around center">
         <mat-card-title fxFlex="100">
@@ -17,68 +19,58 @@
         </mat-card-title>
     </mat-card-header>
     <mat-card-content class="content">
-        <mat-expansion-panel class="section ">
-            <mat-expansion-panel-header>
-                <mat-panel-title>
-                    <i class="material-icons">local_dining</i>
-                    Dietary preferences & restrictions
-                </mat-panel-title>
-            </mat-expansion-panel-header>
-            <div class="form-wrapper relative" fxFlex="50" fxFlexOffset="25">
-                <button class="absolute edit btn-clear" (click)="toggleFormState()" *ngIf="!formState">
-                    <i class="material-icons" matTooltip="edit">mode_edit</i>
-                </button>
-                <app-preferences [state]="formState?'edit':'view'" (submitted)="submitPreferences($event)"></app-preferences>
-            </div>
-        </mat-expansion-panel>
-
-        <mat-expansion-panel class="section">
-            <mat-expansion-panel-header>
-                <mat-panel-title>
-                    <i class="material-icons">room_service</i>
-                    Menu settings
-                </mat-panel-title>
-                <mat-panel-description>
-
-                </mat-panel-description>
-            </mat-expansion-panel-header>
-        </mat-expansion-panel>
-
-        <mat-accordion class="section">
-            <mat-expansion-panel>
+        <mat-accordion multi="false">
+            <mat-expansion-panel expanded="true" class="section">
                 <mat-expansion-panel-header>
                     <mat-panel-title>
-                        <i class="material-icons">local_shipping</i>
-                        Delivery time
+                        <i class="material-icons">local_dining</i>
+                        Dietary preferences & restrictions
                     </mat-panel-title>
-                    <mat-panel-description>
+                </mat-expansion-panel-header>
+                <div class="form-wrapper relative" fxFlex="50" fxFlexOffset="25">
+                    <button class="absolute edit btn-clear" (click)="toggleFormState()" *ngIf="!formState">
+                        <i class="material-icons" matTooltip="edit">mode_edit</i>
+                    </button>
+                    <app-preferences [state]="formState?'edit':'view'" [value]="getPreferences(user)" (submitted)="submitPreferences($event)"></app-preferences>
+                </div>
+            </mat-expansion-panel>
 
-                    </mat-panel-description>
+            <mat-expansion-panel class="section">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <i class="material-icons">room_service</i>
+                        Menu settings
+                    </mat-panel-title>
                 </mat-expansion-panel-header>
             </mat-expansion-panel>
-            <mat-expansion-panel>
+
+            <div class="section">
+                <mat-expansion-panel class="sub-section">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <i class="material-icons">local_shipping</i>
+                            Delivery time
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                </mat-expansion-panel>
+                <mat-expansion-panel class="sub-section">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <i class="material-icons">person_pin</i>
+                            Delivery address
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                </mat-expansion-panel>
+            </div>
+
+            <mat-expansion-panel class="section">
                 <mat-expansion-panel-header>
                     <mat-panel-title>
-                        <i class="material-icons">person_pin</i>
-                        Delivery address
+                        <i class="material-icons">credit_card</i>
+                        Payment card
                     </mat-panel-title>
-                    <mat-panel-description>
-
-                    </mat-panel-description>
                 </mat-expansion-panel-header>
             </mat-expansion-panel>
         </mat-accordion>
-
-        <mat-expansion-panel class="section">
-            <mat-expansion-panel-header>
-                <mat-panel-title>
-                    <i class="material-icons">credit_card</i>
-                    Payment card
-                </mat-panel-title>
-                <mat-panel-description>
-
-                </mat-panel-description>
-            </mat-expansion-panel-header>
-        </mat-expansion-panel>
     </mat-card-content>
 </mat-card>

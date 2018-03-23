@@ -101,6 +101,10 @@ h3 {
 @mixin authForm() {
   .full-width {
     width: 100%;
+
+    /deep/.mat-form-field-wrapper {
+      font-size: 1.2em;
+    }
   }
 
   .submit {

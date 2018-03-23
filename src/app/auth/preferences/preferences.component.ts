@@ -18,6 +18,7 @@ export interface Preferences {
 })
 export class PreferencesComponent implements OnInit, DoCheck {
   @Input() state: string;
+  @Input() value: Preferences;
   @Output() submitted = new EventEmitter<Preferences>();
 
   public userPreferencesForm: FormGroup;
@@ -44,7 +45,15 @@ export class PreferencesComponent implements OnInit, DoCheck {
   }
 
   ngDoCheck() {
+    this.patchForm();
     this.setFormState();
+  }
+
+  private patchForm(): void {
+    console.log(this.value)
+    if (this.value) {
+      this.userPreferencesForm.patchValue(this.value);
+    }
   }
 
   private setFormState(): void {
