@@ -28,12 +28,6 @@
                     </mat-panel-title>
                 </mat-expansion-panel-header>
                 <app-edit-preferences [user]="user"></app-edit-preferences>
-                <!-- <div class="form-wrapper relative" fxFlex="50" fxFlexOffset="25">
-                    <button class="absolute edit btn-clear" (click)="toggleFormState()" *ngIf="!formState">
-                        <i class="material-icons" matTooltip="edit">mode_edit</i>
-                    </button>
-                    <app-preferences [state]="formState?'edit':'view'" [value]="getPreferences(user)" (submitted)="submitPreferences($event)"></app-preferences>
-                </div> -->
             </mat-expansion-panel>
 
             <mat-expansion-panel class="section">

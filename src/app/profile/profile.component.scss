@@ -9,7 +9,7 @@
     .mat-card-title {
       font-size: 1.2em;
       margin: .6em 0;
-
+      font-weight: bold;
     }
 
     .material-icons {
@@ -17,8 +17,6 @@
       vertical-align: middle;
     }
   }
-
-  .content {}
 
   .section {
     margin: 1.5em 0;
@@ -50,32 +48,8 @@
         margin-right: .5em;
         vertical-align: middle;
         line-height: 100%;
+        color: #3f51b5;
       }
     }
   }
 }
-
-// .form-wrapper {
-//   margin-top: 16px;
-// }
-
-// .edit {
-//   color: #7280ce;
-//   right: 40px;
-//   width: 50px;
-//   height: 50px;
-//   font-size: 1em;
-//   right: -15px;
-//   top: 15px;
-//   border: none;
-//   background: transparent;
-
-//   &:active,
-//   &:focus,
-//   &:hover {
-//     color: #3f51b5;
-//     box-shadow: none;
-//     outline: none;
-//   }
-
-// }
