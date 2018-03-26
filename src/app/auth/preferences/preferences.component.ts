@@ -1,9 +1,8 @@
 import { UserDiet } from './userDiet';
 import { UserAllergies } from './userAllergies';
-import { Component, OnInit, EventEmitter, Output, Input, DoCheck, SimpleChanges } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input, DoCheck, SimpleChanges, OnChanges } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
-
 
 export interface Preferences {
   hasAllergies: string;
@@ -16,7 +15,7 @@ export interface Preferences {
   templateUrl: './preferences.component.html',
   styleUrls: ['./preferences.component.scss']
 })
-export class PreferencesComponent implements OnInit, DoCheck {
+export class PreferencesComponent implements OnInit, OnChanges {
   @Input() state: string;
   @Input() value: Preferences;
   @Output() submitted = new EventEmitter<Preferences>();
@@ -38,14 +37,20 @@ export class PreferencesComponent implements OnInit, DoCheck {
         this.userPreferencesForm.controls.allergies.enable();
         this.userPreferencesForm.controls.allergies.markAsTouched();
       } else {
+        this.userPreferencesForm.controls.allergies.patchValue([]);
+        this.userPreferencesForm.controls.allergies.markAsUntouched();
         this.userPreferencesForm.controls.allergies.disable();
         this.userPreferencesForm.controls.allergies.setValidators(null);
       }
     });
+    this.patchForm();
+    this.setFormState();
   }
 
-  ngDoCheck() {
-    this.patchForm();
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.state.firstChange) {
+      return;
+    }
     this.setFormState();
   }
 
