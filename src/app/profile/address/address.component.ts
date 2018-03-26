@@ -1,18 +1,11 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-
-export class UserCountry {
-  constructor(
-    public name: string,
-    public code: string
-  ) { }
-}
 
 export class DeliveryAddress {
   constructor(
     public fullName: string,
     public city: string,
-    public country: UserCountry,
+    public country: string,
     public postCode: string,
     public streetAddress1: string,
     public streetAddress2?: string,
@@ -24,15 +17,28 @@ export class DeliveryAddress {
   selector: 'app-address',
   templateUrl: './address.component.html',
   styleUrls: ['./address.component.scss'],
-  encapsulation : ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None
 })
-export class AddressComponent implements OnInit {
+export class AddressComponent implements OnInit, OnChanges {
 
-  addressForm: FormGroup;
+  public addressForm: FormGroup;
+  @Input() state: string;
+  @Input() value: DeliveryAddress;
+  @Output() submitted = new EventEmitter<DeliveryAddress>();
   constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
     this.addressForm = this.createAddressForm();
+    this.addressForm.controls.country.disable();
+    this.patchForm();
+    this.setFormState();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.state.firstChange) {
+      return;
+    }
+    this.setFormState();
   }
 
   private createAddressForm(): FormGroup {
@@ -48,9 +54,25 @@ export class AddressComponent implements OnInit {
     });
   }
 
+  private patchForm(): void {
+    if (this.value) {
+      this.addressForm.patchValue(this.value);
+    }
+  }
+
+  private setFormState(): void {
+    if (this.state === 'view') {
+      this.addressForm.disable();
+    }
+    if (this.state === 'edit' || !this.value) {
+      this.addressForm.enable();
+    }
+  }
+
   public submit(): void {
     if (this.addressForm.valid) {
-      console.log(this.addressForm)
+      this.submitted.emit(this.addressForm.value);
+      this.addressForm.disable();
     }
   }
 

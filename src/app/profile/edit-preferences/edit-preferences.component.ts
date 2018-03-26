@@ -16,9 +16,8 @@ import { AuthService } from '../../auth/auth.service';
   styleUrls: ['./edit-preferences.component.scss']
 })
 export class EditPreferencesComponent implements OnInit {
-  processingForm: boolean;
   @Input() user: any;
-
+  public processingForm: boolean;
   public formState: boolean;
   public preferences: Preferences;
 
@@ -26,6 +25,13 @@ export class EditPreferencesComponent implements OnInit {
 
   ngOnInit() {
     this.preferences = this.getPreferences();
+  }
+
+  private getPreferences(): Preferences {
+    if (this.user) {
+      return { hasAllergies: this.user.hasAllergies, allergies: this.user.allergies, diet: this.user.diet[0] };
+    }
+    return null;
   }
 
   public submitPreferences(preferences: Preferences): void {
@@ -42,13 +48,6 @@ export class EditPreferencesComponent implements OnInit {
 
   public toggleFormState(): void {
     this.formState = !this.formState;
-  }
-
-  private getPreferences(): Preferences {
-    if (this.user) {
-      return { hasAllergies: this.user.hasAllergies, allergies: this.user.allergies, diet: this.user.diet[0] };
-    }
-    return null;
   }
 
 }

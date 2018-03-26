@@ -5,6 +5,7 @@ import { AuthModule } from '../auth/auth.module';
 import { EditPreferencesComponent } from './edit-preferences/edit-preferences.component';
 import { AddressComponent } from './address/address.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { EditAddressComponent } from './edit-address/edit-address.component';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   declarations: [
     ProfileComponent,
     EditPreferencesComponent,
-    AddressComponent
+    AddressComponent,
+    EditAddressComponent
   ],
   exports: [],
   providers: []
