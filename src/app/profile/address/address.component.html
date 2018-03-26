@@ -1,0 +1,40 @@
+<form class="address-form" [formGroup]="addressForm" novalidate>
+  <mat-form-field class="full-width">
+    <input matInput type="text" placeholder="Full name" formControlName="fullName">
+    <mat-error *ngIf="addressForm.controls.fullName.errors &&addressForm.controls.fullName.errors.required">
+      Required
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field class="full-width">
+    <input matInput type="number" placeholder="Phone" formControlName="phone">
+  </mat-form-field>
+  <mat-form-field class="full-width">
+    <input matInput type="text" placeholder="Street address" formControlName="streetAddress1">
+    <mat-error *ngIf="addressForm.controls.streetAddress1.errors &&addressForm.controls.streetAddress1.errors.required">
+      Required
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field class="full-width">
+    <input matInput type="text" placeholder="Street address" formControlName="streetAddress2">
+  </mat-form-field>
+  <mat-form-field class="full-width">
+    <input matInput type="text" placeholder="Town/City" formControlName="city">
+    <mat-error *ngIf="addressForm.controls.city.errors &&addressForm.controls.city.errors.required">
+      Required
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field class="full-width">
+    <input matInput type="text" placeholder="County" formControlName="county">
+  </mat-form-field>
+  <mat-form-field class="full-width">
+    <input matInput type="text" placeholder="Country" formControlName="country" disabled>
+  </mat-form-field>
+  <mat-form-field class="full-width">
+    <input matInput type="text" placeholder="Postal code" formControlName="postCode">
+    <mat-error *ngIf="addressForm.controls.postCode.errors &&addressForm.controls.postCode.errors.required">
+      Required
+    </mat-error>
+  </mat-form-field>
+
+  <button class="submit" mat-raised-button color="primary" (click)="submit()" type="submit">Save</button>
+</form>

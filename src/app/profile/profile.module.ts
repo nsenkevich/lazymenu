@@ -3,15 +3,19 @@ import { NgModule } from '@angular/core';
 import { ProfileComponent } from './profile.component';
 import { AuthModule } from '../auth/auth.module';
 import { EditPreferencesComponent } from './edit-preferences/edit-preferences.component';
+import { AddressComponent } from './address/address.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     SharedModule,
-    AuthModule
+    AuthModule,
+    ReactiveFormsModule
   ],
   declarations: [
     ProfileComponent,
-    EditPreferencesComponent
+    EditPreferencesComponent,
+    AddressComponent
   ],
   exports: [],
   providers: []
