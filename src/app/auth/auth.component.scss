@@ -98,21 +98,5 @@ h3 {
     }
   }
 }
-@mixin authForm() {
-  .full-width {
-    width: 100%;
 
-    /deep/.mat-form-field-wrapper {
-      font-size: 1.2em;
-    }
-  }
-
-  .submit {
-    width: 100%;
-    display: block;
-    padding: 6px 12px;
-    text-transform: uppercase;
-    margin-top: 16px;
-  }
-}
-@include authForm();
+@include fullWidthForm();

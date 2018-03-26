@@ -1,2 +1,2 @@
-@import '~app/auth/auth.component';
-@include authForm();
+@import '~app/scss_mixins/shared-mixins';
+@include fullWidthForm();
