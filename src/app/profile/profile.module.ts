@@ -6,12 +6,14 @@ import { EditPreferencesComponent } from './edit-preferences/edit-preferences.co
 import { AddressComponent } from './address/address.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { EditAddressComponent } from './edit-address/edit-address.component';
+import { PaymentModule } from '../payment/payment.module';
 
 @NgModule({
   imports: [
     SharedModule,
     AuthModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    PaymentModule
   ],
   declarations: [
     ProfileComponent,

@@ -10,21 +10,21 @@ export class PaymentService {
   private userId: string = null;
 
   public constructor(private firebaseAuth: AngularFireAuth, private afs: AngularFirestore) {
-    this.cardsCollection = afs.collection('cards');
+    this.cardsCollection = afs.collection('stripe_customers');
   }
 
   public getCard() {
     return this.firebaseAuth.authState.switchMap(user => {
       if (user) {
         this.userId = user.uid;
-        return this.cardsCollection.doc(this.userId).valueChanges();
+        return this.cardsCollection.doc(this.userId).collection('sources').doc(this.userId).valueChanges();
       }
       return Observable.of(null);
     });
   }
 
   public saveCard(card: any) {
-    return this.cardsCollection.doc(this.userId).set({ card });
+    return this.cardsCollection.doc(this.userId).collection('sources').doc(this.userId).set(card);
   }
 
   public removeCard() {
