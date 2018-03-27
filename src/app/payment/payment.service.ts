@@ -6,20 +6,20 @@ import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class PaymentService {
-
-  private firebaseAuth: AngularFireAuth;
   private cardsCollection: AngularFirestoreCollection<any>;
   private userId: string = null;
 
-  public constructor(firebaseAuth: AngularFireAuth, afs: AngularFirestore) {
-    this.firebaseAuth = firebaseAuth;
+  public constructor(private firebaseAuth: AngularFireAuth, private afs: AngularFirestore) {
     this.cardsCollection = afs.collection('stripe_customers');
   }
 
   public getCard() {
     return this.firebaseAuth.authState.switchMap(user => {
-      this.userId = user.uid;
-      return this.cardsCollection.doc(this.userId).collection('sources').doc(this.userId).valueChanges();
+      if (user) {
+        this.userId = user.uid;
+        return this.cardsCollection.doc(this.userId).collection('sources').doc(this.userId).valueChanges();
+      }
+      return Observable.of(null);
     });
   }
 

@@ -8,24 +8,17 @@ import { Router } from '@angular/router';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-
-  private authService: AuthService;
-  private router: Router;
   public user: any;
 
-  public constructor(authService: AuthService, router: Router) {
-    this.authService = authService;
-    this.router = router;
-  }
+  public constructor(private authService: AuthService, private router: Router) { }
 
   public ngOnInit() {
     this.user = this.authService.getUser();
   }
 
   public logout() {
-    this.authService.logout()
-      .then(() => {
-        this.router.navigate(['/auth']);
-      });
+    this.authService.logout().then(() => {
+      this.router.navigate(['/auth']);
+    });
   }
 }

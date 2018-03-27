@@ -1,7 +1,0 @@
-<div *ngIf="card | async as card else login">
-  <div><button (click)="saveCard()">Replace card</button></div>
-  <div>cardInfo : {{ card | json }}</div>
-  <div><button (click)="removeCard()">Remove card</button></div>
-</div>
-
-<ng-template #login><button (click)="saveCard()">Add card</button></ng-template>

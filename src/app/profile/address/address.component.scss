@@ -1,0 +1,11 @@
+@import '~app/scss_mixins/shared-mixins';
+@include fullWidthForm();
+
+.button-holder {
+    height: 50px;
+    margin: 16px 0;
+  
+    .submit {
+      margin: 0;
+    }
+  }

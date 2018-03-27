@@ -2,13 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
-import { auth } from 'firebase/app';
-import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Observable } from 'rxjs/Observable';
 import { User } from './auth.service';
 import { LogInDetails } from './log-in/log-in.component';
 import { RegistrationDetails } from './registration/registration.component';
 import { Preferences } from './preferences/preferences.component';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-auth',
@@ -16,29 +14,21 @@ import { Preferences } from './preferences/preferences.component';
   styleUrls: ['./auth.component.scss']
 })
 export class AuthComponent implements OnInit {
-  public processingForm: boolean;
   public isLoading: boolean;
   public user: User;
+  public processingForm: boolean;
   public registrationStep: number;
   public passReset: boolean;
   public registrationOpen: boolean;
   public forgotPasswordOpen: boolean;
 
-
-
-
-  constructor(private authService: AuthService, private router: Router, private snackBar: MatSnackBar, private fb: FormBuilder) {
-    this.isLoading = true;
+  constructor(private authService: AuthService, private router: Router, private snackBar: MatSnackBar) {
     this.processingForm = false;
+    this.isLoading = true;
     this.registrationStep = 1;
   }
 
   ngOnInit() {
-    this.getUser();
-  }
-
-  private getUser(): void {
-    this.isLoading = true;
     this.authService.getUser().subscribe((user) => {
       if (user && !(user as any).hasAllergies) {
         this.registrationStep = 2;
@@ -133,7 +123,4 @@ export class AuthComponent implements OnInit {
     this.handleSocialLogin(this.authService.loginWithFacebook());
   }
 
-  public logout(): void {
-    this.authService.logout();
-  }
 }

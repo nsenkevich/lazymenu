@@ -1,4 +1,4 @@
-<div *ngIf="user | async as user">
+<!-- <div *ngIf="user | async as user">
     <h3>Name, {{ user.name }}</h3>
     <p>UID: {{ user.uid }}</p>
     <p>Email: {{ user?.email }} </p>
@@ -7,4 +7,67 @@
     <p>Allergy: {{ user?.allergy }} </p>
     <p>Diet: {{ user?.diet }} </p>
     <button (click)="logout()">Logout</button>
-</div>
+</div> -->
+
+<button (click)="logout()">Logout</button>
+
+<mat-card class="profile" *ngIf="user | async as user">
+    <mat-card-header class="header" fxLayout="row" fxLayoutAlign="space-around center">
+        <mat-card-title fxFlex="100">
+            <i class="material-icons">person_outline</i>
+            {{user.email}}
+        </mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="content">
+        <mat-accordion multi="false">
+            <mat-expansion-panel expanded="true" class="section relative">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <i class="material-icons">local_dining</i>
+                        Dietary preferences & restrictions
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <app-edit-preferences [user]="user"></app-edit-preferences>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel class="section">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <i class="material-icons">room_service</i>
+                        Menu settings
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+            </mat-expansion-panel>
+
+            <div class="section">
+                <mat-expansion-panel class="sub-section">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <i class="material-icons">local_shipping</i>
+                            Delivery time
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                </mat-expansion-panel>
+                <mat-expansion-panel class="sub-section relative">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <i class="material-icons">person_pin</i>
+                            Delivery address
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <app-edit-address [user]="user"></app-edit-address>
+                </mat-expansion-panel>
+            </div>
+
+            <mat-expansion-panel class="section">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <i class="material-icons">credit_card</i>
+                        Payment card
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </mat-card-content>
+</mat-card>
+<app-card [stripeCardOptions]="{ hidePostalCode: true }"></app-card>

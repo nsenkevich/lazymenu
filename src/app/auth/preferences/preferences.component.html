@@ -1,10 +1,9 @@
 <form class="user-preferences-form" [formGroup]="userPreferencesForm" novalidate>
-  <p>Food allergies?</p>
+  <p>Food allergies or intolerances?</p>
   <mat-radio-group class="full-width" formControlName="hasAllergies">
     <mat-radio-button value="no">No</mat-radio-button>
     <mat-radio-button type="radio" value="yes">Yes</mat-radio-button>
   </mat-radio-group>
-
   <mat-form-field class="full-width">
     <mat-select placeholder="Allergies" formControlName="allergies" multiple>
       <mat-option *ngFor="let type of allergies" [value]="type.value">
@@ -22,5 +21,7 @@
       </mat-option>
     </mat-select>
   </mat-form-field>
-  <button class="submit" mat-raised-button color="primary" (click)="submitPreferences()" type="submit">Submit</button>
+  <div class="button-holder">
+    <button *ngIf="state === 'edit'" class="submit" mat-raised-button color="primary" (click)="submitPreferences()" type="submit">Submit</button>
+  </div>
 </form>

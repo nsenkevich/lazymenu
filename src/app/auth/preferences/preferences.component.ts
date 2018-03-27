@@ -1,9 +1,8 @@
 import { UserDiet } from './userDiet';
 import { UserAllergies } from './userAllergies';
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input, DoCheck, SimpleChanges, OnChanges } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
-
 
 export interface Preferences {
   hasAllergies: string;
@@ -16,12 +15,15 @@ export interface Preferences {
   templateUrl: './preferences.component.html',
   styleUrls: ['./preferences.component.scss']
 })
-export class PreferencesComponent implements OnInit {
-  allergiesFieldRequired: boolean;
+export class PreferencesComponent implements OnInit, OnChanges {
+  @Input() state: string;
+  @Input() value: Preferences;
   @Output() submitted = new EventEmitter<Preferences>();
+
   public userPreferencesForm: FormGroup;
   public allergies: Array<Object>;
   public diet: Array<Object>;
+  public allergiesFieldRequired: boolean;
   constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
@@ -35,10 +37,36 @@ export class PreferencesComponent implements OnInit {
         this.userPreferencesForm.controls.allergies.enable();
         this.userPreferencesForm.controls.allergies.markAsTouched();
       } else {
+        this.userPreferencesForm.controls.allergies.patchValue([]);
+        this.userPreferencesForm.controls.allergies.markAsUntouched();
         this.userPreferencesForm.controls.allergies.disable();
         this.userPreferencesForm.controls.allergies.setValidators(null);
       }
     });
+    this.patchForm();
+    this.setFormState();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.state.firstChange) {
+      return;
+    }
+    this.setFormState();
+  }
+
+  private patchForm(): void {
+    if (this.value) {
+      this.userPreferencesForm.patchValue(this.value);
+    }
+  }
+
+  private setFormState(): void {
+    if (this.state === 'view') {
+      this.userPreferencesForm.disable();
+    }
+    if (this.state === 'edit') {
+      this.userPreferencesForm.enable();
+    }
   }
 
   private arrayLength = (control): Observable<{ [key: string]: string }> => {
