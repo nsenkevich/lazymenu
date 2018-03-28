@@ -1,8 +1,30 @@
-import { Component, AfterViewInit, Input, OnDestroy, ViewChild, ElementRef, ChangeDetectorRef} from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { Component, AfterViewInit, Input, OnDestroy, ViewChild, ElementRef, ChangeDetectorRef } from '@angular/core';
 import { PaymentService } from '../payment.service';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/from';
+
+export const CardConfigs: Object = {
+  'style': {
+    'base': {
+      color: 'rgba(0,0,0,.87)',
+      fontWeight: 400,
+      fontSize: '16px',
+      fontFamily: 'Roboto,"Helvetica Neue", sans-serif',
+      '::placeholder': {
+        color: 'rgba(0,0,0,.38)',
+      },
+      ':-webkit-autofill': {
+        color: 'rgba(0,0,0,.87)',
+      },
+    }
+  },
+  'class': {
+    focus: 'focused',
+    empty: 'empty',
+    invalid: 'invalid'
+  },
+  'hidePostalCode': true
+};
 
 @Component({
   selector: 'app-card',
@@ -17,24 +39,22 @@ export class CardComponent implements AfterViewInit, OnDestroy {
   public cardForm: any;
   public cardHandler: string;
   public error: string;
-  private cd: ChangeDetectorRef;
-  private paymentService: PaymentService;
 
-  public constructor(cd: ChangeDetectorRef, paymentService: PaymentService) {
-    this.cd = cd;
-    this.paymentService = paymentService;
+  public constructor(private cd: ChangeDetectorRef, private paymentService: PaymentService) {
     this.cardHandler = this.onChange.bind(this);
   }
 
-  public ngAfterViewInit() {
+  ngAfterViewInit() {
+    if (!this.stripeCardOptions) {
+      this.stripeCardOptions = CardConfigs;
+    }
     this.cardForm = elements.create('card', this.stripeCardOptions);
     this.cardForm.mount(this.cardInfo.nativeElement);
     this.cardForm.addEventListener('change', this.cardHandler);
-
     this.card = this.paymentService.getCard();
   }
 
-  public onChange({ error }) {
+  onChange({ error }): void {
     this.error = null;
     if (error) {
       this.error = error.message;
@@ -42,19 +62,18 @@ export class CardComponent implements AfterViewInit, OnDestroy {
     this.cd.detectChanges();
   }
 
-  public getStripeToken(): Observable<string> {
-    return Observable.from(stripe.createToken(this.cardForm)
-    .then((token) => {
-      this.paymentService.saveCard(token);
-    }));
-  }
-
-  public ngOnDestroy() {
+  ngOnDestroy(): void {
     this.cardForm.removeEventListener('change', this.cardHandler);
     this.cardForm.destroy();
   }
 
-  public removeCard() {
+  public getStripeToken(): Observable<string> {
+    return Observable.from(stripe.createToken(this.cardForm).then((token) => {
+      this.paymentService.saveCard(token);
+    }));
+  }
+
+  public removeCard(): void {
     this.paymentService.removeCard();
   }
 

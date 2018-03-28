@@ -24,7 +24,8 @@
   .full-width {
     width: 100%;
 
-    ::ng-deep.mat-form-field-wrapper {
+    ::ng-deep.mat-form-field-wrapper,
+    ::ng-deep.mat-input-wrapper {
       font-size: 1.2em;
     }
   }

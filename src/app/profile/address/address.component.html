@@ -36,6 +36,6 @@
     </mat-error>
   </mat-form-field>
   <div class="button-holder">
-    <button class="submit" *ngIf="state === 'edit' || !value" mat-raised-button color="primary" (click)="submit()" type="submit">Save</button>
+    <button mat-raised-button color="primary" class="submit" *ngIf="state === 'edit' || !value" (click)="submit()" type="submit">Save</button>
   </div>
 </form>

@@ -1,14 +1,3 @@
-<!-- <div *ngIf="user | async as user">
-    <h3>Name, {{ user.name }}</h3>
-    <p>UID: {{ user.uid }}</p>
-    <p>Email: {{ user?.email }} </p>
-
-    <p>HasAllergies: {{ user?.hasAllergies }} </p>
-    <p>Allergy: {{ user?.allergy }} </p>
-    <p>Diet: {{ user?.diet }} </p>
-    <button (click)="logout()">Logout</button>
-</div> -->
-
 <button (click)="logout()">Logout</button>
 
 <mat-card class="profile" *ngIf="user | async as user">
@@ -67,8 +56,8 @@
                         Payment card
                     </mat-panel-title>
                 </mat-expansion-panel-header>
+                <app-card></app-card>
             </mat-expansion-panel>
         </mat-accordion>
     </mat-card-content>
 </mat-card>
-<app-card [stripeCardOptions]="{ hidePostalCode: true }"></app-card>
