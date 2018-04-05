@@ -1,7 +1,80 @@
-.header{
-    position: fixed;
-    top:0;
-    left:0;
-    right: 0;
-    z-index: 2;
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+}
+
+.log-out {
+  width: 100%;
+  background: rgba(0,0,0,.06);
+  border-top: 1px solid rgba(0,0,0,.1);
+  text-align: center;
+
+  &:hover {
+    background: rgba(0,0,0,.1);
+    border-top: 1px solid rgba(0,0,0,.2);
+  }
+}
+
+.logo {}
+
+.menu-item {
+  line-height: .8em;
+  font-size: .8em;
+  padding: 1.2em;
+
+  ::ng-deep .mat-button-wrapper {
+    padding: 1.2em;
+  }
+
+  .mat-icon {
+    line-height: .8em;
+  }
+}
+
+.user-block {
+  .mat-button {
+    vertical-align: middle;
+    width: 160px;
+
+    ::ng-deep .mat-button-wrapper {
+      min-width: 150px;
+      width: 100%;
+      padding: 1.2em;
+    }
+
+    &:hover {
+      background: transparent;
+    }
+  }
+
+  .block {
+    display: block;
+    font-size: 1.2em;
+    line-height: 125%;
+    text-align: left;
+
+    &.email {
+      font-size: 11px;
+      line-height: 125%;
+      font-weight: 400;
+    }
+  }
+
+  .user {
+    font-size: 30px;
+    margin-right: 10px;
+  }
+}
+
+.caret {
+  color: rgba(0,0,0,.36);
+}
+
+::ng-deep .cdk-overlay-pane {
+  ::ng-deep .mat-menu-panel {
+    width: 150px;
+  }
 }

@@ -1,11 +1,30 @@
 <div style="height: 100vh;">
     <mat-toolbar color="primary">
         <div fxShow="true" fxHide.lt-md="true">
-            <span>Brand</span>
-            <a mat-button routerLink="">Home</a>
-            <a mat-button routerLink="menu">Menu</a>
-            <a mat-button routerLink="auth">Auth</a>
-            <a mat-button routerLink="profile">Profile</a>
+            <span class="logo" routerLink="menu">Lazy Menu</span>
+
+            <a mat-button routerLink="menu" class="menu-item">
+                <mat-icon matListIcon>room_service</mat-icon>
+                Menu
+            </a>
+        </div>
+        <div fxFlex="grow"></div>
+        <div fxShow="true" fxHide.lt-md="true" class="user-block">
+            <button mat-button [matMenuTriggerFor]="menu" *ngIf="user | async as user" fxLayout="row" fxLayoutAlign="space-between center">
+                <mat-icon matListIcon class="user" fxFlex="20">person</mat-icon>
+                <span fxFlex="60">
+                    <span class="block email">{{getUserName(user.email)}}</span>
+                    <span class="block"> Account</span>
+                </span>
+                <mat-icon matListIcon class="caret">arrow_drop_down</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item routerLink="profile">
+                    Profile
+                </button>
+                <button mat-menu-item class="log-out" (click)="logout()">Sign out</button>
+            </mat-menu>
+
         </div>
         <div fxShow="true" fxHide.gt-sm="true" fxFlex="100" fxLayout="row">
             <button fxFlex="10" mat-icon-button (click)="drawer.open()">
@@ -20,21 +39,17 @@
     <mat-drawer-container fxFlexFill>
         <mat-drawer #drawer fxLayout="column">
             <mat-nav-list fxFlex="90">
-                <mat-list-item mat-button routerLink="" (click)="drawer.close()">
-                    <mat-icon matListIcon>home</mat-icon>
-                    <h3 matLine> Home</h3>
-                </mat-list-item>
                 <mat-list-item mat-button routerLink="menu" (click)="drawer.close()">
-                    <mat-icon matListIcon>menu</mat-icon>
+                    <mat-icon matListIcon>room_service</mat-icon>
                     <h3 matLine> Menu </h3>
                 </mat-list-item>
-                <mat-list-item mat-button routerLink="auth" (click)="drawer.close()">
-                    <mat-icon matListIcon>account_box</mat-icon>
-                    <h3 matLine> Auth </h3>
+                <mat-list-item mat-button routerLink="profile" (click)="drawer.close()" *ngIf="user | async as user">
+                    <mat-icon matListIcon>person</mat-icon>
+                    <span>{{user.email}}</span>
+                    <h3 matLine> Account </h3>
                 </mat-list-item>
-                <mat-list-item mat-button routerLink="profile" (click)="drawer.close()">
-                    <mat-icon matListIcon>account_box</mat-icon>
-                    <h3 matLine> Profile </h3>
+                <mat-list-item mat-button (click)="drawer.close()">
+                    <button mat-menu-item class="log-out" (click)="logout()">Sign out</button>
                 </mat-list-item>
             </mat-nav-list>
 

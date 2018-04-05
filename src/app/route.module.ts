@@ -10,7 +10,7 @@ import { LoggedInGuard } from './auth/loggedIn.guard';
 import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
-    { path: '', component: AppComponent },
+    { path: '', redirectTo: '/menu', pathMatch: 'full' },
     { path: 'auth', component: AuthComponent, canActivate: [LoggedInGuard] },
     { path: 'menu', component: MenuComponent },
     { path: 'recipe/:id', component: RecipeDetailsComponent },

@@ -10,15 +10,10 @@ import { Router } from '@angular/router';
 export class ProfileComponent implements OnInit {
   public user: any;
 
-  public constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService) { }
 
   public ngOnInit() {
     this.user = this.authService.getUser();
   }
 
-  public logout() {
-    this.authService.logout().then(() => {
-      this.router.navigate(['/auth']);
-    });
-  }
 }
