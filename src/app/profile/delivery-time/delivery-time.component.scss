@@ -1,7 +1,8 @@
 .delivery-picker {
   .mat-button-toggle {
-    font-size: 1.2em;
+    font-size: 1em;
     padding: .3em;
+    color: rgba(0,0,0,.6);
 
     .mat-icon {
       font-size: 2em;
@@ -16,10 +17,10 @@
   }
 }
 
-.label {
-  font-size: 1.2em;
+.text-block {
+  min-width: 535px;
 }
 
 .info {
-  color: rgba(0,0,0,.6);
+  color: rgba(0,0,0,.32);
 }

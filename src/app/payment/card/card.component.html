@@ -1,7 +1,7 @@
 <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutWrap>
   <div fxFlex="70">
-    <div *ngIf="card | async as card" class="existing-card" fxLayout fxLayout.xs="column wrap" fxLayoutGap="25px">
-      <div fxFlex="calc(80% - 25px)" *ngIf="card.token.card.last4.length">
+    <div *ngIf="card | async as card" class="existing-card" fxLayout fxLayout.xs="column wrap" fxLayoutGap="15px">
+      <div fxFlex="calc(80% - 15px)" *ngIf="card.token.card.last4.length">
         <span>&#8277;&#8277;&#8277;&#8277;&#32;&#8277;&#8277;&#8277;&#8277;&#32;&#8277;&#8277;&#8277;&#8277;&#32;
           <strong>{{card.token.card.last4}}</strong>
         </span>
@@ -9,7 +9,7 @@
           Exp. Date: {{card.token.card.exp_month}} / {{card.token.card.exp_year}}
         </span>
       </div>
-      <div class="remove-button" (click)="removeCard()" fxFlex="calc(20% - 25px)" *ngIf="card.token.card.last4.length">
+      <div class="remove-button" (click)="removeCard()" fxFlex="calc(20% - 15px)" *ngIf="card.token.card.last4.length">
         REMOVE
         <mat-icon>highlight_off</mat-icon>
       </div>

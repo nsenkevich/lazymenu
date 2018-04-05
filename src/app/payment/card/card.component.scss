@@ -67,6 +67,8 @@ form.stripe button {
   .remove-button {
     text-align: right;
     cursor: pointer;
+    font-size: .8em;
+    color: rgba(0,0,0,.32);
 
     &:hover {
       color: rgba(0,0,0,.87);

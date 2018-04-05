@@ -1,8 +1,10 @@
-<div fxLayout="row">
-  <p class="label" fxFlex="70" fxFlexOffset="15">Select delivery time slot</p>
-</div>
-<div fxLayout="row">
-  <div fxFlex="70" fxFlexOffset="15">
+<div fxLayout="column" fxLayoutAlign="space-around center">
+  <div fxLayout="column" fxLayoutAlign="space-around start" class="text-block">
+    <p class="info">
+      &#8277; Orders are delivered on Sundays to insure freshness of the groceries
+    </p>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="space-around center">
     <mat-button-toggle-group class="delivery-picker" #group="matButtonToggleGroup" [value]="deliverySlot" (change)="onFilterChange(group.value)">
       <mat-button-toggle value="8am-12noon">
         <div class="icon" fxLayout="column" fxLayoutAlign="space-around center">
@@ -25,8 +27,6 @@
     </mat-button-toggle-group>
   </div>
 </div>
-<div fxLayout="row">
-  <p fxFlex="70" fxFlexOffset="15" class="info">
-    &#8277; The order is delivered on Sunday to insure freshness of your groceries
-  </p>
+<div fxLayout="row" fxLayoutAlign="space-around center">
+
 </div>
