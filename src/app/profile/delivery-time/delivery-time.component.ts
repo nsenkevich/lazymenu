@@ -14,15 +14,18 @@ export class DeliveryTimeComponent implements OnInit {
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
-    this.deliverySlot = '8am-12noon';
+    // this.deliverySlot = '8AM-12NOON';
     if (this.user.deliverySlot && this.user.deliverySlot.length) {
       this.deliverySlot = this.user.deliverySlot;
     }
   }
 
-  public onFilterChange(val: string) {
+  public onFilterChange(val: string): void {
     this.deliverySlot = val;
-    this.user.deliverySlot = val;
+  }
+
+  public select(): void {
+    this.user.deliverySlot = this.deliverySlot;
     this.authService.updateUser(this.user);
   }
 

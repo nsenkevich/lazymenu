@@ -1,26 +1,49 @@
-.delivery-picker {
+.delivery-time-picker {
+  padding: 10px 0 0;
+
+  ::ng-deep .mat-button-toggle-group {
+    box-shadow: none;
+  }
+
   .mat-button-toggle {
     font-size: 1em;
     padding: .3em;
-    color: rgba(0,0,0,.6);
-
-    .mat-icon {
-      font-size: 2em;
-      height: 100%;
-      width: auto;
-    }
+    color: rgba(0,0,0,.32);
+    font-weight: 600;
 
     &.mat-button-toggle-checked {
       color: #fff;
       background: #3f51b5;
     }
+
+    .mat-button-toggle-label-content {
+      width: 110px;
+      text-align: center;
+    }
   }
 }
 
-.text-block {
-  min-width: 535px;
+.info {
+  color: rgba(0,0,0,.68);
 }
 
-.info {
-  color: rgba(0,0,0,.32);
+.icon {
+  color: rgba(0,0,0,.68);
+
+  .mat-icon {
+    font-size: 2em;
+    height: 100%;
+    width: auto;
+
+  }
+}
+
+.selector-block {
+  padding: 15px 0;
+  border-bottom: 1px solid lighten(#b4b4b4, 10%);
+
+}
+
+.holder {
+  padding: 0 40px;
 }
