@@ -7,6 +7,8 @@ import { AddressComponent } from './address/address.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { EditAddressComponent } from './edit-address/edit-address.component';
 import { PaymentModule } from '../payment/payment.module';
+import { MenuSettingsComponent } from './menu-settings/menu-settings.component';
+import { DeliveryTimeComponent } from './delivery-time/delivery-time.component';
 
 @NgModule({
   imports: [
@@ -19,7 +21,9 @@ import { PaymentModule } from '../payment/payment.module';
     ProfileComponent,
     EditPreferencesComponent,
     AddressComponent,
-    EditAddressComponent
+    EditAddressComponent,
+    MenuSettingsComponent,
+    DeliveryTimeComponent
   ],
   exports: [],
   providers: []

@@ -13,6 +13,7 @@ import { AngularFireModule } from 'angularfire2';
 import { environment } from '../../environments/environment';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { PageNotFoundPage } from '../app/page-not-found.page';
+import { NavigationComponent } from './navigation/navigation.component';
 
 @NgModule({
   imports: [
@@ -22,7 +23,8 @@ import { PageNotFoundPage } from '../app/page-not-found.page';
   ],
   exports: [],
   declarations: [
-    PageNotFoundPage
+    PageNotFoundPage,
+    NavigationComponent
   ],
   providers: []
 })

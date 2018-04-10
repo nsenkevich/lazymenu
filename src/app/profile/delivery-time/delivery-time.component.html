@@ -1,0 +1,28 @@
+<div fxLayout="column" fxLayoutAlign="start none" class="delivery-time-picker">
+
+  <div fxLayout="row" fxLayoutAlign="center center" class="selector-block">
+    <div class="icon " fxFlex="10" fxLayout="column" fxLayoutAlign="end center">
+      <div class="label">Sunday</div>
+      <mat-icon>access_time</mat-icon>
+    </div>
+    <mat-button-toggle-group fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" #group="matButtonToggleGroup" [value]="deliverySlot"
+      (change)="onFilterChange(group.value)">
+      <mat-button-toggle value="8AM-12NOON">8AM - 12NOON</mat-button-toggle>
+      <mat-button-toggle value="12NOON-5PM">12NOON - 5PM</mat-button-toggle>
+      <mat-button-toggle value="5PM-9PM">5PM - 9PM</mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="start none">
+    <div fxFlex="80">
+      <p class="info">
+        Groceries are delivered on Sundays to insure freshness
+      </p>
+    </div>
+    <div fxFlex="grow"></div>
+    <div fxLayoutAlign="end" class="button-container">
+      <button mat-raised-button color="primary" (click)="select()">
+        SELECT
+      </button>
+    </div>
+  </div>
+</div>

@@ -16,8 +16,7 @@ export class DeliveryAddress {
 @Component({
   selector: 'app-address',
   templateUrl: './address.component.html',
-  styleUrls: ['./address.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./address.component.scss']
 })
 export class AddressComponent implements OnInit, OnChanges {
 

@@ -1,6 +1,6 @@
 <form class="address-form" [formGroup]="addressForm" novalidate>
   <mat-form-field class="full-width">
-    <input matInput type="text" placeholder="Full name" formControlName="fullName">
+    <input matInput type="text" placeholder="Full name &#42;" formControlName="fullName">
     <mat-error *ngIf="addressForm.controls.fullName.errors &&addressForm.controls.fullName.errors.required">
       Required
     </mat-error>
@@ -9,7 +9,7 @@
     <input matInput type="number" placeholder="Phone" formControlName="phone">
   </mat-form-field>
   <mat-form-field class="full-width">
-    <input matInput type="text" placeholder="Street address" formControlName="streetAddress1">
+    <input matInput type="text" placeholder="Street address &#42;" formControlName="streetAddress1">
     <mat-error *ngIf="addressForm.controls.streetAddress1.errors &&addressForm.controls.streetAddress1.errors.required">
       Required
     </mat-error>
@@ -18,7 +18,7 @@
     <input matInput type="text" placeholder="Street address" formControlName="streetAddress2">
   </mat-form-field>
   <mat-form-field class="full-width">
-    <input matInput type="text" placeholder="Town/City" formControlName="city">
+    <input matInput type="text" placeholder="Town/City &#42;" formControlName="city">
     <mat-error *ngIf="addressForm.controls.city.errors &&addressForm.controls.city.errors.required">
       Required
     </mat-error>
@@ -30,12 +30,12 @@
     <input matInput type="text" placeholder="Country" formControlName="country">
   </mat-form-field>
   <mat-form-field class="full-width">
-    <input matInput type="text" placeholder="Postal code" formControlName="postCode">
+    <input matInput type="text" placeholder="Postal code &#42;" formControlName="postCode">
     <mat-error *ngIf="addressForm.controls.postCode.errors &&addressForm.controls.postCode.errors.required">
       Required
     </mat-error>
   </mat-form-field>
   <div class="button-holder">
-    <button class="submit" *ngIf="state === 'edit' || !value" mat-raised-button color="primary" (click)="submit()" type="submit">Save</button>
+    <button mat-raised-button color="primary" class="submit" *ngIf="state === 'edit' || !value" (click)="submit()" type="submit">Save</button>
   </div>
 </form>

@@ -2,7 +2,7 @@
   .relative {
     position: relative;
 
-    &/deep/.absolute,
+    &::ng-deep.absolute,
     .absolute {
       position: absolute;
 
@@ -24,7 +24,8 @@
   .full-width {
     width: 100%;
 
-    /deep/.mat-form-field-wrapper {
+    ::ng-deep.mat-form-field-wrapper,
+    ::ng-deep.mat-input-wrapper {
       font-size: 1.2em;
     }
   }

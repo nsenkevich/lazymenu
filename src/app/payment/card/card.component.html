@@ -1,15 +1,31 @@
-------------------------------------------------------------
-
-<form #stripeForm="ngForm" class="stripe">
-    <div class="form-row">
-      <div id="card-info" #cardInfo></div>
-      <div id="card-errors" role="alert" *ngIf="error">{{ error }}</div>
+<div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutWrap>
+  <div fxFlex="70">
+    <div *ngIf="card | async as card" class="existing-card" fxLayout fxLayout.xs="column wrap" fxLayoutGap="15px">
+      <div fxFlex="calc(80% - 15px)" *ngIf="card.token.card.last4.length">
+        <span>&#8277;&#8277;&#8277;&#8277;&#32;&#8277;&#8277;&#8277;&#8277;&#32;&#8277;&#8277;&#8277;&#8277;&#32;
+          <strong>{{card.token.card.last4}}</strong>
+        </span>
+        <span class="exp-date">
+          Exp. Date: {{card.token.card.exp_month}} / {{card.token.card.exp_year}}
+        </span>
+      </div>
+      <div class="remove-button" (click)="removeCard()" fxFlex="calc(20% - 15px)" *ngIf="card.token.card.last4.length">
+        REMOVE
+        <mat-icon>highlight_off</mat-icon>
+      </div>
     </div>
-  
-    <button (click)="getStripeToken()">Add</button>
-</form>
-
-<div *ngIf="card | async as card">
-  <div>cardInfo : {{ card | json }}</div>
-  <div><button (click)="removeCard()">Remove card</button></div>
+    <mat-divider></mat-divider>
+    <div class="cell">
+      <form #stripeForm="ngForm" class="stripe card-form">
+        <div class="form-row">
+          <div class="label">Add new card</div>
+          <div id="card-info" #cardInfo></div>
+          <div id="card-errors" role="alert" class="errors">
+            <span *ngIf="error">{{ error }}</span>
+          </div>
+        </div>
+        <button mat-raised-button color="primary" (click)="getStripeToken()">Add</button>
+      </form>
+    </div>
+  </div>
 </div>
