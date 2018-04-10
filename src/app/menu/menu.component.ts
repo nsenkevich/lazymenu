@@ -1,9 +1,8 @@
+import { RecipeService } from '../recipes/recipe.service';
 import { Component, OnInit } from '@angular/core';
-
-import { RecipeService } from '../recipe.service';
-import { RecipeImporter } from '../recipe.importer';
-import { Recipe } from '../recipe.model';
 import { Observable } from 'rxjs/Observable';
+import { RecipeImporter } from '../recipes/recipe.importer';
+import { Recipe } from '../recipes/recipe.model';
 
 @Component({
   selector: 'app-menu',

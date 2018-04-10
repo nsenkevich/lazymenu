@@ -1,3 +1,4 @@
+
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -13,6 +14,7 @@ import { AuthModule } from './auth/auth.module';
 import { ProfileComponent } from './profile/profile.component';
 import { PaymentModule } from './payment/payment.module';
 import { ProfileModule } from './profile/profile.module';
+import { MenuModule } from './menu/menu.module';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { ProfileModule } from './profile/profile.module';
     RecipesModule,
     AuthModule,
     PaymentModule,
-    ProfileModule
+    ProfileModule,
+    MenuModule
   ],
   bootstrap: [AppComponent]
 })
