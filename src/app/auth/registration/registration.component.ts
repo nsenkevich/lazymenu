@@ -1,6 +1,9 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
+import { EmailValidator } from './email.validator';
+import { AngularFirestore } from 'angularfire2/firestore';
+import { PasswordValidator } from './password.validator';
 
 export interface RegistrationDetails {
   email: string;
@@ -16,7 +19,7 @@ export class RegistrationComponent implements OnInit {
   @Output() submitted = new EventEmitter<RegistrationDetails>();
   public registrationForm: FormGroup;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private afs: AngularFirestore) { }
 
   ngOnInit() {
     this.createRegistrationForm();
@@ -24,19 +27,12 @@ export class RegistrationComponent implements OnInit {
 
   private createRegistrationForm(): void {
     this.registrationForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
+      email: ['', [Validators.required, Validators.email], EmailValidator.createValidator(this.afs)],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      passwordCopy: ['', [Validators.required, Validators.minLength(6), this.checkPassword]]
+      passwordCopy: ['', [Validators.required, Validators.minLength(6)]]
+    }, {
+      validator: PasswordValidator.createValidator
     });
-  }
-
-  private checkPassword = (control): Observable<{ [key: string]: string }> => {
-    if (!control || !control.value || !control.value.length) {
-      return null;
-    }
-    if (control.value !== this.registrationForm.value.password) {
-      return Observable.create({ PasswordMatch: 'Fields do not match' });
-    }
   }
 
   public register(): void {
@@ -46,4 +42,15 @@ export class RegistrationComponent implements OnInit {
     }
   }
 
+  public get email() {
+    return this.registrationForm.get('email');
+  }
+
+  public get password() {
+    return this.registrationForm.get('password');
+  }
+
+  public get passwordCopy() {
+    return this.registrationForm.get('passwordCopy');
+  }
 }

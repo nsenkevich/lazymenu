@@ -22,7 +22,6 @@ export class ForgotPasswordComponent implements OnInit {
     });
   }
 
-
   public resetPassword(): void {
     if (this.forgotPasswordForm.valid) {
       this.submitted.emit(this.forgotPasswordForm.value.email);
@@ -32,6 +31,10 @@ export class ForgotPasswordComponent implements OnInit {
         this.forgotPasswordForm.enable();
       }, 5000);
     }
+  }
+
+  public get email() {
+    return this.forgotPasswordForm.get('email');
   }
 
 }

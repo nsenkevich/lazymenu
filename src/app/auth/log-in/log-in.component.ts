@@ -36,4 +36,12 @@ export class LogInComponent implements OnInit {
     }
   }
 
+  public get email() {
+    return this.loginForm.get('email');
+  }
+
+  public get password() {
+    return this.loginForm.get('password');
+  }
+
 }
