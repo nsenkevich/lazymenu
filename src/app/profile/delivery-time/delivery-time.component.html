@@ -1,11 +1,9 @@
 <div fxLayout="column" fxLayoutAlign="start none" class="delivery-time-picker">
 
-  <div fxLayout="row" fxLayoutAlign="space-around center" class="selector-block">
-    <div fxFlex="33%" fxFlex.sm="15%" fxFlex.xs="15%" fxLayoutAlign="end end" class="holder">
-      <div class="icon" fxLayout="column" fxLayoutAlign="end center">
-        <div class="label">Sunday</div>
-        <mat-icon>access_time</mat-icon>
-      </div>
+  <div fxLayout="row" fxLayoutAlign="center center" class="selector-block">
+    <div class="icon " fxFlex="10" fxLayout="column" fxLayoutAlign="end center">
+      <div class="label">Sunday</div>
+      <mat-icon>access_time</mat-icon>
     </div>
     <mat-button-toggle-group fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" #group="matButtonToggleGroup" [value]="deliverySlot"
       (change)="onFilterChange(group.value)">
@@ -15,12 +13,16 @@
     </mat-button-toggle-group>
   </div>
   <div fxLayout="row" fxLayoutAlign="start none">
-    <p class="info" fxFlex="80">
-      Groceries are delivered on Sundays to insure freshness
-    </p>
+    <div fxFlex="80">
+      <p class="info">
+        Groceries are delivered on Sundays to insure freshness
+      </p>
+    </div>
     <div fxFlex="grow"></div>
-    <button mat-button color="primary" (click)="select()" fxLayoutAlign="end">
-      SELECT
-    </button>
+    <div fxLayoutAlign="end" class="button-container">
+      <button mat-raised-button color="primary" (click)="select()">
+        SELECT
+      </button>
+    </div>
   </div>
 </div>
