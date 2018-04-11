@@ -11,15 +11,10 @@ import { Recipe } from '../recipes/recipe.model';
 })
 export class MenuComponent implements OnInit {
 
-  private recipeService: RecipeService;
-  private recipeImporter: RecipeImporter;
   public menu: Observable<Recipe[]>;
   public content: string;
 
-  public constructor(recipeService: RecipeService, recipeImporter: RecipeImporter) {
-    this.recipeService = recipeService;
-    this.recipeImporter = recipeImporter;
-  }
+  public constructor(private recipeService: RecipeService, private recipeImporter: RecipeImporter) { }
 
   public ngOnInit() {
     // this.recipeImporter.run(this.recipeImporter.getData());

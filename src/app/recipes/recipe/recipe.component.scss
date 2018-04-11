@@ -1,3 +1,78 @@
-.card {
-    margin: 10px;
+.recipe-card {
+  &.mat-card {
+    padding: 0;
   }
+
+  .image-container {
+    position: relative;
+
+    .recipe-image {
+      width: 100%;
+
+    }
+
+    .image-overlay {
+      position: absolute;
+      top: 0;
+      bottom: 24px;
+      left: 0;
+      right: 0;
+      background: linear-gradient(rgba(217, 172, 43, 0.2), transparent);
+    }
+  }
+
+  .overlay-name {
+    background-color: rgba(250, 250,250, 0.68);
+    margin-top: -8px;
+    z-index: 2;
+    padding: 10px 15px 0;
+    position: relative;
+  }
+
+  .title {
+    line-height: 125%;
+    margin: 5px 0 0;
+    font-size: 1em;
+    font-weight: 500;
+
+    a {
+      text-decoration: none;
+      color: rgba(0,0,0,0.86);
+
+      &:active,
+      &:focus,
+      &:hover {
+        text-decoration: none;
+        color: rgba(0,0,0,0.68);
+      }
+
+    }
+  }
+
+  .recipe-footer {
+    margin: 0 15px;
+    padding: 0 0 5px;
+  }
+
+  .time {
+    font-size: 12px;
+    font-weight: 500;
+    color: #000;
+    border-right: 1px solid rgba(0, 0, 0, 0.36);
+    padding: 0 15px 0 0;
+    vertical-align: middle;
+  }
+
+  .like {
+    padding: 0 0 0 15px;
+    color: rgba(0,0,0,0.5);
+    font-size: 12px;
+
+    ::ng-deep .mat-icon {
+      font-size: 20px;
+      vertical-align: middle;
+    }
+
+  }
+  .diet-tag{}
+}

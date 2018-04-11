@@ -68,12 +68,10 @@
             </div>
         </mat-drawer>
         <mat-drawer-content>
-            <div fxFlex="100" fxLayout="column" fxLayoutAlign=" none">
-                <div fxFlex="90">
-                    <router-outlet></router-outlet>
-                </div>
-                <footer fxFlex="10">
-                    <div fxLayout="row" style="background: #3f51b5; height: 100%">
+            <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-around stretch" fxLayoutWrap>
+                <router-outlet fxFlex="100"></router-outlet>
+                <footer fxFlex="100" class="footer">
+                    <div fxLayout="row">
                         <span>Powered by Uliana ©2010-2018.</span>
                     </div>
                 </footer>

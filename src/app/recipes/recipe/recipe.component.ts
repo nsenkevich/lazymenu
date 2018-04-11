@@ -10,19 +10,15 @@ import { Recipe } from '../recipe.model';
 })
 export class RecipeComponent implements OnInit {
   private recipeId: string;
-  private recipeService: RecipeService;
-  private route: ActivatedRoute;
 
   @Input()
   recipe: Recipe;
 
-  public constructor(route: ActivatedRoute, recipeService: RecipeService) {
-    this.route = route;
-    this.recipeService = recipeService;
-  }
+  public constructor(private route: ActivatedRoute, private recipeService: RecipeService) { }
 
   public ngOnInit() {
-    this.route.params.subscribe(params => this.recipeId = params.id);
+    console.log(this.recipe);
+    // this.route.params.subscribe(params => this.recipeId = params.id);
   }
 
   public addLikeToRecipe(val: number) {
