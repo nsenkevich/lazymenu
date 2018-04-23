@@ -11,25 +11,12 @@ import { Recipe } from '../recipe.model';
 export class RecipeComponent implements OnInit {
   private recipeId: string;
 
-  @Input()
-  recipe: Recipe;
+  @Input() recipe: Recipe;
 
   public constructor(private route: ActivatedRoute, private recipeService: RecipeService) { }
 
   public ngOnInit() {
-    console.log(this.recipe);
     // this.route.params.subscribe(params => this.recipeId = params.id);
   }
 
-  public addLikeToRecipe(val: number) {
-    if (this.recipe.id) {
-      this.recipeService.updateRecipe(this.recipe.id, { likes: val + 1 });
-    } else {
-      console.error('recipe missing ID!');
-    }
-  }
-
-  public deleteRecipe(id: string) {
-    this.recipeService.deleteRecipe(id);
-  }
 }

@@ -1,3 +1,165 @@
-.card {
-    margin: 10px;
+.main-container {
+  position: relative;
+}
+
+.heading-container {
+  position: relative;
+}
+
+.recipe-image {
+  width: 100%;
+
+  img {
+    width: 100%;
   }
+
+  .btn-container {
+    position: absolute;
+    z-index: 1;
+    bottom: 100px;
+    right: 40%;
+  }
+
+  .play {
+    position: relative;
+    border: none;
+    padding: 3px;
+    color: #fff;
+    font-size: 1em;
+    line-height: 50px;
+    background: #3f51b5;
+    border-radius: 50px;
+    cursor: pointer;
+
+    .mat-icon {
+      width: 50px;
+      height: 50px;
+      font-size: 50px;
+      vertical-align: middle;
+    }
+
+    span {
+      position: absolute;
+      bottom: 0;
+      height: 50px;
+      opacity: 0;
+      left: 15px;
+      transition: opacity .4s linear, height .2s;
+      -webkit-transition: opacity .4s linear, height .2s;
+      -moz-transition: opacity .4s linear, height .2s;
+    }
+
+    &:focus,
+    &:hover {
+      span {
+        transition: opacity .2s linear, height .4s;
+        -webkit-transition: opacity .2s linear, height .4s;
+        -moz-transition: opacity .2s linear, height .4s;
+        height: 15px;
+        opacity: 1;
+      }
+    }
+
+  }
+}
+
+.ingredients-list {
+  position: absolute;
+  top: 20px;
+  right: 35px;
+  bottom: 0;
+  background: #fafafa;
+  padding: 10px 15px;
+  box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+  min-width: 350px;
+  width: 30%;
+
+  h3 {
+    padding: 0 16px;
+  }
+
+  .mat-list {
+    padding: 0;
+  }
+
+  .mat-line {
+    font-size: 1em;
+    padding-bottom: 10px;
+  }
+
+  .amount {
+    font-weight: bold;
+    padding-right: 5px;
+  }
+}
+
+.recipe-heading {
+  background: #fff;
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  bottom: -110px;
+  padding: 20px 30px;
+  border-radius: 3px;
+  border: 1px solid #fafafa;
+  box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+
+  h1 {
+    border-bottom: 1px solid lighten(#b4b4b4, 20%);
+    padding-bottom: .7em;
+  }
+
+  .time {
+    line-height: 24px;
+    font-weight: bold;
+
+    .mat-icon {
+      vertical-align: bottom;
+    }
+  }
+
+  .diet-tags {
+    ::ng-deep .mat-chip-list-wrapper {
+      padding: 0;
+    }
+
+    .mat-chip {
+      color: rgba(0, 0, 0, .5);
+      border: 1px solid #e0e0e0;
+      padding: 3px 12px;
+      background-color: transparent;
+      cursor: default;
+
+      &:active,
+      &:focus,
+      &:hover {
+        box-shadow: none;
+      }
+    }
+  }
+}
+
+.recipe-method {
+  border-radius: 3px;
+  border: 1px solid #fafafa;
+  background: #fff;
+  box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+  margin: 130px 20px 20px;
+  padding: 20px 30px;
+
+  .step-number {
+    font-size: 1.7em;
+    border: 1px solid #e0e0e0;
+    margin-right: 10px;
+    border-radius: 40px;
+    color: rgba(0, 0, 0, .5);
+    text-align: center;
+    height: 40px;
+    line-height: 40px;
+  }
+
+  .step-description {
+    font-size: 1.1em;
+    line-height: 125%;
+  }
+}

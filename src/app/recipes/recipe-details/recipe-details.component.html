@@ -1,27 +1,59 @@
-<div fxLayout="row" fxLayout.xs="column" *ngIf="recipe | async as recipe">
-    <mat-card fxFlex="33.3" class="card">
-        <img mat-card-image src="https://x9wsr1khhgk5pxnq1f1r8kye-wpengine.netdna-ssl.com/wp-content/uploads/how-to-make-fried-eggs-930x550.jpg" alt="Photo of a Shiba Inu">
-        <mat-card-content>
-            <h1 headline> {{ recipe.name }} </h1>
-          </mat-card-content>
-      </mat-card>
-      <mat-card fxFlex="33.3%"class="card">
-        <mat-card-content>
-            <h3 subheading-2>Ingredients</h3>
+<div fxLayout="column" fxLayoutAlign="start stretch" class="main-container" *ngIf="recipe | async as recipe">
+    <div class="heading-container">
+        <div class="recipe-image">
+            <img src="https://x9wsr1khhgk5pxnq1f1r8kye-wpengine.netdna-ssl.com/wp-content/uploads/how-to-make-fried-eggs-930x550.jpg"
+                alt="Photo of a Shiba Inu">
+            <!-- <img class="recipe-image" [src]="recipe.thumbnail" alt="Photo of a {{recipe.name}}"> -->
+            <div class="btn-container">
+                    <button class="play" (click)="playRecipeVideo()">
+               
+                            <mat-icon>play_circle_outline</mat-icon>
+                            <span>play</span>
+                        </button>
+            </div>
+           
+           
+        </div>
+        <div class="ingredients-list">
+            <h3 subheading-1>Ingredients</h3>
             <mat-list role="list">
                 <mat-list-item *ngFor="let ingredients of recipe.ingredients" role="listitem">
-                    <p mat-line>{{ ingredients.name }}</p>
+                    <!-- <p mat-line>{{ ingredients.name }}</p> -->
                     <p mat-line *ngFor="let ingredient of ingredients.ingredients">{{ ingredient }}</p>
+                    <!-- <p mat-line *ngFor="let ingredient of ingredients.ingredients">
+                    <span class="amount">{{ ingredient.amount }}</span>
+                    {{ ingredient.name }}
+                </p> -->
                 </mat-list-item>
             </mat-list>
-        </mat-card-content>
-      </mat-card>
-      <mat-card fxLayoutAlign="center" fxFlex="33.3" class="card">
-        <mat-card-content>
-          <h3 subheading-2>Instructions</h3>
-          <p mat-body-1 *ngFor="let method of recipe.method">
-            {{ method }}
-          </p>
-        </mat-card-content>
-      </mat-card>
+        </div>
+        <div class="recipe-heading">
+            <h1 headline fxLayoutAlign="center"> {{ recipe.name }} </h1>
+            <!-- <div class="time">
+                <mat-icon>schedule</mat-icon>
+                {{ recipe.time }} min
+            </div> -->
+
+            <div fxLayout="row" fxLayoutAlign=" stretch">
+                <div class="diet-tags" fxFlex>
+                    <mat-chip-list ariaOrientation="horizontal" *ngIf="recipe.diet.length">
+                        <mat-chip *ngFor="let diet of recipe.diet">
+                            {{diet}}
+                        </mat-chip>
+                    </mat-chip-list>
+                </div>
+                <div class="time" fxFlex="80px">
+                    <mat-icon>schedule</mat-icon>
+                    {{ recipe.time }} min
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="recipe-method">
+        <h3 subheading-1>Method</h3>
+        <div *ngFor="let method of recipe.method; let i = index" fxLayout="row" fxLayoutAlign="start center">
+            <div class="step-number" fxFlex="40px">{{i + 1}}</div>
+            <p mat-body-1 class="step-description">{{ method }}</p>
+        </div>
+    </div>
 </div>
