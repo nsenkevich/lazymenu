@@ -1,7 +1,8 @@
 <mat-card class="recipe-card">
-  <div class="image-container">
-    <img class="recipe-image" src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-    <!-- <img class="recipe-image" [src]="recipe.thumbnail" alt="Photo of a {recipe.name}}"> -->
+  <div class="image-container" [routerLink]="['/recipe', recipe.id]">
+    <img class="recipe-image" src="https://x9wsr1khhgk5pxnq1f1r8kye-wpengine.netdna-ssl.com/wp-content/uploads/how-to-make-fried-eggs-930x550.jpg"
+      alt="Photo of fried eggs">
+    <!-- <img class="recipe-image" [src]="recipe.thumbnail" alt="Photo of a {{recipe.name}}"> -->
     <div class="image-overlay"></div>
   </div>
   <div class="overlay-name">
@@ -12,22 +13,16 @@
     </h2>
   </div>
   <mat-card-content>
-    <mat-chip-list class="diet-tags" ariaOrientation="horizontal" *ngIf="recipe.diet.length">
-      <mat-chip *ngFor="let diet of recipe.diet">
-        {{diet}}
-      </mat-chip>
-    </mat-chip-list>
-  </mat-card-content>
-  <div fxLayout="row" fxLayoutAlign="start stretch" class="recipe-footer">
-    <div class="time">{{ recipe.time }} min</div>
-    <div class="like" (click)='addLikeToRecipe(recipe.likes)'>
-      <mat-icon>favorite</mat-icon>
-      {{recipe.likes || 0}}
+    <div class="diet-tags">
+      <mat-chip-list ariaOrientation="horizontal" *ngIf="recipe.diet.length">
+        <mat-chip *ngFor="let diet of recipe.diet">
+          {{diet}}
+        </mat-chip>
+      </mat-chip-list>
     </div>
-  </div>
-
-  <!-- <mat-card-actions> -->
-
-
-  <!-- </mat-card-actions> -->
+    <div fxLayout="row" fxLayoutAlign="end stretch" class="recipe-footer">
+      <mat-icon>schedule</mat-icon>
+      <div class="time">{{ recipe.time }} min</div>
+    </div>
+  </mat-card-content>
 </mat-card>
