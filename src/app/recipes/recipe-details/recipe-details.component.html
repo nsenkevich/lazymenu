@@ -16,12 +16,15 @@
             </mat-list>
         </div>
         <div class="recipe-heading">
-            <div class="white-card">
+            <mat-card class="white-card">
                 <div class="btn-container">
-                    <button class="play" (click)="playRecipeVideo()">
-                        <mat-icon>play_circle_outline</mat-icon>
-                        <span>play</span>
-                    </button>
+                    <div class="play">
+                        <button mat-fab color="accent" (click)="playRecipeVideo()">
+                            <mat-icon aria-label="Example icon-button with a heart icon">
+                                play_arrow</mat-icon>
+                        </button>
+                        <span>play video</span>
+                    </div>
                 </div>
                 <h1 headline> {{ recipe.name }} </h1>
                 <div fxLayout="row" fxLayoutAlign=" stretch">
@@ -37,14 +40,14 @@
                         </mat-chip-list>
                     </div>
                 </div>
-            </div>
+            </mat-card>
         </div>
     </div>
-    <div class="recipe-method white-card">
+    <mat-card class="white-card recipe-method">
         <h3 subheading-1>Method</h3>
         <div *ngFor="let method of recipe.method; let i = index" fxLayout="row" fxLayoutAlign="start center">
             <div class="step-number" fxFlex="40px">{{i + 1}}</div>
             <p mat-body-1 class="step-description">{{ method }}</p>
         </div>
-    </div>
+    </mat-card>
 </div>

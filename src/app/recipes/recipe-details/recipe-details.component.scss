@@ -3,11 +3,6 @@
 }
 
 .white-card {
-  background: #fff;
-  padding: 20px 30px;
-  border-radius: 3px;
-  border: 1px solid #fafafa;
-  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12);
   position: relative;
 }
 
@@ -39,7 +34,14 @@
   }
   @media (max-width: 1024px) {
     img {
-      top: 100%;
+      top: 110%;
+    }
+  }
+  @media (max-width: 414px) {
+    padding-bottom: 300px;
+
+    img {
+      top: 130%;
     }
   }
 }
@@ -142,7 +144,7 @@
     line-height: 125%;
   }
   @media (max-width: 1024px) {
-    margin: 10px 0 0;
+    margin: 50px 0 0;
     position: relative;
   }
 }
@@ -156,18 +158,14 @@
 
   .play {
     position: relative;
-    border: none;
-    padding: 3px;
-    color: #fff;
-    background: #3f51b5;
-    border-radius: 50px;
+    padding: 0 15px 5px;
     cursor: pointer;
 
     .mat-icon {
-      width: 60px;
-      height: 60px;
-      font-size: 60px;
-      vertical-align: middle;
+      width: 40px;
+      height: 40px;
+      font-size: 40px;
+      line-height: 24px;
     }
 
     span {
@@ -175,10 +173,10 @@
       font-size: 14px;
       font-weight: bold;
       bottom: 0;
-      height: 60px;
+      height: 40px;
       opacity: 0;
       color: transparent;
-      left: 19px;
+      left: 12px;
       transition: opacity .3s linear, height .1s;
       -webkit-transition: opacity .3s linear, height .1s;
       -moz-transition: opacity .3s linear, height .1s;
@@ -186,10 +184,8 @@
 
     &:focus,
     &:hover {
-      background: darken(#3f51b5, 15%);
-
       span {
-        color: #3f51b5;
+        color: rgba(0, 0, 0, .68);
         transition: opacity .2s linear, height .4s;
         -webkit-transition: opacity .2s linear, height .4s;
         -moz-transition: opacity .2s linear, height .4s;
