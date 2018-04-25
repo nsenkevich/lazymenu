@@ -1,4 +1,7 @@
 <div fxLayout="column" fxLayoutAlign="start stretch" class="main-container" *ngIf="recipe | async as recipe">
+    <div *ngIf="recipe.video">
+        <iframe width="560" height="315" [src]="recipe.video | safeUrl" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
     <div class="heading-container">
         <div class="recipe-image">
             <img class="recipe-image" [src]="recipe.thumbnail" alt="Photo of a {{recipe.name}}">

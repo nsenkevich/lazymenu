@@ -12,6 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from './material.module';
+import { SafeYouTubeUrlPipe } from './safe-url.pipe';
 
 @NgModule({
   imports: [
@@ -25,7 +26,7 @@ import { MaterialModule } from './material.module';
     HttpClientModule,
     AngularSvgIconModule
   ],
-  declarations: [],
+  declarations: [SafeYouTubeUrlPipe],
   providers: [],
   exports: [
     CommonModule,
@@ -36,7 +37,8 @@ import { MaterialModule } from './material.module';
     AngularFirestoreModule,
     RouterModule,
     HttpClientModule,
-    AngularSvgIconModule
+    AngularSvgIconModule,
+    SafeYouTubeUrlPipe
   ]
 })
 export class SharedModule { }
