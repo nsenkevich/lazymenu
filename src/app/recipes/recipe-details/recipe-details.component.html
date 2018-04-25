@@ -1,6 +1,6 @@
 <div fxLayout="column" fxLayoutAlign="start stretch" class="main-container" *ngIf="recipe | async as recipe">
-    <div *ngIf="recipe.video">
-        <iframe width="560" height="315" [src]="recipe.video | safeUrl" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    <div *ngIf="recipe.video && showVideo" class="recipe-video">
+        <iframe width="660" height="415" [src]="recipe.video | safeUrl" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
     </div>
     <div class="heading-container">
         <div class="recipe-image">
@@ -22,11 +22,10 @@
             <mat-card class="white-card">
                 <div class="btn-container">
                     <div class="play">
-                        <button mat-fab color="accent" (click)="playRecipeVideo(recipe)">
-                            <mat-icon aria-label="Example icon-button with a heart icon">
-                                play_arrow</mat-icon>
+                        <button mat-fab color="accent" (click)="openRecipeVideo(recipe)">
+                            <svg-icon src="assets/icons/you-tube-icon.svg"></svg-icon>
                         </button>
-                        <span>play video</span>
+                        <span>open video</span>
                     </div>
                 </div>
                 <h1 headline> {{ recipe.name }} </h1>

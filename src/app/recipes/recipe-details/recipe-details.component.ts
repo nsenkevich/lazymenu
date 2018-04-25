@@ -10,6 +10,7 @@ import { Recipe } from '../recipe.model';
 })
 
 export class RecipeDetailsComponent implements OnInit {
+  public showVideo: boolean;
   public recipeId: string;
   public recipe: any;
   private route: ActivatedRoute;
@@ -18,6 +19,7 @@ export class RecipeDetailsComponent implements OnInit {
   public constructor(route: ActivatedRoute, recipeService: RecipeService) {
     this.recipeService = recipeService;
     this.route = route;
+    this.showVideo = false;
   }
 
   public ngOnInit() {
@@ -25,8 +27,9 @@ export class RecipeDetailsComponent implements OnInit {
     this.recipe = this.recipeService.getRecipe(this.recipeId).valueChanges();
   }
 
-  public playRecipeVideo(recipe: any) {
+  public openRecipeVideo(recipe: any) {
     console.log(recipe)
+    this.showVideo = !this.showVideo;
   }
 
 }
