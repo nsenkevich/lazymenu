@@ -2,75 +2,44 @@
   position: relative;
 }
 
+.white-card {
+  background: #fff;
+  padding: 20px 30px;
+  border-radius: 3px;
+  border: 1px solid #fafafa;
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12);
+  position: relative;
+}
+
 .heading-container {
   position: relative;
 }
 
 .recipe-image {
-  width: 100%;
+  margin-right: -10px;
+  margin-left: -10px;
+  background-color: #e0e0e0;
+  position: relative;
+  padding-bottom: 570px;
+  overflow: hidden;
 
   img {
-    width: 100%;
-  }
-
-  .btn-container {
     position: absolute;
-    z-index: 1;
-    bottom: 100px;
-    right: 40%;
-  }
-
-  .play {
-    position: relative;
-    border: none;
-    padding: 3px;
-    color: #fff;
-    font-size: 1em;
-    line-height: 50px;
-    background: #3f51b5;
-    border-radius: 50px;
-    cursor: pointer;
-
-    .mat-icon {
-      width: 50px;
-      height: 50px;
-      font-size: 50px;
-      vertical-align: middle;
-    }
-
-    span {
-      position: absolute;
-      bottom: 0;
-      height: 50px;
-      opacity: 0;
-      left: 15px;
-      transition: opacity .4s linear, height .2s;
-      -webkit-transition: opacity .4s linear, height .2s;
-      -moz-transition: opacity .4s linear, height .2s;
-    }
-
-    &:focus,
-    &:hover {
-      span {
-        transition: opacity .2s linear, height .4s;
-        -webkit-transition: opacity .2s linear, height .4s;
-        -moz-transition: opacity .2s linear, height .4s;
-        height: 15px;
-        opacity: 1;
-      }
-    }
-
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    width: 100%;
   }
 }
 
 .ingredients-list {
   position: absolute;
-  top: 20px;
-  right: 35px;
-  bottom: 0;
+  top: 35px;
+  right: 0;
+  z-index: 2;
   background: #fafafa;
   padding: 10px 15px;
-  box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12);
   min-width: 350px;
   width: 30%;
 
@@ -94,20 +63,10 @@
 }
 
 .recipe-heading {
-  background: #fff;
   position: absolute;
-  left: 20px;
-  right: 20px;
+  left: 35px;
+  right: 35px;
   bottom: -110px;
-  padding: 20px 30px;
-  border-radius: 3px;
-  border: 1px solid #fafafa;
-  box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
-
-  h1 {
-    border-bottom: 1px solid lighten(#b4b4b4, 20%);
-    padding-bottom: .7em;
-  }
 
   .time {
     line-height: 24px;
@@ -120,7 +79,8 @@
 
   .diet-tags {
     ::ng-deep .mat-chip-list-wrapper {
-      padding: 0;
+      padding: 5px 0 0;
+      border-left: 1px solid lighten(#b4b4b4, 10%);
     }
 
     .mat-chip {
@@ -140,12 +100,7 @@
 }
 
 .recipe-method {
-  border-radius: 3px;
-  border: 1px solid #fafafa;
-  background: #fff;
-  box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
-  margin: 130px 20px 20px;
-  padding: 20px 30px;
+  margin: 130px 35px 35px;
 
   .step-number {
     font-size: 1.7em;
@@ -161,5 +116,58 @@
   .step-description {
     font-size: 1.1em;
     line-height: 125%;
+  }
+}
+
+.btn-container {
+  position: absolute;
+  z-index: 1;
+  top: -46px;
+  right: 35%;
+  padding: 15px;
+}
+
+.play {
+  position: relative;
+  border: none;
+  padding: 3px;
+  color: #fff;
+  background: #3f51b5;
+  border-radius: 50px;
+  cursor: pointer;
+
+  .mat-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 60px;
+    vertical-align: middle;
+  }
+
+  span {
+    position: absolute;
+    font-size: 14px;
+    font-weight: bold;
+    bottom: 0;
+    height: 60px;
+    opacity: 0;
+    color: transparent;
+    left: 19px;
+    transition: opacity .3s linear, height .1s;
+    -webkit-transition: opacity .3s linear, height .1s;
+    -moz-transition: opacity .3s linear, height .1s;
+  }
+
+  &:focus,
+  &:hover {
+    background: darken(#3f51b5, 15%);
+
+    span {
+      color: #3f51b5;
+      transition: opacity .2s linear, height .4s;
+      -webkit-transition: opacity .2s linear, height .4s;
+      -moz-transition: opacity .2s linear, height .4s;
+      height: 0;
+      opacity: 1;
+    }
   }
 }

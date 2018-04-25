@@ -1,55 +1,51 @@
 <div fxLayout="column" fxLayoutAlign="start stretch" class="main-container" *ngIf="recipe | async as recipe">
     <div class="heading-container">
         <div class="recipe-image">
-            <img src="https://x9wsr1khhgk5pxnq1f1r8kye-wpengine.netdna-ssl.com/wp-content/uploads/how-to-make-fried-eggs-930x550.jpg"
-                alt="Photo of a Shiba Inu">
-            <!-- <img class="recipe-image" [src]="recipe.thumbnail" alt="Photo of a {{recipe.name}}"> -->
-            <div class="btn-container">
-                    <button class="play" (click)="playRecipeVideo()">
-               
-                            <mat-icon>play_circle_outline</mat-icon>
-                            <span>play</span>
-                        </button>
-            </div>
-           
-           
+            <img class="recipe-image" [src]="recipe.thumbnail" alt="Photo of a {{recipe.name}}">
         </div>
         <div class="ingredients-list">
             <h3 subheading-1>Ingredients</h3>
             <mat-list role="list">
                 <mat-list-item *ngFor="let ingredients of recipe.ingredients" role="listitem">
-                    <!-- <p mat-line>{{ ingredients.name }}</p> -->
-                    <p mat-line *ngFor="let ingredient of ingredients.ingredients">{{ ingredient }}</p>
-                    <!-- <p mat-line *ngFor="let ingredient of ingredients.ingredients">
-                    <span class="amount">{{ ingredient.amount }}</span>
-                    {{ ingredient.name }}
-                </p> -->
+                    <p mat-line>{{ ingredients.name }}</p>
+                    <p mat-line *ngFor="let ingredient of ingredients.ingredients">
+                        <span class="amount">{{ ingredient.amount }}</span>
+                        {{ ingredient.name }}
+                    </p>
                 </mat-list-item>
             </mat-list>
         </div>
         <div class="recipe-heading">
-            <h1 headline fxLayoutAlign="center"> {{ recipe.name }} </h1>
-            <!-- <div class="time">
+            <div class="white-card">
+                <div class="btn-container">
+                    <button class="play" (click)="playRecipeVideo()">
+                        <mat-icon>play_circle_outline</mat-icon>
+                        <span>play</span>
+                    </button>
+                </div>
+                <h1 headline> {{ recipe.name }} </h1>
+                <!-- <div class="time">
                 <mat-icon>schedule</mat-icon>
                 {{ recipe.time }} min
             </div> -->
 
-            <div fxLayout="row" fxLayoutAlign=" stretch">
-                <div class="diet-tags" fxFlex>
-                    <mat-chip-list ariaOrientation="horizontal" *ngIf="recipe.diet.length">
-                        <mat-chip *ngFor="let diet of recipe.diet">
-                            {{diet}}
-                        </mat-chip>
-                    </mat-chip-list>
-                </div>
-                <div class="time" fxFlex="80px">
-                    <mat-icon>schedule</mat-icon>
-                    {{ recipe.time }} min
+                <div fxLayout="row" fxLayoutAlign=" stretch">
+                    <div class="time" fxFlex="80px">
+                        <mat-icon>schedule</mat-icon>
+                        {{ recipe.time }} min
+                    </div>
+                    <div class="diet-tags" fxFlex>
+                        <mat-chip-list ariaOrientation="horizontal" *ngIf="recipe.diet.length">
+                            <mat-chip *ngFor="let diet of recipe.diet">
+                                {{diet}}
+                            </mat-chip>
+                        </mat-chip-list>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="recipe-method">
+    <div class="recipe-method white-card">
         <h3 subheading-1>Method</h3>
         <div *ngFor="let method of recipe.method; let i = index" fxLayout="row" fxLayoutAlign="start center">
             <div class="step-number" fxFlex="40px">{{i + 1}}</div>
