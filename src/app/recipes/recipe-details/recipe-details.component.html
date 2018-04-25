@@ -19,7 +19,7 @@
             <mat-card class="white-card">
                 <div class="btn-container">
                     <div class="play">
-                        <button mat-fab color="accent" (click)="playRecipeVideo()">
+                        <button mat-fab color="accent" (click)="playRecipeVideo(recipe)">
                             <mat-icon aria-label="Example icon-button with a heart icon">
                                 play_arrow</mat-icon>
                         </button>
@@ -27,9 +27,23 @@
                     </div>
                 </div>
                 <h1 headline> {{ recipe.name }} </h1>
-                <div fxLayout="row" fxLayoutAlign=" stretch">
+                <div fxLayout="row" fxLayoutAlign=" stretch" class="padd-row-bottom ">
+                    <div class="cuisine" fxFlex="80px">
+                        <mat-icon>restaurant</mat-icon>
+                        {{ recipe.cuisine }}
+                    </div>
+                    <div class="allergens" fxFlex="80px" *ngIf="recipe.allergy.length">
+                        <mat-icon>restaurant_menu</mat-icon>
+                        <strong>allergens:</strong>
+                        <span *ngFor="let allergy of recipe.allergy">
+                            {{ allergy }}
+                        </span>
+                    </div>
+                </div>
+                <mat-divider></mat-divider>
+                <div fxLayout="row" fxLayoutAlign=" stretch" class="padd-row-top">
                     <div class="time" fxFlex="80px">
-                        <mat-icon>schedule</mat-icon>
+                        <mat-icon>timer</mat-icon>
                         {{ recipe.time }} min
                     </div>
                     <div class="diet-tags" fxFlex>

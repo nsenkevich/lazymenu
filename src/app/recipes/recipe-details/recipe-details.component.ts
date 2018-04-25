@@ -25,4 +25,8 @@ export class RecipeDetailsComponent implements OnInit {
     this.recipe = this.recipeService.getRecipe(this.recipeId).valueChanges();
   }
 
+  public playRecipeVideo(recipe: any) {
+    console.log(recipe)
+  }
+
 }

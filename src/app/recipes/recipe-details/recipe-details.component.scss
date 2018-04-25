@@ -88,15 +88,39 @@
   right: 35px;
   bottom: -110px;
 
+  h1 {
+    margin: 3px 0;
+  }
+
+  .padd-row-top {
+    padding-top: 1em;
+  }
+
+  .padd-row-bottom {
+    padding-bottom: 1em;
+  }
+
+  .time {
+    font-weight: bold;
+  }
+
+  .cuisine {
+    text-transform: capitalize;
+    color: rgba(0, 0, 0, .35);
+    font-size: 16px;
+  }
+
+  .allergens,
+  .cuisine,
   .time {
     line-height: 24px;
-    font-weight: bold;
 
     .mat-icon {
       vertical-align: bottom;
     }
   }
 
+  .allergens,
   .diet-tags {
     ::ng-deep .mat-chip-list-wrapper {
       padding: 5px 0 0;
