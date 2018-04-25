@@ -30,6 +30,18 @@
     transform: translateY(-50%);
     width: 100%;
   }
+  @media (max-width: 1496px) and (min-width: 1025px) {
+    padding-bottom: 500px;
+
+    img {
+      top: 70%;
+    }
+  }
+  @media (max-width: 1024px) {
+    img {
+      top: 100%;
+    }
+  }
 }
 
 .ingredients-list {
@@ -42,6 +54,7 @@
   box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12);
   min-width: 350px;
   width: 30%;
+  border-radius: 1px;
 
   h3 {
     padding: 0 16px;
@@ -59,6 +72,11 @@
   .amount {
     font-weight: bold;
     padding-right: 5px;
+  }
+  @media (max-width: 1024px) {
+    position: relative;
+    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12);
+    width: 100%;
   }
 }
 
@@ -97,6 +115,12 @@
       }
     }
   }
+  @media (max-width: 1024px) {
+    bottom: auto;
+    top: 0;
+    left: -2px;
+    right: -2px;
+  }
 }
 
 .recipe-method {
@@ -117,6 +141,10 @@
     font-size: 1.1em;
     line-height: 125%;
   }
+  @media (max-width: 1024px) {
+    margin: 10px 0 0;
+    position: relative;
+  }
 }
 
 .btn-container {
@@ -125,49 +153,54 @@
   top: -46px;
   right: 35%;
   padding: 15px;
-}
 
-.play {
-  position: relative;
-  border: none;
-  padding: 3px;
-  color: #fff;
-  background: #3f51b5;
-  border-radius: 50px;
-  cursor: pointer;
+  .play {
+    position: relative;
+    border: none;
+    padding: 3px;
+    color: #fff;
+    background: #3f51b5;
+    border-radius: 50px;
+    cursor: pointer;
 
-  .mat-icon {
-    width: 60px;
-    height: 60px;
-    font-size: 60px;
-    vertical-align: middle;
-  }
-
-  span {
-    position: absolute;
-    font-size: 14px;
-    font-weight: bold;
-    bottom: 0;
-    height: 60px;
-    opacity: 0;
-    color: transparent;
-    left: 19px;
-    transition: opacity .3s linear, height .1s;
-    -webkit-transition: opacity .3s linear, height .1s;
-    -moz-transition: opacity .3s linear, height .1s;
-  }
-
-  &:focus,
-  &:hover {
-    background: darken(#3f51b5, 15%);
+    .mat-icon {
+      width: 60px;
+      height: 60px;
+      font-size: 60px;
+      vertical-align: middle;
+    }
 
     span {
-      color: #3f51b5;
-      transition: opacity .2s linear, height .4s;
-      -webkit-transition: opacity .2s linear, height .4s;
-      -moz-transition: opacity .2s linear, height .4s;
-      height: 0;
-      opacity: 1;
+      position: absolute;
+      font-size: 14px;
+      font-weight: bold;
+      bottom: 0;
+      height: 60px;
+      opacity: 0;
+      color: transparent;
+      left: 19px;
+      transition: opacity .3s linear, height .1s;
+      -webkit-transition: opacity .3s linear, height .1s;
+      -moz-transition: opacity .3s linear, height .1s;
     }
+
+    &:focus,
+    &:hover {
+      background: darken(#3f51b5, 15%);
+
+      span {
+        color: #3f51b5;
+        transition: opacity .2s linear, height .4s;
+        -webkit-transition: opacity .2s linear, height .4s;
+        -moz-transition: opacity .2s linear, height .4s;
+        height: 0;
+        opacity: 1;
+      }
+    }
+  }
+  @media (max-width: 1024px) {
+    top: auto;
+    right: 5%;
+    bottom: -46px;
   }
 }
