@@ -19,7 +19,7 @@ export class RecipeDetailsComponent implements OnInit {
   public constructor(route: ActivatedRoute, recipeService: RecipeService) {
     this.recipeService = recipeService;
     this.route = route;
-    this.showVideo = false;
+    this.showVideo = true;
   }
 
   public ngOnInit() {
@@ -28,7 +28,6 @@ export class RecipeDetailsComponent implements OnInit {
   }
 
   public openRecipeVideo(recipe: any) {
-    console.log(recipe)
     this.showVideo = !this.showVideo;
   }
 

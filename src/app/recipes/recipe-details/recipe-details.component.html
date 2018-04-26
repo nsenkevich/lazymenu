@@ -1,16 +1,19 @@
 <div fxLayout="column" fxLayoutAlign="start stretch" class="main-container" *ngIf="recipe | async as recipe">
-    <div *ngIf="recipe.video && showVideo" class="recipe-video">
-        <iframe width="660" height="415" [src]="recipe.video | safeUrl" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-    </div>
     <div class="heading-container">
         <div class="recipe-image">
-            <img class="recipe-image" [src]="recipe.thumbnail" alt="Photo of a {{recipe.name}}">
+            <div class="overlay" [ngClass]="{'add-overlay': showVideo}"></div>
+            <img [ngClass]="{'apply-filter': showVideo}" [src]="recipe.thumbnail" alt="Photo of a {{recipe.name}}">
+        </div>
+        <div *ngIf="recipe.video && showVideo" class="recipe-video">
+            <div class="video-container">
+                <iframe width="632" height="475" [src]="recipe.video | safeUrl" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
         </div>
         <div class="ingredients-list">
             <h3 subheading-1>Ingredients</h3>
             <mat-list role="list">
                 <mat-list-item *ngFor="let ingredients of recipe.ingredients" role="listitem">
-                    <p mat-line>{{ ingredients.name }}</p>
+                    <p mat-line *ngIf="ingredients.name.length && ingredients.name != 'All'">{{ ingredients.name }}</p>
                     <p mat-line *ngFor="let ingredient of ingredients.ingredients">
                         <span class="amount">{{ ingredient.amount }}</span>
                         {{ ingredient.name }}
@@ -23,9 +26,9 @@
                 <div class="btn-container">
                     <div class="play">
                         <button mat-fab color="accent" (click)="openRecipeVideo(recipe)">
-                            <svg-icon src="assets/icons/you-tube-icon.svg"></svg-icon>
+                            <svg-icon src="assets/icons/you-tube-icon.svg" class="open-icon" [ngClass]="{'hide': showVideo}"></svg-icon>
+                            <mat-icon class="close-icon" [ngClass]="{'hide': !showVideo}">clear</mat-icon>
                         </button>
-                        <span>open video</span>
                     </div>
                 </div>
                 <h1 headline> {{ recipe.name }} </h1>
