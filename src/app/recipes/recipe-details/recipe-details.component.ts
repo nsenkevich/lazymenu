@@ -27,8 +27,4 @@ export class RecipeDetailsComponent implements OnInit {
     this.recipe = this.recipeService.getRecipe(this.recipeId).valueChanges();
   }
 
-  public openRecipeVideo(recipe: any) {
-    this.showVideo = !this.showVideo;
-  }
-
 }

@@ -1,12 +1,12 @@
 <div fxLayout="column" fxLayoutAlign="start stretch" class="main-container" *ngIf="recipe | async as recipe">
     <div class="heading-container">
         <div class="recipe-image">
-            <div class="overlay" [ngClass]="{'add-overlay': showVideo}"></div>
-            <img [ngClass]="{'apply-filter': showVideo}" [src]="recipe.thumbnail" alt="Photo of a {{recipe.name}}">
+            <div class="overlay"></div>
+            <img class="apply-filter" [src]="recipe.thumbnail" alt="Photo of a {{recipe.name}}">
         </div>
-        <div *ngIf="recipe.video && showVideo" class="recipe-video">
+        <div *ngIf="recipe.video" class="recipe-video">
             <div class="video-container">
-                <iframe width="672" height="506" [src]="recipe.video | safeUrl" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                <iframe width="670" height="100%" [src]="recipe.video | safeUrl" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
             </div>
         </div>
         <div class="ingredients-list">
@@ -23,14 +23,14 @@
         </div>
         <div class="recipe-heading">
             <mat-card class="white-card">
-                <div class="btn-container">
+                <!-- <div class="btn-container">
                     <div class="play">
                         <button mat-fab color="accent" (click)="openRecipeVideo(recipe)">
                             <svg-icon src="assets/icons/you-tube-icon.svg" class="open-icon" [ngClass]="{'hide': showVideo}"></svg-icon>
                             <mat-icon class="close-icon" [ngClass]="{'hide': !showVideo}">clear</mat-icon>
                         </button>
                     </div>
-                </div>
+                </div> -->
                 <h1 headline> {{ recipe.name }} </h1>
                 <div fxLayout="row" fxLayoutAlign=" stretch" class="padd-row-bottom ">
                     <div class="cuisine" fxFlex="80px">
