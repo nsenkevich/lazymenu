@@ -19,7 +19,7 @@
   overflow: hidden;
   .overlay {
     opacity: 0;
-    background: linear-gradient( rgba(0, 0, 0, .4), rgba(0, 0, 0, .2));
+    background: linear-gradient( rgba(0, 0, 0, .5), rgba(0, 0, 0, .3));
     top: 0;
     bottom: 0;
     left: 0;
@@ -40,8 +40,8 @@
     transform: translateY(-50%);
     width: 100%;
     &.apply-filter {
-      -webkit-filter: blur(5px) grayscale(80%);
-      filter: blur(5px) grayscale(80%);
+      -webkit-filter: blur(5px) grayscale(0%);
+      filter: blur(5px) grayscale(0%);
     }
   }
   @media (max-width: 1496px) and (min-width: 1025px) {
@@ -217,7 +217,6 @@
         opacity: 0;
       }
     }
-    .open-icon {}
     span {
       position: absolute;
       font-size: 14px;
@@ -255,7 +254,7 @@
   top: 0;
   left: 0;
   z-index: 2;
-  bottom: 60px;
+  bottom: 63px;
   right: 32%;
   .video-container {
     position: relative;
@@ -269,7 +268,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    border: 7px solid #fff;
+    border: 1px solid #000;
     box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12);
   }
 }
