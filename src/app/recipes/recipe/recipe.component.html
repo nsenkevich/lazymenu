@@ -1,32 +1,28 @@
-<mat-card class="example-card">
-        <mat-card-header>
-          <a [routerLink]="['/recipe', recipe.id]">        
-            <div mat-card-avatar class="example-header-image"></div>
-            <mat-card-title>{{ recipe.name }}</mat-card-title>
-            <mat-card-subtitle>{{ recipe.time }} min</mat-card-subtitle>
-          </a>
-        </mat-card-header>
-        <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-        <mat-card-content>
-          <p *ngFor="let method of recipe.method">
-            {{ method }}
-          </p>
-          <mat-list role="list">
-              <mat-list-item *ngFor="let ingredients of recipe.ingredients" role="listitem">
-                  <p mat-line>{{ ingredients.name }}</p>
-                  <p mat-line *ngFor="let ingredient of ingredients.ingredients">{{ ingredient }}</p>
-              </mat-list-item>
-          </mat-list>
-        <span class="button is-small is-info" (click)='addLikeToRecipe(recipe.likes)'>
-            Likes <i class="fa fa-like"></i>
-        </span>
-        <span class="button is-small is-danger" (click)='deleteRecipe(recipe?.id)'>Delete</span>
-        <p>This recipe has been liked {{ recipe.likes || 0 }} times.</p>
-        </mat-card-content>
-        <mat-card-actions>
-          <button mat-button>LIKE</button>
-          <button mat-button>SHARE</button>
-        </mat-card-actions>
-      </mat-card>
-
-
+<mat-card class="recipe-card">
+  <div class="image-container" [routerLink]="['/recipe', recipe.id]">
+    <!-- <img class="recipe-image" src="https://x9wsr1khhgk5pxnq1f1r8kye-wpengine.netdna-ssl.com/wp-content/uploads/how-to-make-fried-eggs-930x550.jpg"
+      alt="Photo of fried eggs"> -->
+    <img class="recipe-image" [src]="recipe.thumbnail" alt="Photo of a {{recipe.name}}">
+    <div class="image-overlay"></div>
+  </div>
+  <div class="overlay-name">
+    <h2 class="title">
+      <a [routerLink]="['/recipe', recipe.id]">
+        {{ recipe.name }}
+      </a>
+    </h2>
+  </div>
+  <mat-card-content>
+    <div class="diet-tags">
+      <mat-chip-list ariaOrientation="horizontal" *ngIf="recipe.diet.length">
+        <mat-chip *ngFor="let diet of recipe.diet">
+          {{diet}}
+        </mat-chip>
+      </mat-chip-list>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="end stretch" class="recipe-footer">
+      <mat-icon>schedule</mat-icon>
+      <div class="time">{{ recipe.time }} min</div>
+    </div>
+  </mat-card-content>
+</mat-card>

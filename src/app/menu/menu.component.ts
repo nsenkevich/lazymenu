@@ -1,9 +1,8 @@
+import { RecipeService } from '../recipes/recipe.service';
 import { Component, OnInit } from '@angular/core';
-
-import { RecipeService } from '../recipe.service';
-import { RecipeImporter } from '../recipe.importer';
-import { Recipe } from '../recipe.model';
 import { Observable } from 'rxjs/Observable';
+import { RecipeImporter } from '../recipes/recipe.importer';
+import { Recipe } from '../recipes/recipe.model';
 
 @Component({
   selector: 'app-menu',
@@ -12,15 +11,10 @@ import { Observable } from 'rxjs/Observable';
 })
 export class MenuComponent implements OnInit {
 
-  private recipeService: RecipeService;
-  private recipeImporter: RecipeImporter;
   public menu: Observable<Recipe[]>;
   public content: string;
 
-  public constructor(recipeService: RecipeService, recipeImporter: RecipeImporter) {
-    this.recipeService = recipeService;
-    this.recipeImporter = recipeImporter;
-  }
+  public constructor(private recipeService: RecipeService, private recipeImporter: RecipeImporter) { }
 
   public ngOnInit() {
     // this.recipeImporter.run(this.recipeImporter.getData());

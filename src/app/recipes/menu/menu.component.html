@@ -1,9 +1,0 @@
-<h1>Menu</h1>
-
-<div fxLayout="row" fxLayoutAlign="space-around center" fxLayout.xs="column" fxLayoutWrap>
-  <div *ngFor="let recipe of menu | async"
-  fxFlex.xs="100%" fxFlex.sm="50%" fxFlex.md="33.3%" fxFlex.lg="33.3%" fxFlex.xl="33.3%">
-    <app-recipe [recipe]="recipe"></app-recipe>
-  </div>
-</div>
-
