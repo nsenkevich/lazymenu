@@ -1,7 +1,7 @@
 <form class="registration-form" [formGroup]="registrationForm" novalidate>
   <mat-form-field class="full-width">
     <input matInput type="email" placeholder="Email" formControlName="email">
-    <mat-error *ngIf="email.errors" >
+    <mat-error *ngIf="email.errors">
       <span *ngIf="email.errors.required">Required</span>
       <span *ngIf="!email.errors.required && email.errors.email ">Invalid email</span>
       <span *ngIf="email.errors.emailTaken">This email is already taken!</span>
@@ -10,17 +10,17 @@
   </mat-form-field>
   <mat-form-field class="full-width">
     <input matInput type="password" placeholder="Choose password" formControlName="password">
-    <mat-error *ngIf="password.errors" >
+    <mat-error *ngIf="password.errors">
       <span *ngIf="password.errors.required">Required</span>
       <span *ngIf="!password.errors.required && password.errors.minlength">Use minimum 6 characters</span>
-  </mat-error>
+    </mat-error>
   </mat-form-field>
   <mat-form-field class="full-width">
     <input matInput type="password" placeholder="Confirm password" formControlName="passwordCopy">
-    <mat-error *ngIf="passwordCopy.errors" >
+    <mat-error *ngIf="passwordCopy.errors">
       <span *ngIf="passwordCopy.errors.required">Required</span>
       <span *ngIf="passwordCopy.errors.matchPassword">Password not match</span>
-  </mat-error>
+    </mat-error>
   </mat-form-field>
-  <button class="submit" mat-raised-button color="primary" (click)="register()" type="submit">Register</button>
+  <button class="submit" mat-raised-button color="accent" (click)="register()" type="submit">Register</button>
 </form>

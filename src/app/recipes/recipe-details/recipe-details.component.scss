@@ -1,3 +1,5 @@
+@import '~app/core/lm-theme.scss';
+// @include lazy-menu-theme($lm-app-theme);
 .main-container {
   position: relative;
 }
@@ -226,7 +228,7 @@
     &:focus,
     &:hover {
       span {
-        color: rgba(0, 0, 0, .68);
+        color: $opaque-dark-grey;
         transition: opacity .2s linear, height .4s;
         -webkit-transition: opacity .2s linear, height .4s;
         -moz-transition: opacity .2s linear, height .4s;

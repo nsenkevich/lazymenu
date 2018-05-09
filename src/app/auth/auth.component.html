@@ -2,10 +2,10 @@
   <div fxFlexOffset.xl="10" fxFlexOffset.lg="10" fxFlexOffset.md="5" fxFlexOffset.sm="0" fxFlexOffset.xs="0" fxLayout="row"
     fxLayoutAlign="center stretch">
     <mat-card *ngIf="registrationStep == 1" fxFlex="33" fxFlex.md="50" fxFlex.sm="80" fxFlex.xs="100" class="relative">
-      <mat-progress-bar [color]="'primary'" [mode]="'determinate'" [value]="50" class="absolute top">
+      <mat-progress-bar [color]="'accent'" [mode]="'determinate'" [value]="50" class="absolute top">
       </mat-progress-bar>
       <div fxLayout="column" fxLayoutAlign="space-around center" *ngIf="isLoading">
-        <mat-progress-spinner [color]="'primary'" [mode]="'indeterminate'"></mat-progress-spinner>
+        <mat-progress-spinner [color]="'accent'" [mode]="'indeterminate'"></mat-progress-spinner>
       </div>
       <div *ngIf="!isLoading">
         <h3 class="subheading-2" *ngIf="!forgotPasswordOpen" (click)="registrationOpen = false; forgotPasswordOpen = false" [ngClass]="{'inactive': registrationOpen}">
@@ -44,9 +44,9 @@
       </div>
     </mat-card>
     <mat-card *ngIf="registrationStep == 2" fxFlex="33" fxFlex.md="50" fxFlex.sm="80" fxFlex.xs="100" class="relative">
-      <mat-progress-bar [color]="'primary'" [mode]="'determinate'" [value]="90" class="absolute top">
+      <mat-progress-bar [color]="'accent'" [mode]="'determinate'" [value]="90" class="absolute top">
       </mat-progress-bar>
-      <mat-progress-bar *ngIf="processingForm" [color]="'primary'" [mode]="'query'" class="absolute top">
+      <mat-progress-bar *ngIf="processingForm" [color]="'accent'" [mode]="'query'" class="absolute top">
       </mat-progress-bar>
       <div class="form-container" fxLayout="column" fxLayoutAlign=" stretch">
         <app-preferences [state]="'edit'" (submitted)="submitPreferences($event)"></app-preferences>

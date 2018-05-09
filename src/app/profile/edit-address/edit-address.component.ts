@@ -5,7 +5,7 @@ import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-edit-address',
-  template: `<mat-progress-bar *ngIf="processingForm" [color]="'primary'" [mode]="'query'" class="absolute bottom">
+  template: `<mat-progress-bar *ngIf="processingForm" [color]="'accent'" [mode]="'query'" class="absolute bottom">
   </mat-progress-bar>
   <div class="form-wrapper relative" fxFlex="50" fxFlexOffset="25">
   <button class="edit absolute" (click)="toggleFormState()" *ngIf="!formState && deliveryAddress">

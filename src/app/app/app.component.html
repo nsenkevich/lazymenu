@@ -1,8 +1,10 @@
 <div style="height: 100vh;">
     <mat-toolbar color="primary" class="main-nav">
-        <div fxShow="true" fxHide.lt-md="true">
-            <span class="logo" routerLink="menu">Lazy Menu</span>
-            <a mat-button routerLink="menu" class="menu-item">
+        <div fxShow="true" fxHide.lt-md="true" fxLayout="row" fxLayoutAlign="space-around center">
+            <div class="logo" routerLink="menu" fxFlex>
+                <svg-icon src="assets/icons/lazy-menu-hat.svg"></svg-icon>
+            </div>
+            <a mat-button routerLink="menu" class="menu-item" fxFlex>
                 <mat-icon matListIcon>room_service</mat-icon>
                 Menu
             </a>
@@ -34,8 +36,10 @@
             <button fxFlex="10" mat-icon-button (click)="drawer.open()">
                 <mat-icon class="md-24">menu</mat-icon>
             </button>
-            <div fxFlex="80">
-                <div fxFlex="100" fxLayoutAlign="center center" routerLink="menu" class="logo">Lazy Menu</div>
+            <div fxFlex="100">
+                <div class="logo" routerLink="menu">
+                    <svg-icon src="assets/icons/lazy-menu-hat.svg"></svg-icon>
+                </div>
             </div>
             <div fxFlex="10"></div>
         </div>
@@ -61,21 +65,29 @@
             </mat-nav-list>
             <div fxFlex="grow"></div>
             <div fxFlexAlign="center" fxFlex="20" class="log-out">
-                <button mat-raised-button color="primary" (click)="logout(); drawer.close()">
+                <button mat-raised-button color="accent" (click)="logout(); drawer.close()">
                     <mat-icon>exit_to_app</mat-icon>
                     Sign out
                 </button>
             </div>
         </mat-drawer>
         <mat-drawer-content>
-            <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-around stretch" fxLayoutWrap>
-                <router-outlet fxFlex="100"></router-outlet>
-                <footer fxFlex="100" class="footer">
+            <div fxLayout="column">
+                <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-around stretch" fxLayoutWrap>
+                    <router-outlet fxFlex="100"></router-outlet>
+                    <!-- <footer fxFlex="100" fxFlexAlign="end" class="footer light">
+                                <div fxLayout="row">
+                                    <span>Powered by Uliana ©2010-2018.</span>
+                                </div>
+                            </footer> -->
+                </div>
+                <footer fxFlex="100" class="footer light">
                     <div fxLayout="row">
                         <span>Powered by Uliana ©2010-2018.</span>
                     </div>
                 </footer>
             </div>
+
         </mat-drawer-content>
     </mat-drawer-container>
 </div>

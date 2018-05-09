@@ -1,8 +1,11 @@
-
-// @import '~@angular/material/prebuilt-themes/indigo-pink.css';
 @import '~app/core/lm-theme.scss';
-
-body {
-  margin: 0;
-  //background: #e0e0e0;
+@mixin body-theme($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  body {
+    background: mat-color($primary);
+  }
 }
+
+@include body-theme($lm-app-theme);
