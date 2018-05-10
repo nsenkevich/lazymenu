@@ -4,6 +4,7 @@
   $accent: map-get($theme, accent);
   $warn: map-get($theme, warn);
   body {
+    margin: 0;
     background: mat-color($primary);
   }
 }

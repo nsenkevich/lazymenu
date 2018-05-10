@@ -26,4 +26,11 @@ export class AppComponent {
     return stringArray[0];
   }
 
+  public toggleDrawer(drawer: any): any {
+    if (drawer.opened) {
+      return drawer.close();
+    }
+    return drawer.open();
+  }
+
 }

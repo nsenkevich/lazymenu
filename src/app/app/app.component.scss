@@ -5,8 +5,24 @@
     ::ng-deep svg {
       width: 110px;
       height: 110px;
-      margin: 10px 0 0 0;
-      fill: #ff0000;
+      margin: 10px 0 0;
+      g {
+        fill: $med-red;
+      }
+    }
+    &.small {
+      svg-icon {
+        text-align: center;
+        display: block;
+      }
+      ::ng-deep svg {
+        width: 50px;
+        height: 50px;
+        margin: -5px 0 0;
+        g {
+          fill: $med-red;
+        }
+      }
     }
   }
   .log-out {
@@ -29,93 +45,95 @@
         line-height: .8em;
       }
     }
-    .user-block {
-      vertical-align: middle;
-      width: 100%;
-      padding: 0;
-      margin: 0;
-      cursor: pointer;
-      .avatar-default {
-        color: $opaque-light-grey;
-        font-size: 48px;
-        height: 48px;
-        width: 48px;
-        vertical-align: middle;
-      }
-      .avatar-holder {
-        margin-right: 5px;
-      }
-      .avatar-custom {
-        height: 48px;
-        width: 48px;
-        border-radius: 50px;
-        z-index: 2;
-        vertical-align: middle;
-      }
-      .block {
-        font-size: .85em;
-        font-weight: 400;
-      }
-      .caret {
-        color: $opaque-light-grey;
-      }
-    }
   }
   ::ng-deep .cdk-overlay-pane {
     ::ng-deep .mat-menu-panel {
       width: 150px;
     }
   }
-  .mobile {
-    ::ng-deep .mat-nav-list {
-      .mat-list-icon {
-        color: $opaque-light-grey;
-      }
-      .mat-list-item .mat-list-text {
-        color: $opaque-dark-grey;
-      }
-    }
-    .mat-drawer {
-      min-width: 175px;
-    }
-    .user {
-      background: linear-gradient(to bottom, $opaque-light-grey 0%, #fff 100%);
-      box-shadow: 0 1px 0 lighten($opaque-light-grey, 10%);
-      cursor: pointer;
-      z-index: 1;
-      &:active,
-      &:focus,
-      &:hover {
-        outline: none;
-        box-shadow: 0 1px 2px $opaque-light-grey;
-      }
-      h3 {
-        font-weight: 400;
-        margin-top: 0;
-        padding-top: 0;
-      }
-    }
-    .avatar-default {
+}
+
+.user-block {
+  vertical-align: middle;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  .avatar-default {
+    color: $opaque-light-grey;
+    font-size: 48px;
+    height: 48px;
+    width: 48px;
+    vertical-align: middle;
+  }
+  .avatar-holder {
+    margin-right: 5px;
+  }
+  .avatar-custom {
+    height: 48px;
+    width: 48px;
+    border-radius: 50px;
+    z-index: 2;
+    vertical-align: middle;
+  }
+  .block {
+    font-size: .85em;
+    font-weight: 400;
+  }
+  .caret {
+    color: $opaque-light-grey;
+  }
+}
+
+.mobile {
+  ::ng-deep .mat-nav-list {
+    .mat-list-icon {
       color: $opaque-light-grey;
-      font-size: 56px;
-      height: 56px;
-      width: 56px;
     }
-    .avatar-custom {
-      height: 56px;
-      width: 56px;
-      border-radius: 50px;
-      z-index: 2;
+    .mat-list-item .mat-list-text {
+      color: $opaque-dark-grey;
     }
-    .log-out {
-      button {
-        min-width: 150px;
-        padding: 6px 0;
-        margin: 10px auto;
-        border-radius: 0;
-        .mat-icon {
-          color: $opaque-white;
-        }
+  }
+  .mat-drawer {
+    min-width: 175px;
+  }
+  .user {
+    background: linear-gradient(to bottom, $opaque-light-grey 0%, #fff 100%);
+    box-shadow: 0 1px 0 lighten($opaque-light-grey, 10%);
+    cursor: pointer;
+    z-index: 1;
+    &:active,
+    &:focus,
+    &:hover {
+      outline: none;
+      box-shadow: 0 1px 2px $opaque-light-grey;
+    }
+    h3 {
+      font-weight: 400;
+      margin-top: 0;
+      padding-top: 0;
+    }
+  }
+  .avatar-default {
+    color: $opaque-light-grey;
+    font-size: 56px;
+    height: 56px;
+    width: 56px;
+  }
+  .avatar-custom {
+    height: 56px;
+    width: 56px;
+    border-radius: 50px;
+    z-index: 2;
+  }
+  .log-out {
+    button {
+      min-width: 150px;
+      padding: 6px 0;
+      margin: 10px auto;
+      border-radius: 0;
+      .mat-icon {
+        color: $opaque-white;
       }
     }
   }

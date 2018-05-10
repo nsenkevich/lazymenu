@@ -28,16 +28,16 @@
                 </button>
                 <button mat-menu-item class="log-out" (click)="logout()">
                     <mat-icon>exit_to_app</mat-icon>
-                    Sign out
+                    Log out
                 </button>
             </mat-menu>
         </div>
         <div fxShow="true" fxHide.gt-sm="true" fxFlex="100" fxLayout="row">
-            <button fxFlex="10" mat-icon-button (click)="drawer.open()">
+            <button fxFlex="10" mat-icon-button (click)="toggleDrawer(drawer)">
                 <mat-icon class="md-24">menu</mat-icon>
             </button>
             <div fxFlex="100">
-                <div class="logo" routerLink="menu">
+                <div class="logo small" routerLink="menu">
                     <svg-icon src="assets/icons/lazy-menu-hat.svg"></svg-icon>
                 </div>
             </div>
@@ -48,8 +48,10 @@
         <mat-drawer #drawer fxLayout="column" fxFlex="90">
             <div routerLink="profile" (click)="drawer.close()" fxFlex="15" fxLayout="column" fxLayoutAlign="space-evenly center" class="user">
                 <div *ngIf="user | async as user">
-                    <mat-icon *ngIf="!user.avatar" class="avatar-default">account_circle</mat-icon>
-                    <img *ngIf="user.avatar" [src]="user.avatar" class="avatar-custom">
+                    <div class="avatar">
+                        <mat-icon *ngIf="!user.avatar" class="avatar-default">account_circle</mat-icon>
+                        <img *ngIf="user.avatar" [src]="user.avatar" class="avatar-custom">
+                    </div>
                     <h3>{{getUserName(user.email)}}</h3>
                 </div>
             </div>
@@ -67,7 +69,7 @@
             <div fxFlexAlign="center" fxFlex="20" class="log-out">
                 <button mat-raised-button color="accent" (click)="logout(); drawer.close()">
                     <mat-icon>exit_to_app</mat-icon>
-                    Sign out
+                    Log out
                 </button>
             </div>
         </mat-drawer>
@@ -75,11 +77,6 @@
             <div fxLayout="column">
                 <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-around stretch" fxLayoutWrap>
                     <router-outlet fxFlex="100"></router-outlet>
-                    <!-- <footer fxFlex="100" fxFlexAlign="end" class="footer light">
-                                <div fxLayout="row">
-                                    <span>Powered by Uliana ©2010-2018.</span>
-                                </div>
-                            </footer> -->
                 </div>
                 <footer fxFlex="100" class="footer light">
                     <div fxLayout="row">
@@ -87,7 +84,6 @@
                     </div>
                 </footer>
             </div>
-
         </mat-drawer-content>
     </mat-drawer-container>
 </div>
