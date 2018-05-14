@@ -1,6 +1,19 @@
 @import '~app/core/lm-theme.scss';
 @include lazy-menu-theme($lm-app-theme);
+.main {
+  .mat-drawer-container {
+    background: none;
+    background-color: transparent;
+  }
+}
+
 .main-nav {
+  background: #fff;
+  color: $med-grey;
+  box-shadow: 0px 1px 5px lighten($opaque-light-grey, 20%);
+  .mat-toolbar-single-row {
+    height: 75px;
+  }
   .logo {
     ::ng-deep svg {
       width: 110px;
@@ -23,6 +36,15 @@
           fill: $med-red;
         }
       }
+    }
+  }
+  .menu-item {
+    &.mat-button {
+      line-height: 1.1em;
+      font-size: 1.1em;
+      font-weight: 200;
+      padding: 1em;
+      text-transform: lowercase;
     }
   }
   .log-out {
@@ -144,5 +166,12 @@
   padding: 0 30px;
   height: 50px;
   line-height: 50px;
-  background: $med-grey;
+  .item {
+    font-weight: 200;
+    font-family: Roboto;
+    margin-right: 6px;
+    &:hover {
+      color: #fff;
+    }
+  }
 }

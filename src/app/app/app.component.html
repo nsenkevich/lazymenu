@@ -1,16 +1,16 @@
-<div style="height: 100vh;">
-    <mat-toolbar color="primary" class="main-nav">
+<div style="height: 100vh;" class="main">
+    <mat-toolbar class="main-nav">
         <div fxShow="true" fxHide.lt-md="true" fxLayout="row" fxLayoutAlign="space-around center">
             <div class="logo" routerLink="menu" fxFlex>
                 <svg-icon src="assets/icons/lazy-menu-hat.svg"></svg-icon>
             </div>
-            <a mat-button routerLink="menu" class="menu-item" fxFlex>
+            <a mat-button routerLink="menu" class="menu-item">
                 Menu
             </a>
-            <a mat-button routerLink="plans" class="menu-item" fxFlex>
+            <a mat-button routerLink="plans" class="menu-item">
                 Plans
             </a>
-            <a mat-button routerLink="how" class="menu-item" fxFlex>
+            <a mat-button routerLink="how" class="menu-item">
                 How it works
             </a>
         </div>
@@ -83,9 +83,13 @@
             <div fxFlex>
                 <router-outlet></router-outlet>
             </div>
-            <footer fxFlex="12" class="footer light">
-                <div fxLayout="row">
-                    <span>Powered by Uliana ©2010-2018.</span>
+            <footer class="footer light">
+                <div fxLayout="row" fxLayoutAlign="space-between none">
+                    <div>
+                        <a class="item">Facebook</a>
+                        <a class="item">Instagram</a>
+                    </div>
+                    <div class="item" fxFlexAlign=" end">All rights reserved Lazy Menu ©2018</div>
                 </div>
             </footer>
         </mat-drawer-content>

@@ -6,7 +6,7 @@ $opaque-dark-grey:rgba(0, 0, 0, .86);
 $light-grey:#CDCFD0;
 $light-red: #ff0000;
 $light-blue:#e5fcfc;
-$med-grey: #7d7d7d;
+$med-grey: #525254;
 $med-red: #ff0000;
 $med-blue: #00a0a0;
 $dark-grey: #404042;
@@ -19,7 +19,7 @@ $lm-grey: (50: #fafafa, 100: #f0f0f0, 200: #CDCFD0, 300: #b8babb, 400: #cacaca, 
 /////////////////////BLUE_PALETTE//////////////////////
 $lm-blue: (50: #e5fcfc, 100: #ccf9f9, 200: #b2f7f7, 300: #7ff2f2, 400: #32eaea, 500: #00e5e5, 600: #00cece, 700: #00b7b7, 800: #00a0a0, 900: #008989, A100: #007272, A200: #005b5b, A400: #004444, A700: #002d2d, contrast: (50: $black-87-opacity, 100: $black-87-opacity, 200: $black-87-opacity, 300: $black-87-opacity, 400: $black-87-opacity, 500: #fff, 600: #fff, 700: #fff, 800: $white-87-opacity, 900: $white-87-opacity, A100: $black-87-opacity, A200: #fff, A400: #fff, A700: #fff));
 /////////////////////THEME_COLORS//////////////////////
-$lm-app-primary: mat-palette($lm-grey, 500, 700, 900);
+$lm-app-primary: mat-palette($lm-grey, A200, A400, 900);
 $lm-app-accent: mat-palette($lm-red, 700, A200, 900);
 $lm-app-warn: mat-palette($lm-red, 500, 400, A700);
 $lm-app-theme: mat-light-theme($lm-app-primary, $lm-app-accent, $lm-app-warn);
@@ -28,7 +28,7 @@ $lm-app-theme: mat-light-theme($lm-app-primary, $lm-app-accent, $lm-app-warn);
     $primary: map-get($theme, primary);
     $accent: map-get($theme, accent);
     .light {
-        background: transparent;
-        color: mat-color($primary, 50);
+        background: mat-color($primary, 200);
+        color: mat-color($primary);
     }
 }
