@@ -15,6 +15,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { PaymentModule } from './payment/payment.module';
 import { ProfileModule } from './profile/profile.module';
 import { MenuModule } from './menu/menu.module';
+import { PlansModule } from './plans/plans.module';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { MenuModule } from './menu/menu.module';
     AuthModule,
     PaymentModule,
     ProfileModule,
-    MenuModule
+    MenuModule,
+    PlansModule
   ],
   bootstrap: [AppComponent]
 })
