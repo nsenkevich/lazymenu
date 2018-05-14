@@ -5,8 +5,13 @@
                 <svg-icon src="assets/icons/lazy-menu-hat.svg"></svg-icon>
             </div>
             <a mat-button routerLink="menu" class="menu-item" fxFlex>
-                <mat-icon matListIcon>room_service</mat-icon>
                 Menu
+            </a>
+            <a mat-button routerLink="plans" class="menu-item" fxFlex>
+                Plans
+            </a>
+            <a mat-button routerLink="how" class="menu-item" fxFlex>
+                How it works
             </a>
         </div>
         <div fxFlex="grow" fxFlex.sm="0" fxFlex.xs="0"></div>
@@ -57,12 +62,13 @@
             </div>
             <mat-nav-list fxFlex="50">
                 <mat-list-item mat-button routerLink="menu" (click)="drawer.close()">
-                    <mat-icon matListIcon>shopping_cart</mat-icon>
-                    <h3 matLine> Plans</h3>
+                    <h3 matLine>Menu</h3>
                 </mat-list-item>
-                <mat-list-item mat-button routerLink="menu" (click)="drawer.close()">
-                    <mat-icon matListIcon>room_service</mat-icon>
-                    <h3 matLine> Menu</h3>
+                <mat-list-item mat-button routerLink="plans" (click)="drawer.close()">
+                    <h3 matLine>Plans</h3>
+                </mat-list-item>
+                <mat-list-item mat-button routerLink="how" (click)="drawer.close()">
+                    <h3 matLine>How it works</h3>
                 </mat-list-item>
             </mat-nav-list>
             <div fxFlex="grow"></div>
@@ -73,17 +79,15 @@
                 </button>
             </div>
         </mat-drawer>
-        <mat-drawer-content>
-            <div fxLayout="column">
-                <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-around stretch" fxLayoutWrap>
-                    <router-outlet fxFlex="100"></router-outlet>
-                </div>
-                <footer fxFlex="100" class="footer light">
-                    <div fxLayout="row">
-                        <span>Powered by Uliana ©2010-2018.</span>
-                    </div>
-                </footer>
+        <mat-drawer-content fxFlex="100" fxLayout="column" fxLayoutAlign="space-between stretch">
+            <div fxFlex>
+                <router-outlet></router-outlet>
             </div>
+            <footer fxFlex="12" class="footer light">
+                <div fxLayout="row">
+                    <span>Powered by Uliana ©2010-2018.</span>
+                </div>
+            </footer>
         </mat-drawer-content>
     </mat-drawer-container>
 </div>

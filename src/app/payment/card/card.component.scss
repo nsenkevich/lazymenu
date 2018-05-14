@@ -1,11 +1,14 @@
+@import '~app/core/lm-theme.scss';
+@include lazy-menu-theme($lm-app-theme);
+
 form.stripe {
   max-width: 100%;
-  color: rgba(0,0,0,.67);
+  color: $opaque-white;
   font-size: 1.2em;
 }
 
 .label {
-  color: rgba(0,0,0,.67);
+  color: $opaque-white;
   font-size: 14px;
 }
 
@@ -57,8 +60,8 @@ form.stripe button {
   margin: 1.25em 0;
   font-size: 1.2em;
   padding: 1.25em .45em;
-  border: 1px solid rgba(0,0,0,.32);
-  color: rgba(0,0,0,.67);
+  border: 1px solid $opaque-light-grey;
+  color: $opaque-white;
 
   .exp-date {
     margin-left: 10px;
@@ -68,10 +71,10 @@ form.stripe button {
     text-align: right;
     cursor: pointer;
     font-size: .8em;
-    color: rgba(0,0,0,.32);
+    color: $opaque-light-grey;
 
     &:hover {
-      color: rgba(0,0,0,.87);
+      color: $opaque-dark-grey;
     }
 
     .mat-icon {
