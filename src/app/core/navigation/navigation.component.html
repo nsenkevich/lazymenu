@@ -15,7 +15,7 @@
   </div>
   <div fxFlex="grow" fxFlex.sm="0" fxFlex.xs="0"></div>
   <div fxShow="true" fxHide.lt-md="true" class="user-block" fxFlex.sm="0" fxFlex.xs="0" fxFlex>
-    <div [matMenuTriggerFor]="menu" *ngIf="user | async as user" fxLayout="row" fxLayoutAlign="space-between center">
+    <div [matMenuTriggerFor]="menu" *ngIf="user" fxLayout="row" fxLayoutAlign="space-between center">
       <div class="avatar-holder">
         <mat-icon *ngIf="!user.avatar" class="avatar-default">account_circle</mat-icon>
         <img *ngIf="user.avatar" [src]="user.avatar" class="avatar-custom">

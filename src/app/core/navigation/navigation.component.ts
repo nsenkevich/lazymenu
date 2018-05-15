@@ -1,30 +1,19 @@
-import { Router } from '@angular/router';
-import { AuthService } from '../../auth/auth.service';
-import { Component, OnInit, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.scss']
 })
-export class NavigationComponent implements OnInit {
-  public user: any;
+export class NavigationComponent {
+  @Input() user: any;
   @Input() draw: any;
+  @Output() logOut = new EventEmitter<boolean>();
 
-  constructor(private authService: AuthService, private router: Router) { }
-  ngOnInit() {
-    this.user = this.authService.getUser();
-  }
+  constructor() { }
 
   public logout() {
-    this.authService.logout().then(() => {
-      this.router.navigate(['/auth']);
-    });
-  }
-
-  public getUserName(email: string): string {
-    const stringArray: Array<string> = email.split('@');
-    return stringArray[0];
+    this.logOut.emit(true);
   }
 
   public toggle(): void {
@@ -32,6 +21,11 @@ export class NavigationComponent implements OnInit {
       return this.draw.close();
     }
     return this.draw.open();
+  }
+
+  public getUserName(email: string): string {
+    const stringArray: Array<string> = email.split('@');
+    return stringArray[0];
   }
 }
 

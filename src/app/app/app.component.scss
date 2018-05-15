@@ -19,46 +19,6 @@
   .mat-drawer {
     min-width: 175px;
   }
-  .user {
-    background: linear-gradient(to bottom, $opaque-light-grey 0%, #fff 100%);
-    box-shadow: 0 1px 0 lighten($opaque-light-grey, 10%);
-    cursor: pointer;
-    z-index: 1;
-    &:active,
-    &:focus,
-    &:hover {
-      outline: none;
-      box-shadow: 0 1px 2px $opaque-light-grey;
-    }
-    h3 {
-      font-weight: 400;
-      margin-top: 0;
-      padding-top: 0;
-    }
-  }
-  .avatar-default {
-    color: $opaque-light-grey;
-    font-size: 56px;
-    height: 56px;
-    width: 56px;
-  }
-  .avatar-custom {
-    height: 56px;
-    width: 56px;
-    border-radius: 50px;
-    z-index: 2;
-  }
-  .log-out {
-    button {
-      min-width: 150px;
-      padding: 6px 0;
-      margin: 10px auto;
-      border-radius: 0;
-      .mat-icon {
-        color: $opaque-white;
-      }
-    }
-  }
 }
 
 .footer {

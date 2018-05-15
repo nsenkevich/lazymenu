@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
 
 @Component({
@@ -8,30 +8,21 @@ import { AuthService } from '../auth/auth.service';
   styleUrls: ['./app.component.scss']
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit {
   public user: any;
 
-  constructor(private authService: AuthService, private router: Router) {
-    this.user = this.authService.getUser();
+  constructor(private authService: AuthService, private router: Router) { }
+
+  ngOnInit() {
+    this.authService.getUser().subscribe((user) => {
+      this.user = user;
+    });
   }
 
   public logout() {
     this.authService.logout().then(() => {
       this.router.navigate(['/auth']);
     });
-  }
-
-  public getUserName(email: string): string {
-    const stringArray: Array<string> = email.split('@');
-    return stringArray[0];
-  }
-
-  public toggleDrawer(drawer: any): any {
-    console.log('drawer')
-    if (drawer.opened) {
-      return drawer.close();
-    }
-    return drawer.open();
   }
 
 }
