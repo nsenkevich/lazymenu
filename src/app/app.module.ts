@@ -6,7 +6,6 @@ import { AppRoutingModule } from './route.module';
 import { AppComponent } from './app/app.component';
 
 import { CoreModule } from './core/core.module';
-import { SharedModule } from './shared/shared.module';
 
 import { RecipesModule } from './recipes/recipes.module';
 import { AuthModule } from './auth/auth.module';
@@ -25,7 +24,6 @@ import { PlansModule } from './plans/plans.module';
     BrowserModule,
     AppRoutingModule,
     CoreModule,
-    SharedModule,
     RecipesModule,
     AuthModule,
     PaymentModule,

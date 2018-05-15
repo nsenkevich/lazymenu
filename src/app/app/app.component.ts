@@ -27,6 +27,7 @@ export class AppComponent {
   }
 
   public toggleDrawer(drawer: any): any {
+    console.log('drawer')
     if (drawer.opened) {
       return drawer.close();
     }

@@ -1,54 +1,5 @@
 <div style="height: 100vh;" class="main">
-    <mat-toolbar class="main-nav">
-        <div fxShow="true" fxHide.lt-md="true" fxLayout="row" fxLayoutAlign="space-around center">
-            <div class="logo" routerLink="menu" fxFlex>
-                <svg-icon src="assets/icons/lazy-menu-hat.svg"></svg-icon>
-            </div>
-            <a mat-button routerLink="menu" class="menu-item">
-                Menu
-            </a>
-            <a mat-button routerLink="plans" class="menu-item">
-                Plans
-            </a>
-            <a mat-button routerLink="how" class="menu-item">
-                How it works
-            </a>
-        </div>
-        <div fxFlex="grow" fxFlex.sm="0" fxFlex.xs="0"></div>
-        <div fxShow="true" fxHide.lt-md="true" class="user-block" fxFlex.sm="0" fxFlex.xs="0" fxFlex>
-            <div [matMenuTriggerFor]="menu" *ngIf="user | async as user" fxLayout="row" fxLayoutAlign="space-between center">
-                <div class="avatar-holder">
-                    <mat-icon *ngIf="!user.avatar" class="avatar-default">account_circle</mat-icon>
-                    <img *ngIf="user.avatar" [src]="user.avatar" class="avatar-custom">
-                </div>
-                <div class="block">
-                    {{getUserName(user.email)}}
-                </div>
-                <mat-icon class="caret">arrow_drop_down</mat-icon>
-            </div>
-            <mat-menu #menu="matMenu">
-                <button mat-menu-item routerLink="profile">
-                    <mat-icon>account_circle</mat-icon>
-                    Profile
-                </button>
-                <button mat-menu-item class="log-out" (click)="logout()">
-                    <mat-icon>exit_to_app</mat-icon>
-                    Log out
-                </button>
-            </mat-menu>
-        </div>
-        <div fxShow="true" fxHide.gt-sm="true" fxFlex="100" fxLayout="row">
-            <button fxFlex="10" mat-icon-button (click)="toggleDrawer(drawer)">
-                <mat-icon class="md-24">menu</mat-icon>
-            </button>
-            <div fxFlex="100">
-                <div class="logo small" routerLink="menu">
-                    <svg-icon src="assets/icons/lazy-menu-hat.svg"></svg-icon>
-                </div>
-            </div>
-            <div fxFlex="10"></div>
-        </div>
-    </mat-toolbar>
+    <app-navigation [draw]="drawer"></app-navigation>
     <mat-drawer-container fxFlexFill class="mobile">
         <mat-drawer #drawer fxLayout="column" fxFlex="90">
             <div routerLink="profile" (click)="drawer.close()" fxFlex="15" fxLayout="column" fxLayoutAlign="space-evenly center" class="user">
