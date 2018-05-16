@@ -1,81 +1,22 @@
-<div style="height: 100vh;">
-    <mat-toolbar color="primary" class="main-nav">
-        <div fxShow="true" fxHide.lt-md="true">
-            <span class="logo" routerLink="menu">Lazy Menu</span>
-            <a mat-button routerLink="menu" class="menu-item">
-                <mat-icon matListIcon>room_service</mat-icon>
-                Menu
-            </a>
-        </div>
-        <div fxFlex="grow" fxFlex.sm="0" fxFlex.xs="0"></div>
-        <div fxShow="true" fxHide.lt-md="true" class="user-block" fxFlex.sm="0" fxFlex.xs="0" fxFlex>
-            <div [matMenuTriggerFor]="menu" *ngIf="user | async as user" fxLayout="row" fxLayoutAlign="space-between center">
-                <div class="avatar-holder">
-                    <mat-icon *ngIf="!user.avatar" class="avatar-default">account_circle</mat-icon>
-                    <img *ngIf="user.avatar" [src]="user.avatar" class="avatar-custom">
-                </div>
-                <div class="block">
-                    {{getUserName(user.email)}}
-                </div>
-                <mat-icon class="caret">arrow_drop_down</mat-icon>
-            </div>
-            <mat-menu #menu="matMenu">
-                <button mat-menu-item routerLink="profile">
-                    <mat-icon>account_circle</mat-icon>
-                    Profile
-                </button>
-                <button mat-menu-item class="log-out" (click)="logout()">
-                    <mat-icon>exit_to_app</mat-icon>
-                    Sign out
-                </button>
-            </mat-menu>
-        </div>
-        <div fxShow="true" fxHide.gt-sm="true" fxFlex="100" fxLayout="row">
-            <button fxFlex="10" mat-icon-button (click)="drawer.open()">
-                <mat-icon class="md-24">menu</mat-icon>
-            </button>
-            <div fxFlex="80">
-                <div fxFlex="100" fxLayoutAlign="center center" routerLink="menu" class="logo">Lazy Menu</div>
-            </div>
-            <div fxFlex="10"></div>
-        </div>
-    </mat-toolbar>
+<div style="height: 100vh;" class="main">
+    <app-navigation *ngIf="user" [user]="user" [draw]="drawer" (logOut)="logout($event)"></app-navigation>
     <mat-drawer-container fxFlexFill class="mobile">
         <mat-drawer #drawer fxLayout="column" fxFlex="90">
-            <div routerLink="profile" (click)="drawer.close()" fxFlex="15" fxLayout="column" fxLayoutAlign="space-evenly center" class="user">
-                <div *ngIf="user | async as user">
-                    <mat-icon *ngIf="!user.avatar" class="avatar-default">account_circle</mat-icon>
-                    <img *ngIf="user.avatar" [src]="user.avatar" class="avatar-custom">
-                    <h3>{{getUserName(user.email)}}</h3>
-                </div>
-            </div>
-            <mat-nav-list fxFlex="50">
-                <mat-list-item mat-button routerLink="menu" (click)="drawer.close()">
-                    <mat-icon matListIcon>shopping_cart</mat-icon>
-                    <h3 matLine> Plans</h3>
-                </mat-list-item>
-                <mat-list-item mat-button routerLink="menu" (click)="drawer.close()">
-                    <mat-icon matListIcon>room_service</mat-icon>
-                    <h3 matLine> Menu</h3>
-                </mat-list-item>
-            </mat-nav-list>
-            <div fxFlex="grow"></div>
-            <div fxFlexAlign="center" fxFlex="20" class="log-out">
-                <button mat-raised-button color="primary" (click)="logout(); drawer.close()">
-                    <mat-icon>exit_to_app</mat-icon>
-                    Sign out
-                </button>
-            </div>
+            <app-side-nav *ngIf="user" [user]="user" (logOut)="logout($event)"></app-side-nav>
         </mat-drawer>
-        <mat-drawer-content>
-            <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-around stretch" fxLayoutWrap>
-                <router-outlet fxFlex="100"></router-outlet>
-                <footer fxFlex="100" class="footer">
-                    <div fxLayout="row">
-                        <span>Powered by Uliana ©2010-2018.</span>
-                    </div>
-                </footer>
+        <mat-drawer-content fxFlex="100" fxLayout="column" fxLayoutAlign="space-between stretch">
+            <div fxFlex>
+                <router-outlet></router-outlet>
             </div>
+            <footer class="footer light">
+                <div fxLayout="row" fxLayoutAlign="space-between none">
+                    <div>
+                        <a class="item">Facebook</a>
+                        <a class="item">Instagram</a>
+                    </div>
+                    <div class="item" fxFlexAlign=" end">All rights reserved Lazy Menu ©2018</div>
+                </div>
+            </footer>
         </mat-drawer-content>
     </mat-drawer-container>
 </div>

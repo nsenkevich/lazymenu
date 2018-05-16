@@ -9,11 +9,15 @@ import { AuthGuard } from './auth/auth.guard';
 import { LoggedInGuard } from './auth/loggedIn.guard';
 import { ProfileComponent } from './profile/profile.component';
 import { MenuComponent } from './menu/menu.component';
+import { PlansComponent } from './plans/plans.component';
+import { HowComponent } from './plans/how/how.component';
 
 const routes: Routes = [
     { path: '', redirectTo: '/menu', pathMatch: 'full' },
     { path: 'auth', component: AuthComponent, canActivate: [LoggedInGuard] },
     { path: 'menu', component: MenuComponent },
+    { path: 'plans', component: PlansComponent },
+    { path: 'how', component: HowComponent },
     { path: 'recipe/:id', component: RecipeDetailsComponent },
     { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
     { path: '**', pathMatch: 'full', component: PageNotFoundPage },

@@ -6,25 +6,33 @@
 import { throwIfAlreadyLoaded } from './module-import-guard';
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 
-import 'hammerjs';
-import { CommonModule } from '@angular/common';
+// import 'hammerjs';
+// import { CommonModule } from '@angular/common';
+import { SharedModule } from '../shared/shared.module';
 
 import { AngularFireModule } from 'angularfire2';
 import { environment } from '../../environments/environment';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { PageNotFoundPage } from '../app/page-not-found.page';
 import { NavigationComponent } from './navigation/navigation.component';
+import { SideNavComponent } from './side-nav/side-nav.component';
+
 
 @NgModule({
   imports: [
-    CommonModule,
+    SharedModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule
   ],
-  exports: [],
+  exports: [
+    SharedModule,
+    NavigationComponent,
+    SideNavComponent
+  ],
   declarations: [
     PageNotFoundPage,
-    NavigationComponent
+    NavigationComponent,
+    SideNavComponent
   ],
   providers: []
 })

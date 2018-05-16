@@ -1,11 +1,13 @@
+@import '~app/core/lm-theme.scss';
+@include lazy-menu-theme($lm-app-theme);
 form.stripe {
   max-width: 100%;
-  color: rgba(0,0,0,.67);
+  color: $opaque-white;
   font-size: 1.2em;
 }
 
 .label {
-  color: rgba(0,0,0,.67);
+  color: $opaque-white;
   font-size: 14px;
 }
 
@@ -19,20 +21,16 @@ form.stripe button {
 .StripeElement {
   margin: 0 0 2em;
   padding: .4375em 0;
-  border-bottom: 1px solid rgba(0,0,0,.42);
-
+  border-bottom: 1px solid rgba(0, 0, 0, .42);
   box-shadow: none;
   -webkit-transition: box-shadow 150ms ease;
   transition: box-shadow 150ms ease;
-
   &.StripeElement--focus {
-    border-bottom: 2px solid #192a86;
+    border-bottom: 2px solid $med-grey;
   }
-
   &.StripeElement--invalid {
     border-bottom: 2px solid #f44336;
   }
-
   &.StripeElement--webkit-autofill {
     background-color: #fefde5 !important;
   }
@@ -40,10 +38,8 @@ form.stripe button {
 
 .card-form {
   margin: 2.5em 0 1.25em;
-
   .form-row {
     position: relative;
-
     .errors {
       position: absolute;
       bottom: -22px;
@@ -57,23 +53,19 @@ form.stripe button {
   margin: 1.25em 0;
   font-size: 1.2em;
   padding: 1.25em .45em;
-  border: 1px solid rgba(0,0,0,.32);
-  color: rgba(0,0,0,.67);
-
+  border: 1px solid $opaque-light-grey;
+  color: $opaque-white;
   .exp-date {
     margin-left: 10px;
   }
-
   .remove-button {
     text-align: right;
     cursor: pointer;
     font-size: .8em;
-    color: rgba(0,0,0,.32);
-
+    color: $opaque-light-grey;
     &:hover {
-      color: rgba(0,0,0,.87);
+      color: $opaque-dark-grey;
     }
-
     .mat-icon {
       vertical-align: bottom;
     }

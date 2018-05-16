@@ -13,11 +13,11 @@
             <h3 subheading-1>Ingredients</h3>
             <mat-list role="list">
                 <mat-list-item *ngFor="let ingredients of recipe.ingredients" role="listitem">
-                    <p mat-line *ngIf="ingredients.name.length && ingredients.name != 'All'">{{ ingredients.name }}</p>
-                    <p mat-line *ngFor="let ingredient of ingredients.ingredients">
-                        <span class="amount">{{ ingredient.amount }}</span>
-                        {{ ingredient.name }}
-                    </p>
+                    <p mat-line *ngIf="ingredients.name.length && ingredients.name != 'All'" class="title-sm">{{ ingredients.name }}</p>
+                    <div mat-line *ngFor="let ingredient of ingredients.ingredients" fxLayout="row" fxLayoutAlign="space-between none">
+                        <div fxFlex="80">{{ ingredient.name }}</div>
+                        <div class="amount" fxFlex="20">{{ ingredient.amount }}</div>
+                    </div>
                 </mat-list-item>
             </mat-list>
         </div>

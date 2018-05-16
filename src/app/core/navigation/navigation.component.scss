@@ -1,0 +1,101 @@
+@import '~app/core/lm-theme.scss';
+@include lazy-menu-theme($lm-app-theme);
+.main-nav {
+    background: #fff;
+    color: $med-grey;
+    box-shadow: 0px 1px 5px lighten($opaque-light-grey, 20%);
+    .mat-toolbar-single-row {
+        height: 75px;
+    }
+    .logo {
+        ::ng-deep svg {
+            width: 110px;
+            height: 110px;
+            margin: 10px 0 0;
+            g {
+                fill: $med-red;
+            }
+        }
+        &.small {
+            svg-icon {
+                text-align: center;
+                display: block;
+            }
+            ::ng-deep svg {
+                width: 50px;
+                height: 50px;
+                margin: -5px 0 0;
+                g {
+                    fill: $med-red;
+                }
+            }
+        }
+    }
+    .menu-item {
+        &.mat-button {
+            line-height: 1.1em;
+            font-size: 1.1em;
+            font-weight: 200;
+            padding: 1em;
+            text-transform: lowercase;
+        }
+    }
+    .log-out {
+        width: 100%;
+        background: lighten($opaque-light-grey, 10%);
+        border-top: 1px solid lighten($light-grey, 15%);
+        text-align: center;
+        &:hover {
+            background: $opaque-light-grey;
+            border-top: 1px solid lighten($light-grey, 10%);
+        }
+        .menu-item {
+            line-height: .8em;
+            font-size: .8em;
+            padding: 1.2em;
+            ::ng-deep .mat-button-wrapper {
+                padding: 1.2em;
+            }
+            .mat-icon {
+                line-height: .8em;
+            }
+        }
+    }
+    ::ng-deep .cdk-overlay-pane {
+        ::ng-deep .mat-menu-panel {
+            width: 150px;
+        }
+    }
+}
+
+.user-block {
+    vertical-align: middle;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    .avatar-default {
+        color: $opaque-light-grey;
+        font-size: 48px;
+        height: 48px;
+        width: 48px;
+        vertical-align: middle;
+    }
+    .avatar-holder {
+        margin-right: 5px;
+    }
+    .avatar-custom {
+        height: 48px;
+        width: 48px;
+        border-radius: 50px;
+        z-index: 2;
+        vertical-align: middle;
+    }
+    .block {
+        font-size: .85em;
+        font-weight: 400;
+    }
+    .caret {
+        color: $opaque-light-grey;
+    }
+}

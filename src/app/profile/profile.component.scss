@@ -1,54 +1,52 @@
 @import '~app/scss_mixins/shared-mixins';
+@import '~app/core/lm-theme.scss';
 @include AbsoluteElement();
-
+@include lazy-menu-theme($lm-app-theme);
 .profile {
+  padding: 30px;
   .header {
-    background: #3f51b5;
+    background: $med-grey;
     color: #fff;
-
     .mat-card-title {
       font-size: 1.2em;
       margin: .6em 0;
       font-weight: bold;
     }
-
     .material-icons {
       font-size: 2em;
       vertical-align: middle;
     }
   }
-
   .section {
     margin: 1.5em 0;
     position: relative;
-
     .sub-section {
       margin-top: 0;
-
       &.mat-expanded {
         margin: 0;
       }
     }
-
     .mat-expansion-panel-header {
       height: 70px !important;
-
       &.mat-expanded {
-        background: rgba(0,0,0,.06);
+        background: $med-red;
+        .mat-expansion-panel-header-title {
+          color: #fff;
+          .material-icons {
+            color: #fff;
+          }
+        }
       }
-    }
-
-    .mat-expansion-panel-header-title {
-      color: rgba(0,0,0,.6);
-      font-size: 1.2em;
-      line-height: 2em;
-
-      .material-icons {
-        font-size: 2em;
-        margin-right: .5em;
-        vertical-align: middle;
-        line-height: 100%;
-        color: #3f51b5;
+      .mat-expansion-panel-header-title {
+        color: $med-grey;
+        font-size: 1.2em;
+        line-height: 24px;
+        .material-icons {
+          vertical-align: middle;
+          line-height: 24px;
+          margin-right: 10px;
+          color: $dark-grey;
+        }
       }
     }
   }

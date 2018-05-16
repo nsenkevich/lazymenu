@@ -1,15 +1,31 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.scss']
 })
-export class NavigationComponent implements OnInit {
+export class NavigationComponent {
+  @Input() user: any;
+  @Input() draw: any;
+  @Output() logOut = new EventEmitter<boolean>();
 
   constructor() { }
 
-  ngOnInit() {
+  public logout() {
+    this.logOut.emit(true);
   }
 
+  public toggle(): void {
+    if (this.draw.opened) {
+      return this.draw.close();
+    }
+    return this.draw.open();
+  }
+
+  public getUserName(email: string): string {
+    const stringArray: Array<string> = email.split('@');
+    return stringArray[0];
+  }
 }
+

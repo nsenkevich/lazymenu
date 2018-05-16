@@ -1,150 +1,37 @@
-.main-nav {
-  .log-out {
-    width: 100%;
-    background: rgba(0,0,0,.06);
-    border-top: 1px solid rgba(0,0,0,.1);
-    text-align: center;
-
-    &:hover {
-      background: rgba(0,0,0,.1);
-      border-top: 1px solid rgba(0,0,0,.2);
-    }
-  }
-
-  .logo {}
-
-  .menu-item {
-    line-height: .8em;
-    font-size: .8em;
-    padding: 1.2em;
-
-    ::ng-deep .mat-button-wrapper {
-      padding: 1.2em;
-    }
-
-    .mat-icon {
-      line-height: .8em;
-    }
-  }
-
-  .user-block {
-    vertical-align: middle;
-    width: 100%;
-    padding: 0;
-    margin: 0;
-    cursor: pointer;
-
-    .avatar-default {
-      color: rgba(0,0,0,.36);
-      font-size: 48px;
-      height: 48px;
-      width: 48px;
-      vertical-align: middle;
-    }
-
-    .avatar-holder {
-      margin-right: 5px;
-    }
-
-    .avatar-custom {
-      height: 48px;
-      width: 48px;
-      border-radius: 50px;
-      z-index: 2;
-      vertical-align: middle;
-    }
-
-    .block {
-      font-size: .85em;
-      font-weight: 400;
-    }
-
-    .caret {
-      color: rgba(0,0,0,.36);
-    }
-
-  }
-
-}
-
-::ng-deep .cdk-overlay-pane {
-  ::ng-deep .mat-menu-panel {
-    width: 150px;
+@import '~app/core/lm-theme.scss';
+@include lazy-menu-theme($lm-app-theme);
+.main {
+  .mat-drawer-container {
+    background: none;
+    background-color: transparent;
   }
 }
 
 .mobile {
   ::ng-deep .mat-nav-list {
     .mat-list-icon {
-      color: rgba(0,0,0,.32);
+      color: $opaque-light-grey;
     }
-
     .mat-list-item .mat-list-text {
-      color: rgba(0,0,0,.68);
+      color: $opaque-dark-grey;
     }
   }
-
   .mat-drawer {
     min-width: 175px;
   }
-
-  .user {
-    background: linear-gradient(to bottom, rgba(0,0,0,.36) 0%, #fff 100%);
-    box-shadow: 0 1px 0 rgba(0,0,0,.1);
-    cursor: pointer;
-
-    z-index: 1;
-
-    &:active,
-    &:focus,
-    &:hover {
-      outline: none;
-      box-shadow: 0 1px 2px rgba(0,0,0,.26);
-    }
-
-    // .mat-icon {
-    //   color: rgba(0,0,0,.36);
-    // }
-
-    h3 {
-      font-weight: 400;
-      margin-top: 0;
-      padding-top: 0;
-    }
-  }
-
-  .avatar-default {
-    color: rgba(0,0,0,.36);
-    font-size: 56px;
-    height: 56px;
-    width: 56px;
-  }
-
-  .avatar-custom {
-    height: 56px;
-    width: 56px;
-    border-radius: 50px;
-    z-index: 2;
-  }
-
-  .log-out {
-    button {
-      min-width: 150px;
-      padding: 6px 0;
-      margin: 10px auto;
-      border-radius: 0;
-
-      .mat-icon {
-        color: rgba(250,250,250,.68);
-      }
-    }
-  }
-
 }
 
 .footer {
   margin-top: 30px;
+  padding: 0 30px;
   height: 50px;
   line-height: 50px;
-  background: #3f51b5;
+  .item {
+    font-weight: 200;
+    font-family: Roboto;
+    margin-right: 6px;
+    &:hover {
+      color: #fff;
+    }
+  }
 }

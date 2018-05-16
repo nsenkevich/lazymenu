@@ -1,44 +1,42 @@
-<mat-card class="profile" *ngIf="user | async as user">
-    <mat-card-content class="content">
-        <mat-accordion multi="false">
-            <mat-expansion-panel expanded="true" class="section relative">
+<div class="profile" *ngIf="user | async as user">
+    <mat-accordion multi="false">
+        <mat-expansion-panel expanded="true" class="section relative">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <i class="material-icons">local_dining</i>
+                    Dietary preferences & restrictions
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <app-edit-preferences [user]="user"></app-edit-preferences>
+        </mat-expansion-panel>
+        <div class="section">
+            <mat-expansion-panel class="sub-section">
                 <mat-expansion-panel-header>
                     <mat-panel-title>
-                        <i class="material-icons">local_dining</i>
-                        Dietary preferences & restrictions
+                        <i class="material-icons">local_shipping</i>
+                        Delivery time
                     </mat-panel-title>
                 </mat-expansion-panel-header>
-                <app-edit-preferences [user]="user"></app-edit-preferences>
+                <app-delivery-time [user]="user"></app-delivery-time>
             </mat-expansion-panel>
-            <div class="section">
-                <mat-expansion-panel class="sub-section">
-                    <mat-expansion-panel-header>
-                        <mat-panel-title>
-                            <i class="material-icons">local_shipping</i>
-                            Delivery time
-                        </mat-panel-title>
-                    </mat-expansion-panel-header>
-                    <app-delivery-time [user]="user"></app-delivery-time>
-                </mat-expansion-panel>
-                <mat-expansion-panel class="sub-section relative">
-                    <mat-expansion-panel-header>
-                        <mat-panel-title>
-                            <i class="material-icons">person_pin</i>
-                            Delivery address
-                        </mat-panel-title>
-                    </mat-expansion-panel-header>
-                    <app-edit-address [user]="user"></app-edit-address>
-                </mat-expansion-panel>
-            </div>
-            <mat-expansion-panel class="section">
+            <mat-expansion-panel class="sub-section relative">
                 <mat-expansion-panel-header>
                     <mat-panel-title>
-                        <i class="material-icons">credit_card</i>
-                        Payment card
+                        <i class="material-icons">person_pin</i>
+                        Delivery address
                     </mat-panel-title>
                 </mat-expansion-panel-header>
-                <app-card></app-card>
+                <app-edit-address [user]="user"></app-edit-address>
             </mat-expansion-panel>
-        </mat-accordion>
-    </mat-card-content>
-</mat-card>
+        </div>
+        <mat-expansion-panel class="section">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <i class="material-icons">credit_card</i>
+                    Payment card
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <app-card></app-card>
+        </mat-expansion-panel>
+    </mat-accordion>
+</div>
