@@ -1,5 +1,4 @@
-[ 
-    {
+[{
         "name": "Thin Crust Margherita",
         "you-tube-id": "jzHf5-9euDk",
         "thumbnail": "https://img.youtube.com/vi/jzHf5-9euDk/0.jpg",
@@ -94,7 +93,7 @@
         "allergy": ["gluten", "nuts"],
         "diet": [],
         "likes": 0
-    },  {
+    }, {
         "name": "Creamy polenta with mushroom ragout",
         "you-tube-id": "075b5nLEMAk",
         "thumbnail": "https://img.youtube.com/vi/075b5nLEMAk/0.jpg",
@@ -157,10 +156,10 @@
             }, {
                 "name": "polenta",
                 "amount": "75 g"
-            },  {
+            }, {
                 "name": "butter",
                 "amount": "10 g"
-            },  {
+            }, {
                 "name": "salt",
                 "amount": "to taste"
             }]
@@ -176,87 +175,66 @@
         "allergy": ["dairy", "mushrooms"],
         "diet": [""],
         "likes": 0
-    },  {
-        "name": "Creamy polenta with mushroom ragout",
+    }, {
+        "name": "Bacon & peas risotto",
         "you-tube-id": "075b5nLEMAk",
         "thumbnail": "https://img.youtube.com/vi/075b5nLEMAk/0.jpg",
         "video": "https://www.youtube.com/watch?v=075b5nLEMAk",
         "cuisine": "italian",
-        "time": 40,
+        "time": 35,
         "ingredients": [{
-            "name": "ragout",
+            "name": "All",
             "ingredients": [{
-                "name": "dried porcini mushrooms",
-                "amount": "20 g"
+                "name": "lemon juice",
+                "amount": "1 tbs"
             }, {
-                "name": "warm water",
-                "amount": "50 ml"
-            }, {
-                "name": "butter",
-                "amount": "10 g"
-            }, {
-                "name": "shallot finely chopped",
-                "amount": "1 item"
-            }, {
-                "name": "garlic clove, crushed",
-                "amount": "100 g"
+                "name": "garlic, crushed",
+                "amount": "1 clove"
             }, {
                 "name": "picked thyme leaves",
                 "amount": "1/4 tsp"
             }, {
-                "name": "large field mushroom, sliced",
-                "amount": "100 g"
+                "name": "shallot finely diced",
+                "amount": "1 item"
             }, {
-                "name": "chestnut mushroom, sliced",
+                "name": "streaky bacon, chopped",
+                "amount": "3 rashers"
+            }, {
+                "name": "risotto rice",
+                "amount": "150 g"
+            }, {
+                "name": "frozen pea",
                 "amount": "50 g"
             }, {
-                "name": "red wine",
-                "amount": "125 ml"
+                "name": "hot vegetable stock",
+                "amount": "500 ml"
             }, {
-                "name": "vegetable stock",
-                "amount": "50 ml"
+                "name": "olive oil",
+                "amount": "1 tbsp"
             }, {
-                "name": "Taleggio cheese, sliced",
-                "amount": "25 g"
-            }]
-        }, {
-            "name": "polenta",
-            "ingredients": [{
-                "name": "milk",
-                "amount": "125ml"
+                "name": "butter",
+                "amount": "10 g"
             }, {
-                "name": "water",
-                "amount": "600ml"
+                "name": "salt",
+                "amount": "to taste"
             }, {
                 "name": "grated Parmesan cheese",
                 "amount": "1/2 cup"
             }, {
-                "name": "bay leaf",
-                "amount": "1 item"
-            }, {
-                "name": "thyme leaves",
-                "amount": "1/4 tsp"
-            }, {
-                "name": "polenta",
-                "amount": "75 g"
-            },  {
-                "name": "butter",
-                "amount": "10 g"
-            },  {
-                "name": "salt",
-                "amount": "to taste"
-            }]
+                "name": "back pepper",
+                "amount": "1 pinch"
+            }, ]
         }],
         "method": [
-            "Soak the dried porcini in warm water. In 20 mins drain and reserve the soaking liquid",
-            "In large saucepan mix milk and water, bring to boil, add bay leaf and thyme. Take off the heat and leave to infuse for 15 mins",
-            "Heat frying pan over medium heat, add butter, shallot and cook until soft. Turn up the heat and add garlic, thyme leaves, porcini and all the mushrooms. Fry over a very high heat for 5 mins until soft. Splash in the red wine and boil rapidly for another 1 min. Lower the heat to medium and pour in the stock and reserved mushroom liquid, simmer for 15 mins until the stew thickens. Take of the heat",
-            "Fish out the herbs from infused milk and bring it to boil. Add the polenta in a slow stream while whisking steadily. Cook for 5 min until thickened, then cover and cook over medium heat another 10 min. Stir in the butter and Parmesan",
-            "Serve seasoned with black pepper",
-            "Preheat the grill to 180 C (350F). Make a well of polenta and cover with the ragout. Top with slices of Taleggio, place under the grill until cheese starts melting (2 - 3 mins)"
+            "Heat large frying pan over medium heat, add olive oil and bacon, fry for a 5 minutes, until it starts to crisp",
+            "Add butter and rice to the pan, toast it for few minutes until it starts clicking, then add the onions and fry for further 2 minutes until onion is translucent",
+            "Add lemon juice, fry, constantly stirring, until evaporates",
+            "Make sure the stock is hot. Start adding it, portion by portion. Bring to boil while continuing stirring",
+            "Add peas and parmesan, a little salt and cook for a further 2 minutes, until the peas are cooked",
+            "Serve seasoned with black pepper"
         ],
         "allergy": ["dairy", "mushrooms"],
         "diet": [""],
         "likes": 0
-    }
+    }, 
 ]
