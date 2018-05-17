@@ -223,7 +223,7 @@
             }, {
                 "name": "back pepper",
                 "amount": "1 pinch"
-            }, ]
+            }]
         }],
         "method": [
             "Heat large frying pan over medium heat, add olive oil and bacon, fry for a 5 minutes, until it starts to crisp",
@@ -236,5 +236,91 @@
         "allergy": ["dairy", "mushrooms"],
         "diet": [""],
         "likes": 0
-    }, 
+    }, {
+        "name": "Meatball spaghetti",
+        "you-tube-id": "075b5nLEMAk",
+        "thumbnail": "https://img.youtube.com/vi/075b5nLEMAk/0.jpg",
+        "video": "https://www.youtube.com/watch?v=075b5nLEMAk",
+        "cuisine": "italian",
+        "time": 45,
+        "ingredients": [{
+            "name": "meatballs",
+            "ingredients": [{
+                "name": "lean ground beef",
+                "amount": "125 g"
+            }, {
+                "name": "breadcrumbs",
+                "amount": "1 tbsp"
+            }, {
+                "name": "egg, slightly beaten",
+                "amount": "1 item"
+            }, {
+                "name": "garlic, crashed",
+                "amount": "1 clove"
+            }, {
+                "name": "Italian seasoning",
+                "amount": "1/4 tsp"
+            }, {
+                "name": "fresh parsley chopped",
+                "amount": "1 tbsp"
+            }, {
+                "name": "grated Parmesan cheese",
+                "amount": "1/2 cup"
+            }, {
+                "name": "salt and pepper",
+                "amount": "1 pinch"
+            }, {
+                "name": "olive oil (for greasing)",
+                "amount": "1 tbsp"
+            }, {
+                "name": "small white onion, diced",
+                "amount": "1 item"
+            }]
+        }, {
+            "name": "souse",
+            "ingredients": [{
+                "name": "olive oil",
+                "amount": "1 tbsp"
+            }, {
+                "name": "garlic, crashed",
+                "amount": "1 clove"
+            }, {
+                "name": "small white onion, diced",
+                "amount": "1 item"
+            }, {
+                "name": "chopped tomatoes",
+                "amount": "1/2 can"
+            }, {
+                "name": "fresh basil chopped",
+                "amount": "1/2 cup"
+            }, {
+                "name": "Salt and pepper",
+                "amount": "1 pinch"
+            }]
+        }, {
+            "name": "Pasta",
+            "ingredients": [{
+                "name": "water",
+                "amount": "2 l"
+            }, {
+                "name": "salt",
+                "amount": "1 tsp"
+            }, {
+                "name": "olive oil",
+                "amount": "1 tbsp"
+            }, {
+                "name": "fresh spaghetti",
+                "amount": "1 serving"
+            }]
+        }],
+        "method": [
+            "Preheat oven to 240C/fan 220C /gas 8. Mix all ingredients in a large bowl until evenly mixed. Roll 1,5 - 2 inches large meatballs. Transfer meatballs to oiled baking tray and bake for 15 minutes",
+            "Heat a large frying pan over medium heat. Add oil garlic, onion, fry until golden. Add chopped tomatoes, sugar, salt, paper and seasoning, cover and cook for 10 minutes. Add meatballs, cover and let meatballs simmer in sauce for 5 min for extra flavour",
+            "In a large pot bring water to boil. Add salt, olive oil and spaghetti. Boil on medium heat for 5 minutes, and than drain",
+            "Serve garnished with parmesan and basil"
+        ],
+        "allergy": ["eggs", "gluten"],
+        "diet": ["high protein"],
+        "likes": 0
+    }
 ]
