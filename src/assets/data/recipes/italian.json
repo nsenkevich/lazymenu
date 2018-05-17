@@ -1,0 +1,99 @@
+[
+    {
+        "name": "Thin Crust Margherita",
+        "you-tube-id": "8K6QE7SYXTo",
+        "thumbnail": "https://img.youtube.com/vi/8K6QE7SYXTo/0.jpg",
+        "video": "https://www.youtube.com/watch?v=8K6QE7SYXTo",
+        "cuisine": "italian",
+        "time": 20,
+        "ingredients": [{
+            "name": "Base",
+            "ingredients": [{
+                "name": "strong bread flour",
+                "amount": "150 g"
+            }, {
+                "name": "instant yeast",
+                "amount": "1/2 tsp"
+            }, {
+                "name": "salt",
+                "amount": "1/2 tsp"
+            }, {
+                "name": "olive oil",
+                "amount": "1 tbsp"
+            }, {
+                "name": "warm water",
+                "amount": "100 ml"
+            }]
+        }, {
+            "name": "Tomato sauce",
+            "ingredients": [{
+                "name": "fresh basil",
+                "amount": "1/2 cup"
+            }, {
+                "name": "garlic, crushed",
+                "amount": "1 clove"
+            }, {
+                "name": "passata",
+                "amount": "50 g"
+            }]
+        }],
+        "method": [
+            "Put the flour into a large bowl, then stir in the yeast and salt. Make a well, pour in olive oil and warm water  and bring together with a wooden spoon until you have a soft, fairly wet dough. Turn onto a lightly floured surface and knead for 5 mins until smooth. Cover with a tea towel and set aside",
+            "Mix basil crushed garlic and passata,together, then season to taste. Leave to stand at room temperature while you get on with shaping the base",
+            "Give the dough a quick knead and than on n a floured surface roll it out into large thin rounds, about 25cm across. Lift the rounds onto greasing paper",
+            "Heat oven to 240C/fan 220C /gas 8. Smooth sauce over base. Scatter with Parmesan and Mozzarella cheese, tomatoes, drizzle with olive oil. Bake for 8 - 10 mins until crisp",
+            "Serve with a little more olive oil, and basil leaves"
+        ],
+        "allergy": ["gluten"],
+        "diet": ["vegetarian"],
+        "likes": 0
+    }, {
+        "name": "Thin Crust Margherita",
+        "you-tube-id": "8K6QE7SYXTo",
+        "thumbnail": "https://img.youtube.com/vi/8K6QE7SYXTo/0.jpg",
+        "video": "https://www.youtube.com/watch?v=8K6QE7SYXTo",
+        "cuisine": "italian",
+        "time": 20,
+        "ingredients": [{
+            "name": "Base",
+            "ingredients": [{
+                "name": "strong bread flour",
+                "amount": "150 g"
+            }, {
+                "name": "instant yeast",
+                "amount": "1/2 tsp"
+            }, {
+                "name": "salt",
+                "amount": "1/2 tsp"
+            }, {
+                "name": "olive oil",
+                "amount": "1 tbsp"
+            }, {
+                "name": "warm water",
+                "amount": "100 ml"
+            }]
+        }, {
+            "name": "Tomato sauce",
+            "ingredients": [{
+                "name": "fresh basil",
+                "amount": "1/2 cup"
+            }, {
+                "name": "garlic, crushed",
+                "amount": "1 clove"
+            }, {
+                "name": "passata",
+                "amount": "50 g"
+            }]
+        }],
+        "method": [
+            "Put the flour into a large bowl, then stir in the yeast and salt. Make a well, pour in olive oil and warm water  and bring together with a wooden spoon until you have a soft, fairly wet dough. Turn onto a lightly floured surface and knead for 5 mins until smooth. Cover with a tea towel and set aside",
+            "Mix basil crushed garlic and passata,together, then season to taste. Leave to stand at room temperature while you get on with shaping the base",
+            "Give the dough a quick knead and than on n a floured surface roll it out into large thin rounds, about 25cm across. Lift the rounds onto greasing paper",
+            "Heat oven to 240C/fan 220C /gas 8. Smooth sauce over base. Scatter with Parmesan and Mozzarella cheese, tomatoes, drizzle with olive oil. Bake for 8 - 10 mins until crisp",
+            "Serve with a little more olive oil, and basil leaves"
+        ],
+        "allergy": ["gluten"],
+        "diet": ["vegetarian"],
+        "likes": 0
+    }
+]
