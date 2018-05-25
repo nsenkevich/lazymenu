@@ -231,13 +231,13 @@
         }, {
             "name": "vegetable oil",
             "amount": "1 tbsp"
-        },  {
+        }, {
             "name": "parsley, chopped",
             "amount": "1 tbsp"
         }, {
             "name": "water, boiling hot",
             "amount": "500 ml"
-        } ]
+        }]
     }],
     "method": [
         "Heat oil in a large frying pan, than meat. Fry over high heat turning occasionally until evenly golden. Transfer meat to a large pot",
@@ -269,41 +269,35 @@
             "name": "tomatoes, sliced",
             "amount": "1 item"
         }, {
-            "name": "sweet papers, sliced",
-            "amount": "1/2 item"
-        }, {
             "name": "chedar cheese, sliced",
             "amount": "20 g"
         }, {
-            "name": "mayonnaise",
-            "amount": "1 tbsp"
-        },  {
             "name": "olive oil",
             "amount": "1 tbsp"
         }, {
             "name": "garlic, crushed",
-            "amount": "1 clove"
-        }, {
-            "name": "parsley, chopped",
-            "amount": "1 tbsp"
+            "amount": "1 cloves"
         }, {
             "name": "salt",
             "amount": "1 tbsp"
-        },{
+        }, {
             "name": "water, cold",
             "amount": "2 l"
-        } ]
+        }, {
+            "name": "parsley, chopped",
+            "amount": "1/2 tbsp"
+        }]
     }],
     "method": [
         "Cut aubergines in half lengthways(s), lay on the board skin side up and make length 0.5cm wide slits, 1 cm from stem",
         "Transfer to the bowl and salt generously. Set aside for 10 min.",
-        "Mix olive oil, mayonnaise, parsley and crushed garlic in the small bowl, set aside",
+        "Mix olive oil, crushed garlic and pinch of salt in the small bowl, set aside",
         "Add cold water to the aubergines and leave for another 5 min. Drain well",
         "Preheat the oven 200C/fan 180C /gas 6. Place aubergine halves skin side up on to greased baking dish, and start filling the slits with bacon, tomato, sweet paper, and cheese slices",
-        "Spread the mayo sauce over aubergine skin, and bake for 20 min",
-        "Garnish with parsley and some chilli oil. Serve hot or cold"
+        "Spread infused olive oil sauce over aubergine skin, and bake for 20 min",
+        "Garnish with parsley and a drizzle of chilli oil. Serve hot or cold"
     ],
-    "allergy": ["eggs"],
+    "allergy": [],
     "diet": ["high fiber"],
     "likes": 0
 }]

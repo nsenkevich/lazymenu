@@ -1,7 +1,8 @@
 <mat-card class="recipe-card">
   <div class="image-container" [routerLink]="['/recipe', recipe.id]">
-    <img class="recipe-image" [src]="recipe.thumbnail" alt="Photo of a {{recipe.name}}">
-    <div class="image-overlay"></div>
+    <img *ngIf="!recipe.thumbnail || !recipe.thumbnail.length" class="recipe-image-placeholder" src="assets/icons/logo_size.jpg">
+    <img *ngIf="recipe.thumbnail && recipe.thumbnail.length" class="recipe-image" [src]="recipe.thumbnail" alt="Photo of a {{recipe.name}}">
+    <div class="image-overlay" [ngClass]="{'static': !recipe.thumbnail || !recipe.thumbnail.length}"></div>
   </div>
   <div class="overlay-name">
     <h2 class="title">
