@@ -8,6 +8,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class SideNavComponent {
   @Input() user: any;
   @Output() logOut = new EventEmitter<boolean>();
+  @Input() draw: any;
 
   constructor() { }
 

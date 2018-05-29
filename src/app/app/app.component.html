@@ -2,7 +2,8 @@
     <app-navigation *ngIf="user" [user]="user" [draw]="drawer" (logOut)="logout($event)"></app-navigation>
     <mat-drawer-container fxFlexFill class="mobile">
         <mat-drawer #drawer fxLayout="column" fxFlex="90">
-            <app-side-nav *ngIf="user" [user]="user" (logOut)="logout($event)"></app-side-nav>
+            <app-side-nav *ngIf="user" [user]="user" (logOut)="logout($event)" [draw]="drawer">
+            </app-side-nav>
         </mat-drawer>
         <mat-drawer-content fxFlex="100" fxLayout="column" fxLayoutAlign="space-between stretch">
             <div fxFlex>

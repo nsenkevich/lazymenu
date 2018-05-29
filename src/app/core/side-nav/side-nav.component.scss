@@ -14,6 +14,7 @@
 }
 
 .user {
+    padding: 15px 0 0 0;
     background: linear-gradient(to bottom, $opaque-light-grey 0%, #fff 100%);
     box-shadow: 0 1px 0 lighten($opaque-light-grey, 10%);
     cursor: pointer;
@@ -28,6 +29,28 @@
         font-weight: 400;
         margin-top: 0;
         padding-top: 0;
+    }
+}
+
+.avatar {
+    position: relative;
+    .hat {
+        position: absolute;
+        left: -10px;
+        top: -21px;
+        z-index: 1;
+        height: 45px;
+        width: 45px;
+        -ms-transform: rotate(-30deg);
+        -webkit-transform: rotate(-30deg);
+        transform: rotate(-30deg);
+        ::ng-deep svg {
+            height: 45px;
+            width: 45px;
+            g {
+                fill: $dark-grey;
+            }
+        }
     }
 }
 

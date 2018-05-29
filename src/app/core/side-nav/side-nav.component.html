@@ -1,27 +1,30 @@
 <div class="mobile" fxLayout="column">
-  <div routerLink="profile" (click)="drawer.close()" fxFlex="15" fxLayout="column" fxLayoutAlign="space-evenly center" class="user">
+  <div routerLink="profile" (click)="draw.close()" fxFlex="15" fxLayout="column" fxLayoutAlign="space-evenly center" class="user">
     <div *ngIf="user">
       <div class="avatar">
         <mat-icon *ngIf="!user.avatar" class="avatar-default">account_circle</mat-icon>
         <img *ngIf="user.avatar" [src]="user.avatar" class="avatar-custom">
+        <div class="hat">
+          <svg-icon src="assets/icons/lazy-menu-hat.svg"></svg-icon>
+        </div>
       </div>
       <h3>{{getUserName(user.email)}}</h3>
     </div>
   </div>
   <mat-nav-list fxFlex="50">
-    <mat-list-item mat-button routerLink="menu" (click)="drawer.close()">
+    <mat-list-item mat-button routerLink="menu" (click)="draw.close()">
       <h3 matLine>Menu</h3>
     </mat-list-item>
-    <!-- <mat-list-item mat-button routerLink="plans" (click)="drawer.close()">
+    <!-- <mat-list-item mat-button routerLink="plans" (click)="draw.close()">
       <h3 matLine>Plans</h3>
     </mat-list-item>
-    <mat-list-item mat-button routerLink="how" (click)="drawer.close()">
+    <mat-list-item mat-button routerLink="how" (click)="draw.close()">
       <h3 matLine>How it works</h3>
     </mat-list-item> -->
   </mat-nav-list>
   <div fxFlex="grow"></div>
   <div fxFlexAlign="center" fxFlex="20" class="log-out">
-    <button mat-raised-button color="accent" (click)="logout(); drawer.close()">
+    <button mat-raised-button color="accent" (click)="logout(); draw.close()">
       <mat-icon>exit_to_app</mat-icon>
       Log out
     </button>
