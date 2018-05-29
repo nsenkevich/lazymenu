@@ -11,7 +11,6 @@
         </div>
         <div class="ingredients-list">
             <h3 subheading-1>
-                <svg-icon src="assets/icons/lazy-menu-hat.svg"></svg-icon>
                 Ingredients
             </h3>
             <mat-list role="list">
@@ -26,14 +25,15 @@
         </div>
         <div class="recipe-heading">
             <mat-card class="white-card">
-                <!-- <div class="btn-container">
-                    <div class="play">
+                <div class="btn-container">
+                    <div class="floating-button" matTooltip="Download">
                         <button mat-fab color="accent" (click)="openRecipeVideo(recipe)">
-                            <svg-icon src="assets/icons/you-tube-icon.svg" class="open-icon" [ngClass]="{'hide': showVideo}"></svg-icon>
-                            <mat-icon class="close-icon" [ngClass]="{'hide': !showVideo}">clear</mat-icon>
+                            <i class="material-icons">
+                                save_alt
+                            </i>
                         </button>
                     </div>
-                </div> -->
+                </div>
                 <h1 headline> {{ recipe.name }} </h1>
                 <div fxLayout="row" fxLayoutAlign="start center" class="padd-row-bottom ">
                     <div class="cuisine" fxFlex="200px">

@@ -47,14 +47,10 @@
   }
   @media (max-width: 1024px) {
     margin-top: 175px;
-    padding-bottom: 500px; // img {
-    //   top: 110%;
-    // }
+    padding-bottom: 500px;
   }
   @media (max-width: 414px) {
-    padding-bottom: 285px; // img {
-    //   top: 130%;
-    // }
+    padding-bottom: 285px;
   }
 }
 
@@ -77,18 +73,7 @@
     margin: 10px 0;
     text-align: center;
     position: relative;
-    svg-icon {
-      position: absolute;
-      left: 0;
-      top: -33px;
-      right: 0;
-      ::ng-deep svg {
-        height: 60px;
-        g {
-          fill: $opaque-red;
-        }
-      }
-    }
+    color: $med-red;
   }
   .mat-list {
     padding: 0;
@@ -181,11 +166,12 @@
   h3 {
     font-family: 'Hand';
     font-size: 45px;
-    border-bottom: 1px solid;
+    border-bottom: 1px solid $dark-grey;
+    color: $med-red;
   }
   .step-number {
     font-size: 1.7em;
-    border: 1px solid #e0e0e0;
+    border: 1px solid $light-grey;
     margin-right: 10px;
     border-radius: 40px;
     color: $light-grey;
@@ -208,7 +194,7 @@
   z-index: 3;
   top: -27px;
   right: 35%;
-  .play {
+  .floating-button {
     cursor: pointer;
     position: relative;
     ::ng-deep svg {
@@ -222,48 +208,6 @@
       font-size: 40px;
       line-height: 26px;
       margin-left: -2px;
-    }
-    .open-icon,
-    .close-icon {
-      overflow: hidden;
-      transition-duration: 0.8s;
-      transition-property: transform;
-      position: absolute;
-      top: 15px;
-      left: 10px;
-      opacity: 1;
-      &.hide {
-        transform: rotate(180deg);
-        -webkit-transform: rotate(180deg);
-        transition: opacity .1s ease-in;
-        -webkit-transition: opacity .1s ease-in;
-        -moz-transition: opacity .1s ease-in;
-        opacity: 0;
-      }
-    }
-    span {
-      position: absolute;
-      font-size: 14px;
-      font-weight: bold;
-      bottom: 0;
-      height: 40px;
-      opacity: 0;
-      color: transparent;
-      left: 12px;
-      transition: opacity .3s linear, height .1s;
-      -webkit-transition: opacity .3s linear, height .1s;
-      -moz-transition: opacity .3s linear, height .1s;
-    }
-    &:focus,
-    &:hover {
-      span {
-        color: $opaque-dark-grey;
-        transition: opacity .2s linear, height .4s;
-        -webkit-transition: opacity .2s linear, height .4s;
-        -moz-transition: opacity .2s linear, height .4s;
-        height: 0;
-        opacity: 1;
-      }
     }
   }
   @media (max-width: 1024px) {
