@@ -99,18 +99,40 @@
     margin: 0;
     cursor: pointer;
     .avatar-default {
-        color: $opaque-light-grey;
-        font-size: 48px;
-        height: 48px;
-        width: 48px;
+        color: $light-grey;
+        font-size: 45px;
+        height: 45px;
+        width: 45px;
         vertical-align: middle;
     }
     .avatar-holder {
         margin-right: 5px;
+        position: relative;
+        .hat {
+            position: absolute;
+            left: -10px;
+            top: -21px;
+            z-index: 1;
+            height: 40px;
+            width: 40px;
+            -ms-transform: rotate(-30deg);
+            -webkit-transform: rotate(-30deg);
+            transform: rotate(-30deg);
+            ::ng-deep svg {
+                height: 40px;
+                width: 40px;
+                g {
+                    fill: $dark-grey;
+                }
+            }
+        }
+        .avatar {
+            z-index: 2;
+        }
     }
     .avatar-custom {
-        height: 48px;
-        width: 48px;
+        height: 45px;
+        width: 45px;
         border-radius: 50px;
         z-index: 2;
         vertical-align: middle;

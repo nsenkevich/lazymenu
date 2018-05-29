@@ -54,7 +54,7 @@
     "cuisine": "italian",
     "time": 20,
     "ingredients": [{
-        "name": "All",
+        "name": "all",
         "ingredients": [{
             "name": "fresh cheese tortellini",
             "amount": "1/2 package"
@@ -101,7 +101,7 @@
     "ingredients": [{
         "name": "ragout",
         "ingredients": [{
-            "name": "dried porcini mushrooms",
+            "name": "dried Porcini mushrooms",
             "amount": "20 g"
         }, {
             "name": "warm water",
@@ -181,7 +181,7 @@
     "cuisine": "italian",
     "time": 35,
     "ingredients": [{
-        "name": "All",
+        "name": "all",
         "ingredients": [{
             "name": "lemon juice",
             "amount": "1 tbs"
@@ -292,7 +292,7 @@
             "name": "fresh basil chopped",
             "amount": "1/2 cup"
         }, {
-            "name": "Salt and pepper",
+            "name": "salt and pepper",
             "amount": "1 pinch"
         }]
     }, {

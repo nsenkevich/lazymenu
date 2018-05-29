@@ -71,6 +71,24 @@
   border-radius: 1px;
   h3 {
     padding: 0 16px;
+    font-family: 'Hand';
+    font-size: 45px;
+    line-height: 100%;
+    margin: 10px 0;
+    text-align: center;
+    position: relative;
+    svg-icon {
+      position: absolute;
+      left: 0;
+      top: -33px;
+      right: 0;
+      ::ng-deep svg {
+        height: 60px;
+        g {
+          fill: $opaque-red;
+        }
+      }
+    }
   }
   .mat-list {
     padding: 0;
@@ -100,7 +118,7 @@
     padding-left: 60px;
   }
   h1 {
-    margin: 3px 0;
+    margin: 3px 0 10px 0;
   }
   .padd-row-top {
     padding-top: 1em;
@@ -124,10 +142,16 @@
       vertical-align: bottom;
     }
   }
+  .allergens {
+    text-transform: uppercase;
+    .spacer {
+      margin-right: 10px;
+    }
+  }
   .allergens,
   .diet-tags {
     ::ng-deep .mat-chip-list-wrapper {
-      padding: 5px 0 0;
+      padding: 0 0 0 10px;
       border-left: 1px solid lighten($light-grey, 10%);
     }
     .mat-chip {
@@ -154,6 +178,11 @@
 
 .recipe-method {
   margin: 130px 35px 35px;
+  h3 {
+    font-family: 'Hand';
+    font-size: 45px;
+    border-bottom: 1px solid;
+  }
   .step-number {
     font-size: 1.7em;
     border: 1px solid #e0e0e0;
