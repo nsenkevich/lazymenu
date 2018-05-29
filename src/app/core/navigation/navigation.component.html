@@ -1,17 +1,23 @@
 <mat-toolbar class="main-nav">
   <div fxShow="true" fxHide.lt-md="true" fxLayout="row" fxLayoutAlign="space-around center">
-    <div class="logo" routerLink="menu" fxFlex>
-      <svg-icon src="assets/icons/lazy-menu-hat.svg"></svg-icon>
+    <div class="logo" routerLink="menu" fxFlex fxLayout="row" fxLayoutAlign="space-around center">
+      <div>
+        <svg-icon src="assets/icons/lazy-menu-hat.svg"></svg-icon>
+      </div>
+      <div class="text">
+        <div class="black">Lazy</div>
+        <div class="red">MENU</div>
+      </div>
     </div>
     <a mat-button routerLink="menu" class="menu-item">
       Menu
     </a>
-    <a mat-button routerLink="plans" class="menu-item">
+    <!-- <a mat-button routerLink="plans" class="menu-item">
       Plans
     </a>
     <a mat-button routerLink="how" class="menu-item">
       How it works
-    </a>
+    </a> -->
   </div>
   <div fxFlex="grow" fxFlex.sm="0" fxFlex.xs="0"></div>
   <div fxShow="true" fxHide.lt-md="true" class="user-block" fxFlex.sm="0" fxFlex.xs="0" fxFlex>

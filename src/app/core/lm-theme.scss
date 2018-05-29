@@ -5,19 +5,14 @@ $opaque-light-grey: rgba(0, 0, 0, .36);
 $opaque-dark-grey:rgba(0, 0, 0, .86);
 $light-grey:#CDCFD0;
 $light-red: #ff0000;
-$light-blue:#e5fcfc;
 $med-grey: #525254;
 $med-red: #d50000;
-$med-blue: #00a0a0;
 $dark-grey: #0e0c0c;
 $dark-red: #990000;
-$dark-blue: #002d2d;
 /////////////////////RED_PALETTE//////////////////////
 $lm-red: ( 50: #ffebee, 100: #ffcdd2, 200: #ef9a9a, 300: #FF6565, 400: #ef5350, 500: #ff0000, 600: #e53935, 700: #d32f2f, 800: #c62828, 900: #990000, A100: #ff8a80, A200: #ff5252, A400: #ff1744, A700: #d50000, contrast: ( 50: $black-87-opacity, 100: $black-87-opacity, 200: $black-87-opacity, 300: $black-87-opacity, 400: $black-87-opacity, 500: white, 600: white, 700: white, 800: $white-87-opacity, 900: $white-87-opacity, A100: $black-87-opacity, A200: white, A400: white, A700: white, ));
 /////////////////////BLACK_PALETTE//////////////////////
 $lm-grey: (50: #fafafa, 100: #f0f0f0, 200: #CDCFD0, 300: #b8babb, 400: #cacaca, 500: #c3c3c3, 600: #bbb, 700: #7d7d7d, 800: #454547, 900: #363636, A100: #abafb0, A200: #525254, A400: #404042, A700: #0e0c0c, contrast: (50: $black-87-opacity, 100: $black-87-opacity, 200: $black-87-opacity, 300: $black-87-opacity, 400: $black-87-opacity, 500: #fff, 600: #fff, 700: #fff, 800: $white-87-opacity, 900: $white-87-opacity, A100: $black-87-opacity, A200: #fff, A400: #fff, A700: #fff));
-/////////////////////BLUE_PALETTE//////////////////////
-$lm-blue: (50: #e5fcfc, 100: #ccf9f9, 200: #b2f7f7, 300: #7ff2f2, 400: #32eaea, 500: #00e5e5, 600: #00cece, 700: #00b7b7, 800: #00a0a0, 900: #008989, A100: #007272, A200: #005b5b, A400: #004444, A700: #002d2d, contrast: (50: $black-87-opacity, 100: $black-87-opacity, 200: $black-87-opacity, 300: $black-87-opacity, 400: $black-87-opacity, 500: #fff, 600: #fff, 700: #fff, 800: $white-87-opacity, 900: $white-87-opacity, A100: $black-87-opacity, A200: #fff, A400: #fff, A700: #fff));
 /////////////////////THEME_COLORS//////////////////////
 $lm-app-primary: mat-palette($lm-grey, A200, A400, A700);
 $lm-app-accent: mat-palette($lm-red, 700, A200, 900);
@@ -31,4 +26,15 @@ $lm-app-theme: mat-light-theme($lm-app-primary, $lm-app-accent, $lm-app-warn);
         background: mat-color($primary, 200);
         color: mat-color($primary);
     }
+}
+
+//////////////////FONTS//////////////////////
+@font-face {
+    font-family: 'Lazy';
+    src: url('/assets/fonts/Signalist.otf');
+}
+
+@font-face {
+    font-family: 'Menu';
+    src: url('/assets/fonts/FontsFree-Net-Proxima-Nova-Bold.otf');
 }

@@ -15,12 +15,12 @@
             "amount": "1/2 item"
         }, {
             "name": "salt",
-            "amount": "1/4 tsp"
+            "amount": "1/2 tsp"
         }, {
             "name": "egg",
             "amount": "1 item"
         }, {
-            "name": "backing soda",
+            "name": "bicarbonate of soda",
             "amount": "1/4 tsp"
         }, {
             "name": "soured cream",
@@ -31,9 +31,6 @@
         }, {
             "name": "white flour",
             "amount": "1 tbsp"
-        }, {
-            "name": "fresh dill, chopped",
-            "amount": "10 g"
         }, {
             "name": "vegetable oil (for frying)",
             "amount": "50 ml"
