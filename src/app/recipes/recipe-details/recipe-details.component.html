@@ -1,4 +1,4 @@
-<div fxLayout="column" fxLayoutAlign="start stretch" class="main-container" *ngIf="recipe | async as recipe" #page>
+<div fxLayout="column" fxLayoutAlign="start stretch" class="main-container" *ngIf="recipe | async as recipe">
     <div class="heading-container">
         <div class="recipe-image">
             <div class="overlay"></div>
@@ -77,4 +77,46 @@
             <p mat-body-1 class="step-description">{{ method }}</p>
         </div>
     </mat-card>
+
+    <div #page>
+        <h1>{{recipe.name}}</h1>
+        <p>Cuisine: {{recipe.cuisine}}</p>
+        <p>
+            Time:
+            <strong>{{recipe.time}} min</strong>
+        </p>
+        <p *ngIf="recipe.allergy.length">
+            <strong>Allergens:</strong>
+            <span *ngFor="let allergy of recipe.allergy; let y = index">
+                {{allergy}}
+                <span *ngIf="recipe.allergy.length > (y + 1)">&#44;</span>&#32;
+            </span>
+        </p>
+        <p *ngIf="recipe.diet.length">
+            <strong>Diet:</strong>
+            <span *ngFor="let diet of recipe.diet; let x = index">
+                {{diet}}
+                <span *ngIf="recipe.diet.length > (x + 1)">&#44;</span>&#32;
+            </span>
+        </p>
+        <h3>
+            <em>Ingredients:</em>
+        </h3>
+        <div *ngFor="let ingredients of recipe.ingredients">
+            <h5 *ngIf="ingredients.name.length && ingredients.name != 'all'">
+                {{ ingredients.name }}
+            </h5>
+            <ul>
+                <li *ngFor="let ingredient of ingredients.ingredients">
+                    {{ ingredient.amount }}&#32;{{ ingredient.name }}
+                </li>
+            </ul>
+        </div>
+        <h3>
+            <em>Method:</em>
+        </h3>
+        <ol>
+            <li *ngFor="let method of recipe.method">{{ method }}</li>
+        </ol>
+    </div>
 </div>
