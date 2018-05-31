@@ -26,9 +26,6 @@
             "name": "soured cream",
             "amount": "1 tsp"
         }, {
-            "name": "black pepper",
-            "amount": "1/4 tsp"
-        }, {
             "name": "white flour",
             "amount": "1 tbsp"
         }, {
@@ -62,7 +59,7 @@
     }],
     "method": [
         "Crush garlic in pestle and mortar (or press in to small bowl), than add warm water, olive oil and dill. Season with salt and pepper to taste, than set aside",
-        "Grate potatoes and onion thinly, drain excess liquid and stir in backing soda. Mix in all the rest of ingredients",
+        "Grate potatoes and onion thinly, drain excess liquid. In a large bowl beat the egg, than stir in all the rest of ingredients",
         "Heat a large frying pan over high heat, add oil. Start forming thin pancakes, around 2 inches in diameter. Fry each side for 3 - 4 mins until golden",
         "Drizzle with garlic sauce",
         "Serve with extra garlic sauce and soured cream on the side"
@@ -293,5 +290,93 @@
     ],
     "allergy": [],
     "diet": ["high fiber"],
+    "likes": 0
+}, {
+    "name": "Coldynu or meat stuffed potato pancakes",
+    "you-tube-id": "",
+    "thumbnail": "",
+    "video": "",
+    "cuisine": "eastern european",
+    "time": 40,
+    "ingredients": [{
+        "name": "pancakes",
+        "ingredients": [{
+            "name": "large potatoes",
+            "amount": "3 items"
+        }, {
+            "name": "small white onion",
+            "amount": "1/2 item"
+        }, {
+            "name": "salt",
+            "amount": "1/2 tsp"
+        }, {
+            "name": "egg",
+            "amount": "1 item"
+        }, {
+            "name": "bicarbonate of soda",
+            "amount": "1/4 tsp"
+        }, {
+            "name": "soured cream",
+            "amount": "1 tsp"
+        }, {
+            "name": "white flour",
+            "amount": "1 tbsp"
+        }, {
+            "name": "vegetable oil (for frying)",
+            "amount": "50 ml"
+        }]
+    }, {
+        "name": "filling",
+        "ingredients": [{
+            "name": "minced pork",
+            "amount": "150g"
+        }, {
+            "name": "white onion, minced",
+            "amount": "1/2 item"
+        }, {
+            "name": "salt",
+            "amount": "1 pinch"
+        }, {
+            "name": "black pepper",
+            "amount": "1 pinch"
+        }, {
+            "name": "fresh dill, chopped",
+            "amount": "10 g"
+        }]
+    }, {
+        "name": "sauce",
+        "ingredients": [{
+            "name": "soured cream",
+            "amount": "1/2 cup"
+        }, {
+            "name": "garlic",
+            "amount": "1 clove"
+        }, {
+            "name": "warm water",
+            "amount": "50 ml"
+        }, {
+            "name": "fresh dill, chopped",
+            "amount": "5 g"
+        }, {
+            "name": "salt",
+            "amount": "1 pinch"
+        }, {
+            "name": "black pepper",
+            "amount": "1 pinch"
+        }, {
+            "name": "olive oil",
+            "amount": "1 tsp"
+        }]
+    }],
+    "method": [
+        "Crush garlic in pestle and mortar (or press in to small bowl), than add warm water, olive oil and dill. Season with salt and pepper to taste, than set aside",
+        "In a small bowl mix minced meat, onion and seasoning",
+        "Grate potatoes and onion thinly, drain excess liquid. In a large bowl beat the egg, than stir in all the rest of ingredients",
+        "Heat a large frying pan over high heat, add oil. Form thin pancakes, around 4 inches in diameter. Shape meat filling in to thin patty, 2-3 inches in diameter and place it on the middle of each pancake, than cover the patty with potato mix. Fry on both sides until golden",
+        "Preheat 200C/fan 180C /gas 6. Transfer pancakes in to owen safe dish, drizzle with garlic sauce, cover and bake for 12 - 15 min",
+        "Serve with extra garlic sauce and soured cream on the side"
+    ],
+    "allergy": ["gluten"],
+    "diet": [],
     "likes": 0
 }]

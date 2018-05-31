@@ -1,4 +1,4 @@
-<div fxLayout="column" fxLayoutAlign="start stretch" class="main-container" *ngIf="recipe | async as recipe">
+<div fxLayout="column" fxLayoutAlign="start stretch" class="main-container" *ngIf="recipe | async as recipe" #page>
     <div class="heading-container">
         <div class="recipe-image">
             <div class="overlay"></div>
@@ -27,7 +27,7 @@
             <mat-card class="white-card">
                 <div class="btn-container">
                     <div class="floating-button" matTooltip="Download">
-                        <button mat-fab color="accent" (click)="openRecipeVideo(recipe)">
+                        <button mat-fab color="accent" (click)="processPdfData(recipe)">
                             <i class="material-icons">
                                 save_alt
                             </i>
