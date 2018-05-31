@@ -10,10 +10,12 @@
             </div>
         </div>
         <div class="ingredients-list">
-            <h3 subheading-1>Ingredients</h3>
+            <h3 subheading-1>
+                Ingredients
+            </h3>
             <mat-list role="list">
                 <mat-list-item *ngFor="let ingredients of recipe.ingredients" role="listitem">
-                    <p mat-line *ngIf="ingredients.name.length && ingredients.name != 'All'" class="title-sm">{{ ingredients.name }}</p>
+                    <p mat-line *ngIf="ingredients.name.length && ingredients.name != 'all'" class="title-sm">{{ ingredients.name }}</p>
                     <div mat-line *ngFor="let ingredient of ingredients.ingredients" fxLayout="row" fxLayoutAlign="space-between none">
                         <div fxFlex="80">{{ ingredient.name }}</div>
                         <div class="amount" fxFlex="20">{{ ingredient.amount }}</div>
@@ -23,31 +25,37 @@
         </div>
         <div class="recipe-heading">
             <mat-card class="white-card">
-                <!-- <div class="btn-container">
-                    <div class="play">
-                        <button mat-fab color="accent" (click)="openRecipeVideo(recipe)">
-                            <svg-icon src="assets/icons/you-tube-icon.svg" class="open-icon" [ngClass]="{'hide': showVideo}"></svg-icon>
-                            <mat-icon class="close-icon" [ngClass]="{'hide': !showVideo}">clear</mat-icon>
+                <div class="btn-container">
+                    <div class="floating-button" matTooltip="Download">
+                        <button mat-fab color="accent" (click)="processPdfData(recipe)">
+                            <i class="material-icons">
+                                save_alt
+                            </i>
                         </button>
                     </div>
-                </div> -->
+                </div>
                 <h1 headline> {{ recipe.name }} </h1>
-                <div fxLayout="row" fxLayoutAlign=" stretch" class="padd-row-bottom ">
-                    <div class="cuisine" fxFlex="80px">
+                <div fxLayout="row" fxLayoutAlign="start center" class="padd-row-bottom ">
+                    <div class="cuisine" fxFlex="200px">
                         <mat-icon>restaurant</mat-icon>
                         {{ recipe.cuisine }}
                     </div>
-                    <div class="allergens" fxFlex="80px" *ngIf="recipe.allergy.length">
-                        <mat-icon>restaurant_menu</mat-icon>
-                        <strong>allergens:</strong>
-                        <span *ngFor="let allergy of recipe.allergy">
-                            {{ allergy }}
-                        </span>
+                    <div class="allergens" fxFlex *ngIf="recipe.allergy.length" fxLayout="row" fxLayoutAlign="start">
+                        <div fxFlex="145px">
+                            <mat-icon>restaurant_menu</mat-icon>
+                            <strong>allergens:</strong>
+                        </div>
+                        <div *ngFor="let allergy of recipe.allergy; let x = index" fxLayout="row" fxLayoutAlign=" none">
+                            <div>{{allergy}}</div>
+                            <div *ngIf="recipe.allergy.length > (x + 1)" class="spacer">
+                                &#44;
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <mat-divider></mat-divider>
                 <div fxLayout="row" fxLayoutAlign=" stretch" class="padd-row-top">
-                    <div class="time" fxFlex="80px">
+                    <div class="time" fxFlex="100px">
                         <mat-icon>timer</mat-icon>
                         {{ recipe.time }} min
                     </div>
@@ -69,4 +77,46 @@
             <p mat-body-1 class="step-description">{{ method }}</p>
         </div>
     </mat-card>
+
+    <div #page [hidden]="true">
+        <h1>{{recipe.name}}</h1>
+        <p>Cuisine: {{recipe.cuisine}}</p>
+        <p>
+            Time:
+            <strong>{{recipe.time}} min</strong>
+        </p>
+        <p *ngIf="recipe.allergy.length">
+            <strong>Allergens:</strong>
+            <span *ngFor="let allergy of recipe.allergy; let y = index">
+                {{allergy}}
+                <span *ngIf="recipe.allergy.length > (y + 1)">&#44;</span>&#32;
+            </span>
+        </p>
+        <p *ngIf="recipe.diet.length">
+            <strong>Diet:</strong>
+            <span *ngFor="let diet of recipe.diet; let x = index">
+                {{diet}}
+                <span *ngIf="recipe.diet.length > (x + 1)">&#44;</span>&#32;
+            </span>
+        </p>
+        <h3>
+            <em>Ingredients:</em>
+        </h3>
+        <div *ngFor="let ingredients of recipe.ingredients">
+            <h5 *ngIf="ingredients.name.length && ingredients.name != 'all'">
+                {{ ingredients.name }}
+            </h5>
+            <ul>
+                <li *ngFor="let ingredient of ingredients.ingredients">
+                    {{ ingredient.amount }}&#32;{{ ingredient.name }}
+                </li>
+            </ul>
+        </div>
+        <h3>
+            <em>Method:</em>
+        </h3>
+        <ol>
+            <li *ngFor="let method of recipe.method">{{ method }}</li>
+        </ol>
+    </div>
 </div>

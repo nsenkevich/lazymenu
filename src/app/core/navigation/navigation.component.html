@@ -1,24 +1,35 @@
 <mat-toolbar class="main-nav">
   <div fxShow="true" fxHide.lt-md="true" fxLayout="row" fxLayoutAlign="space-around center">
-    <div class="logo" routerLink="menu" fxFlex>
-      <svg-icon src="assets/icons/lazy-menu-hat.svg"></svg-icon>
+    <div class="logo" routerLink="menu" fxFlex fxLayout="row" fxLayoutAlign="space-around center">
+      <div>
+        <svg-icon src="assets/icons/lazy-menu-hat.svg"></svg-icon>
+      </div>
+      <div class="text">
+        <div class="black">Lazy</div>
+        <div class="red">MENU</div>
+      </div>
     </div>
     <a mat-button routerLink="menu" class="menu-item">
       Menu
     </a>
-    <a mat-button routerLink="plans" class="menu-item">
+    <!-- <a mat-button routerLink="plans" class="menu-item">
       Plans
     </a>
     <a mat-button routerLink="how" class="menu-item">
       How it works
-    </a>
+    </a> -->
   </div>
   <div fxFlex="grow" fxFlex.sm="0" fxFlex.xs="0"></div>
   <div fxShow="true" fxHide.lt-md="true" class="user-block" fxFlex.sm="0" fxFlex.xs="0" fxFlex>
     <div [matMenuTriggerFor]="menu" *ngIf="user" fxLayout="row" fxLayoutAlign="space-between center">
       <div class="avatar-holder">
-        <mat-icon *ngIf="!user.avatar" class="avatar-default">account_circle</mat-icon>
-        <img *ngIf="user.avatar" [src]="user.avatar" class="avatar-custom">
+        <div class="avatar">
+          <mat-icon *ngIf="!user.avatar" class="avatar-default">account_circle</mat-icon>
+          <img *ngIf="user.avatar" [src]="user.avatar" class="avatar-custom">
+        </div>
+        <div class="hat">
+          <svg-icon src="assets/icons/lazy-menu-hat.svg"></svg-icon>
+        </div>
       </div>
       <div class="block">
         {{getUserName(user.email)}}
@@ -37,12 +48,18 @@
     </mat-menu>
   </div>
   <div fxShow="true" fxHide.gt-sm="true" fxFlex="100" fxLayout="row">
-    <button fxFlex="10" mat-icon-button (click)="toggle()">
-      <mat-icon class="md-24">menu</mat-icon>
-    </button>
-    <div fxFlex="100">
-      <div class="logo small" routerLink="menu">
+    <div fxFlex="50px" class="sidenav-toggle">
+      <button mat-icon-button (click)="toggle()">
+        <mat-icon class="md-24">menu</mat-icon>
+      </button>
+    </div>
+    <div class="logo small" routerLink="menu" fxFlex="80" fxLayout="row" fxLayoutAlign=" none">
+      <div fxFlex="80px">
         <svg-icon src="assets/icons/lazy-menu-hat.svg"></svg-icon>
+      </div>
+      <div class="text">
+        <div class="black">Lazy</div>
+        <div class="red">MENU</div>
       </div>
     </div>
     <div fxFlex="10"></div>

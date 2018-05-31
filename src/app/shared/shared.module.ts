@@ -1,4 +1,3 @@
-import { AngularSvgIconModule } from 'angular-svg-icon';
 // Why? SharedModule exists to make commonly used components, directives and pipes available for use in the templates
 // of components in many other modules
 
@@ -13,6 +12,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from './material.module';
 import { SafeYouTubeUrlPipe } from './safe-url.pipe';
+import { HttpModule } from '@angular/http';
+import { AngularSvgIconModule } from 'angular-svg-icon';
+import { ImageConverterService } from './image-converter.service';
 
 @NgModule({
   imports: [
@@ -24,10 +26,11 @@ import { SafeYouTubeUrlPipe } from './safe-url.pipe';
     AngularFirestoreModule,
     RouterModule,
     HttpClientModule,
-    AngularSvgIconModule
+    AngularSvgIconModule,
+    HttpModule
   ],
   declarations: [SafeYouTubeUrlPipe],
-  providers: [],
+  providers: [ImageConverterService],
   exports: [
     CommonModule,
     FormsModule,
@@ -38,7 +41,8 @@ import { SafeYouTubeUrlPipe } from './safe-url.pipe';
     RouterModule,
     HttpClientModule,
     AngularSvgIconModule,
-    SafeYouTubeUrlPipe
+    SafeYouTubeUrlPipe,
+    HttpModule
   ]
 })
 export class SharedModule { }
