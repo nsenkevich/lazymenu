@@ -14,6 +14,7 @@ import { MaterialModule } from './material.module';
 import { SafeYouTubeUrlPipe } from './safe-url.pipe';
 import { HttpModule } from '@angular/http';
 import { AngularSvgIconModule } from 'angular-svg-icon';
+import { ImageConverterService } from './image-converter.service';
 
 @NgModule({
   imports: [
@@ -29,7 +30,7 @@ import { AngularSvgIconModule } from 'angular-svg-icon';
     HttpModule
   ],
   declarations: [SafeYouTubeUrlPipe],
-  providers: [],
+  providers: [ImageConverterService],
   exports: [
     CommonModule,
     FormsModule,

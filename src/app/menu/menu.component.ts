@@ -18,7 +18,7 @@ export class MenuComponent implements OnInit {
   public constructor(private recipeService: RecipeService, private recipeImporter: RecipeImporter) { }
 
   public ngOnInit() {
-    // this.recipeImporter.getData('recipes', 'slavic').subscribe((res: any) => {
+    // this.recipeImporter.getData('recipes', 'italian').subscribe((res: any) => {
     //   this.recipeImporter.run(res);
     // });
     this.menu = this.recipeService.getSnapshot();
