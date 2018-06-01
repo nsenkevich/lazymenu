@@ -77,17 +77,14 @@
     "ingredients": [{
         "name": "sauce",
         "ingredients": [{
-            "name": "pork mince",
+            "name": "pulled pork",
             "amount": "125 g"
         }, {
             "name": "shallot, minced",
             "amount": "1 item"
         }, {
-            "name": "garlic, crushed",
+            "name": "garlic, minced",
             "amount": "1 clove"
-        }, {
-            "name": "salt",
-            "amount": "1 pinch"
         }, {
             "name": "black pepper",
             "amount": "1/4 tsp"
@@ -99,13 +96,10 @@
             "amount": "50 ml"
         }, {
             "name": "fresh parsley, minced",
-            "amount": "1/2 cup"
+            "amount": "10 g"
         }, {
             "name": "butter",
-            "amount": "1/2 tbsp"
-        }, {
-            "name": "white flour",
-            "amount": "1 tbsp"
+            "amount": "10 g"
         }]
     }, {
         "name": "macaroni",
@@ -124,9 +118,10 @@
         }]
     }],
     "method": [
+        "Place cooked pulled pork in a food processor or meet grinder and pulse for 1 min until nicely ground",
         "Bring a pot of water to boil, add salt and olive oil, cook pasta according to the package instructions",
-        "Heat a large frying pan over medium heat, add butter, garlic and shallots, cook until the onions are tender and slightly golden. Add mince, season with salt and pepper and mix with wooden spatula, braking meat in to small granules. Cooking until the edges of the pork are golden (5 - 8 min)",
-        "Add the flour and stir it well into the meat mixture until the flour is completely incorporated. Add the stock, bay leaf, cover and cook for further 3 minutes. Add the pasta, mix well",
+        "Heat a large frying pan over medium heat, add butter, garlic and shallots, cook until the onions are tender and slightly golden. Add meat,  and mix with wooden spatula, cook until the edges of the pork are golden (5 - 8 min)",
+        "Season with pepper, add the stock, bay leaf, cover and cook for further 3 minutes. Add the pasta and parsley mix well",
         "Garnish with parsley and black pepper to serve"
     ],
     "allergy": ["gluten"],
