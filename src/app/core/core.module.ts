@@ -6,8 +6,6 @@
 import { throwIfAlreadyLoaded } from './module-import-guard';
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 
-// import 'hammerjs';
-// import { CommonModule } from '@angular/common';
 import { SharedModule } from '../shared/shared.module';
 
 import { AngularFireModule } from 'angularfire2';
@@ -16,6 +14,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { PageNotFoundPage } from '../app/page-not-found.page';
 import { NavigationComponent } from './navigation/navigation.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 @NgModule({
@@ -24,17 +23,19 @@ import { SideNavComponent } from './side-nav/side-nav.component';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule
   ],
-  exports: [
-    SharedModule,
-    NavigationComponent,
-    SideNavComponent
-  ],
   declarations: [
     PageNotFoundPage,
     NavigationComponent,
-    SideNavComponent
+    SideNavComponent,
+    FooterComponent
   ],
-  providers: []
+  providers: [],
+  exports: [
+    SharedModule,
+    NavigationComponent,
+    SideNavComponent,
+    FooterComponent
+  ],
 })
 export class CoreModule {
   constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
