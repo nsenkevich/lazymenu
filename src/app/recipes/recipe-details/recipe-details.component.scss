@@ -128,7 +128,8 @@
     }
   }
   .allergens {
-    text-transform: uppercase;
+    // text-transform: uppercase;
+    color: $light-grey;
     .spacer {
       margin-right: 10px;
     }

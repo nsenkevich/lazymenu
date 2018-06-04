@@ -6,19 +6,17 @@ import { Http } from '@angular/http';
 @Injectable()
 export class RecipeImporter {
 
-    public constructor(public http: Http, private recipeService: RecipeService) {
-        this.recipeService = recipeService;
-    }
+    public constructor(public http: Http, private recipeService: RecipeService) { }
 
-    public getData(folder: string, file: string): any {
-        const jsonLocation = '../assets/data/' + folder + '/' + file + '.json?' + Date.now();
+    public getData(file: string): any {
+        const jsonLocation = '../assets/data/recipes/' + file + '.json?' + Date.now();
         return this.http.get(jsonLocation)
             .map(data => data.json());
     }
 
     public run(recipes: Recipe[]) {
         for (const recipe of recipes) {
-            this.recipeService.create(recipe);
+            this.recipeService.create(recipe.id, recipe);
         }
     }
 }

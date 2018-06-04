@@ -6,14 +6,12 @@ import { map } from 'rxjs/operators';
 
 @Injectable()
 export class RecipeService {
-
   private menu: AngularFirestoreCollection<Recipe>;
-  private recipeDocument: AngularFirestoreDocument<Recipe>;
-  private afs: AngularFirestore;
+  public menuStatus: string;
 
-  public constructor(afs: AngularFirestore) {
-    this.afs = afs;
-    this.menu = this.afs.collection('recipes', (ref) => ref.orderBy('time', 'desc').limit(12));
+  public constructor(private afs: AngularFirestore) {
+    const limit = 5;
+    this.menu = this.afs.collection('recipes', (ref) => ref.where('status', '==', 'current').limit(limit));
   }
 
   public getData(): Observable<Recipe[]> {
@@ -21,7 +19,6 @@ export class RecipeService {
   }
 
   public getSnapshot(): Observable<Recipe[]> {
-    // ['added', 'modified', 'removed']
     return this.menu.snapshotChanges().map((actions) => {
       return actions.map((a) => {
         const data = a.payload.doc.data() as Recipe;
@@ -35,8 +32,8 @@ export class RecipeService {
     return this.afs.doc<Recipe>(`recipes/${id}`);
   }
 
-  public create(recipe: Recipe) {
-    return this.menu.add(recipe);
+  public create(id: string, recipe: Recipe) {
+    return this.menu.doc(id).set(recipe);
   }
 
   public updateRecipe(id: string, data: Partial<Recipe>) {

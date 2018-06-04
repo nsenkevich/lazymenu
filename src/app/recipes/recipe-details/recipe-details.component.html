@@ -40,14 +40,16 @@
                         <mat-icon>restaurant</mat-icon>
                         {{ recipe.cuisine }}
                     </div>
-                    <div class="allergens" fxFlex *ngIf="recipe.allergy.length" fxLayout="row" fxLayoutAlign="start">
-                        <div fxFlex="145px">
+                    <div class="allergens" fxFlex *ngIf="recipe.allergy.length" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayout.md="column"
+                        fxLayoutAlign="start">
+                        <div fxFlex.lg="130px" fxFlex.xl="130px">
                             <mat-icon>restaurant_menu</mat-icon>
                             <strong>allergens:</strong>
                         </div>
-                        <div *ngFor="let allergy of recipe.allergy; let x = index" fxLayout="row" fxLayoutAlign=" none">
-                            <div>{{allergy}}</div>
-                            <div *ngIf="recipe.allergy.length > (x + 1)" class="spacer">
+                        <div *ngFor="let allergy of recipe.allergy; let x = index" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayout.md="column"
+                            fxLayoutAlign=" none">
+                            <div fxFlex>{{allergy}}</div>
+                            <div *ngIf="recipe.allergy.length > (x + 1)" class="spacer" fxHide.md="true" fxHide.xs="true" fxHide.sm="true">
                                 &#44;
                             </div>
                         </div>
