@@ -10,6 +10,7 @@
             </div>
         </div>
         <div class="ingredients-list">
+            <div class="note"></div>
             <h3 subheading-1>
                 Ingredients
             </h3>
@@ -76,7 +77,7 @@
         <h3 subheading-1>Method</h3>
         <div *ngFor="let method of recipe.method; let i = index" fxLayout="row" fxLayoutAlign="start center">
             <div class="step-number" fxFlex="40px">{{i + 1}}</div>
-            <p mat-body-1 class="step-description">{{ method }}</p>
+            <p mat-body-1 class="step-description" fxFlex fxFlex.lg="70" fxFlex.md="70">{{ method }}</p>
         </div>
     </mat-card>
 
