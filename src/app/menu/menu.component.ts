@@ -17,8 +17,7 @@ export class MenuComponent implements OnInit {
   public content: string;
 
   public constructor(private recipeService: RecipeService, private recipeImporter: RecipeImporter) {
-   // this.recipeService.menuStatus = (MenuStatus as any).Current;
-    console.log('hi1')
+    this.recipeService.menuStatus = (MenuStatus as any).Current;
   }
 
   public ngOnInit() {

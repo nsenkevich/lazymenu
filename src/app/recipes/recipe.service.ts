@@ -2,30 +2,43 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { Recipe } from './recipe.model';
 import { Observable } from 'rxjs/Observable';
-import { map } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
+import { Subject } from 'rxjs/Subject';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import 'rxjs/add/observable/combineLatest';
+import { firestore } from 'firebase';
 
 @Injectable()
 export class RecipeService {
-  private menu: AngularFirestoreCollection<Recipe>;
+  private menu: Observable<Recipe[]>;
   public menuStatus: string;
+  public statusFilter$: BehaviorSubject<string | null>;
+  public limitFilter$: BehaviorSubject<number | null>;
 
   public constructor(private afs: AngularFirestore) {
-    const limit = 5;
-    this.menu = this.afs.collection('recipes', (ref) => ref.where('status', '==', 'current').limit(limit));
+    this.statusFilter$ = new BehaviorSubject(null);
+    this.limitFilter$ = new BehaviorSubject(null);
+    this.menu = Observable.combineLatest(
+      this.statusFilter$,
+      this.limitFilter$
+    ).switchMap(([status, limit]) =>
+      afs.collection<Recipe>('recipes', ref => {
+        let query: firestore.Query = ref;
+        if (status) { query = query.where('status', '==', status); }
+        if (limit) { query = query.limit(limit); }
+        return query;
+      }).valueChanges()
+    );
   }
 
-  public getData(): Observable<Recipe[]> {
-    return this.menu.valueChanges();
+  public getData(status: string): Observable<Recipe[]> {
+    this.statusFilter$.next(status);
+    this.limitFilter$.next(3);
+    return this.menu;
   }
 
   public getSnapshot(): Observable<Recipe[]> {
-    return this.menu.snapshotChanges().map((actions) => {
-      return actions.map((a) => {
-        const data = a.payload.doc.data() as Recipe;
-        data.id = a.payload.doc.id;
-        return data;
-      });
-    });
+    return this.getData('pending');
   }
 
   public getRecipe(id: string) {
@@ -33,7 +46,7 @@ export class RecipeService {
   }
 
   public create(id: string, recipe: Recipe) {
-    return this.menu.doc(id).set(recipe);
+    return this.afs.collection<Recipe>('recipes').doc(id).set(recipe);
   }
 
   public updateRecipe(id: string, data: Partial<Recipe>) {
