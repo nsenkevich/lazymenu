@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { MenuComponent } from './menu.component';
 import { SharedModule } from '../shared/shared.module';
 import { RecipesModule } from '../recipes/recipes.module';
-import { MenuService } from './menu.service';
 
 @NgModule({
   imports: [
@@ -12,7 +11,7 @@ import { MenuService } from './menu.service';
   declarations: [
     MenuComponent
   ],
-  providers: [MenuService],
+  providers: [],
   exports: [
     MenuComponent
   ]

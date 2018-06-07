@@ -14,10 +14,3 @@ export const MenuStatus: Object = {
     value: 'pending'
   }
 };
-
-export interface Menu {
-  id: string;
-  status: string;
-  description: string;
-  recipes: Array<Recipe>;
-}

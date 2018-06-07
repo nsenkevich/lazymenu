@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { Recipe } from './recipe.model';
 import { Observable } from 'rxjs/Observable';
-import { map, switchMap } from 'rxjs/operators';
-import { Subject } from 'rxjs/Subject';
+import { switchMap } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import 'rxjs/add/observable/combineLatest';
 import { firestore } from 'firebase';
@@ -31,14 +30,10 @@ export class RecipeService {
     );
   }
 
-  public getData(status: string): Observable<Recipe[]> {
+  public getData(status: string, limit: number): Observable<Recipe[]> {
     this.statusFilter$.next(status);
-    this.limitFilter$.next(3);
+    this.limitFilter$.next(limit);
     return this.menu;
-  }
-
-  public getSnapshot(): Observable<Recipe[]> {
-    return this.getData('pending');
   }
 
   public getRecipe(id: string) {

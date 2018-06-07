@@ -12,19 +12,21 @@ import { MenuStatus } from './menu.model';
 })
 export class MenuComponent implements OnInit {
 
-  menuStatus: any;
+  private recipesLimit: number;
+  private menuStatus: string;
   public menu: Observable<Recipe[]>;
   public content: string;
 
   public constructor(private recipeService: RecipeService, private recipeImporter: RecipeImporter) {
-    this.recipeService.menuStatus = (MenuStatus as any).Current;
+    this.menuStatus = (MenuStatus as any).Current.value;
+    this.recipesLimit = 5;
   }
 
   public ngOnInit() {
     // this.recipeImporter.getData('recipes').subscribe((res: any) => {
     //   this.recipeImporter.run(res);
     // });
-    this.menu = this.recipeService.getSnapshot();
+    this.menu = this.recipeService.getData(this.menuStatus, this.recipesLimit);
   }
 
 }
