@@ -15,7 +15,7 @@
     <a mat-button (click)="openMenu('next', 5)" class="menu-item">
       Next Week
     </a>
-    <a mat-button (click)="openMenu('pending', 5)" class="menu-item">
+    <a mat-button (click)="openMenu('pending', 5)" class="menu-item" *ngIf="user.uid == 'QMuilG4ISGONQ3tW1nwNj2o3EJ43'">
       Pending Menu
     </a>
     <!-- <a mat-button routerLink="plans" class="menu-item">
@@ -27,31 +27,33 @@
   </div>
   <div fxFlex="grow" fxFlex.sm="0" fxFlex.xs="0"></div>
   <div fxShow="true" fxHide.lt-md="true" class="user-block" fxFlex.sm="0" fxFlex.xs="0" fxFlex>
-    <div [matMenuTriggerFor]="menu" *ngIf="user" fxLayout="row" fxLayoutAlign="space-between center">
-      <div class="avatar-holder">
-        <div class="avatar">
-          <mat-icon *ngIf="!user.avatar" class="avatar-default">account_circle</mat-icon>
-          <img *ngIf="user.avatar" [src]="user.avatar" class="avatar-custom">
+    <div *ngIf="user.email.length">
+      <div [matMenuTriggerFor]="menu" *ngIf="user" fxLayout="row" fxLayoutAlign="space-between center">
+        <div class="avatar-holder">
+          <div class="avatar">
+            <mat-icon *ngIf="!user.avatar" class="avatar-default">account_circle</mat-icon>
+            <img *ngIf="user.avatar" [src]="user.avatar" class="avatar-custom">
+          </div>
+          <div class="hat">
+            <svg-icon src="assets/icons/lazy-menu-hat.svg"></svg-icon>
+          </div>
         </div>
-        <div class="hat">
-          <svg-icon src="assets/icons/lazy-menu-hat.svg"></svg-icon>
+        <div class="block">
+          {{getUserName(user.email)}}
         </div>
+        <mat-icon class="caret">arrow_drop_down</mat-icon>
       </div>
-      <div class="block">
-        {{getUserName(user.email)}}
-      </div>
-      <mat-icon class="caret">arrow_drop_down</mat-icon>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item routerLink="profile">
+          <mat-icon>account_circle</mat-icon>
+          Profile
+        </button>
+        <button mat-menu-item class="log-out" (click)="logout()">
+          <mat-icon>exit_to_app</mat-icon>
+          Log out
+        </button>
+      </mat-menu>
     </div>
-    <mat-menu #menu="matMenu">
-      <button mat-menu-item routerLink="profile">
-        <mat-icon>account_circle</mat-icon>
-        Profile
-      </button>
-      <button mat-menu-item class="log-out" (click)="logout()">
-        <mat-icon>exit_to_app</mat-icon>
-        Log out
-      </button>
-    </mat-menu>
   </div>
   <div fxShow="true" fxHide.gt-sm="true" fxFlex="100" fxLayout="row">
     <div fxFlex="50px" class="sidenav-toggle">

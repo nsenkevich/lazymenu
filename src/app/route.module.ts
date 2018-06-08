@@ -20,8 +20,9 @@ const routes: Routes = [
     {
         path: 'menu', children: [
             { path: 'current/:limit', component: MenuComponent },
-            { path: 'pending/:limit', component: MenuComponent, canActivate: [AuthGuard] },
-            { path: 'next/:limit', component: MenuComponent, canActivate: [IsAdminGuard] }
+            { path: 'next/:limit', component: MenuComponent },
+            { path: 'pending/:limit', component: MenuComponent, canActivate: [IsAdminGuard] }
+
         ]
     },
     { path: 'plans', component: PlansComponent },
