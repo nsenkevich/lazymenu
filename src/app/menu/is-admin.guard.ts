@@ -11,7 +11,7 @@ export class IsAdminGuard implements CanActivate {
 
     return new Observable<boolean>(observer => {
       this.authService.getUser().take(1).subscribe((user) => {
-        if (!user || (user as any).uid === 'QMuilG4ISGONQ3tW1nwNj2o3EJ43') {
+        if (!user || (user as any).email !== 'upavelko@gmail.com') {
           observer.next(false);
           this.router.navigate(['/menu']);
         } else {

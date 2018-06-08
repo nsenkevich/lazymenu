@@ -432,13 +432,16 @@
             "amount": "1 item"
         }, {
             "name": "vegetable stock",
-            "amount": "50 ml"
+            "amount": "100 ml"
         }, {
             "name": "fresh parsley, minced",
             "amount": "10 g"
         }, {
             "name": "butter",
             "amount": "10 g"
+        }, {
+            "name": "white flour",
+            "amount": "1 tbsp"
         }]
     }, {
         "name": "macaroni",
@@ -459,8 +462,8 @@
     "method": [
         "Place cooked pulled pork in a food processor or meet grinder and pulse for 1 min until nicely ground",
         "Bring a pot of water to boil, add salt and olive oil, cook pasta according to the package instructions",
-        "Heat a large frying pan over medium heat, add butter, garlic and shallots, cook until the onions are tender and slightly golden. Add meat,  and mix with wooden spatula, cook until the edges of the pork are golden (5 - 8 min)",
-        "Season with pepper, add the stock, bay leaf, cover and cook for further 3 minutes. Add the pasta and parsley mix well",
+        "Heat a large frying pan over medium heat, add butter, garlic and shallots, cook until the onions are tender and slightly golden. Add meat and mix with wooden spatula, cook until the edges of the pork are golden (5 - 8 min)",
+        "Add flour, mix until incorporates, than season with pepper, add the stock, bay leaf, cover and cook for further 3 minutes. Add the pasta and parsley mix well",
         "Garnish with parsley and black pepper to serve"
     ],
     "allergy": ["gluten"],
