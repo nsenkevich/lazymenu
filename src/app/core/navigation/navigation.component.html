@@ -1,6 +1,6 @@
 <mat-toolbar class="main-nav">
   <div fxShow="true" fxHide.lt-md="true" fxLayout="row" fxLayoutAlign="space-around center">
-    <div class="logo" routerLink="menu" fxFlex fxLayout="row" fxLayoutAlign="space-around center">
+    <div class="logo" (click)="openMenu('current', 5)" fxFlex fxLayout="row" fxLayoutAlign="space-around center">
       <div>
         <svg-icon src="assets/icons/lazy-menu-hat.svg"></svg-icon>
       </div>
@@ -9,8 +9,14 @@
         <div class="red">MENU</div>
       </div>
     </div>
-    <a mat-button routerLink="menu" class="menu-item">
-      Menu
+    <a mat-button (click)="openMenu('current', 5)" class="menu-item">
+      This Week
+    </a>
+    <a mat-button (click)="openMenu('next', 5)" class="menu-item">
+      Next Week
+    </a>
+    <a mat-button (click)="openMenu('pending', 5)" class="menu-item">
+      Pending Menu
     </a>
     <!-- <a mat-button routerLink="plans" class="menu-item">
       Plans

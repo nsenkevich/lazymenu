@@ -13,9 +13,16 @@ import { PlansComponent } from './plans/plans.component';
 import { HowComponent } from './plans/how/how.component';
 
 const routes: Routes = [
-    { path: '', redirectTo: '/menu', pathMatch: 'full' },
+    { path: '', redirectTo: '/menu/current/5', pathMatch: 'full' },
     { path: 'auth', component: AuthComponent, canActivate: [LoggedInGuard] },
-    { path: 'menu', component: MenuComponent },
+    { path: 'menu/:status', component: MenuComponent, pathMatch: 'full' },
+    {
+        path: 'menu', children: [
+            { path: 'current/:limit', component: MenuComponent },
+            { path: 'pending/:limit', component: MenuComponent },
+            { path: 'next/:limit', component: MenuComponent }
+        ]
+    },
     { path: 'plans', component: PlansComponent },
     { path: 'how', component: HowComponent },
     { path: 'recipe/:id', component: RecipeDetailsComponent },

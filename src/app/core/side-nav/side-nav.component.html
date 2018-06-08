@@ -12,9 +12,16 @@
     </div>
   </div>
   <mat-nav-list fxFlex="50">
-    <mat-list-item mat-button routerLink="menu" (click)="draw.close()">
-      <h3 matLine>Menu</h3>
+    <mat-list-item mat-button (click)="openMenu('current', 5)" (click)="draw.close()">
+      <h3 matLine>This Week</h3>
     </mat-list-item>
+    <mat-list-item mat-button (click)="openMenu('next', 5)" (click)="draw.close()">
+      <h3 matLine>Next Week</h3>
+    </mat-list-item>
+    <mat-list-item mat-button (click)="openMenu('pending', 5)" (click)="draw.close()">
+      <h3 matLine>Pending Menu</h3>
+    </mat-list-item>
+
     <!-- <mat-list-item mat-button routerLink="plans" (click)="draw.close()">
       <h3 matLine>Plans</h3>
     </mat-list-item>
