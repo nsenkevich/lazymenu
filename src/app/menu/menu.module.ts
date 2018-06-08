@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { MenuComponent } from './menu.component';
 import { SharedModule } from '../shared/shared.module';
 import { RecipesModule } from '../recipes/recipes.module';
+import { IsAdminGuard } from './is-admin.guard';
 
 @NgModule({
   imports: [
@@ -11,7 +12,7 @@ import { RecipesModule } from '../recipes/recipes.module';
   declarations: [
     MenuComponent
   ],
-  providers: [],
+  providers: [IsAdminGuard],
   exports: [
     MenuComponent
   ]
