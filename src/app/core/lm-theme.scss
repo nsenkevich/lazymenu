@@ -2,9 +2,9 @@
 @include mat-core();
 $opaque-white: rgba(250, 250, 250, .68);
 $opaque-light-grey: rgba(0, 0, 0, .36);
-$opaque-dark-grey:rgba(0, 0, 0, .86);
+$opaque-dark-grey: rgba(0, 0, 0, .86);
 $opaque-red: rgba(213, 0, 0, .36);
-$light-grey:#CDCFD0;
+$light-grey: #CDCFD0;
 $light-red: #ff0000;
 $med-grey: #525254;
 $med-red: #d50000;
@@ -21,26 +21,25 @@ $lm-app-warn: mat-palette($lm-red, 500, 400, A700);
 $lm-app-theme: mat-light-theme($lm-app-primary, $lm-app-accent, $lm-app-warn);
 @include angular-material-theme($lm-app-theme);
 @mixin lazy-menu-theme($theme) {
-    $primary: map-get($theme, primary);
-    $accent: map-get($theme, accent);
-    .light {
-        background: mat-color($primary, 200);
-        color: mat-color($primary);
-    }
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+
+  .light {
+    background: mat-color($primary, 200);
+    color: mat-color($primary);
+  }
 }
 
 //////////////////FONTS//////////////////////
 @font-face {
-    font-family: 'Lazy';
-    src: url('/assets/fonts/Signalist.otf');
+  font-family: 'Lazy';
+  src: url('/assets/fonts/Signalist.otf');
 }
-
 @font-face {
-    font-family: 'Menu';
-    src: url('/assets/fonts/FontsFree-Net-Proxima-Nova-Bold.otf');
+  font-family: 'Menu';
+  src: url('/assets/fonts/FontsFree-Net-Proxima-Nova-Bold.otf');
 }
-
 @font-face {
-    font-family: 'Hand';
-    src: url('/assets/fonts/LearningCurve.ttf');
+  font-family: 'Hand';
+  src: url('/assets/fonts/LearningCurve.ttf');
 }
