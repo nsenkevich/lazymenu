@@ -1,5 +1,6 @@
 <div class="mobile" fxLayout="column">
-  <div routerLink="profile" (click)="draw.close()" fxFlex="15" fxLayout="column" fxLayoutAlign="space-evenly center" class="user">
+  <div routerLink="profile" (click)="draw.close()" fxFlex="15" fxLayout="column" fxLayoutAlign="space-evenly center" class="user"
+    *ngIf="user.email.length">
     <div *ngIf="user">
       <div class="avatar">
         <mat-icon *ngIf="!user.avatar" class="avatar-default">account_circle</mat-icon>
@@ -12,9 +13,16 @@
     </div>
   </div>
   <mat-nav-list fxFlex="50">
-    <mat-list-item mat-button routerLink="menu" (click)="draw.close()">
-      <h3 matLine>Menu</h3>
+    <mat-list-item mat-button (click)="openMenu('current', 5); draw.close()">
+      <h3 matLine>This Week</h3>
     </mat-list-item>
+    <mat-list-item mat-button (click)="openMenu('next', 5); draw.close()">
+      <h3 matLine>Next Week</h3>
+    </mat-list-item>
+    <mat-list-item mat-button (click)="openMenu('pending', 5); draw.close()" *ngIf="user.uid == 'QMuilG4ISGONQ3tW1nwNj2o3EJ43'">
+      <h3 matLine>Pending Menu</h3>
+    </mat-list-item>
+
     <!-- <mat-list-item mat-button routerLink="plans" (click)="draw.close()">
       <h3 matLine>Plans</h3>
     </mat-list-item>
@@ -24,9 +32,12 @@
   </mat-nav-list>
   <div fxFlex="grow"></div>
   <div fxFlexAlign="center" fxFlex="20" class="log-out">
-    <button mat-raised-button color="accent" (click)="logout(); draw.close()">
+    <button mat-raised-button color="accent" (click)="logout(); draw.close()" *ngIf="user.email.length">
       <mat-icon>exit_to_app</mat-icon>
       Log out
+    </button>
+    <button mat-raised-button color="accent" routerLink="auth" (click)="draw.close()" *ngIf="!user.email.length">
+      Log in
     </button>
   </div>
 </div>

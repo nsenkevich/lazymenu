@@ -1,6 +1,11 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../auth/auth.service';
+import { User, AuthService } from '../auth/auth.service';
+
+export const AnonymousUser: User = {
+  uid: '',
+  email: ''
+};
 
 @Component({
   selector: 'app-root',
@@ -9,13 +14,17 @@ import { AuthService } from '../auth/auth.service';
 })
 
 export class AppComponent implements OnInit {
-  public user: any;
+  public user: User;
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router) {
+    this.user = AnonymousUser;
+  }
 
   ngOnInit() {
     this.authService.getUser().subscribe((user) => {
-      this.user = user;
+      if (user != null) {
+        this.user = user;
+      }
     });
   }
 

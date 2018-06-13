@@ -1,5 +1,7 @@
 import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
@@ -10,7 +12,8 @@ export class NavigationComponent {
   @Input() draw: any;
   @Output() logOut = new EventEmitter<boolean>();
 
-  constructor() { }
+
+  constructor(public router: Router) { }
 
   public logout() {
     this.logOut.emit(true);
@@ -26,6 +29,10 @@ export class NavigationComponent {
   public getUserName(email: string): string {
     const stringArray: Array<string> = email.split('@');
     return stringArray[0];
+  }
+
+  public openMenu(status: string, limit: number): void {
+    this.router.navigate(['/menu', status, limit]);
   }
 }
 

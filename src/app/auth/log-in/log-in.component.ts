@@ -32,7 +32,7 @@ export class LogInComponent implements OnInit {
   public logIn(): void {
     if (this.loginForm.valid) {
       this.submitted.emit({ email: this.loginForm.value.email, password: this.loginForm.value.password });
-      this.loginForm.disable();
+      // this.loginForm.disable();
     }
   }
 

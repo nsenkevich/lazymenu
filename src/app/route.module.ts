@@ -11,11 +11,20 @@ import { ProfileComponent } from './profile/profile.component';
 import { MenuComponent } from './menu/menu.component';
 import { PlansComponent } from './plans/plans.component';
 import { HowComponent } from './plans/how/how.component';
+import { IsAdminGuard } from './menu/is-admin.guard';
 
 const routes: Routes = [
-    { path: '', redirectTo: '/menu', pathMatch: 'full' },
     { path: 'auth', component: AuthComponent, canActivate: [LoggedInGuard] },
-    { path: 'menu', component: MenuComponent },
+    { path: '', redirectTo: '/menu/current/5', pathMatch: 'full' },
+    { path: 'menu', redirectTo: '/menu/current/5', pathMatch: 'full' },
+    {
+        path: 'menu', children: [
+            { path: 'current/:limit', component: MenuComponent },
+            { path: 'next/:limit', component: MenuComponent },
+            { path: 'pending/:limit', component: MenuComponent, canActivate: [IsAdminGuard] }
+
+        ]
+    },
     { path: 'plans', component: PlansComponent },
     { path: 'how', component: HowComponent },
     { path: 'recipe/:id', component: RecipeDetailsComponent },
