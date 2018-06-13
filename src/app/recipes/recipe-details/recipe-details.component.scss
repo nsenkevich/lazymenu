@@ -1,6 +1,5 @@
 @import '~app/core/lm-theme.scss';
 @include lazy-menu-theme($lm-app-theme);
-
 .main-container {
   position: relative;
 }
@@ -20,7 +19,6 @@
   position: relative;
   padding-bottom: 570px;
   overflow: hidden;
-
   .overlay {
     background: linear-gradient( rgba(0, 0, 0, .5), rgba(0, 0, 0, .3));
     top: 0;
@@ -30,31 +28,28 @@
     position: absolute;
     z-index: 1;
   }
-
   img {
     position: absolute;
     top: 50%;
     -webkit-transform: translateY(-50%);
     transform: translateY(-50%);
     width: 100%;
-
     &.apply-filter {
       -webkit-filter: blur(4px);
       filter: blur(4px);
     }
   }
-  @media (max-width: 1496px) and (min-width: 1025px) {
+  @media screen and (max-width: 1496px) and (min-width: 1025px) {
     padding-bottom: 500px;
-
     img {
       top: 50%;
     }
   }
-  @media (max-width: 1024px) {
+  @media screen and (max-width: 1024px) {
     margin-top: 175px;
     padding-bottom: 500px;
   }
-  @media (max-width: 414px) {
+  @media screen and (max-width: 414px) {
     padding-bottom: 285px;
   }
 }
@@ -77,11 +72,21 @@
   z-index: 4;
   background-color: #fff;
   padding: 0 15px;
-  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12);
+  box-shadow: 0 3px 1px -2px rgba(0,
+  0,
+  0,
+  .2),
+  0 2px 2px 0 rgba(0,
+  0,
+  0,
+  .14),
+  0 1px 5px 0 rgba(0,
+  0,
+  0,
+  .12);
   min-width: 350px;
   width: 30%;
   border-radius: 1px;
-
   h3 {
     padding: 0 16px;
     font-family: 'Hand';
@@ -92,21 +97,18 @@
     position: relative;
     color: $med-red;
   }
-
   .mat-list {
     padding: 0;
   }
-
   .mat-line {
     font-size: 1em;
     padding-bottom: 10px;
   }
-
   .amount {
     font-weight: bold;
     padding-right: 5px;
   }
-  @media (max-width: 1024px) {
+  @media screen and (max-width: 1024px) {
     position: relative;
     margin-top: 40px;
     box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12);
@@ -120,65 +122,52 @@
   right: -2px;
   bottom: -110px;
   z-index: 3;
-
   .mat-card {
     padding-left: 60px;
   }
-
   h1 {
     margin: 3px 0 10px;
   }
-
   .padd-row-top {
     padding-top: 1em;
   }
-
   .padd-row-bottom {
     padding-bottom: 1em;
   }
-
   .time {
     font-weight: bold;
   }
-
   .cuisine {
     text-transform: capitalize;
     color: $opaque-light-grey;
     font-size: 16px;
   }
-
   .allergens,
   .cuisine,
   .time {
     line-height: 24px;
-
     .mat-icon {
       vertical-align: bottom;
     }
   }
-
   .allergens {
     color: $light-grey;
-
     .spacer {
       margin-right: 10px;
     }
   }
-
   .allergens,
   .diet-tags {
     ::ng-deep .mat-chip-list-wrapper {
       padding: 0 0 0 10px;
       border-left: 1px solid lighten($light-grey, 10%);
     }
-
     .mat-chip {
       color: $light-grey;
       border: 1px solid #e0e0e0;
       padding: 3px 12px;
       background-color: transparent;
       cursor: default;
-
       &:active,
       &:focus,
       &:hover {
@@ -186,10 +175,9 @@
       }
     }
   }
-  @media (max-width: 1024px) {
+  @media screen and (max-width: 1024px) {
     bottom: auto;
     top: 0;
-
     .mat-card {
       padding-left: 15px;
     }
@@ -198,14 +186,12 @@
 
 .recipe-method {
   margin: 150px 35px 35px;
-
   h3 {
     font-family: 'Hand';
     font-size: 45px;
     border-bottom: 1px solid $dark-grey;
     color: $med-red;
   }
-
   .step-number {
     font-size: 1.7em;
     border: 1px solid $light-grey;
@@ -216,12 +202,11 @@
     height: 40px;
     line-height: 40px;
   }
-
   .step-description {
     font-size: 1.1em;
     line-height: 125%;
   }
-  @media (max-width: 1024px) {
+  @media screen and (max-width: 1024px) {
     margin: 50px 0 0;
     position: relative;
   }
@@ -232,17 +217,14 @@
   z-index: 3;
   top: -27px;
   right: 35%;
-
   .floating-button {
     cursor: pointer;
     position: relative;
-
     ::ng-deep svg {
       height: 36px;
       margin-top: -5px;
       fill: #fff;
     }
-
     .mat-icon {
       height: 40px;
       width: 40px;
@@ -251,7 +233,7 @@
       margin-left: -2px;
     }
   }
-  @media (max-width: 1024px) {
+  @media screen and (max-width: 1024px) {
     top: auto;
     right: 5%;
     bottom: -46px;
@@ -265,13 +247,11 @@
   z-index: 2;
   bottom: 63px;
   right: 32%;
-
   .video-container {
     position: relative;
     width: 100%;
     height: 100%;
   }
-
   iframe {
     position: absolute;
     margin: auto;
@@ -280,20 +260,18 @@
     left: 0;
     right: 0;
   }
-  @media (max-width: 1024px) {
+  @media screen and (max-width: 1024px) {
     right: 0;
-
     .video-container {
       max-height: 500px;
       margin-top: 175px;
     }
   }
-  @media (max-width: 414px) {
+  @media screen and (max-width: 414px) {
     .video-container {
       max-height: 447px;
       margin-top: 175px;
       height: 285px;
-
       iframe {
         width: 100%;
       }

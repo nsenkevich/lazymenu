@@ -27,6 +27,11 @@
   </div>
   <div fxFlex="grow" fxFlex.sm="0" fxFlex.xs="0"></div>
   <div fxShow="true" fxHide.lt-md="true" class="user-block" fxFlex.sm="0" fxFlex.xs="0" fxFlex>
+    <div *ngIf="!user.email.length">
+      <a mat-button routerLink="auth" class="menu-item">
+        Log in
+      </a>
+    </div>
     <div *ngIf="user.email.length">
       <div [matMenuTriggerFor]="menu" *ngIf="user" fxLayout="row" fxLayoutAlign="space-between center">
         <div class="avatar-holder">
