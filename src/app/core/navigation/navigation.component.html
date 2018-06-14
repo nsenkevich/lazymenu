@@ -10,10 +10,10 @@
       </div>
     </div>
     <a mat-button (click)="openMenu('current', 5)" class="menu-item">
-      This Week
+      This Week Menu
     </a>
     <a mat-button (click)="openMenu('next', 5)" class="menu-item">
-      Next Week
+      Next Week Menu
     </a>
     <a mat-button (click)="openMenu('pending', 5)" class="menu-item" *ngIf="user.uid == 'QMuilG4ISGONQ3tW1nwNj2o3EJ43'">
       Pending Menu
@@ -21,12 +21,15 @@
     <!-- <a mat-button routerLink="plans" class="menu-item">
       Plans
     </a> -->
-    <a mat-button routerLink="how" class="menu-item">
-      How it works
-    </a>
+
   </div>
   <div fxFlex="grow" fxFlex.sm="0" fxFlex.xs="0"></div>
-  <div fxShow="true" fxHide.lt-md="true" class="user-block" fxFlex.sm="0" fxFlex.xs="0" fxFlex>
+  <div class="user-block" fxShow="true" fxHide.lt-md="true" fxFlex.sm="0" fxFlex.xs="0" fxFlex fxLayout="row" fxLayoutAlign="space-around center">
+    <div class="right-menu">
+      <a mat-button routerLink="how" class="menu-item">
+        About
+      </a>
+    </div>
     <div *ngIf="!user.email.length">
       <a mat-button routerLink="auth" class="menu-item">
         Log in
