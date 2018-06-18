@@ -1,6 +1,7 @@
 <div class="about-heading">
   <div class="space-container" fxLayout="column" fxLayoutAlign="end center">
     <div class="text-holder">
+      <q>Home cooking is the key to ensure the food quality for a reasonable price</q>
       <h1>Why we created Lazy Menu?</h1>
     </div>
   </div>
@@ -16,22 +17,16 @@
   <div class="main-container">
     <mat-card>
       <h3>Why?</h3>
-      <p>We are an average couple who lives and works in London.</p>
-      <p>
-        We try to pay attention to how we eat, and home cooking is the key to ensure the food quality for a reasonable price.
+      <p>We are an average couple who lives and works in London. Like all, we try to pay attention to how we eat.
       </p>
       <p>
-        However, urban life leaves us very little or no time to cook. Not to mention grocery shopping…
+          However, urban life leaves us very little or no time to cook. Not to mention grocery shopping…
       </p>
       <p>
-        Our routine was to do grocery shopping over the weekend. Get random ingredients and leave figuring out dishes to cook till
-        later. Commuting home every night we would be puzzling out “What to cook for dinner?” or “What’s in our fridge?“.
-        Tired to think, I would pop into the nearest takeaway and get whatever the shop has to offer.
-        <br/> Than, at the end of the week, we had to bin the rotten vegetables…
-        <br/>Sad, but true!
-      </p>
-      <p>
-        Anyway lets not touch the story about limited resources on the overpopulated planet...
+          Our routine was to get groceries over the weekend. Buy random ingredients and leave figuring out dishes to cook till later.</p>
+        <p>Commuting home every night, we would be puzzling out “What to cook for dinner?” or “What’s in our fridge?“. Tired to think, I would pop in the nearest takeaway and get whatever the shop has to offer. 
+        <br/> Than, by the end of the week, we had to bin all the rotten vegetables…
+        <br/>Sad... but true!
       </p>
     </mat-card>
   </div>
@@ -39,27 +34,29 @@
     <mat-card fxFlex="50">
       <h3>What?</h3>
       <p>
-        With that in mind, we created a Lazy Menu - a vast list of, hassle free and nutritious, dishes we like. This way we can rotate
-        and methodize recipes for every week. Next thing we did is extracted shopping list from the generated menu.
+          With that in mind, we created a vast list of, hassle-free and nutritious, dishes we like. This way we can rotate and methodize
+          recipes for every week</p>
+      <p>Plus weekly shopping list download for the generated menu.
       </p>
     </mat-card>
     <mat-card fxFlex="50">
       <h3>How?</h3>
       <p>
-        Since we both happen to be Web Developers, we've made it the way we know the best. Anyone facing the same cooking dilemma,
-        are welcome to use it.
+        Since we both happen to be Web Developers, having some spare time, we've made it the way we know the best. For our own use
+        and anybody else facing the same cooking dilemma.
+        <br/>All are welcome to use it free
       </p>
     </mat-card>
   </div>
 
   <div fxLayout="row" fxLayoutAlign="center stretch" class="columns" fxLayoutGap="30px">
     <mat-card fxFlex="80" *ngIf="contactForm">
-      <h3>Feedback and suggestions are welcome</h3>
-      <form class="contact-form" [formGroup]="contactForm" novalidate>
-        <mat-form-field>
+      <h3>Feedback and suggestions are Welcome</h3>
+      <form class="contact-form" [formGroup]="contactForm" novalidate fxLayout="column" fxLayoutAlign="center stretch">
+        <mat-form-field fxFlex="100" class="full-width">
           <textarea matInput placeholder="Your message to us"></textarea>
         </mat-form-field>
-        <button class="submit" mat-raised-button color="accent" (click)="submitFeedback()" type="submit">
+        <button fxFlex="100" class="submit" mat-raised-button color="accent" (click)="submitFeedback()" type="submit">
           <i class="material-icons">
             mail
           </i>
