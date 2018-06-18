@@ -1,12 +1,13 @@
 import { SharedModule } from '../shared/shared.module';
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { PlansComponent } from './plans.component';
 import { HowComponent } from './how/how.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
-    SharedModule
+    SharedModule, 
+    ReactiveFormsModule
   ],
   declarations: [
     PlansComponent,

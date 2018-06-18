@@ -520,10 +520,10 @@
     "diet": ["vegetarian", "high protein"],
     "likes": 0
 }, {
-    "id": "Beef_Pilau",
+    "id": "Chicken_Pilau",
     "status": "pending",
     "package": 5,
-    "name": "Beef Pilau",
+    "name": "Chicken Pilau",
     "you-tube-id": "",
     "thumbnail": "",
     "video": "",
@@ -533,10 +533,10 @@
         "name": "all",
         "ingredients": [{
             "name": "long grain rise",
-            "amount": "250 g"
+            "amount": "125 g"
         }, {
-            "name": "beef, chopped",
-            "amount": "250 g"
+            "name": "chicken, chopped",
+            "amount": "125 g"
         }, {
             "name": "carrots, thick shredded",
             "amount": "1 item"
@@ -557,22 +557,25 @@
             "amount": "1/4 tsp"
         }, {
             "name": "salt",
+            "amount": "1/2 tsp"
+        }, {
+            "name": "dried currants",
             "amount": "1 tsp"
         }, {
-            "name": "dried barberries",
+            "name": "lemon juice",
             "amount": "1 tsp"
         }, {
             "name": "black pepper",
             "amount": "pinch"
         }, {
             "name": "vegetable oil",
-            "amount": "1 tbsp"
+            "amount": "for frying"
         }, {
             "name": "parsley, chopped",
             "amount": "1 tbsp"
         }, {
             "name": "water, boiling hot",
-            "amount": "500 ml"
+            "amount": "250 ml"
         }]
     }],
     "method": [
@@ -614,6 +617,9 @@
             "name": "tomatoes, sliced",
             "amount": "1 item"
         }, {
+            "name": "sweet pepper",
+            "amount": "1 item"
+        }, {
             "name": "chedar cheese, sliced",
             "amount": "30 g"
         }, {
@@ -621,7 +627,7 @@
             "amount": "1 tbsp"
         }, {
             "name": "garlic, crushed",
-            "amount": "1 cloves"
+            "amount": "1 clove"
         }, {
             "name": "cayenne pepper, ground",
             "amount": "1 pinch"
