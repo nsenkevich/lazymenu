@@ -30,4 +30,4 @@
             "args": ["${workspaceFolder}/protractor.conf.js"]
         }
     ]
-}
+  }
