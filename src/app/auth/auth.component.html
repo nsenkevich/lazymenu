@@ -1,38 +1,56 @@
-<div *ngIf="existingUser"> 
-  <p class="button is-small" (click)="toggleForm()">Not Registered?</p>
-  <input type="text" [(ngModel)]="email" placeholder="email">
-  <input type="password" [(ngModel)]="password" placeholder="password">
-
-  <button (click)="login()" [disabled]="!email || !password">Login</button>
-  
-  <button (click)="loginWithGoogle()">Login with Google</button>
-  <!-- <button (click)="loginWithTwitter()">Login with Twitter</button> -->
-  <button (click)="loginWithFacebook()">Login with Facebook</button>
-
-  <div *ngIf="!passReset">
-    <input type="text" [(ngModel)]="email" placeholder="email">
-    <button (click)="resetPassword()" [disabled]="!email">reset password </button>
-  </div>
-  <p *ngIf="passReset" class="help is-info">Reset requested. Check your email instructions.</p>
-</div>
-
-<div *ngIf="!existingUser"> 
-  <p class="button is-small" (click)="toggleForm()">Already Registered?</p>  
-  <div *ngIf="registrationStep == 1">
-      <input type="text" [(ngModel)]="email" placeholder="email">
-      <input type="password" [(ngModel)]="password" placeholder="password">
-
-      <button (click)="signup()" [disabled]="!email || !password">
-        Signup
-      </button>
-  </div> 
-</div>
-  
-<div *ngIf="!existingUser"> 
-  <div *ngIf="registrationStep == 2">    
-        <input type="text" [(ngModel)]="detail" placeholder="detail">
-        <button (click)="details()" [disabled]="!detail">
-          details
-        </button>
+<div fxFlex="100" fxLayout="column" fxLayoutAlign=" none">
+  <div fxFlexOffset.xl="10" fxFlexOffset.lg="10" fxFlexOffset.md="5" fxFlexOffset.sm="0" fxFlexOffset.xs="0" fxLayout="row"
+    fxLayoutAlign="center stretch">
+    <mat-card *ngIf="registrationStep == 1" fxFlex="33" fxFlex.md="50" fxFlex.sm="80" fxFlex.xs="100" class="relative">
+      <mat-progress-bar [color]="'accent'" [mode]="'determinate'" [value]="50" class="absolute top">
+      </mat-progress-bar>
+      <div fxLayout="column" fxLayoutAlign="space-around center" *ngIf="isLoading">
+        <mat-progress-spinner [color]="'accent'" [mode]="'indeterminate'"></mat-progress-spinner>
+      </div>
+      <div *ngIf="!isLoading">
+        <h3 class="subheading-2" *ngIf="!forgotPasswordOpen" (click)="registrationOpen = false; forgotPasswordOpen = false" [ngClass]="{'inactive': registrationOpen}">
+          Login
+        </h3>
+        <div class="form-container" fxLayout="column" fxLayoutAlign=" stretch">
+          <div [ngClass]="{'inactive': (registrationOpen || forgotPasswordOpen)}">
+            <app-log-in (submitted)="logIn($event)"></app-log-in>
+            <div class="forgot-password-btn">
+              <a (click)="forgotPasswordOpen = true" *ngIf="!forgotPasswordOpen">Forgot password?</a>
+            </div>
+            <div class="social-container" fxLayout="row" fxLayoutAlign="space-between none">
+              <button mat-raised-button class="social-login facebook" fxFlex="50" (click)="loginWithFacebook()">
+                <svg-icon src="assets/icons/facebook-icon.svg"></svg-icon>
+                Login with Facebook
+              </button>
+              <button mat-raised-button class="social-login google" fxFlex="50" (click)="loginWithGoogle()">
+                <svg-icon src="assets/icons/google-icon.svg"></svg-icon>
+                Login with Google
+              </button>
+            </div>
+          </div>
+          <div class="forgot-password" [ngClass]="{'active': forgotPasswordOpen}">
+            <app-forgot-password (submitted)="resetPassword($event)"></app-forgot-password>
+          </div>
+        </div>
+        <div class="divider">&mdash;&mdash;&mdash; OR &mdash;&mdash;&mdash;</div>
+        <h3 class="subheading-2" (click)="registrationOpen = true; forgotPasswordOpen = false" [ngClass]="{'inactive': !registrationOpen}">
+          Register
+        </h3>
+        <div class="form-container" fxLayout="column" fxLayoutAlign=" stretch">
+          <div [ngClass]="{'inactive':!registrationOpen}">
+            <app-registration (submitted)="register($event)"></app-registration>
+          </div>
+        </div>
+      </div>
+    </mat-card>
+    <mat-card *ngIf="registrationStep == 2" fxFlex="33" fxFlex.md="50" fxFlex.sm="80" fxFlex.xs="100" class="relative">
+      <mat-progress-bar [color]="'accent'" [mode]="'determinate'" [value]="90" class="absolute top">
+      </mat-progress-bar>
+      <mat-progress-bar *ngIf="processingForm" [color]="'accent'" [mode]="'query'" class="absolute top">
+      </mat-progress-bar>
+      <div class="form-container" fxLayout="column" fxLayoutAlign=" stretch">
+        <app-preferences [state]="'edit'" (submitted)="submitPreferences($event)"></app-preferences>
+      </div>
+    </mat-card>
   </div>
 </div>

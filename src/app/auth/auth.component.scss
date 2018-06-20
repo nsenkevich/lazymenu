@@ -1,9 +1,90 @@
-.example-card {
-  max-width: 400px;
-  margin: 10px;
+@import '~app/scss_mixins/shared-mixins';
+@include AbsoluteElement();
+@import '~app/core/lm-theme.scss';
+@include lazy-menu-theme($lm-app-theme);
+.divider {
+  color: $med-grey;
+  text-align: center;
+  font-size: 1em;
 }
 
-.example-header-image {
-  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-  background-size: cover;
+h3 {
+  text-align: center;
+  cursor: pointer;
+  max-width: 100%;
+  transition: all .3s ease-out;
+  &.inactive {
+    color: $med-grey;
+    &:hover {
+      color: $dark-grey;
+    }
+  }
 }
+
+.forgot-password-btn {
+  text-align: right;
+  margin: 10px 0 0;
+  a {
+    color: lighten(#3f51b5, 10%);
+    font-size: .8em;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.social-container {
+  padding: 30px 0 15px;
+  .social-login {
+    color: #fff;
+    padding: 5px;
+    svg-icon {
+      fill: #fff;
+      height: 30px;
+      width: 30px;
+      vertical-align: middle;
+    }
+    ::ng-deep svg {
+      height: 100%;
+      width: 100%;
+      path {
+        fill: #fff;
+      }
+    }
+    &.facebook {
+      background: #3B5998;
+      margin-right: 5px;
+    }
+    &.google {
+      background: #d34836;
+      margin-left: 5px;
+    }
+  }
+}
+
+.form-container {
+  max-height: 350px;
+  transition: all .5s ease-in-out;
+  opacity: 1;
+  .inactive {
+    opacity: 0;
+    overflow: hidden;
+    max-height: 0;
+    transition: all .5s ease-out;
+  }
+  .forgot-password {
+    opacity: 0;
+    overflow: hidden;
+    max-height: 0;
+    transition: all .5s ease-in;
+    margin-bottom: 0;
+    &.active {
+      max-height: 350px;
+      transition: all .5s ease-in-out;
+      opacity: 1;
+      margin-bottom: 2vh;
+    }
+  }
+}
+
+@include fullWidthForm();

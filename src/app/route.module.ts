@@ -1,26 +1,39 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { MenuComponent } from './menu/menu.component';
 import { AppComponent } from './app/app.component';
-import { RegistrationComponent } from './registration/registration.component';
 import { PageNotFoundPage } from './app/page-not-found.page';
-import { RecipeComponent } from './recipe/recipe.component';
+
+import { RecipeDetailsComponent } from './recipes/recipe-details/recipe-details.component';
 import { AuthComponent } from './auth/auth.component';
 import { AuthGuard } from './auth/auth.guard';
-import { ProfileComponent} from './profile/profile.component';
+import { LoggedInGuard } from './auth/loggedIn.guard';
+import { ProfileComponent } from './profile/profile.component';
+import { MenuComponent } from './menu/menu.component';
+import { PlansComponent } from './plans/plans.component';
+import { HowComponent } from './plans/how/how.component';
+import { IsAdminGuard } from './menu/is-admin.guard';
 
 const routes: Routes = [
-    {path: '', component: AppComponent},
-    {path: 'auth', component: AuthComponent},
-    {path: 'menu', component: MenuComponent},
-    {path: 'registration', component: RegistrationComponent},
-    {path: 'recipe/:id', component: RecipeComponent},
-    {path: 'profile', component: ProfileComponent,  canActivate: [AuthGuard] },
-    {path: '**', pathMatch: 'full', component: PageNotFoundPage},
-  ];
+    { path: 'auth', component: AuthComponent, canActivate: [LoggedInGuard] },
+    { path: '', redirectTo: '/menu/current/5', pathMatch: 'full' },
+    { path: 'menu', redirectTo: '/menu/current/5', pathMatch: 'full' },
+    {
+        path: 'menu', children: [
+            { path: 'current/:limit', component: MenuComponent },
+            { path: 'next/:limit', component: MenuComponent },
+            { path: 'pending/:limit', component: MenuComponent, canActivate: [IsAdminGuard] }
+
+        ]
+    },
+    { path: 'plans', component: PlansComponent },
+    { path: 'how', component: HowComponent },
+    { path: 'recipe/:id', component: RecipeDetailsComponent },
+    { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
+    { path: '**', pathMatch: 'full', component: PageNotFoundPage },
+];
 
 @NgModule({
     imports: [RouterModule.forRoot(routes)],
-    exports: [ RouterModule ] // re-export the module declarations
+    exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

@@ -1,0 +1,27 @@
+<mat-card class="recipe-card">
+  <div class="image-container" [routerLink]="['/recipe', recipe.id]">
+    <img *ngIf="!recipe.thumbnail || !recipe.thumbnail.length" class="recipe-image-placeholder" src="assets/icons/logo_size.jpg">
+    <img *ngIf="recipe.thumbnail && recipe.thumbnail.length" class="recipe-image" [src]="recipe.thumbnail" alt="Photo of a {{recipe.name}}">
+    <div class="image-overlay" [ngClass]="{'static': !recipe.thumbnail || !recipe.thumbnail.length}"></div>
+  </div>
+  <div class="overlay-name">
+    <h2 class="title">
+      <a [routerLink]="['/recipe', recipe.id]">
+        {{ recipe.name }}
+      </a>
+    </h2>
+  </div>
+  <mat-card-content>
+    <div class="diet-tags">
+      <mat-chip-list ariaOrientation="horizontal" *ngIf="recipe.diet.length">
+        <mat-chip *ngFor="let diet of recipe.diet">
+          {{diet}}
+        </mat-chip>
+      </mat-chip-list>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="end stretch" class="recipe-footer">
+      <mat-icon>schedule</mat-icon>
+      <div class="time">{{ recipe.time }} min</div>
+    </div>
+  </mat-card-content>
+</mat-card>

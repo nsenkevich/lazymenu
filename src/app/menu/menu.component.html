@@ -1,27 +1,9 @@
-<div fxLayout="row" fxLayoutAlign="space-around center" fxLayout.xs="column" fxLayoutWrap>
-  <div *ngFor="let person of [1,2,3,4,5,6]" 
-  fxFlex.xs="100%" fxFlex.sm="50%" fxFlex.md="33.3%" fxFlex.lg="33.3%" fxFlex.xl="33.3%"
-  >
-      <mat-card class="example-card">
-          <mat-card-header>
-            <a [routerLink]="['/recipe', 1]">        
-              <div mat-card-avatar class="example-header-image"></div>
-              <mat-card-title>Shiba Inu</mat-card-title>
-              <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-            </a>
-          </mat-card-header>
-          <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-          <mat-card-content>
-            <p>
-              The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-              A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-              bred for hunting.
-            </p>
-          </mat-card-content>
-          <mat-card-actions>
-            <button mat-button>LIKE</button>
-            <button mat-button>SHARE</button>
-          </mat-card-actions>
-        </mat-card>
+<div fxLayout="column" fxLayoutAlign=" none">
+  <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-around stretch" fxLayout.xs="column" fxLayoutWrap>
+    <div *ngFor="let recipe of menu | async" fxFlex.xs="100" fxFlex.sm="50" fxFlex.md="33" fxFlex.lg="33" fxFlex.xl="33">
+      <div class="recipe-container">
+        <app-recipe [recipe]="recipe"></app-recipe>
+      </div>
+    </div>
   </div>
 </div>

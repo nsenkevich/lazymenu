@@ -1,0 +1,40 @@
+@import '~app/core/lm-theme.scss';
+@include lazy-menu-theme($lm-app-theme);
+.delivery-time-picker {
+  padding: 10px 0 0;
+  ::ng-deep .mat-button-toggle-group {
+    box-shadow: none;
+  }
+  .mat-button-toggle {
+    font-size: 1.2em;
+    &.mat-button-toggle-checked {}
+    .mat-button-toggle-label-content {
+      width: 110px;
+      text-align: center;
+    }
+  }
+}
+
+.info {
+  color: $opaque-dark-grey;
+  font-size: 1.2em;
+}
+
+.icon {
+  color: $opaque-dark-grey;
+  .mat-icon {
+    color: $dark-grey;
+    font-size: 2em;
+    height: 100%;
+    width: auto;
+  }
+}
+
+.selector-block {
+  padding: 15px 0;
+  border-bottom: 1px solid $light-grey;
+}
+
+.button-container {
+  padding: 5px 0;
+}

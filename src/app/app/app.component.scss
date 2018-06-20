@@ -1,7 +1,25 @@
-.header{
-    position: fixed;
-    top:0;
-    left:0;
-    right: 0;
-    z-index: 2;
+@import '~app/core/lm-theme.scss';
+@include lazy-menu-theme($lm-app-theme);
+
+.main {
+  .mat-drawer-container {
+    background: none;
+    background-color: transparent;
+  }
+}
+
+.mobile {
+  ::ng-deep .mat-nav-list {
+    .mat-list-icon {
+      color: $opaque-light-grey;
+    }
+
+    .mat-list-item .mat-list-text {
+      color: $opaque-dark-grey;
+    }
+  }
+
+  .mat-drawer {
+    min-width: 175px;
+  }
 }

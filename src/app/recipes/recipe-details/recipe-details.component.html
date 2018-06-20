@@ -1,0 +1,125 @@
+<div fxLayout="column" fxLayoutAlign="start stretch" class="main-container" *ngIf="recipe | async as recipe">
+    <div class="heading-container">
+        <div class="recipe-image">
+            <div class="overlay"></div>
+            <img class="apply-filter" [src]="recipe.thumbnail" alt="Photo of a {{recipe.name}}">
+        </div>
+        <div *ngIf="recipe.video" class="recipe-video">
+            <div class="video-container">
+                <iframe width="670" height="100%" [src]="recipe.video | safeUrl" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
+        </div>
+        <div class="ingredients-list">
+            <div class="note"></div>
+            <h3 subheading-1>
+                Ingredients
+            </h3>
+            <mat-list role="list">
+                <mat-list-item *ngFor="let ingredients of recipe.ingredients" role="listitem">
+                    <p mat-line *ngIf="ingredients.name.length && ingredients.name != 'all'" class="title-sm">{{ ingredients.name }}</p>
+                    <div mat-line *ngFor="let ingredient of ingredients.ingredients" fxLayout="row" fxLayoutAlign="space-between none">
+                        <div fxFlex="80">{{ ingredient.name }}</div>
+                        <div class="amount" fxFlex="20">{{ ingredient.amount }}</div>
+                    </div>
+                </mat-list-item>
+            </mat-list>
+        </div>
+        <div class="recipe-heading">
+            <mat-card class="white-card">
+                <div class="btn-container">
+                    <div class="floating-button" matTooltip="Download">
+                        <button mat-fab color="accent" (click)="processPdfData(recipe)">
+                            <i class="material-icons">
+                                save_alt
+                            </i>
+                        </button>
+                    </div>
+                </div>
+                <h1 headline> {{ recipe.name }} </h1>
+                <div fxLayout="row" fxLayoutAlign="start center" class="padd-row-bottom ">
+                    <div class="cuisine" fxFlex="200px">
+                        <mat-icon>restaurant</mat-icon>
+                        {{ recipe.cuisine }}
+                    </div>
+                    <div class="allergens" fxFlex *ngIf="recipe.allergy.length" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayout.md="column"
+                        fxLayoutAlign="start">
+                        <div fxFlex.lg="130px" fxFlex.xl="130px">
+                            <mat-icon>restaurant_menu</mat-icon>
+                            <strong>allergens:</strong>
+                        </div>
+                        <div *ngFor="let allergy of recipe.allergy; let x = index" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayout.md="column"
+                            fxLayoutAlign=" none">
+                            <div fxFlex>{{allergy}}</div>
+                            <div *ngIf="recipe.allergy.length > (x + 1)" class="spacer" fxHide.md="true" fxHide.xs="true" fxHide.sm="true">
+                                &#44;
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <mat-divider></mat-divider>
+                <div fxLayout="row" fxLayoutAlign=" stretch" class="padd-row-top">
+                    <div class="time" fxFlex="100px">
+                        <mat-icon>timer</mat-icon>
+                        {{ recipe.time }} min
+                    </div>
+                    <div class="diet-tags" fxFlex>
+                        <mat-chip-list ariaOrientation="horizontal" *ngIf="recipe.diet.length">
+                            <mat-chip *ngFor="let diet of recipe.diet">
+                                {{diet}}
+                            </mat-chip>
+                        </mat-chip-list>
+                    </div>
+                </div>
+            </mat-card>
+        </div>
+    </div>
+    <mat-card class="white-card recipe-method">
+        <h3 subheading-1>Method</h3>
+        <div *ngFor="let method of recipe.method; let i = index" fxLayout="row" fxLayoutAlign="start center">
+            <div class="step-number" fxFlex="40px">{{i + 1}}</div>
+            <p mat-body-1 class="step-description" fxFlex fxFlex.lg="65" fxFlex.md="65">{{ method }}</p>
+        </div>
+    </mat-card>
+
+    <div #page [hidden]="true">
+        <h1>{{recipe.name}}</h1>
+        <p>Cuisine: {{recipe.cuisine}}</p>
+        <p>
+            Time:
+            <strong>{{recipe.time}} min</strong>
+        </p>
+        <p *ngIf="recipe.allergy.length">
+            <strong>Allergens:</strong>
+            <span *ngFor="let allergy of recipe.allergy; let y = index">
+                {{allergy}}
+                <span *ngIf="recipe.allergy.length > (y + 1)">&#44;</span>&#32;
+            </span>
+        </p>
+        <p *ngIf="recipe.diet.length">
+            <strong>Diet:</strong>
+            <span *ngFor="let diet of recipe.diet; let x = index">
+                {{diet}}
+                <span *ngIf="recipe.diet.length > (x + 1)">&#44;</span>&#32;
+            </span>
+        </p>
+        <h3>
+            <em>Ingredients:</em>
+        </h3>
+        <div *ngFor="let ingredients of recipe.ingredients">
+            <h5 *ngIf="ingredients.name.length && ingredients.name != 'all'">
+                {{ ingredients.name }}
+            </h5>
+            <ul>
+                <li *ngFor="let ingredient of ingredients.ingredients">
+                    {{ ingredient.amount }}&#32;{{ ingredient.name }}
+                </li>
+            </ul>
+        </div>
+        <h3>
+            <em>Method:</em>
+        </h3>
+        <ol>
+            <li *ngFor="let method of recipe.method">{{ method }}</li>
+        </ol>
+    </div>
+</div>

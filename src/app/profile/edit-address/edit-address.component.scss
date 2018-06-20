@@ -1,0 +1,12 @@
+@import '~app/scss_mixins/shared-mixins';
+@include AbsoluteElement();
+@include EditForm();
+
+.form-wrapper {
+  margin-top: 16px;
+}
+
+.edit {
+  right: -45px;
+  top: 0;
+}
