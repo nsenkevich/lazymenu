@@ -520,10 +520,10 @@
     "diet": ["vegetarian", "high protein"],
     "likes": 0
 }, {
-    "id": "Beef_Pilau",
+    "id": "Chicken_Pilau",
     "status": "pending",
     "package": 5,
-    "name": "Beef Pilau",
+    "name": "Chicken Pilau",
     "you-tube-id": "",
     "thumbnail": "",
     "video": "",
@@ -533,10 +533,10 @@
         "name": "all",
         "ingredients": [{
             "name": "long grain rise",
-            "amount": "250 g"
+            "amount": "125 g"
         }, {
-            "name": "beef, chopped",
-            "amount": "250 g"
+            "name": "chicken, chopped",
+            "amount": "125 g"
         }, {
             "name": "carrots, thick shredded",
             "amount": "1 item"
@@ -557,22 +557,25 @@
             "amount": "1/4 tsp"
         }, {
             "name": "salt",
+            "amount": "1/2 tsp"
+        }, {
+            "name": "dried currants",
             "amount": "1 tsp"
         }, {
-            "name": "dried barberries",
+            "name": "lemon juice",
             "amount": "1 tsp"
         }, {
             "name": "black pepper",
             "amount": "pinch"
         }, {
             "name": "vegetable oil",
-            "amount": "1 tbsp"
+            "amount": "for frying"
         }, {
             "name": "parsley, chopped",
             "amount": "1 tbsp"
         }, {
             "name": "water, boiling hot",
-            "amount": "500 ml"
+            "amount": "250 ml"
         }]
     }],
     "method": [
@@ -602,37 +605,46 @@
             "name": "aubergine",
             "amount": "1 item"
         }, {
+            "name": "salt",
+            "amount": "2 tbsp"
+        }, {
+            "name": "water, cold",
+            "amount": "2 l"
+        }, {
             "name": "crispy bacon, sliced",
-            "amount": "4 rashers"
+            "amount": "6 rashers"
         }, {
             "name": "tomatoes, sliced",
             "amount": "1 item"
         }, {
+            "name": "sweet pepper",
+            "amount": "1 item"
+        }, {
             "name": "chedar cheese, sliced",
-            "amount": "20 g"
+            "amount": "30 g"
         }, {
             "name": "olive oil",
             "amount": "1 tbsp"
         }, {
             "name": "garlic, crushed",
-            "amount": "1 cloves"
+            "amount": "1 clove"
         }, {
-            "name": "salt",
-            "amount": "1 tbsp"
+            "name": "cayenne pepper, ground",
+            "amount": "1 pinch"
         }, {
-            "name": "water, cold",
-            "amount": "2 l"
+            "name": "black pepper, ground",
+            "amount": "1 pinch"
         }, {
             "name": "parsley, chopped",
             "amount": "1/2 tbsp"
         }]
     }],
     "method": [
-        "Cut aubergines in half lengthways(s), lay on the board skin side up and make lengthways slits,  0.5cm wide, 1 cm from the stem. Transfer to the bowl and salt generously. Set aside for 10 min",
+        "Cut aubergines in half lengthways(s), lay on the board skin side up and make lengthways slits, 1cm wide, 1 cm away from the stem. Transfer to the bowl and salt generously. Set aside for 10 min",
         "Mix olive oil, crushed garlic and pinch of salt in the small bowl, set aside",
-        "Add cold water to the aubergines and leave for another 5 min. Drain well",
-        "Preheat the oven 200C/fan 180C /gas 6. Place aubergine halves skin side up on to greased baking dish, and start filling the slits with bacon, tomato and cheese slices. Spread infused olive oil sauce over aubergine skin, and bake for 20 min",
-        "Garnish with parsley and a drizzle of chilli oil. Serve hot or cold"
+        "Add cold water to the aubergines and leave for another 5 min till the water becomes yellowish. Drain well",
+        "Preheat the oven 200C/fan 180C /gas 6. Place aubergine halves skin side up on to greased baking dish, and start filling the slits with bacon, tomato and cheese slices. Spread infused olive oil over aubergine skin, and bake for 20 min",
+        "Garnish with parsley. Serve hot or cold"
     ],
     "allergy": [],
     "diet": ["high fiber"],
