@@ -3,6 +3,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { User, AuthService } from '../auth/auth.service';
 import { Observable } from 'rxjs/Observable';
+import { of } from 'rxjs';
 
 @Injectable()
 export class PaymentService {
@@ -19,7 +20,7 @@ export class PaymentService {
         this.userId = user.uid;
         return this.cardsCollection.doc(this.userId).collection('sources').doc(this.userId).valueChanges();
       }
-      return Observable.of(null);
+      return of(null);
     });
   }
 

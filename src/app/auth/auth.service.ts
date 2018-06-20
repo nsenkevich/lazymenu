@@ -4,6 +4,7 @@ import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firesto
 import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/switchMap';
+import { of } from 'rxjs';
 
 export interface User {
   uid: string;
@@ -23,7 +24,7 @@ export class AuthService {
       if (user) {
         return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
       }
-      return Observable.of(null);
+      return of(null);
     });
   }
 
