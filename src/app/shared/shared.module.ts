@@ -42,7 +42,6 @@ import { ImageConverterService } from './image-converter.service';
     HttpClientModule,
     AngularSvgIconModule,
     SafeYouTubeUrlPipe,
-    HttpModule
-  ]
+    HttpModule]
 })
 export class SharedModule { }

@@ -8,9 +8,7 @@ import { AppComponent } from './app/app.component';
 import { CoreModule } from './core/core.module';
 
 import { RecipesModule } from './recipes/recipes.module';
-import { AuthModule } from './auth/auth.module';
 
-import { ProfileComponent } from './profile/profile.component';
 import { PaymentModule } from './payment/payment.module';
 import { ProfileModule } from './profile/profile.module';
 import { MenuModule } from './menu/menu.module';
@@ -25,7 +23,6 @@ import { PlansModule } from './plans/plans.module';
     AppRoutingModule,
     CoreModule,
     RecipesModule,
-    AuthModule,
     PaymentModule,
     ProfileModule,
     MenuModule,
