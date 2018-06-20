@@ -1,5 +1,5 @@
 <div fxLayout="column" fxLayoutAlign=" none">
-  <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-around stretch" fxLayout.xs="column" fxLayoutWrap>
+  <div fxFlex="100" fxLayout="row wrap" fxLayoutAlign="space-around stretch" fxLayout.xs="column">
     <div *ngFor="let recipe of menu | async" fxFlex.xs="100" fxFlex.sm="50" fxFlex.md="33" fxFlex.lg="33" fxFlex.xl="33">
       <div class="recipe-container">
         <app-recipe [recipe]="recipe"></app-recipe>
