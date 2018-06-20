@@ -54,7 +54,12 @@ export class AuthComponent implements OnInit {
 
   private handleSocialLogin(login: Promise<any>): void {
     login.then((userFromAuth) => {
-      const user: User = { uid: userFromAuth.user.uid, email: userFromAuth.user.email };
+      const user: User = { 
+        uid: userFromAuth.user.uid, 
+        email: userFromAuth.user.email, 
+        avatar: userFromAuth.user.photoURL, 
+        name: userFromAuth.user.displayName,  
+      };
       this.authService.getUser().take(1).subscribe((userFromDb) => {
         if (!userFromDb) {
           this.authService.updateUser(user);
