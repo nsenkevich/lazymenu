@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-how',
@@ -6,10 +7,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./how.component.scss']
 })
 export class HowComponent implements OnInit {
+  public contactForm: FormGroup;
+  constructor(private fb: FormBuilder) { }
 
-  constructor() { }
 
   ngOnInit() {
+    this.contactForm = this.fb.group({
+      feedback: ['', Validators.required]
+    });
   }
 
+  public scroll(el) {
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  public submitFeedback() {
+    if (this.contactForm.valid) {
+      console.log(this.contactForm.value);
+    }
+  }
 }
