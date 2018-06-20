@@ -10,6 +10,7 @@ export interface User {
   uid: string;
   email: string;
   name?: string;
+  avatar?: string;
   hasAllergies?: string;
   allergies?: Array<string>;
   diet?: Array<string>;
