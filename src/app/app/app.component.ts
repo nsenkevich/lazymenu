@@ -26,6 +26,7 @@ export class AppComponent implements OnInit {
 
   public logout() {
     this.authService.logout().then(() => {
+      this.user = User.createGuest();
       this.router.navigate(['/auth']);
     });
   }
