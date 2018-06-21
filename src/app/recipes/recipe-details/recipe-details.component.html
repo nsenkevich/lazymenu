@@ -28,11 +28,7 @@
             <mat-card class="white-card">
                 <div class="btn-container">
                     <div class="floating-button" matTooltip="Download">
-                        <button mat-fab color="accent" (click)="downloadRecipePdf(recipe)">
-                            <i class="material-icons">
-                                save_alt
-                            </i>
-                        </button>
+                        <app-download-button (downloadPdf)="downloadRecipePdf($event, recipe)"></app-download-button>
                     </div>
                 </div>
                 <h1 headline> {{ recipe.name }} </h1>

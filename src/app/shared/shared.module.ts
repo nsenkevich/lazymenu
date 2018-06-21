@@ -15,6 +15,8 @@ import { SafeYouTubeUrlPipe } from './safe-url.pipe';
 import { HttpModule } from '@angular/http';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { ImageConverterService } from './image-converter.service';
+import { DownloadButtonComponent } from './download-button/download-button.component';
+
 
 @NgModule({
   imports: [
@@ -29,7 +31,10 @@ import { ImageConverterService } from './image-converter.service';
     AngularSvgIconModule,
     HttpModule
   ],
-  declarations: [SafeYouTubeUrlPipe],
+  declarations: [
+    SafeYouTubeUrlPipe,
+    DownloadButtonComponent
+  ],
   providers: [ImageConverterService],
   exports: [
     CommonModule,
@@ -42,6 +47,8 @@ import { ImageConverterService } from './image-converter.service';
     HttpClientModule,
     AngularSvgIconModule,
     SafeYouTubeUrlPipe,
-    HttpModule]
+    HttpModule,
+    DownloadButtonComponent
+  ]
 })
 export class SharedModule { }
