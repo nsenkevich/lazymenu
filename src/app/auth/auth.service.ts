@@ -5,28 +5,23 @@ import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/switchMap';
 import { of } from 'rxjs';
-
-export interface User {
-  uid: string;
-  email: string;
-  name?: string;
-  avatar?: string;
-  hasAllergies?: string;
-  allergies?: Array<string>;
-  diet?: Array<string>;
-}
+import { UserInterface } from './user';
 
 @Injectable()
 export class AuthService {
-  constructor(private firebaseAuth: AngularFireAuth, private afs: AngularFirestore) { }
+  private user: Observable<any>;
 
-  public getUser(): Observable<any> {
-    return this.firebaseAuth.authState.switchMap(user => {
+  constructor(private firebaseAuth: AngularFireAuth, private afs: AngularFirestore) { 
+    this.user = this.firebaseAuth.authState.switchMap(user => {
       if (user) {
-        return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
+        return  this.afs.doc<UserInterface>(`users/${user.uid}`).valueChanges();
       }
       return of(null);
     });
+  }
+
+  public getUser(): Observable<any> {
+    return this.user;
   }
 
   public signUp(email: string, password: string): Promise<any> {
@@ -53,9 +48,9 @@ export class AuthService {
     return this.firebaseAuth.auth.signOut();
   }
 
-  public updateUser(user: User): void {
-    const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${user.uid}`);
-    userRef.set(user);
+  public updateUser(user: UserInterface): void {
+    const userRef: AngularFirestoreDocument<UserInterface> = this.afs.doc(`users/${user.uid}`);
+    userRef.set(JSON.parse( JSON.stringify(user)));
   }
 
   private oAuthLogin(provider: firebase.auth.AuthProvider): Promise<any> {

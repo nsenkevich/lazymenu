@@ -1,11 +1,7 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { User, AuthService } from '../auth/auth.service';
-
-export const AnonymousUser: User = {
-  uid: '',
-  email: ''
-};
+import { AuthService } from '../auth/auth.service';
+import { User } from '../auth/user';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +13,7 @@ export class AppComponent implements OnInit {
   public user: User;
 
   constructor(private authService: AuthService, private router: Router) {
-    this.user = AnonymousUser;
+    this.user = User.createGuest();
   }
 
   ngOnInit() {

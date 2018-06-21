@@ -12,10 +12,10 @@
     <a mat-button (click)="openMenu('current', 5)" class="menu-item">
       This Week Menu
     </a>
-    <a mat-button (click)="openMenu('next', 5)" class="menu-item">
+    <a mat-button (click)="openMenu('next', 5)" class="menu-item" *ngIf="user.role">
       Next Week Menu
     </a>
-    <a mat-button (click)="openMenu('pending', 5)" class="menu-item" *ngIf="user.uid == 'QMuilG4ISGONQ3tW1nwNj2o3EJ43'">
+    <a mat-button (click)="openMenu('pending', 5)" class="menu-item" *ngIf="user.role == 'admin'">
       Pending Menu
     </a>
     <!-- <a mat-button routerLink="plans" class="menu-item">
@@ -30,12 +30,12 @@
         About
       </a>
     </div>
-    <div *ngIf="!user.email.length">
+    <div *ngIf="!user.role">
       <a mat-button routerLink="auth" class="menu-item">
         Log in
       </a>
     </div>
-    <div *ngIf="user.email.length">
+    <div *ngIf="user.role">
       <div [matMenuTriggerFor]="menu" *ngIf="user" fxLayout="row" fxLayoutAlign="space-between center">
         <div class="avatar-holder">
           <div class="avatar">
@@ -46,9 +46,7 @@
             <svg-icon src="assets/icons/lazy-menu-hat.svg"></svg-icon>
           </div>
         </div>
-        <div class="block">
-          {{getUserName(user.email)}}
-        </div>
+        <div class="block">{{user.name}}</div>
         <mat-icon class="caret">arrow_drop_down</mat-icon>
       </div>
       <mat-menu #menu="matMenu">

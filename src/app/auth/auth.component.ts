@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
-import { User } from './auth.service';
+import { User } from './user';
 import { LogInDetails } from './log-in/log-in.component';
 import { RegistrationDetails } from './registration/registration.component';
 import { Preferences } from './preferences/preferences.component';
@@ -33,6 +33,9 @@ export class AuthComponent implements OnInit {
       if (user && !(user as any).hasAllergies) {
         this.registrationStep = 2;
       }
+      if(user && user.hasAllergies) {
+        this.router.navigate(['/profile']);
+      }
       this.user = user;
       this.isLoading = false;
     }, (err) => {
@@ -42,9 +45,9 @@ export class AuthComponent implements OnInit {
 
   private handleRegistration(login: Promise<any>): void {
     login.then((userFromAuth) => {
-      const user: User = { uid: userFromAuth.uid, email: userFromAuth.email };
+      const user = User.createFromRegistration(userFromAuth.uid, userFromAuth.email);
       this.authService.updateUser(user);
-      this.snackBar.open('Welcome ' + user.email, '', {
+      this.snackBar.open('Welcome ' + user.name, '', {
         duration: 1000,
       });
     }).catch((error) => {
@@ -54,22 +57,18 @@ export class AuthComponent implements OnInit {
 
   private handleSocialLogin(login: Promise<any>): void {
     login.then((userFromAuth) => {
-      const user: User = { 
-        uid: userFromAuth.user.uid, 
-        email: userFromAuth.user.email, 
-        avatar: userFromAuth.user.photoURL, 
-        name: userFromAuth.user.displayName,  
-      };
-      this.authService.getUser().take(1).subscribe((userFromDb) => {
-        if (!userFromDb) {
+      if(userFromAuth.additionalUserInfo.isNewUser){
+        const user = User.createFromSocial(
+          userFromAuth.user.uid, 
+          userFromAuth.user.email, 
+          userFromAuth.user.displayName,
+          userFromAuth.user.photoURL,
+        );
           this.authService.updateUser(user);
-        } else {
-          this.snackBar.open('Welcome ' + user.email, '', {
-            duration: 1000,
-          });
-          this.router.navigate(['/profile']);
-        }
-      });
+      }
+        this.snackBar.open('Welcome back! ' + userFromAuth.user.displayName, '', {
+          duration: 1000,
+        });
     }).catch((error) => {
       this.snackBar.open('Something went wrong: ' + error.message);
     });
@@ -77,7 +76,7 @@ export class AuthComponent implements OnInit {
 
   private handleLogin(login: Promise<any>): void {
     login.then(user => {
-      this.snackBar.open('Welcome back! ' + user.email, '', {
+      this.snackBar.open('Welcome back! ' + user.name, '', {
         duration: 1000,
       });
       this.router.navigateByUrl('/profile');
@@ -92,14 +91,11 @@ export class AuthComponent implements OnInit {
 
   public submitPreferences(details: Preferences): void {
     this.processingForm = true;
-    this.user.hasAllergies = details.hasAllergies || 'no';
-    this.user.allergies = details.allergies || [];
-    this.user.diet = [details.diet] || [];
-    this.authService.updateUser(this.user);
-    setTimeout(() => {
-      this.router.navigate(['/profile']);
-      this.processingForm = false;
-    }, 2000);
+    const user = User.createFromSocial(this.user.uid, this.user.email, this.user.name, this.user.avatar);
+    user.setAllergies(details.allergies || []);
+    user.setDiet([details.diet] || []);
+
+    this.authService.updateUser(user);
   }
 
   public resetPassword(email: string): void {
