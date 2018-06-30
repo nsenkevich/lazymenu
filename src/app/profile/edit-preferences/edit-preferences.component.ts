@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Preferences } from '../../auth/preferences/preferences.component';
 import { AuthService } from '../../auth/auth.service';
+import { User } from '../../auth/user';
 
 @Component({
   selector: 'app-edit-preferences',
@@ -16,7 +17,7 @@ import { AuthService } from '../../auth/auth.service';
   styleUrls: ['./edit-preferences.component.scss']
 })
 export class EditPreferencesComponent implements OnInit {
-  @Input() user: any;
+  @Input() user: User;
   public processingForm: boolean;
   public formState: boolean;
   public preferences: Preferences;

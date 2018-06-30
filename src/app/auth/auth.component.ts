@@ -34,7 +34,7 @@ export class AuthComponent implements OnInit {
         this.registrationStep = 2;
       }
       if (user && user.hasAllergies) {
-        this.router.navigate(['/profile']);
+        this.router.navigate(['/menu']);
       }
       this.user = user;
       this.isLoading = false;

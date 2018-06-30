@@ -11,10 +11,10 @@ import { UserInterface } from './user';
 export class AuthService {
   private user: Observable<any>;
 
-  constructor(private firebaseAuth: AngularFireAuth, private afs: AngularFirestore) { 
+  constructor(private firebaseAuth: AngularFireAuth, private afs: AngularFirestore) {
     this.user = this.firebaseAuth.authState.switchMap(user => {
       if (user) {
-        return  this.afs.doc<UserInterface>(`users/${user.uid}`).valueChanges();
+        return this.afs.doc<UserInterface>(`users/${user.uid}`).valueChanges();
       }
       return of(null);
     });
@@ -50,7 +50,8 @@ export class AuthService {
 
   public updateUser(user: UserInterface): void {
     const userRef: AngularFirestoreDocument<UserInterface> = this.afs.doc(`users/${user.uid}`);
-    userRef.set(JSON.parse( JSON.stringify(user)));
+    const userData = JSON.parse(JSON.stringify(user));
+    userRef.set(userData);
   }
 
   private oAuthLogin(provider: firebase.auth.AuthProvider): Promise<any> {
