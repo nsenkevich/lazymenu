@@ -1,6 +1,5 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Observable } from 'rxjs/Observable';
 import { EmailValidator } from './email.validator';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { PasswordValidator } from './password.validator';
@@ -26,13 +25,14 @@ export class RegistrationComponent implements OnInit {
   }
 
   private createRegistrationForm(): void {
+    // , EmailValidator.createValidator(this.afs)
     this.registrationForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email], EmailValidator.createValidator(this.afs)],
+      email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       passwordCopy: ['', [Validators.required, Validators.minLength(6)]]
     }, {
-      validator: PasswordValidator.createValidator
-    });
+        validator: PasswordValidator.createValidator
+      });
   }
 
   public register(): void {

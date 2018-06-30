@@ -1,6 +1,7 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { AuthService, User } from '../../auth/auth.service';
+import { AuthService } from '../../auth/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { User } from '../../auth/user';
 
 @Component({
   selector: 'app-download-button',

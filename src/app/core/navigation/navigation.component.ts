@@ -1,5 +1,6 @@
 import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { User } from '../../auth/user';
 
 @Component({
   selector: 'app-navigation',
@@ -7,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./navigation.component.scss']
 })
 export class NavigationComponent {
-  @Input() user: any;
+  @Input() user: User;
   @Input() draw: any;
   @Output() logOut = new EventEmitter<boolean>();
 
