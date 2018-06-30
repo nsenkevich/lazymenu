@@ -45,17 +45,6 @@ export class EditPreferencesComponent implements OnInit {
       this.processingForm = false;
       this.toggleFormState();
     }, 1000);
-
-    // this.processingForm = true;
-    // this.user.hasAllergies = preferences.hasAllergies || 'no';
-    // this.user.setAllergies(preferences.allergies || []);
-    // this.user.setDiet([preferences.diet] || []);
-
-    // this.authService.updateUser(this.user);
-    // setTimeout(() => {
-    //   this.processingForm = false;
-    //   this.toggleFormState();
-    // }, 1000);
   }
 
   public toggleFormState(): void {
