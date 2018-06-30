@@ -1,5 +1,6 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+
 import { EmailValidator } from './email.validator';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { PasswordValidator } from './password.validator';

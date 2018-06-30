@@ -76,7 +76,7 @@ export class AuthComponent implements OnInit {
 
   private handleLogin(login: Promise<any>): void {
     login.then(user => {
-      this.snackBar.open('Welcome back! ' + user.name, '', {
+      this.snackBar.open('Welcome back! ' + user.email, '', {
         duration: 1000,
       });
       this.router.navigateByUrl('/profile');
