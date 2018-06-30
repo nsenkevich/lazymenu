@@ -1,9 +1,9 @@
-import { Component, Input, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RecipeService } from '../recipe.service';
-import { Recipe } from '../recipe.model';
 import * as jsPDF from 'jspdf';
 import { ImageConverterService } from '../../shared/image-converter.service';
+
 
 @Component({
   selector: 'app-recipe-details',
@@ -18,7 +18,8 @@ export class RecipeDetailsComponent implements OnInit {
 
   @ViewChild('page') page: ElementRef;
 
-  constructor(private route: ActivatedRoute, private recipeService: RecipeService, private imageConverter: ImageConverterService) {
+  constructor(private route: ActivatedRoute, private recipeService: RecipeService,
+    private imageConverter: ImageConverterService) {
     this.showVideo = true;
   }
 
@@ -27,8 +28,7 @@ export class RecipeDetailsComponent implements OnInit {
     this.recipe = this.recipeService.getRecipe(this.recipeId).valueChanges();
   }
 
-  public processPdfData(recipeData: any): void {
-    console.log(recipeData);
+  public downloadRecipePdf(ev: any, recipeData: any): void {
 
     const doc = new jsPDF();
     const specialElementHandlers = {

@@ -51,10 +51,10 @@
 
   <div fxLayout="row" fxLayoutAlign="center stretch" class="columns" fxLayoutGap="30px">
     <mat-card fxFlex="80" *ngIf="contactForm">
-      <h3>Feedback and suggestions are Welcome</h3>
+      <h3>Feedback and suggestions are Welcome!</h3>
       <form class="contact-form" [formGroup]="contactForm" novalidate fxLayout="column" fxLayoutAlign="center stretch">
         <mat-form-field fxFlex="100" class="full-width">
-          <textarea matInput placeholder="Your message to us"></textarea>
+          <textarea matInput placeholder="Your message"></textarea>
         </mat-form-field>
         <button fxFlex="100" class="submit" mat-raised-button color="accent" (click)="submitFeedback()" type="submit">
           <i class="material-icons">
