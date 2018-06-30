@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-side-nav',
@@ -10,15 +11,14 @@ export class SideNavComponent {
   @Output() logOut = new EventEmitter<boolean>();
   @Input() draw: any;
 
-  constructor() { }
+  constructor(public router: Router) { }
 
   public logout() {
     this.logOut.emit(true);
   }
 
-  public getUserName(email: string): string {
-    const stringArray: Array<string> = email.split('@');
-    return stringArray[0];
+  public openMenu(status: string, limit: number): void {
+    this.router.navigate(['/menu', status, limit]);
   }
 
 }
