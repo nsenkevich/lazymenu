@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Preferences } from '../../auth/preferences/preferences.component';
 import { AuthService } from '../../auth/auth.service';
+import { User } from '../../auth/user';
 
 @Component({
   selector: 'app-edit-preferences',
@@ -16,7 +17,7 @@ import { AuthService } from '../../auth/auth.service';
   styleUrls: ['./edit-preferences.component.scss']
 })
 export class EditPreferencesComponent implements OnInit {
-  @Input() user: any;
+  @Input() user: User;
   public processingForm: boolean;
   public formState: boolean;
   public preferences: Preferences;
@@ -44,6 +45,17 @@ export class EditPreferencesComponent implements OnInit {
       this.processingForm = false;
       this.toggleFormState();
     }, 1000);
+
+    // this.processingForm = true;
+    // this.user.hasAllergies = preferences.hasAllergies || 'no';
+    // this.user.setAllergies(preferences.allergies || []);
+    // this.user.setDiet([preferences.diet] || []);
+
+    // this.authService.updateUser(this.user);
+    // setTimeout(() => {
+    //   this.processingForm = false;
+    //   this.toggleFormState();
+    // }, 1000);
   }
 
   public toggleFormState(): void {

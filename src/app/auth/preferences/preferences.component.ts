@@ -97,8 +97,6 @@ export class PreferencesComponent implements OnInit, AfterViewInit, OnChanges {
       allergies: [[], [this.arrayLength]],
       diet: ['balanced', [Validators.required]]
     });
-    // this.disableAllergiesField();
-    // this.userPreferencesForm.controls.allergies.disable();
   }
 
   public submitPreferences(): void {
