@@ -33,7 +33,7 @@ export class AuthComponent implements OnInit {
       if (user && !(user as any).hasAllergies) {
         this.registrationStep = 2;
       }
-      if(user && user.hasAllergies) {
+      if (user && user.hasAllergies) {
         this.router.navigate(['/profile']);
       }
       this.user = user;
@@ -45,9 +45,9 @@ export class AuthComponent implements OnInit {
 
   private handleRegistration(login: Promise<any>): void {
     login.then((userFromAuth) => {
-      const user = User.createFromRegistration(userFromAuth.uid, userFromAuth.email);
+      const user = User.createFromRegistration(userFromAuth.user.uid, userFromAuth.user.email);
       this.authService.updateUser(user);
-      this.snackBar.open('Welcome ' + user.name, '', {
+      this.snackBar.open('Welcome ' + user.email, '', {
         duration: 1000,
       });
     }).catch((error) => {
@@ -57,18 +57,18 @@ export class AuthComponent implements OnInit {
 
   private handleSocialLogin(login: Promise<any>): void {
     login.then((userFromAuth) => {
-      if(userFromAuth.additionalUserInfo.isNewUser){
+      if (userFromAuth.additionalUserInfo.isNewUser) {
         const user = User.createFromSocial(
-          userFromAuth.user.uid, 
-          userFromAuth.user.email, 
+          userFromAuth.user.uid,
+          userFromAuth.user.email,
           userFromAuth.user.displayName,
           userFromAuth.user.photoURL,
         );
-          this.authService.updateUser(user);
+        this.authService.updateUser(user);
       }
-        this.snackBar.open('Welcome back! ' + userFromAuth.user.displayName, '', {
-          duration: 1000,
-        });
+      this.snackBar.open('Welcome back! ' + userFromAuth.user.displayName, '', {
+        duration: 1000,
+      });
     }).catch((error) => {
       this.snackBar.open('Something went wrong: ' + error.message);
     });
