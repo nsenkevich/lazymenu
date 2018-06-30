@@ -10,6 +10,8 @@ import { LogInComponent } from './log-in/log-in.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { PreferencesComponent } from './preferences/preferences.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { CanReadGuard } from './canread.guard';
+import { IsAdminGuard } from './is-admin.guard';
 
 @NgModule({
   imports: [
@@ -24,6 +26,6 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
     ForgotPasswordComponent
   ],
   exports: [PreferencesComponent],
-  providers: [AuthService, AuthGuard, LoggedInGuard]
+  providers: [AuthService, AuthGuard, LoggedInGuard, CanReadGuard, IsAdminGuard]
 })
 export class AuthModule { }

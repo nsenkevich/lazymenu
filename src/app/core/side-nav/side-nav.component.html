@@ -9,17 +9,17 @@
           <svg-icon src="assets/icons/lazy-menu-hat.svg"></svg-icon>
         </div>
       </div>
-      <h3>{{getUserName(user.email)}}</h3>
+      <h3>{{user.name}}</h3>
     </div>
   </div>
   <mat-nav-list fxFlex="50">
     <mat-list-item mat-button (click)="openMenu('current', 5); draw.close()">
       <h3 matLine>This Week</h3>
     </mat-list-item>
-    <mat-list-item mat-button (click)="openMenu('next', 5); draw.close()">
-      <h3 matLine>Next Week</h3>
+    <mat-list-item mat-button (click)="openMenu('next', 5); draw.close()" *ngIf="user.role">
+      <h3 matLine>Next Week {{user.role}}</h3>
     </mat-list-item>
-    <mat-list-item mat-button (click)="openMenu('pending', 5); draw.close()" *ngIf="user.uid == 'QMuilG4ISGONQ3tW1nwNj2o3EJ43'">
+    <mat-list-item mat-button (click)="openMenu('pending', 5); draw.close()" *ngIf="user.role == 'admin'">
       <h3 matLine>Pending Menu</h3>
     </mat-list-item>
 
@@ -32,11 +32,11 @@
   </mat-nav-list>
   <div fxFlex="grow"></div>
   <div fxFlexAlign="center" fxFlex="20" class="log-out">
-    <button mat-raised-button color="accent" (click)="logout(); draw.close()" *ngIf="user.email.length">
+    <button mat-raised-button color="accent" (click)="logout(); draw.close()" *ngIf="user.role">
       <mat-icon>exit_to_app</mat-icon>
       Log out
     </button>
-    <button mat-raised-button color="accent" routerLink="auth" (click)="draw.close()" *ngIf="!user.email.length">
+    <button mat-raised-button color="accent" routerLink="auth" (click)="draw.close()" *ngIf="!user.role">
       Log in
     </button>
   </div>

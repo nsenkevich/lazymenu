@@ -26,11 +26,6 @@ export class NavigationComponent {
     return this.draw.open();
   }
 
-  public getUserName(email: string): string {
-    const stringArray: Array<string> = email.split('@');
-    return stringArray[0];
-  }
-
   public openMenu(status: string, limit: number): void {
     this.router.navigate(['/menu', status, limit]);
   }

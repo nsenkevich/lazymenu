@@ -11,7 +11,8 @@ import { ProfileComponent } from './profile/profile.component';
 import { MenuComponent } from './menu/menu.component';
 import { PlansComponent } from './plans/plans.component';
 import { HowComponent } from './plans/how/how.component';
-import { IsAdminGuard } from './menu/is-admin.guard';
+import { IsAdminGuard } from './auth/is-admin.guard';
+import { CanReadGuard } from './auth/canread.guard';
 
 const routes: Routes = [
     { path: 'auth', component: AuthComponent, canActivate: [LoggedInGuard] },
@@ -20,9 +21,8 @@ const routes: Routes = [
     {
         path: 'menu', children: [
             { path: 'current/:limit', component: MenuComponent },
-            { path: 'next/:limit', component: MenuComponent },
+            { path: 'next/:limit', component: MenuComponent, canActivate: [CanReadGuard] },
             { path: 'pending/:limit', component: MenuComponent, canActivate: [IsAdminGuard] }
-
         ]
     },
     { path: 'plans', component: PlansComponent },
