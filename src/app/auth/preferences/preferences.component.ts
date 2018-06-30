@@ -1,6 +1,6 @@
 import { UserDiet } from './userDiet';
 import { UserAllergies } from './userAllergies';
-import { Component, OnInit, EventEmitter, Output, Input, DoCheck, SimpleChanges, OnChanges } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input, SimpleChanges, OnChanges, AfterViewInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 
@@ -15,7 +15,7 @@ export interface Preferences {
   templateUrl: './preferences.component.html',
   styleUrls: ['./preferences.component.scss']
 })
-export class PreferencesComponent implements OnInit, OnChanges {
+export class PreferencesComponent implements OnInit, AfterViewInit, OnChanges {
   @Input() state: string;
   @Input() value: Preferences;
   @Output() submitted = new EventEmitter<Preferences>();
@@ -30,21 +30,30 @@ export class PreferencesComponent implements OnInit, OnChanges {
     this.allergies = UserAllergies;
     this.diet = UserDiet;
     this.createUserPreferencesForm();
+    this.patchForm();
+    this.setFormState();
+  }
+
+  ngAfterViewInit() {
     const self = this;
+
     this.userPreferencesForm.controls.hasAllergies.valueChanges.subscribe((changes: any) => {
       if (changes === 'yes') {
         this.userPreferencesForm.controls.allergies.setValidators(self.arrayLength);
         this.userPreferencesForm.controls.allergies.enable();
         this.userPreferencesForm.controls.allergies.markAsTouched();
-      } else {
-        this.userPreferencesForm.controls.allergies.patchValue([]);
-        this.userPreferencesForm.controls.allergies.markAsUntouched();
-        this.userPreferencesForm.controls.allergies.disable();
-        this.userPreferencesForm.controls.allergies.setValidators(null);
+      }
+      if (changes === 'no') {
+        this.disableAllergiesField();
       }
     });
-    this.patchForm();
-    this.setFormState();
+  }
+
+  public disableAllergiesField(): void {
+    this.userPreferencesForm.controls.allergies.setValidators(null);
+    this.userPreferencesForm.controls.allergies.patchValue([]);
+    this.userPreferencesForm.controls.allergies.markAsUntouched();
+    this.userPreferencesForm.controls.allergies.disable();
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -66,6 +75,9 @@ export class PreferencesComponent implements OnInit, OnChanges {
     }
     if (this.state === 'edit') {
       this.userPreferencesForm.enable();
+      if (this.userPreferencesForm.controls.hasAllergies.value === 'no') {
+        this.disableAllergiesField();
+      }
     }
   }
 
@@ -85,7 +97,8 @@ export class PreferencesComponent implements OnInit, OnChanges {
       allergies: [[], [this.arrayLength]],
       diet: ['balanced', [Validators.required]]
     });
-    this.userPreferencesForm.controls.allergies.disable();
+    // this.disableAllergiesField();
+    // this.userPreferencesForm.controls.allergies.disable();
   }
 
   public submitPreferences(): void {
