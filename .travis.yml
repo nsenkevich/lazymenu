@@ -5,6 +5,13 @@ node_js:
 branches:
   only:
     - master
+env:
+  - apiKey=$apiKey,
+  - authDomain=$authDomain,
+  - databaseURL=$databaseURL,
+  - projectId=$projectId,
+  - storageBucket=$storageBucket,
+  - messagingSenderId=$messagingSenderId
 
 before_script:
   - npm install -g firebase-tools
