@@ -6,11 +6,11 @@ branches:
   only:
     - master
 env:
-  - apiKey=$apiKey,
-  - authDomain=$authDomain,
-  - databaseURL=$databaseURL,
-  - projectId=$projectId,
-  - storageBucket=$storageBucket,
+  - apiKey=$apiKey
+  - authDomain=$authDomain
+  - databaseURL=$databaseURL
+  - projectId=$projectId
+  - storageBucket=$storageBucket
   - messagingSenderId=$messagingSenderId
 
 before_script:
