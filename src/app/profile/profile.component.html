@@ -1,12 +1,44 @@
-<div *ngIf="authService.user | async as user">
-    <h3>Name, {{ user.name }}</h3>
-    <p>UID: {{ user.uid }}</p>
-    <p>Email: {{ user?.email }} </p>
-
-    <p>details: {{ user?.details }} </p>
-
-    <p>Portions: {{ user?.portions }} </p>
-    <p>Allergy: {{ user?.allergy }} </p>
-    <p>Diet: {{ user?.diet }} </p>
-    <button (click)="logout()">Logout</button>
+<div class="profile" *ngIf="user | async as user">
+    <mat-accordion multi="false">
+        <mat-expansion-panel expanded="true" class="section relative">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <i class="material-icons">local_dining</i>
+                    Dietary preferences & restrictions
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <app-edit-preferences [user]="user"></app-edit-preferences>
+        </mat-expansion-panel>
+        <!--////////D E L I V E R Y  S E T T I N G S////////-->
+        <!-- <div class="section">
+            <mat-expansion-panel class="sub-section">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <i class="material-icons">local_shipping</i>
+                        Delivery time
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <app-delivery-time [user]="user"></app-delivery-time>
+            </mat-expansion-panel>
+            <mat-expansion-panel class="sub-section relative">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <i class="material-icons">person_pin</i>
+                        Delivery address
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <app-edit-address [user]="user"></app-edit-address>
+            </mat-expansion-panel>
+        </div> -->
+        <!--////////C A R D////////-->
+        <!-- <mat-expansion-panel class="section">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <i class="material-icons">credit_card</i>
+                    Payment card
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <app-card></app-card>
+        </mat-expansion-panel> -->
+    </mat-accordion>
 </div>

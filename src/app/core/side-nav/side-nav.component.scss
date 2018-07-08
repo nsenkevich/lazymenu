@@ -1,0 +1,81 @@
+@import '~app/core/lm-theme.scss';
+@include lazy-menu-theme($lm-app-theme);
+::ng-deep .mat-nav-list {
+    .mat-list-icon {
+        color: $opaque-light-grey;
+    }
+    .mat-list-item .mat-list-text {
+        color: $opaque-dark-grey;
+    }
+}
+
+.mat-drawer {
+    min-width: 175px;
+}
+
+.user {
+    padding: 15px 0 0 0;
+    background: linear-gradient(to bottom, $opaque-light-grey 0%, #fff 100%);
+    box-shadow: 0 1px 0 lighten($opaque-light-grey, 10%);
+    cursor: pointer;
+    z-index: 1;
+    &:active,
+    &:focus,
+    &:hover {
+        outline: none;
+        box-shadow: 0 1px 2px $opaque-light-grey;
+    }
+    h3 {
+        font-weight: 400;
+        margin-top: 0;
+        padding-top: 0;
+    }
+}
+
+.avatar {
+    position: relative;
+    .hat {
+        position: absolute;
+        left: -10px;
+        top: -21px;
+        z-index: 1;
+        height: 45px;
+        width: 45px;
+        -ms-transform: rotate(-30deg);
+        -webkit-transform: rotate(-30deg);
+        transform: rotate(-30deg);
+        ::ng-deep svg {
+            height: 45px;
+            width: 45px;
+            g {
+                fill: $dark-grey;
+            }
+        }
+    }
+}
+
+.avatar-default {
+    color: $opaque-light-grey;
+    font-size: 56px;
+    height: 56px;
+    width: 56px;
+}
+
+.avatar-custom {
+    height: 56px;
+    width: 56px;
+    border-radius: 50px;
+    z-index: 2;
+}
+
+.log-out {
+    button {
+        min-width: 150px;
+        padding: 6px 0;
+        margin: 10px auto;
+        border-radius: 0;
+        .mat-icon {
+            color: $opaque-white;
+        }
+    }
+}

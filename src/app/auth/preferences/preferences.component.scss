@@ -1,0 +1,21 @@
+@import '~app/scss_mixins/shared-mixins';
+@include fullWidthForm();
+
+.full-width {
+  .mat-form-field-infix {
+    width: 100%;
+  }
+
+  .mat-radio-button {
+    margin: 0 10px 0 0;
+  }
+}
+
+.button-holder {
+  height: 50px;
+  margin: 16px 0;
+
+  .submit {
+    margin: 0;
+  }
+}

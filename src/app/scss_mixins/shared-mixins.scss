@@ -1,0 +1,59 @@
+@import '~app/core/lm-theme.scss';
+@include lazy-menu-theme($lm-app-theme);
+@mixin AbsoluteElement() {
+  .relative {
+    position: relative;
+    &::ng-deep.absolute,
+    .absolute {
+      position: absolute;
+      &.top {
+        top: 0;
+        left: 0;
+        right: 0;
+      }
+      &.bottom {
+        bottom: 0;
+        left: 0;
+        right: 0;
+      }
+    }
+  }
+}
+
+@mixin fullWidthForm() {
+  .full-width {
+    width: 100%;
+    ::ng-deep.mat-form-field-wrapper,
+    ::ng-deep.mat-input-wrapper {
+      font-size: 1.2em;
+    }
+  }
+  .submit {
+    width: 100%;
+    display: block;
+    padding: 6px 12px;
+    text-transform: uppercase;
+    margin-top: 16px;
+  }
+}
+
+@mixin EditForm() {
+  .edit {
+    color: $dark-grey;
+    right: 40px;
+    width: 50px;
+    height: 50px;
+    font-size: 1em;
+    right: -15px;
+    top: 15px;
+    border: none;
+    background: transparent;
+    &:active,
+    &:focus,
+    &:hover {
+      color: $med-grey;
+      box-shadow: none;
+      outline: none;
+    }
+  }
+}

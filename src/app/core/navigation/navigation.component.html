@@ -1,0 +1,81 @@
+<mat-toolbar class="main-nav">
+  <div fxShow="true" fxHide.lt-md="true" fxLayout="row" fxLayoutAlign="space-around center">
+    <div class="logo" (click)="openMenu('current', 5)" fxFlex fxLayout="row" fxLayoutAlign="space-around center">
+      <div>
+        <svg-icon src="assets/icons/lazy-menu-hat.svg"></svg-icon>
+      </div>
+      <div class="text">
+        <div class="black">Lazy</div>
+        <div class="red">MENU</div>
+      </div>
+    </div>
+    <a mat-button (click)="openMenu('current', 5)" class="menu-item">
+      This Week Menu
+    </a>
+    <a mat-button (click)="openMenu('next', 5)" class="menu-item" *ngIf="user.role">
+      Next Week Menu
+    </a>
+    <a mat-button (click)="openMenu('pending', 5)" class="menu-item" *ngIf="user.role == 'admin'">
+      Pending Menu
+    </a>
+    <!-- <a mat-button routerLink="plans" class="menu-item">
+      Plans
+    </a> -->
+
+  </div>
+  <div fxFlex="grow" fxFlex.sm="0" fxFlex.xs="0"></div>
+  <div class="user-block" fxShow="true" fxHide.lt-md="true" fxFlex.sm="0" fxFlex.xs="0" fxFlex fxLayout="row" fxLayoutAlign="space-around center">
+    <div class="right-menu">
+      <a mat-button routerLink="how" class="menu-item">
+        About
+      </a>
+    </div>
+    <div *ngIf="!user.role">
+      <a mat-button routerLink="auth" class="menu-item">
+        Log in
+      </a>
+    </div>
+    <div *ngIf="user.role">
+      <div [matMenuTriggerFor]="menu" *ngIf="user" fxLayout="row" fxLayoutAlign="space-between center">
+        <div class="avatar-holder">
+          <div class="avatar">
+            <mat-icon *ngIf="!user.avatar" class="avatar-default">account_circle</mat-icon>
+            <img *ngIf="user.avatar" [src]="user.avatar" class="avatar-custom">
+          </div>
+          <div class="hat">
+            <svg-icon src="assets/icons/lazy-menu-hat.svg"></svg-icon>
+          </div>
+        </div>
+        <div class="block">{{user.name}}</div>
+        <mat-icon class="caret">arrow_drop_down</mat-icon>
+      </div>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item routerLink="profile">
+          <mat-icon>account_circle</mat-icon>
+          Profile
+        </button>
+        <button mat-menu-item class="log-out" (click)="logout()">
+          <mat-icon>exit_to_app</mat-icon>
+          Log out
+        </button>
+      </mat-menu>
+    </div>
+  </div>
+  <div fxShow="true" fxHide.gt-sm="true" fxFlex="100" fxLayout="row">
+    <div fxFlex="50px" class="sidenav-toggle">
+      <button mat-icon-button (click)="toggle()">
+        <mat-icon class="md-24">menu</mat-icon>
+      </button>
+    </div>
+    <div class="logo small" routerLink="menu" fxFlex="80" fxLayout="row" fxLayoutAlign=" none">
+      <div fxFlex="80px">
+        <svg-icon src="assets/icons/lazy-menu-hat.svg"></svg-icon>
+      </div>
+      <div class="text">
+        <div class="black">Lazy</div>
+        <div class="red">MENU</div>
+      </div>
+    </div>
+    <div fxFlex="10"></div>
+  </div>
+</mat-toolbar>

@@ -1,0 +1,160 @@
+@import '~app/core/lm-theme.scss';
+@include lazy-menu-theme($lm-app-theme);
+.main-nav {
+  background: #fff;
+  color: $med-grey;
+  box-shadow: 0 1px 5px lighten($opaque-light-grey, 20%);
+  .mat-toolbar-single-row {
+    height: 75px;
+  }
+  .logo {
+    margin-right: 30px;
+    &.hover,
+    &:active,
+    &:focus {
+      outline: none;
+    }
+    .text {
+      .black {
+        font-family: 'Lazy';
+        color: $dark-grey;
+        font-size: 36px;
+        text-align: center;
+        line-height: 80%;
+        letter-spacing: 1px;
+        margin-bottom: -3px;
+      }
+      .red {
+        font-family: 'Menu';
+        color: $med-red;
+        font-size: 18px;
+        text-align: center;
+        line-height: 100%;
+        letter-spacing: -1px;
+      }
+    }
+    ::ng-deep svg {
+      width: 100px;
+      height: 100px;
+      margin: 8px -10px 0 -20px;
+      g {
+        fill: $med-red;
+      }
+    }
+    &.small {
+      .text {
+        margin-top: 20px;
+        .black {
+          font-size: 35px;
+        }
+        .red {
+          font-size: 18px;
+        }
+      }
+      svg-icon {
+        ::ng-deep svg {
+          width: 85px;
+          height: 85px;
+          margin: 0;
+          display: block;
+        }
+      }
+    }
+  }
+  .sidenav-toggle {
+    margin-top: 25px;
+  }
+  .menu-item {
+    &.mat-button {
+      line-height: 15px;
+      font-size: 15px;
+      font-weight: 400;
+      padding: 1em;
+      text-transform: capitalize;
+    }
+  }
+  .log-out {
+    width: 100%;
+    background: lighten($opaque-light-grey, 10%);
+    border-top: 1px solid lighten($light-grey, 15%);
+    text-align: center;
+    &:hover {
+      background: $opaque-light-grey;
+      border-top: 1px solid lighten($light-grey, 10%);
+    }
+    .menu-item {
+      line-height: .8em;
+      font-size: .8em;
+      padding: 1.2em;
+      ::ng-deep .mat-button-wrapper {
+        padding: 1.2em;
+      }
+      .mat-icon {
+        line-height: .8em;
+      }
+    }
+  }
+  ::ng-deep .cdk-overlay-pane {
+    ::ng-deep .mat-menu-panel {
+      width: 150px;
+    }
+  }
+}
+
+.user-block {
+  vertical-align: middle;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  .avatar-default {
+    color: $light-grey;
+    font-size: 45px;
+    height: 45px;
+    width: 45px;
+    vertical-align: middle;
+  }
+  .avatar-holder {
+    margin-right: 5px;
+    position: relative;
+    .hat {
+      position: absolute;
+      left: -10px;
+      top: -21px;
+      z-index: 1;
+      height: 40px;
+      width: 40px;
+      -ms-transform: rotate(-30deg);
+      -webkit-transform: rotate(-30deg);
+      transform: rotate(-30deg);
+      ::ng-deep svg {
+        height: 40px;
+        width: 40px;
+        g {
+          fill: $dark-grey;
+        }
+      }
+    }
+    .avatar {
+      z-index: 2;
+    }
+  }
+  .avatar-custom {
+    height: 45px;
+    width: 45px;
+    border-radius: 50px;
+    z-index: 2;
+    vertical-align: middle;
+  }
+  .block {
+    font-size: .85em;
+    font-weight: 400;
+  }
+  .caret {
+    color: $opaque-light-grey;
+  }
+}
+
+.right-menu {
+  margin-right: 10px;
+}
