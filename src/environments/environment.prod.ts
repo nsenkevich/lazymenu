@@ -1,11 +1,11 @@
 export const environment = {
     production: true,
     firebase: {
-        apiKey: process.env.apiKey,
-        authDomain: process.env.authDomain,
-        databaseURL: process.env.databaseURL,
-        projectId: process.env.projectId,
-        storageBucket: process.env.storageBucket,
-        messagingSenderId: process.env.messagingSenderId
+        apiKey: 'AIzaSyB1iNrL3ZGlbunytffQtyCJ29bmx7ToBj8',
+        authDomain: 'lazymenu-b35c8.firebaseapp.com',
+        databaseURL: 'https://lazymenu-b35c8.firebaseio.com',
+        projectId: 'lazymenu-b35c8',
+        storageBucket: 'lazymenu-b35c8.appspot.com',
+        messagingSenderId: '484461774246'
       }
 };
