@@ -6,12 +6,14 @@ branches:
   only:
     - master
 env:
-  - apiKey=$apiKey
-  - authDomain=$authDomain
-  - databaseURL=$databaseURL
-  - projectId=$projectId
-  - storageBucket=$storageBucket
-  - messagingSenderId=$messagingSenderId
+  global:
+    - databaseURL=https://lazymenu-b35c8.firebaseio.com
+    - FIREBASE_TOKEN=$FIREBASE_TOKEN
+    - apiKey=$apiKey
+    - authDomain=$authDomain
+    - projectId=$projectId
+    - storageBucket=$storageBucket
+    - messagingSenderId=$messagingSenderId
 
 before_script:
   - npm install -g firebase-tools
