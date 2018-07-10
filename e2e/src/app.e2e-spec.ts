@@ -9,6 +9,6 @@ describe('workspace-project App', () => {
 
   it('should have menu', () => {
     page.navigateTo();
-    expect(page.getMenu()).toEqual('This Week Menu');
+    expect(page.getMenu()).toEqual('');
   });
 });
