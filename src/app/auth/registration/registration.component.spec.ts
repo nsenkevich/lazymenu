@@ -14,9 +14,9 @@ describe('RegistrationComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [RegistrationComponent ],
-      imports:[FormsModule, ReactiveFormsModule, MaterialModule, BrowserAnimationsModule],
-      providers:[
-        { "provide": AngularFirestore, "useValue": AngularFirestoreMock },
+      imports: [FormsModule, ReactiveFormsModule, MaterialModule, BrowserAnimationsModule],
+      providers: [
+        { 'provide': AngularFirestore, 'useValue': AngularFirestoreMock },
       ],
     })
     .compileComponents();

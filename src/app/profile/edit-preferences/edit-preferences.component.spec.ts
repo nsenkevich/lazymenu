@@ -16,8 +16,8 @@ xdescribe('EditPreferencesComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ PreferencesComponent, EditPreferencesComponent ],
-      imports:[FormsModule, ReactiveFormsModule, MaterialModule, BrowserAnimationsModule],
-      providers:[{provide: AuthService, useClass: AuthServiceMock}],
+      imports: [FormsModule, ReactiveFormsModule, MaterialModule, BrowserAnimationsModule],
+      providers: [{provide: AuthService, useClass: AuthServiceMock}],
     })
     .compileComponents();
   }));

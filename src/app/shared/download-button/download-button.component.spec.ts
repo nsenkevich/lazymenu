@@ -15,7 +15,7 @@ xdescribe('DownloadButtonComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ DownloadButtonComponent ],
-      providers:[
+      providers: [
         {provide: AuthService, useClass: AuthServiceMock},
         {provide: Router, useClass: RouterMock}
       ],

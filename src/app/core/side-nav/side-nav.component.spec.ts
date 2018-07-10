@@ -11,7 +11,7 @@ xdescribe('SideNavComponent', () => {
   }
   const fakeActivatedRoute = {
     snapshot: { data: {} }
-  }
+  };
 
   const mockRouter = new MockRouter();
   let component: SideNavComponent;
@@ -20,7 +20,7 @@ xdescribe('SideNavComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ SvgIconComponent, SideNavComponent ],
-      imports:[ MaterialModule, RouterModule ],
+      imports: [ MaterialModule, RouterModule ],
       providers: [
         {provide: Router, useValue: mockRouter},
         {provide: ActivatedRoute, useValue: fakeActivatedRoute },

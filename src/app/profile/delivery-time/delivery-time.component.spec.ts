@@ -13,8 +13,8 @@ xdescribe('DeliveryTimeComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ DeliveryTimeComponent ],
-      imports:[ MaterialModule],
-      providers:[{provide: AuthService, useClass: AuthServiceMock}],
+      imports: [ MaterialModule],
+      providers: [{provide: AuthService, useClass: AuthServiceMock}],
     })
     .compileComponents();
   }));

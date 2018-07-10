@@ -26,7 +26,7 @@ export class EditAddressComponent implements OnInit {
 
   ngOnInit() {
     this.deliveryAddress = this.getDeliveryAddress(this.user);
-    console.log(this.user)
+    console.log(this.user);
   }
 
   private getDeliveryAddress(user: any): DeliveryAddress {

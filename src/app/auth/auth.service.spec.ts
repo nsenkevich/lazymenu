@@ -7,20 +7,20 @@ import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { AngularFireAuthMock, AngularFirestoreMock } from '../../mocks';
 
-class MockAngularFireAuth extends ReplaySubject<FirebaseAuth> {    
+class MockAngularFireAuth extends ReplaySubject<FirebaseAuth> {
   logout = (): Promise<void> => {
-    return Promise.resolve()
+    return Promise.resolve();
   }
 }
 
 
 describe('AuthService', () => {
-  let afAuthMock = new MockAngularFireAuth();
+  const afAuthMock = new MockAngularFireAuth();
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [AuthService,
-        { "provide": AngularFireAuth, "useValue": AngularFireAuthMock },
-        { "provide": AngularFirestore, "useValue": AngularFirestoreMock },
+        { 'provide': AngularFireAuth, 'useValue': AngularFireAuthMock },
+        { 'provide': AngularFirestore, 'useValue': AngularFirestoreMock },
       ]
     });
   });
