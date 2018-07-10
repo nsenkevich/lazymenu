@@ -8,14 +8,14 @@ import { LocationStrategy } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterMock, fakeActivatedRoute } from '../../../mocks';
 
-xdescribe('NavigationComponent', () => {  
+xdescribe('NavigationComponent', () => {
   let component: NavigationComponent;
   let fixture: ComponentFixture<NavigationComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ SvgIconComponent, NavigationComponent ],
-      imports:[MaterialModule, RouterModule, HttpClientModule],
+      imports: [MaterialModule, RouterModule, HttpClientModule],
       providers: [SvgIconRegistryService, LocationStrategy,
         {provide: Router, useValue: new RouterMock()},
         { provide: ActivatedRoute, useValue: fakeActivatedRoute },

@@ -6,18 +6,18 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/switchMap';
 import { of} from 'rxjs';
 import { UserInterface, User } from './user';
-import 'rxjs/add/operator/map'
+import 'rxjs/add/operator/map';
 @Injectable()
 export class AuthService {
   private user: Observable<any>;
 
-  constructor(private firebaseAuth: AngularFireAuth, private afs: AngularFirestore) { 
+  constructor(private firebaseAuth: AngularFireAuth, private afs: AngularFirestore) {
     this.user = this.firebaseAuth.authState.switchMap(user => {
       if (user) {
         return  this.afs.doc<UserInterface>(`users/${user.uid}`)
         .snapshotChanges().map(action => {
             const data = action.payload.data() as UserInterface;
-            const user = User.createFromSocial(data.uid, data.email, data.name, data.avatar)
+            const user = User.createFromSocial(data.uid, data.email, data.name, data.avatar);
             user.setAllergies(data.allergies);
             user.setDiet(data.diet);
             return user;

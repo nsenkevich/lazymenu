@@ -12,7 +12,7 @@ xdescribe('HowComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ HowComponent ],
-      imports:[FormsModule, ReactiveFormsModule, MaterialModule, BrowserAnimationsModule],
+      imports: [FormsModule, ReactiveFormsModule, MaterialModule, BrowserAnimationsModule],
     })
     .compileComponents();
   }));

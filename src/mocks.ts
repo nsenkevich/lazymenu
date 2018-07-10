@@ -1,7 +1,7 @@
-import { BehaviorSubject, of, Observable } from "rxjs";
-import { User, UserInterface } from "./app/auth/user";
-import { MenuComponent } from "./app/menu/menu.component";
-import { Routes } from "@angular/router";
+import { BehaviorSubject, of, Observable } from 'rxjs';
+import { User, UserInterface } from './app/auth/user';
+import { MenuComponent } from './app/menu/menu.component';
+import { Routes } from '@angular/router';
 import {} from 'jasmine';
 
 export const AngularFirestoreMock = {
@@ -12,14 +12,14 @@ export const AngularFirestoreMock = {
       }),
     }),
   };
-  
+
 export const AngularFireAuthMock = {
     authState: of({ uid: 'ABC123' })
   };
 
   export class AuthServiceMock {
     private user: Observable<any>;
-    constructor() { 
+    constructor() {
       this.user = of(User.createGuest);
     }
     getUser() {
@@ -29,7 +29,7 @@ export const AngularFireAuthMock = {
       return new Promise((resolve, _reject) => resolve());
     }
     updateUser(user: UserInterface) {
-         
+
     }
   }
 
@@ -43,4 +43,4 @@ export const AngularFireAuthMock = {
   ];
   export   const fakeActivatedRoute = {
     snapshot: { data: {} }
-  }
+  };

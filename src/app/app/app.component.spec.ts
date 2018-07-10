@@ -12,16 +12,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterMock, AuthServiceMock, fakeActivatedRoute } from '../../mocks';
 
 xdescribe('AppComponent', () => {
-  
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
       declarations: [AppComponent, NavigationComponent, SideNavComponent, FooterComponent, SvgIconComponent],
-      imports:[MaterialModule, RouterModule, BrowserAnimationsModule],
+      imports: [MaterialModule, RouterModule, BrowserAnimationsModule],
       providers: [
         {provide: AuthService, useClass: AuthServiceMock},
         {provide: Router, useClass: RouterMock},
-        {provide: ActivatedRoute, useValue: fakeActivatedRoute }, 
+        {provide: ActivatedRoute, useValue: fakeActivatedRoute },
       ]
     }).compileComponents();
   }));

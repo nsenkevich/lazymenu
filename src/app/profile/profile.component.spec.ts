@@ -14,12 +14,12 @@ xdescribe('ProfileComponent', () => {
   let component: ProfileComponent;
   let fixture: ComponentFixture<ProfileComponent>;
   let authService: AuthService;
-  
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ PreferencesComponent, EditPreferencesComponent, ProfileComponent ],
-      imports:[FormsModule, ReactiveFormsModule, MaterialModule, BrowserAnimationsModule],
-      providers:[{provide: AuthService, useClass: AuthServiceMock}],
+      imports: [FormsModule, ReactiveFormsModule, MaterialModule, BrowserAnimationsModule],
+      providers: [{provide: AuthService, useClass: AuthServiceMock}],
     })
     .compileComponents();
   }));

@@ -13,7 +13,7 @@ describe('AddressComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [AddressComponent ],
-      imports:[FormsModule, ReactiveFormsModule, MaterialModule, BrowserAnimationsModule],
+      imports: [FormsModule, ReactiveFormsModule, MaterialModule, BrowserAnimationsModule],
     })
     .compileComponents();
   }));

@@ -16,8 +16,8 @@ xdescribe('EditAddressComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ EditAddressComponent, AddressComponent],
-      imports:[FormsModule, ReactiveFormsModule, MaterialModule, BrowserAnimationsModule],
-      providers:[{provide: AuthService, useClass: AuthServiceMock}],
+      imports: [FormsModule, ReactiveFormsModule, MaterialModule, BrowserAnimationsModule],
+      providers: [{provide: AuthService, useClass: AuthServiceMock}],
     })
     .compileComponents();
   }));
