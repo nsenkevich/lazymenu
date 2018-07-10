@@ -18,15 +18,15 @@ script:
   - ng test --code-coverage
   - ng e2e
   - if [ $TRAVIS_BRANCH == "develop" ]; then 
-      ng build
+      ng build; 
     fi
   - if [ $TRAVIS_BRANCH == "master" ]; then 
-      ng build --prod 
+      ng build --prod; 
     fi
 
 after_success:
   - if [ $TRAVIS_BRANCH == "develop" ]; then 
-      firebase use staging 
+      firebase use staging; 
     fi
   - firebase deploy --token $FIREBASE_TOKEN
 
