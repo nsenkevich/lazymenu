@@ -8,6 +8,7 @@ export interface UserInterface {
     allergies?: Array<string>;
     diet?: Array<string>;
     role?: string;
+    stringify?: any;
 }
 
 export class User implements UserInterface {
@@ -46,8 +47,8 @@ export class User implements UserInterface {
 
     public setAllergies(allergies: Array<string>): void {
         this.allergies = allergies;
-        if (allergies.length != 0) {
-            this.hasAllergies = 'yes'
+        if (allergies && allergies.length !== 0) {
+            this.hasAllergies = 'yes';
         }
         this.hasAllergies = 'no';
     }
@@ -56,28 +57,45 @@ export class User implements UserInterface {
         this.diet = diet;
     }
 
+    public makeAdmin() {
+        this.role = 'admin';
+        return this;
+    }
+
+    public isGuest(): boolean {
+        return !this.role;
+    }
+
+    public isSubscriber(): boolean {
+        return this.role === 'subscriber';
+    }
+
     public isAdmin(): boolean {
-        return this.role == 'admin';
+        return this.role === 'admin';
     }
 
     public canRead(): boolean {
-        return this.checkAuthorization(['admin', 'editor', 'subscriber'])
+        return this.checkAuthorization(['admin', 'subscriber']);
     }
 
     public canEdit(): boolean {
-        return this.checkAuthorization(['admin', 'editor'])
+        return this.checkAuthorization(['admin']);
     }
 
     public canDelete(): boolean {
-        return this.checkAuthorization(['admin'])
+        return this.checkAuthorization(['admin']);
     }
 
     private checkAuthorization(allowedRoles: string[]): boolean {
         for (const role of allowedRoles) {
-            if (this.role == role) {
-                return true
+            if (this.role === role) {
+                return true;
             }
         }
-        return false
+        return false;
+    }
+
+    public stringify(): User {
+        return JSON.parse( JSON.stringify(this));
     }
 }

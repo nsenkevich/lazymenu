@@ -1,8 +1,13 @@
-import { SafeUrlPipe } from './safe-url.pipe';
+import { SafeYouTubeUrlPipe } from './safe-url.pipe';
+import { TestBed, inject } from '@angular/core/testing';
 
-describe('SafeUrlPipe', () => {
-  it('create an instance', () => {
-    const pipe = new SafeUrlPipe();
-    expect(pipe).toBeTruthy();
+describe('SafeYouTubeUrlPipe', () => {
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      providers: [SafeYouTubeUrlPipe]
+    });
   });
+  it('should be created', inject([SafeYouTubeUrlPipe], (service: SafeYouTubeUrlPipe) => {
+    expect(service).toBeTruthy();
+  }));
 });

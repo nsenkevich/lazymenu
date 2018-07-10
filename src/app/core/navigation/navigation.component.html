@@ -12,10 +12,10 @@
     <a mat-button (click)="openMenu('current', 5)" class="menu-item">
       This Week Menu
     </a>
-    <a mat-button (click)="openMenu('next', 5)" class="menu-item" *ngIf="user.role">
+    <a mat-button (click)="openMenu('next', 5)" class="menu-item" *ngIf="user.isSubscriber()">
       Next Week Menu
     </a>
-    <a mat-button (click)="openMenu('pending', 5)" class="menu-item" *ngIf="user.role == 'admin'">
+    <a mat-button (click)="openMenu('pending', 5)" class="menu-item" *ngIf="user.isAdmin()">
       Pending Menu
     </a>
     <!-- <a mat-button routerLink="plans" class="menu-item">
@@ -30,12 +30,12 @@
         About
       </a>
     </div>
-    <div *ngIf="!user.role">
+    <div *ngIf="user.isGuest()">
       <a mat-button routerLink="auth" class="menu-item">
         Log in
       </a>
     </div>
-    <div *ngIf="user.role">
+    <div *ngIf="!user.isGuest()">
       <div [matMenuTriggerFor]="menu" *ngIf="user" fxLayout="row" fxLayoutAlign="space-between center">
         <div class="avatar-holder">
           <div class="avatar">

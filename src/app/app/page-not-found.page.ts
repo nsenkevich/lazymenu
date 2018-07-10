@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 
 @Component({
-  moduleId: module.id,
   selector: 'app-page-not-found',
   template: `
     <article class="template animated slideInRight">

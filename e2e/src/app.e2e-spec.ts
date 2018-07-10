@@ -7,8 +7,8 @@ describe('workspace-project App', () => {
     page = new AppPage();
   });
 
-  it('should display welcome message', () => {
+  it('should have menu', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to lazymenu2!');
+    expect(page.getMenu()).toEqual('');
   });
 });
