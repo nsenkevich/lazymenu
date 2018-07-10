@@ -11,7 +11,6 @@ import { AuthServiceMock } from '../../../mocks';
 
 xdescribe('EditAddressComponent', () => {
   let component: EditAddressComponent;
-  let fixture: ComponentFixture<EditAddressComponent>;
   let authService: AuthService;
   beforeEach(async(() => {
     TestBed.configureTestingModule({

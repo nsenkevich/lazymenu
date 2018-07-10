@@ -10,7 +10,6 @@ import { AuthServiceMock } from '../../../mocks';
 
 xdescribe('EditPreferencesComponent', () => {
   let component: EditPreferencesComponent;
-  let fixture: ComponentFixture<EditPreferencesComponent>;
   let authService: AuthService;
 
   beforeEach(async(() => {
