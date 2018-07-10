@@ -1,11 +1,11 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: 'AIzaSyB1iNrL3ZGlbunytffQtyCJ29bmx7ToBj8',
-    authDomain: 'lazymenu-b35c8.firebaseapp.com',
-    databaseURL: 'https://lazymenu-b35c8.firebaseio.com',
-    projectId: 'lazymenu-b35c8',
-    storageBucket: 'lazymenu-b35c8.appspot.com',
-    messagingSenderId: '484461774246'
+    apiKey: 'AIzaSyB0F_3yeUlVndle60b15pzFwJqMSY4Um5I',
+    authDomain: 'lazymenu2-staging.firebaseapp.com',
+    databaseURL: 'https://lazymenu2-staging.firebaseio.com',
+    projectId: 'lazymenu2-staging',
+    storageBucket: 'lazymenu2-staging.appspot.com',
+    messagingSenderId: '439343648936'
   }
 };
