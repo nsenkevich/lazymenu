@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "lazymenu-b35c8"
+    "default": "lazymenu-b35c8",
+    "staging": "lazymenu2-staging"
   }
 }

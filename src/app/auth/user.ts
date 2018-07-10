@@ -47,7 +47,7 @@ export class User implements UserInterface {
 
     public setAllergies(allergies: Array<string>): void {
         this.allergies = allergies;
-        if (allergies.length !== 0) {
+        if (allergies && allergies.length !== 0) {
             this.hasAllergies = 'yes';
         }
         this.hasAllergies = 'no';
