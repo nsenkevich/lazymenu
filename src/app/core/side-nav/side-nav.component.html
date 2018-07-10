@@ -16,10 +16,10 @@
     <mat-list-item mat-button (click)="openMenu('current', 5); draw.close()">
       <h3 matLine>This Week</h3>
     </mat-list-item>
-    <mat-list-item mat-button (click)="openMenu('next', 5); draw.close()" *ngIf="user.role">
-      <h3 matLine>Next Week {{user.role}}</h3>
+    <mat-list-item mat-button (click)="openMenu('next', 5); draw.close()" *ngIf="user.isSubscriber()">
+      <h3 matLine>Next Week </h3>
     </mat-list-item>
-    <mat-list-item mat-button (click)="openMenu('pending', 5); draw.close()" *ngIf="user.role == 'admin'">
+    <mat-list-item mat-button (click)="openMenu('pending', 5); draw.close()" *ngIf="user.isAdmin()">
       <h3 matLine>Pending Menu</h3>
     </mat-list-item>
 
@@ -32,11 +32,11 @@
   </mat-nav-list>
   <div fxFlex="grow"></div>
   <div fxFlexAlign="center" fxFlex="20" class="log-out">
-    <button mat-raised-button color="accent" (click)="logout(); draw.close()" *ngIf="user.role">
+    <button mat-raised-button color="accent" (click)="logout(); draw.close()" *ngIf="!user.isGuest()">
       <mat-icon>exit_to_app</mat-icon>
       Log out
     </button>
-    <button mat-raised-button color="accent" routerLink="auth" (click)="draw.close()" *ngIf="!user.role">
+    <button mat-raised-button color="accent" routerLink="auth" (click)="draw.close()" *ngIf="user.isGuest()">
       Log in
     </button>
   </div>

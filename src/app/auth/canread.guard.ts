@@ -13,7 +13,7 @@ export class CanReadGuard implements CanActivate {
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
     return this.authService.getUser().pipe(
       take(1),
-      map(user => user && user.role !== undefined),
+      map(user => user && !user.isGuest()),
       tap(canView => {
         if (!canView) {
           this.router.navigate(['/menu']);

@@ -12,7 +12,7 @@ export class IsAdminGuard implements CanActivate {
     public canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
         return this.authService.getUser().pipe(
             take(1),
-            map(user => user && user.role == 'admin'),
+            map(user => user && user.isAdmin()),
             tap(isAdmin => {
                 if (!isAdmin) {
                     this.router.navigate(['/menu']);

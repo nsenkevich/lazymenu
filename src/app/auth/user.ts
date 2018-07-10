@@ -8,6 +8,7 @@ export interface UserInterface {
     allergies?: Array<string>;
     diet?: Array<string>;
     role?: string;
+    stringify?: any;
 }
 
 export class User implements UserInterface {
@@ -56,16 +57,29 @@ export class User implements UserInterface {
         this.diet = diet;
     }
 
+    public makeAdmin() {
+        this.role = 'admin';
+        return this;
+    }
+
+    public isGuest(): boolean {
+        return !this.role;
+    }
+
+    public isSubscriber(): boolean {
+        return this.role == 'subscriber';
+    }
+
     public isAdmin(): boolean {
         return this.role == 'admin';
     }
-
+    
     public canRead(): boolean {
-        return this.checkAuthorization(['admin', 'editor', 'subscriber'])
+        return this.checkAuthorization(['admin', 'subscriber'])
     }
 
     public canEdit(): boolean {
-        return this.checkAuthorization(['admin', 'editor'])
+        return this.checkAuthorization(['admin'])
     }
 
     public canDelete(): boolean {
@@ -79,5 +93,9 @@ export class User implements UserInterface {
             }
         }
         return false
+    }
+
+    public stringify(): User {
+        return JSON.parse( JSON.stringify(this));
     }
 }
